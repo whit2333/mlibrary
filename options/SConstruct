@@ -1,13 +1,13 @@
 from init_env import init_environment
 
-env = init_environment("qt5 clas12")
+env = init_environment("qt5 mlibrary")
 
 
 # Utilities
 option_sources = Split("""
 	options.cc
 	""")
-lib = env.Library(source = option_sources, target = "../lib/option")
+lib = env.Library(source = option_sources, target = "../lib/options")
 
 
 example = env.Program(source = "example.cc", target = "example")

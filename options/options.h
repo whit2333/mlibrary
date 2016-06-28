@@ -8,6 +8,12 @@
 #ifndef GOPTIONS_H
 #define GOPTIONS_H
 
+
+// c++
+#include <string>
+#include <map>
+using namespace std;
+
 /// \class aopt
 /// <b> aopt </b>\n\n
 /// Option class.\n
@@ -25,12 +31,12 @@ public:
 
 	string shortHelp;  ///< One liner to be displayed for the argument variable.
 	string help;       ///< help to be displayed for the argument variable.
-	string category;      ///< help category -help will group all categories together
+	string category;   ///< help category -help will group all categories together
 
 	int    shareWithGcard;  ///< if this is set to 1: then this option can be shared with the gcard
-	///< if this is set to 0: command line will always overwrite the gcard (default)
+	                        ///< if this is set to 0: command line will always overwrite the gcard (default)
 
-	aopt() {repe = 0;}
+	aopt() {shareWithGcard = 0;}
 
 public:
 	void printSetting();            ///< print the option setting on screen
