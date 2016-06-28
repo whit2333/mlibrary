@@ -33,8 +33,8 @@ public:
 	string help;       ///< help to be displayed for the argument variable.
 	string category;   ///< help category -help will group all categories together
 
-	int    shareWithGcard;  ///< if this is set to 1: then this option can be shared with the gcard
-	                        ///< if this is set to 0: command line will always overwrite the gcard (default)
+	bool shareWithGcard;  ///< true: then this option can be shared with the gcard
+							    ///< false (default): command line will always overwrite the gcard 
 
 	aopt() {shareWithGcard = 0;}
 
