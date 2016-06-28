@@ -1,8 +1,8 @@
 // example on how to use the options
 
 
-
-
+#include "iostream"
+using namespace std;
 
 int main(int argc, char*argv[])
 {
@@ -11,3 +11,4 @@ int main(int argc, char*argv[])
 	return 1;
 
 }
+
