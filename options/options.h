@@ -16,7 +16,6 @@
 
 using namespace std;
 
-
 //! a GOption can be a double or a string
 enum GOptionType {isDouble, isString};  // option type
 
@@ -40,58 +39,51 @@ private:
 
 	string title;     // One liner to be displayed for the argument variable.
 	string help;      // help to be displayed for the argument variable.
-	string category;  // help category -help will group all categories together
 
+	string category;  // help category -help will group all categories together
 	bool repetition;  // false (default): this option is unique in the map
 
 public:
+	// if other constructors are present declaring the base is mandatory
+	// c++11 allows "default"
+	GOption() = default;
 
 	//! Sets a double type option and description
-	void setOption(double value, string title) {
+	GOption(double v, string t, string cat = "general", bool rep = false) : valueD(v) {
 		type = isDouble;
 
-		valueD = value;
 		valueS = "na";
 
-		setUOption(title);
+		setUOption(title, category, rep);
 	}
 
 	//! Sets a string type option and description
-	void setOption(string value, string title) {
+	GOption(string v, string t, string cat = "general", bool rep = false) : valueS(v) {
 		type = isString;
 
-		valueD = 0;
-		valueS = value;
+		valueD = -99;
 
-		setUOption(title);
+		setUOption(title, category, rep);
 
 	}
 
-	//! Sets an option category
-	void setCategory(string c) {
-		category = c;
-	}
-
-	//! Adds line to the help
+	//! Adds lines to the help
 	void addHelp(string h) {
 		help += h;
 	}
 
-	//! Adds line to the help
-	void setRepetition(bool r) {
-		repetition = r;
-	}
 
 	//! overloading the << operator
 	friend ostream &operator<<(ostream &stream, GOption);
 
 private:
-	void setUOption(string t) {
-		title = t;
-		help   = "";
+	void setUOption(string t, string c, bool r){
 
-		category = "general";
-		repetition = false;
+		category   = c;
+		repetition = r;
+
+		// setting default help to option description
+		help       = t;
 
 	}
 
@@ -107,15 +99,21 @@ class GOptions
 {
 public:
 
-	GOptions();
-
-
-public:
-	map<string, GOption> optionsMap;  ///< GOptions map
-
+	//! constructor - ignore is optional
+	GOptions(int argc, char *argv[], bool ignore = false);
 
 private:
-	int ignoreNotFound; ///< if set to 1 do not quit if an option is not found
+
+	//! GOptions map
+	map<string, GOption> optionsMap;
+
+	//! finds a configuration file (gcard)
+	string findConfigurationFile(int argc, char *argv[]);
+	int parseConfigurationFile(string file);
+	QDomDocument checkGCard(string file);
+
+private:
+	bool ignoreNotFound; ///< if set to 1 do not quit if an option is not found
 };
 
 

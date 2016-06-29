@@ -9,7 +9,5 @@ option_sources = Split("""
 	""")
 lib = env.Library(source = option_sources, target = "../lib/options")
 
-
 example = env.Program(source = "example.cc", target = "example")
 
-Depends(example,  lib);

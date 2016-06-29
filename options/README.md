@@ -28,5 +28,8 @@ Changes:
  - UML_LOOK               = YES
  - UML_LIMIT_NUM_FIELDS   = 0
  - TEMPLATE_RELATIONS     = YES
+ - QT_AUTOBRIEF           = YES
+ - DOT_FONTSIZE           = 12
+ - HTML_DYNAMIC_SECTIONS  = YES
 
 
