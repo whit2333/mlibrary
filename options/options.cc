@@ -1,17 +1,15 @@
 #include "options.h"
 
-// initialize general options
-goptions::goptions()
+
+ostream &operator<<(ostream &stream, GOption gopt)
 {
-	optMap["Verbosity"].arg       = 0;
-	optMap["Verbosity"].help      = "Controls General Log Verbosity.";
-	optMap["Verbosity"].shortHelp = "Log Verbosity";
-	optMap["Verbosity"].type      = 0;
-	optMap["Verbosity"].category  = "verbosity";
+	stream << " > " << gopt.title << " set to ";
+	switch(gopt.type) {
+		case isString: stream << gopt.valueS ; break;
+		case isDouble: stream << gopt.valueD ; break;
+	}
+	return stream;
 }
-
-
-
 
 
 
