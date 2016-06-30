@@ -14,7 +14,7 @@ void GOptions::defineOptions()
 	optionsMap["geometry"]         = GOption("Window Geometry", "1400x1200");
 	optionsMap["INTEGRATEDRAW"]    = GOption("Store Time Window Integrated True Information", "na", "hit");
 	optionsMap["SAVE_ALL_MOTHERS"] = GOption("Save particle hierarchy", 1.0, "run");
-	optionsMap["FIELD_PROPERTIES"] = GOption("Sets Field Properties", "clas12-solenoid, 0.1*mm, G4HelixSimpleRunge, linear", "run");
+	optionsMap["FIELD_PROPERTIES"] = GOption("Sets Field Properties", "na", "run");
 
 }
 

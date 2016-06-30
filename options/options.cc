@@ -31,10 +31,8 @@ GOptions::GOptions(int argc, char *argv[], bool ignore) : ignoreNotFound(ignore)
 	//! parse configuration file
 	parseConfigurationFile(findConfigurationFile(argc, argv));
 
-
 	//! now parse command line arguments
-
-
+	checkAndParseCommandLine(argc, argv);
 
 	// now print the user settings
 	printUserSettings();
@@ -141,6 +139,26 @@ int GOptions::parseConfigurationFile(string file)
 	return 1;
 }
 
+/*! \fn  GOptions::checkAndParseCommandLine(int argc, char *argv[])
+
+ - Checks commands line options for special directives such as -h, -help, etc
+ - Parse commands line options to the options map
+
+ */
+void GOptions::checkAndParseCommandLine(int argc, char *argv[])
+{
+	if(findOption("-h",     argc, argv) == "yes") printGeneralHelp();
+	if(findOption("-help",  argc, argv) == "yes") printGeneralHelp();
+	if(findOption("--help", argc, argv) == "yes") printGeneralHelp();
+
+	if(findOption("-help-all", argc, argv) == "yes") printAvailableOptions("all");
+
+	// category help
+
+
+}
+
+
 /*! \fn  GOptions::checkAndParseGCard(string file)
 
  - Checks if the gcard is valid
@@ -174,21 +192,25 @@ QDomDocument GOptions::checkAndParseGCard(string file)
 	return domDocument;
 }
 
-/*! \fn  GOptions::checkAndParseGCard(string file)
+
+
+/*! \fn  GOptions::printUserSettings(string file)
 
  - Loops over the user settings and print on screen.
 
  */
 void GOptions::printUserSettings()
 {
-	cout << " > Selected User Options: " << endl;
-	for (auto &s : userSettings) {
-		cout <<  "   - " ;
-		cout.width(20);
-		cout.fill('.');
-		cout << left << s << ": " << optionsMap[s] << endl;
+	if(userSettings.size())
+	{
+		cout << " > Selected User Options: " << endl;
+		for (auto &s : userSettings) {
+			cout <<  "   - " ;
+			cout.width(20);
+			cout.fill('.');
+			cout << left << s << ": " << optionsMap[s] << endl;
+		}
 	}
-
 }
 
 /*! \fn GOptions::findOption(string o, int argc, char *argv[])
@@ -207,8 +229,52 @@ string GOptions::findOption(string o, int argc, char *argv[])
 }
 
 
+/*! \fn  GOptions::printGeneralHelp()
+
+ - Print the general help and exit
+
+ */
+void GOptions::printGeneralHelp()
+{
+	cout << endl;
+	cout <<  "    Usage:" <<  endl << endl ;
+	cout <<  "   > -h, -help, --help: print this message and exit. "    << endl;
+	cout <<  "   > -help-all:  print all available options and exit. "  << endl << endl;
+	cout <<  "   > Available categories "  << endl;
+
+	for(const auto &c : categories)
+	{
+		cout << "     -help-" ;
+		cout.width(15);
+		cout.fill('.');
+		cout << left << c << ":  " << c << " related options" << endl;
+	}
+	cout << endl;
+	exit(0);
 
 
+}
+
+
+/*! \fn  GOptions::printAvailableOptions(string search)
+
+ - Print available options which description matches search
+ - "all" will print all available options.
+
+ */
+void GOptions::printAvailableOptions(string search)
+{
+	cout << " > Available Options: " << endl;
+	for (const auto &om : optionsMap) {
+		if(search == "all" || om.second.getTitle().find(search) != string::npos)
+		cout <<  "   - " ;
+		cout.width(20);
+		cout.fill('.');
+		cout << left << om.first << ": " << om.second.getTitle() << ". Default set to: " <<  om.second.getValue() << endl;
+	}
+
+	exit(0);
+}
 
 
 
