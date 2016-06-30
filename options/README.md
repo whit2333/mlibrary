@@ -6,6 +6,9 @@
 Doxygen Documentation
 ---------------------
 
+To document c++ http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html#cppblock
+
+
 To create doxy file:
 
  doxygen -g
@@ -20,7 +23,6 @@ Changes:
  - BUILTIN_STL_SUPPORT    = YES
  - QUIET                  = YES
  - SOURCE_BROWSER         = YES
- - STRIP_CODE_COMMENTS    = NO
  - HTML_COLORSTYLE_SAT    = 50
  - GENERATE_LATEX         = NO  (change to YES to generate latex)
  - HIDE_UNDOC_RELATIONS   = NO
@@ -28,8 +30,9 @@ Changes:
  - UML_LOOK               = YES
  - UML_LIMIT_NUM_FIELDS   = 0
  - TEMPLATE_RELATIONS     = YES
- - QT_AUTOBRIEF           = YES
  - DOT_FONTSIZE           = 12
  - HTML_DYNAMIC_SECTIONS  = YES
+ - EXTRACT_PRIVATE        = YES (change to NO show just the public interface)
+ - EXCLUDE                = example.cc
 
 

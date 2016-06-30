@@ -1,9 +1,9 @@
 
-- c++11: can merge arg and args?
 - add file format recognizer
-- merge all construction in one
 - add catching errors
-
+- add -? to search for a string in the help - print the matching options
+- add -h help --help cases
+- add ADDOPTION to add an option from command line
 
 
 
