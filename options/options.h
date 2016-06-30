@@ -15,6 +15,7 @@
 // c++
 #include <string>
 #include <map>
+#include <set>
 #include <iostream>
 
 using namespace std;
@@ -47,29 +48,25 @@ private:
 	bool mergeGCard;  ///< false (default): command line will overwrite the gcard - will merge if true
 
 public:
-	// if other constructors are present declaring the base is mandatory
-	// c++11 allows "default"
+	//! default constructor
 	GOption() = default;
-	// default copy constructor
+	//! default copy constructor
 	GOption ( const GOption & ) = default;
 
 	//! Sets a double type option and description
-	GOption(double v, string t, string cat = "general", bool merge = false) : valueD(v) {
-		type = isDouble;
+	GOption(string t, double v, string cat = "general", bool merge = false) : type(isDouble), valueD(v) {
 
 		valueS = "na";
 
-		setUOption(title, category, merge);
+		setUOption(t, cat, merge);
 	}
 
 	//! Sets a string type option and description
-	GOption(string v, string t, string cat = "general", bool merge = false) : valueS(v) {
-		type = isString;
-
+	GOption(string t, string v, string cat = "general", bool merge = false) : type(isString), valueS(v) {
 
 		valueD = -99;
 
-		setUOption(title, category, merge);
+		setUOption(t, cat, merge);
 
 	}
 
@@ -81,8 +78,6 @@ public:
 		}
 	}
 
-
-
 	//! Adds lines to the help
 	void addHelp(string h) {
 		help += h;
@@ -92,11 +87,16 @@ public:
 	//! overloading the << operator
 	friend ostream &operator<<(ostream &stream, GOption);
 
+	//! gets the category
+ 	string getCategory() const {return category;}
+
 private:
 
 	//! Sets the common properties
 	void setUOption(string t, string c, bool m){
 
+
+		title      = t;
 		category   = c;
 		mergeGCard = m;
 
@@ -132,6 +132,7 @@ private:
 	map<string, GOption> optionsMap;
 	//! User settings is a subset of the options map keys
 	vector<string> userSettings;
+	set<string> categories;
 
 	bool ignoreNotFound; ///< if set to 1 do not quit if an option is not found
 
@@ -141,14 +142,11 @@ private:
 	string findConfigurationFile(int argc, char *argv[]); ///< finds a configuration file (gcard). Returns "na' if not found.
 	int parseConfigurationFile(string file);              ///< parse a gcard in the GOptions map
 	QDomDocument checkAndParseGCard(string file);         ///< check a gcard and parse it in a QDomDocument
+	string findOption(string o, int argc, char *argv[]);  ///< finds an option from the command line arguments
 	void printUserSettings();                             ///< print all user settings
 
-
-	//! adds an option to the map
-	void addOption(string okey, GOption gopt) {
-		optionsMap[okey] = gopt;
-	}
-
+	// helps
+	void printGeneralHelp();
 
 };
 

@@ -29,7 +29,6 @@ Changes:
  - HAVE_DOT               = YES
  - UML_LOOK               = YES
  - UML_LIMIT_NUM_FIELDS   = 0
- - TEMPLATE_RELATIONS     = YES
  - DOT_FONTSIZE           = 12
  - HTML_DYNAMIC_SECTIONS  = YES
  - EXTRACT_PRIVATE        = YES (change to NO show just the public interface)

@@ -7,15 +7,13 @@
 //! overloading "<<" to print this class
 ostream &operator<<(ostream &stream, GOption gopt)
 {
-	stream << " > " << gopt.title << " set to ";
 	switch(gopt.type) {
-		case isString: stream << gopt.valueS ; break;
-		case isDouble: stream << gopt.valueD ; break;
+		case isString: stream << "\"" << gopt.valueS << "\""; break;
+		case isDouble: stream << "< " << gopt.valueD << " >"; break;
 	}
+	stream << " (" << gopt.title << ")";
 	return stream;
 }
-
-
 
 
 //! constructor - ignore is optional
@@ -23,7 +21,13 @@ GOptions::GOptions(int argc, char *argv[], bool ignore) : ignoreNotFound(ignore)
 {
 
 	defineOptions();
-	
+
+	// fill the categories set
+	for (const auto &om : optionsMap) {
+		if(categories.find(om.second.getCategory()) == categories.end())
+			categories.insert(om.second.getCategory());
+	}
+
 	//! parse configuration file
 	parseConfigurationFile(findConfigurationFile(argc, argv));
 
@@ -85,8 +89,6 @@ int GOptions::parseConfigurationFile(string file)
 	for (const auto &om : optionsMap)
 		count[om.first] = 0;
 
-
-
 	QDomNodeList options = domDocument.firstChildElement().elementsByTagName("option");
 	for(int i = 0; i < options.count(); i++)
 	{
@@ -115,12 +117,12 @@ int GOptions::parseConfigurationFile(string file)
 						// new option is created with key same as the first one but
 						// with the string __REPETITION__# appended
 						string newKey = om.first + "__REPETITION__" + to_string(count[om.first]);
-						optionsMap["newKey"] = GOption(om.second);
-						optionsMap["newKey"].setValue(value);
+						optionsMap[newKey] = GOption(om.second);
+						optionsMap[newKey].setValue(value);
 					}
+					// option is found, we can break from the GOption map loop
+					break;
 				}
-				// option is found, we can break from the GOption map loop
-				break;
 			}
 			// option was not found. if ignoreNotFound is 1 matches is 1.
 			if(matches < 2) {
@@ -133,8 +135,7 @@ int GOptions::parseConfigurationFile(string file)
 
 	}
 
-
-	cout << " Configuration file: " << file << " parsed into options map" << endl;
+	cout << " Configuration file: " << file << " parsed into options map." << endl;
 
 
 	return 1;
@@ -180,11 +181,32 @@ QDomDocument GOptions::checkAndParseGCard(string file)
  */
 void GOptions::printUserSettings()
 {
+	cout << " > Selected User Options: " << endl;
 	for (auto &s : userSettings) {
-		cout << s << endl;
+		cout <<  "   - " ;
+		cout.width(20);
+		cout.fill('.');
+		cout << left << s << ": " << optionsMap[s] << endl;
 	}
 
 }
+
+/*! \fn GOptions::findOption(string o, int argc, char *argv[])
+
+ - finds an option from the command line arguments
+
+ */
+string GOptions::findOption(string o, int argc, char *argv[])
+{
+	string found = "no";
+	for(int i=1; i<argc; i++) {
+		string argument = argv[i];
+		if(argument == o) found = "yes";
+	}
+	return found;
+}
+
+
 
 
 
