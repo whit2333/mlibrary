@@ -20,6 +20,9 @@
 
 using namespace std;
 
+//! formatting spaces for the help
+#define HELPFILLSPACES  "                           "
+
 //! a GOption can be a double or a string
 enum GOptionType {isDouble, isString};  // option type
 
@@ -80,6 +83,10 @@ public:
 
 	//! Adds lines to the help
 	void addHelp(string h) {
+		// replaces help if it's the title
+		if(help == HELPFILLSPACES + title) help = "";
+		// adding formatting spaces to match the help alignment
+		help += HELPFILLSPACES;
 		help += h;
 	}
 
@@ -92,6 +99,9 @@ public:
 
 	//! gets the title
 	string getTitle() const {return title;}
+
+	//! gets the help
+	string getHelp() const {return help;}
 
 	//! gets the value
 	string getValue() const {
@@ -113,7 +123,7 @@ private:
 		mergeGCard = m;
 
 		// setting default help to option description
-		help       = t;
+		help       = HELPFILLSPACES + t;
 
 	}
 
@@ -157,12 +167,13 @@ private:
 	void checkAndParseCommandLine(int argc, char *argv[]); ///< check and parse the command line options
 	string findCLOption(string o, int argc, char *argv[]); ///< finds an option from the command line arguments
 	void printUserSettings();                              ///< print all user settings
-	void printAvailableOptions(string search);             ///< print available options that match a search. "all" prints all.
-	void printCategoryOptions(string cat);                 ///< print options that match a category
 
 	// helps
-	void printGeneralHelp();
-	void printHTMLHelp();
+	void printGeneralHelp();                     ///< prints the general help
+	void printHTMLHelp();                        ///< prints all option in HTML format (options.html)
+	void printCategoryHelp(string cat);          ///< print help options that match a category
+	void printOptionDetailedHelp(string opt);    ///< print an option help
+	void printAvailableHelp(string search);      ///< print available options that match a search. "all" prints all.
 
 };
 
