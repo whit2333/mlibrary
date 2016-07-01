@@ -19,6 +19,7 @@ using namespace std;
 
 //! formatting spaces for the help
 #define HELPFILLSPACES  "                           "
+#define HELPREPETITION  "__REPETITION__"
 
 //! a GOption can be a double or a string
 enum GOptionType {isDouble, isString};  // option type
@@ -55,19 +56,19 @@ public:
 	GOption ( const GOption & ) = default;
 
 	//! Sets a double type option and description
-	GOption(string t, double v, string cat = "general", bool merge = false) : type(isDouble), valueD(v) {
+	GOption(string t, double v, string cat = "general", bool canRepeat = false) : type(isDouble), valueD(v) {
 
 		valueS = "na";
 
-		setUOption(t, cat, merge);
+		setUOption(t, cat, canRepeat);
 	}
 
 	//! Sets a string type option and description
-	GOption(string t, string v, string cat = "general", bool merge = false) : type(isString), valueS(v) {
+	GOption(string t, string v, string cat = "general", bool canRepeat = false) : type(isString), valueS(v) {
 
 		valueD = -99;
 
-		setUOption(t, cat, merge);
+		setUOption(t, cat, canRepeat);
 
 	}
 

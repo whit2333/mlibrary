@@ -24,7 +24,7 @@ ostream &operator<<(ostream &stream, GOption gopt)
 //! constructor - ignore is optional
 GOptions::GOptions(int argc, char *argv[], bool ignore) : ignoreNotFound(ignore)
 {
-
+	cout << endl;
 	defineOptions();
 
 	// fill the categories set
@@ -39,8 +39,12 @@ GOptions::GOptions(int argc, char *argv[], bool ignore) : ignoreNotFound(ignore)
 	//! now parse command line arguments
 	checkAndParseCommandLine(argc, argv);
 
+	// sorting userSetting
+	sort(userSettings.begin(), userSettings.end());
+
 	// now print the user settings
 	printUserSettings();
+	cout << endl;
 }
 
 /*! \fn string GOptions::findConfigurationFile(int argc, char *argv[])
@@ -98,20 +102,66 @@ int GOptions::parseConfigurationFile(string file)
 			string optionKey = e.attribute("name").toStdString();
 			string value     = e.attribute("value").toStdString();
 
-			// set value of option - do not reset options
+			// set option value if found
 			setOptionValue(optionKey, value);
 		}
 
 	}
 	cout << " Configuration file: " << file << " parsed into options map." << endl;
-
 	return 1;
 }
 
+
+/*! \fn  GOptions::checkAndParseCommandLine(int argc, char *argv[])
+
+ - Checks commands line options for special directives such as -h, -help, etc
+ - Parse commands line options to the options map
+
+ */
+void GOptions::checkAndParseCommandLine(int argc, char *argv[])
+{
+	// -h, -help, --help print general help
+	if(findCLOption("-h",         argc, argv) == "yes") printGeneralHelp();
+	if(findCLOption("-help",      argc, argv) == "yes") printGeneralHelp();
+	if(findCLOption("--help",     argc, argv) == "yes") printGeneralHelp();
+
+	// prints html file
+	if(findCLOption("-help-html", argc, argv) == "yes") printHTMLHelp();
+
+	// prints all help
+	if(findCLOption("-help-all", argc, argv) == "yes")
+	printAvailableHelp("all");
+	// prints category help
+	else  {
+		string catCandidate = findCLOption("-help-", argc, argv);
+		if(catCandidate != "no") {
+		 if(categories.find(catCandidate) != categories.end())
+			printCategoryHelp(catCandidate);
+		}
+	}
+
+	// scanning the arguments for valid option
+	for(int i=1; i<argc; i++)
+	{
+		string argument = argv[i];
+
+		// candidate option is -OPTIONKEY=Value
+		if(argument.find("=") != string::npos)
+		{
+			string optionKey = argument.substr(1, argument.find("=")-1);
+			string value     = argument.substr(argument.find("=")+1, argument.size());
+
+			// set option value if found
+			setOptionValue(optionKey, value);
+			
+		}
+	}
+	cout << " Command line parsed into options map." << endl;
+}
 /*! \fn int GOptions::setOptionValue(string optionKey, string value)
 
   - set optionsMap[optionKey] value to value
-  - adds a REPETITION of the option canBeRepeated
+  - adds a REPETITION of the option can be repeated
 
  */
 void GOptions::setOptionValue(string optionKey, string value)
@@ -127,13 +177,17 @@ void GOptions::setOptionValue(string optionKey, string value)
 			matches++;
 			// first time option is found, or if it cannot be repeated:
 			// modify its value
-			if(userDefinedOptions(om.first).size() == 0 || !om.second.canItBeRepeated()) {
+			if(userDefinedOptions(om.first).size() == 0) {
 				userSettings.push_back(om.first);
 				om.second.setValue(value);
-			} else {
+			} else if(!om.second.canItBeRepeated()) {
+				// its not the first time we see this option.
+				// Overwrite value with this one
+				om.second.setValue(value);
+			} else if(om.second.canItBeRepeated()) {
 				// new option is created with key same as the first one but
-				// with the string __REPETITION__# appended
-				string newKey = om.first + "__REPETITION__" + to_string(userDefinedOptions(om.first).size());
+				// with the string HELPREPETITION# appended
+				string newKey = om.first + HELPREPETITION + to_string(userDefinedOptions(om.first).size());
 				userSettings.push_back(newKey);
 				optionsMap[newKey] = GOption(om.second);
 				optionsMap[newKey].setValue(value);
@@ -155,36 +209,7 @@ void GOptions::setOptionValue(string optionKey, string value)
 
 
 
-/*! \fn  GOptions::checkAndParseCommandLine(int argc, char *argv[])
 
- - Checks commands line options for special directives such as -h, -help, etc
- - Parse commands line options to the options map
-
- */
-void GOptions::checkAndParseCommandLine(int argc, char *argv[])
-{
-	if(findCLOption("-h",         argc, argv) == "yes") printGeneralHelp();
-	if(findCLOption("-help",      argc, argv) == "yes") printGeneralHelp();
-	if(findCLOption("--help",     argc, argv) == "yes") printGeneralHelp();
-	if(findCLOption("-help-html", argc, argv) == "yes") printHTMLHelp();
-
-	// prints all help
-	if(findCLOption("-help-all", argc, argv) == "yes")
-		printAvailableHelp("all");
-	// prints category help
-	else  {
-		string catCandidate = findCLOption("-help-", argc, argv);
-		if(catCandidate != "no") {
-		 if(categories.find(catCandidate) != categories.end())
-			printCategoryHelp(catCandidate);
-		}
-	}
-
-	// now merging command line options
-
-
-
-}
 
 
 /*! \fn  GOptions::checkAndParseGCard(string file)
@@ -255,10 +280,14 @@ void GOptions::printUserSettings()
 			cout.width(20);
 			cout.fill('.');
 
+			string optionKey = s;
+
 			// parse out REPETITION
+			auto repPos = s.find(HELPREPETITION) ;
+			if(repPos != string::npos)
+				optionKey = s.substr(0, repPos);
 
-
-			cout << left << s << ": " << optionsMap[s] << endl;
+			cout << left << optionKey << ": " << optionsMap[s] << endl;
 		}
 	}
 }
