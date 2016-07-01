@@ -1,7 +1,4 @@
 /// \file options.h
-/// Defines the goption library.\n
-/// A program main argv options are filled into a map<string opts>.
-/// Additional options should be added with addOptions pure virtual method.
 /// \author \n Maurizio Ungaro
 /// \author mail: ungaro@jlab.org\n\n\n
 
@@ -30,9 +27,10 @@ enum GOptionType {isDouble, isString};  // option type
 /// \class GOption
 /// <b> GOption </b>\n\n
 /// A GOption value can be a double or a string.\n
-/// A "title" provides a short description, the help can span multiple lines.\n
-/// Set repetition to true (false is default) if you want to allow multiple instance of an option.\n
-/// A category is used to add sections to the help command.\n
+/// - title  provides a short description\n
+/// - help can span multiple lines.\n
+/// - canBeRepeated false (default): option is unique. Command line overwrite gcard.
+/// - category is used to add sections to the help command.\n
 /// \author \n Maurizio Ungaro
 /// \author mail: ungaro@jlab.org\n\n\n
 class GOption
@@ -47,8 +45,8 @@ private:
 	string title;     ///< One liner to be displayed for the argument variable.
 	string help;      ///< help to be displayed for the argument variable.
 
-	string category;  ///< help category -help will group all categories together
-	bool mergeGCard;  ///< false (default): command line will overwrite the gcard - will merge if true
+	string category;     ///< help category -help will group all categories together
+	bool canBeRepeated;  ///< false (default): option is unique. Command line overwrite gcard.
 
 public:
 	//! default constructor
@@ -103,6 +101,9 @@ public:
 	//! gets the help
 	string getHelp() const {return help;}
 
+	//! answer can it be repeated question
+	bool canItBeRepeated() const {return canBeRepeated;}
+
 	//! gets the value
 	string getValue() const {
 		switch(type) {
@@ -118,9 +119,9 @@ private:
 	void setUOption(string t, string c, bool m){
 
 
-		title      = t;
-		category   = c;
-		mergeGCard = m;
+		title         = t;
+		category      = c;
+		canBeRepeated = m;
 
 		// setting default help to option description
 		help       = HELPFILLSPACES + t;
@@ -148,18 +149,40 @@ public:
 	//! users have to define their own options by implementing defineOptions
 	void defineOptions() ;
 
+	//! returns all options matching a key
+	vector<GOption> getOptions(string which) {
+		vector<GOption> result;
+
+		for(const auto &om : optionsMap) {
+			if(om.first.find(which) != string::npos) result.push_back(om.second);
+		}
+
+		return result;
+	}
+
 private:
 
 	//! GOptions map
 	map<string, GOption> optionsMap;
 	//! User settings is a subset of the options map keys
 	vector<string> userSettings;
+	//! User Categories
 	set<string> categories;
 
-	bool ignoreNotFound; ///< if set to 1 do not quit if an option is not found
+	//! set to 1 to not quit if an option is not found
+	bool ignoreNotFound;
 
 
 private:
+
+	//! returns the matching list of keys, including repetitions
+	vector<string> userDefinedOptions(string which) {
+		vector<string> result;
+		for(const auto &us : userSettings)
+			if(us.find(which) != string::npos) result.push_back(us);
+
+		return result;
+	}
 
 	string findConfigurationFile(int argc, char *argv[]);  ///< finds a configuration file (gcard). Returns "na' if not found.
 	int parseConfigurationFile(string file);               ///< parse a gcard in the GOptions map
@@ -167,13 +190,14 @@ private:
 	void checkAndParseCommandLine(int argc, char *argv[]); ///< check and parse the command line options
 	string findCLOption(string o, int argc, char *argv[]); ///< finds an option from the command line arguments
 	void printUserSettings();                              ///< print all user settings
+	void setOptionValue(string key, string value);         ///< set optionsMap[key] value - or add REPETITION option
 
 	// helps
 	void printGeneralHelp();                     ///< prints the general help
-	void printHTMLHelp();                        ///< prints all option in HTML format (options.html)
+	void printAvailableHelp(string search);      ///< print available options that match a search. "all" prints all.
 	void printCategoryHelp(string cat);          ///< print help options that match a category
 	void printOptionDetailedHelp(string opt);    ///< print an option help
-	void printAvailableHelp(string search);      ///< print available options that match a search. "all" prints all.
+	void printHTMLHelp();                        ///< prints all option in HTML format (options.html)
 
 };
 

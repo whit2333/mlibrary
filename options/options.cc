@@ -87,10 +87,6 @@ int GOptions::parseConfigurationFile(string file)
 	// this will fail if gcard not valid or not existing
 	QDomDocument domDocument = checkAndParseGCard(file);
 
-	// initializing count map to zero
-	map<string, int> count;
-	for (const auto &om : optionsMap)
-		count[om.first] = 0;
 
 	QDomNodeList options = domDocument.firstChildElement().elementsByTagName("option");
 	for(int i = 0; i < options.count(); i++)
@@ -99,50 +95,65 @@ int GOptions::parseConfigurationFile(string file)
 		if(elm.isElement())
 		{
 			QDomElement e = elm.toElement();
-			string option = e.attribute("name").toStdString();
-			string value  = e.attribute("value").toStdString();
+			string optionKey = e.attribute("name").toStdString();
+			string value     = e.attribute("value").toStdString();
 
-			// now checking that the xml option matches the GOption map
-			// if ignoreNotFound is true then we don't care
-			int matches = ignoreNotFound ? 1 : 0;
-
-			for (auto &om : optionsMap) {
-				// looking for a valid option. If a two instances of the same option exist
-				if(option == om.first) {
-					matches++;
-					count[om.first] += 1;
-
-					// first time option is found, modify its value
-					if(count[om.first] == 1) {
-						userSettings.push_back(om.first);
-						om.second.setValue(value);
-					} else {
-						// new option is created with key same as the first one but
-						// with the string __REPETITION__# appended
-						string newKey = om.first + "__REPETITION__" + to_string(count[om.first]);
-						optionsMap[newKey] = GOption(om.second);
-						optionsMap[newKey].setValue(value);
-					}
-					// option is found, we can break from the GOption map loop
-					break;
-				}
-			}
-			// option was not found. if ignoreNotFound is 1 matches is 1.
-			if(matches < 2) {
-				cout << "  !! Attention: the gcard <" << file << "> option " << option
-					  << " is not known to this system. Please check your spelling." << endl;
-			}
-			// option was not found. ignoreNotFound is 0
-			if(matches == 0) exit(0);
+			// set value of option - do not reset options
+			setOptionValue(optionKey, value);
 		}
 
 	}
-
 	cout << " Configuration file: " << file << " parsed into options map." << endl;
-
 
 	return 1;
 }
+
+/*! \fn int GOptions::setOptionValue(string optionKey, string value)
+
+  - set optionsMap[optionKey] value to value
+  - adds a REPETITION of the option canBeRepeated
+
+ */
+void GOptions::setOptionValue(string optionKey, string value)
+{
+	// optionKey matches the GOption map
+	// if ignoreNotFound is true then we don't care
+	int matches = ignoreNotFound ? 1 : 0;
+
+
+	for (auto &om : optionsMap) {
+		// looking for a valid option. If a two instances of the same option exist
+		if(optionKey == om.first) {
+			matches++;
+			// first time option is found, or if it cannot be repeated:
+			// modify its value
+			if(userDefinedOptions(om.first).size() == 0 || !om.second.canItBeRepeated()) {
+				userSettings.push_back(om.first);
+				om.second.setValue(value);
+			} else {
+				// new option is created with key same as the first one but
+				// with the string __REPETITION__# appended
+				string newKey = om.first + "__REPETITION__" + to_string(userDefinedOptions(om.first).size());
+				userSettings.push_back(newKey);
+				optionsMap[newKey] = GOption(om.second);
+				optionsMap[newKey].setValue(value);
+			}
+			// option is found, we can break from the GOption map loop
+			break;
+		}
+	}
+	// option was not found. if ignoreNotFound is 1 matches is 1.
+	if(matches < 2) {
+		cout << "  !! Attention: the option " << optionKey
+		<< " is not known to this system. Please check your spelling." << endl;
+	}
+	// option was not found. ignoreNotFound is 0
+	if(matches == 0) exit(0);
+
+}
+
+
+
 
 /*! \fn  GOptions::checkAndParseCommandLine(int argc, char *argv[])
 
@@ -157,9 +168,10 @@ void GOptions::checkAndParseCommandLine(int argc, char *argv[])
 	if(findCLOption("--help",     argc, argv) == "yes") printGeneralHelp();
 	if(findCLOption("-help-html", argc, argv) == "yes") printHTMLHelp();
 
+	// prints all help
 	if(findCLOption("-help-all", argc, argv) == "yes")
 		printAvailableHelp("all");
-	// category help
+	// prints category help
 	else  {
 		string catCandidate = findCLOption("-help-", argc, argv);
 		if(catCandidate != "no") {
@@ -167,6 +179,8 @@ void GOptions::checkAndParseCommandLine(int argc, char *argv[])
 			printCategoryHelp(catCandidate);
 		}
 	}
+
+	// now merging command line options
 
 
 
@@ -206,27 +220,6 @@ QDomDocument GOptions::checkAndParseGCard(string file)
 	return domDocument;
 }
 
-
-
-/*! \fn  GOptions::printUserSettings(string file)
-
- - Loops over the user settings and print on screen.
-
- */
-void GOptions::printUserSettings()
-{
-	if(userSettings.size())
-	{
-		cout << " > Selected User Options: " << endl;
-		for (auto &s : userSettings) {
-			cout <<  "   - " ;
-			cout.width(20);
-			cout.fill('.');
-			cout << left << s << ": " << optionsMap[s] << endl;
-		}
-	}
-}
-
 /*! \fn GOptions::findCLOption(string o, int argc, char *argv[])
 
  - finds an option from the command line arguments
@@ -245,6 +238,31 @@ string GOptions::findCLOption(string o, int argc, char *argv[])
 	}
 	return found;
 }
+
+
+/*! \fn  GOptions::printUserSettings(string file)
+
+ - Loops over the user settings and print on screen.
+
+ */
+void GOptions::printUserSettings()
+{
+	if(userSettings.size())
+	{
+		cout << " > Selected User Options: " << endl;
+		for (auto &s : userSettings) {
+			cout <<  "   - " ;
+			cout.width(20);
+			cout.fill('.');
+
+			// parse out REPETITION
+
+
+			cout << left << s << ": " << optionsMap[s] << endl;
+		}
+	}
+}
+
 
 
 /*! \fn  GOptions::printGeneralHelp()
@@ -273,7 +291,7 @@ void GOptions::printGeneralHelp()
 }
 
 
-/*! \fn  GOptions::printAvailableOptions(string search)
+/*! \fn  GOptions::printAvailableHelp(string search)
 
  - Print available options which description matches search
  - "all" will print all available options.
@@ -291,7 +309,7 @@ void GOptions::printAvailableHelp(string search)
 
 
 
-/*! \fn  GOptions::printCategoryOptions(string cat)
+/*! \fn  GOptions::printCategoryHelp(string cat)
 
  - print options that match a category
 
@@ -306,9 +324,9 @@ void GOptions::printCategoryHelp(string cat)
 	exit(0);
 }
 
-/*! \fn  GOptions::printCategoryOptions(string cat)
+/*! \fn  GOptions::printOptionDetailedHelp(string cat)
 
- - print options that match a category
+ - print options details
 
  */
 void GOptions::printOptionDetailedHelp(string which)
@@ -319,6 +337,7 @@ void GOptions::printOptionDetailedHelp(string which)
 	cout.fill('.');
 	cout << left << which << ": " << optionsMap[which].getTitle() << ". Default set to: " <<  optionsMap[which].getValue() << endl;
 
+	// do not print the help if it's equal to the title
 	if(optionsMap[which].getHelp() != HELPFILLSPACES + optionsMap[which].getTitle()) cout << optionsMap[which].getHelp() << endl;
 
 }
