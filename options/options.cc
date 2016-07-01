@@ -147,13 +147,21 @@ int GOptions::parseConfigurationFile(string file)
  */
 void GOptions::checkAndParseCommandLine(int argc, char *argv[])
 {
-	if(findOption("-h",     argc, argv) == "yes") printGeneralHelp();
-	if(findOption("-help",  argc, argv) == "yes") printGeneralHelp();
-	if(findOption("--help", argc, argv) == "yes") printGeneralHelp();
+	if(findCLOption("-h",     argc, argv) == "yes") printGeneralHelp();
+	if(findCLOption("-help",  argc, argv) == "yes") printGeneralHelp();
+	if(findCLOption("--help", argc, argv) == "yes") printGeneralHelp();
 
-	if(findOption("-help-all", argc, argv) == "yes") printAvailableOptions("all");
-
+	if(findCLOption("-help-all", argc, argv) == "yes")
+		printAvailableOptions("all");
 	// category help
+	else  {
+		string catCandidate = findCLOption("-help-", argc, argv);
+		if(catCandidate != "no") {
+		 if(categories.find(catCandidate) != categories.end())
+			printCategoryOptions(catCandidate);
+		}
+	}
+
 
 
 }
@@ -213,17 +221,21 @@ void GOptions::printUserSettings()
 	}
 }
 
-/*! \fn GOptions::findOption(string o, int argc, char *argv[])
+/*! \fn GOptions::findCLOption(string o, int argc, char *argv[])
 
  - finds an option from the command line arguments
 
  */
-string GOptions::findOption(string o, int argc, char *argv[])
+string GOptions::findCLOption(string o, int argc, char *argv[])
 {
 	string found = "no";
 	for(int i=1; i<argc; i++) {
 		string argument = argv[i];
+		// return "yes" if it's an exact match
 		if(argument == o) found = "yes";
+		// otherwise return the string after the match
+		else if(argument.find(o) != string::npos) found = argument.substr(o.size(), argument.size());
+
 	}
 	return found;
 }
@@ -251,8 +263,6 @@ void GOptions::printGeneralHelp()
 	}
 	cout << endl;
 	exit(0);
-
-
 }
 
 
@@ -266,16 +276,36 @@ void GOptions::printAvailableOptions(string search)
 {
 	cout << " > Available Options: " << endl;
 	for (const auto &om : optionsMap) {
-		if(search == "all" || om.second.getTitle().find(search) != string::npos)
-		cout <<  "   - " ;
-		cout.width(20);
-		cout.fill('.');
-		cout << left << om.first << ": " << om.second.getTitle() << ". Default set to: " <<  om.second.getValue() << endl;
+		if(search == "all" || om.second.getTitle().find(search) != string::npos) {
+			cout <<  "   - " ;
+			cout.width(20);
+			cout.fill('.');
+			cout << left << om.first << ": " << om.second.getTitle() << ". Default set to: " <<  om.second.getValue() << endl;
+		}
 	}
-
 	exit(0);
 }
 
 
+
+/*! \fn  GOptions::printCategoryOptions(string cat)
+
+ - print options that match a category
+
+ */
+void GOptions::printCategoryOptions(string cat)
+{
+	cout << " > " << cat << " Options: " << endl;
+	for (const auto &om : optionsMap) {
+		if(om.second.getCategory() == cat) {
+			cout <<  "   - " ;
+			cout.width(20);
+			cout.fill('.');
+			cout << left << om.first << ": " << om.second.getTitle() << ". Default set to: " <<  om.second.getValue() << endl;
+		}
+	}
+
+	exit(0);
+}
 
 

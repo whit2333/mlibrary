@@ -155,13 +155,14 @@ private:
 	int parseConfigurationFile(string file);               ///< parse a gcard in the GOptions map
 	QDomDocument checkAndParseGCard(string file);          ///< check a gcard and parse it in a QDomDocument
 	void checkAndParseCommandLine(int argc, char *argv[]); ///< check and parse the command line options
-	string findOption(string o, int argc, char *argv[]);   ///< finds an option from the command line arguments
+	string findCLOption(string o, int argc, char *argv[]); ///< finds an option from the command line arguments
 	void printUserSettings();                              ///< print all user settings
 	void printAvailableOptions(string search);             ///< print available options that match a search. "all" prints all.
 	void printCategoryOptions(string cat);                 ///< print options that match a category
 
 	// helps
 	void printGeneralHelp();
+	void printHTMLHelp();
 
 };
 
