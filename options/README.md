@@ -7,6 +7,7 @@ Doxygen Documentation
 ---------------------
 
 To document c++ http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html#cppblock
+Special commands: https://www.stack.nl/~dimitri/doxygen/manual/commands.html
 
 
 To create doxy file:

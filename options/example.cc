@@ -1,3 +1,5 @@
+/// \file example.cc
+
 // example on how to use the options
 
 // options
@@ -7,30 +9,24 @@
 #include "iostream"
 using namespace std;
 
-
 void GOptions::defineOptions()
 {
-
-	optionsMap["geometry"]         = GOption("Window Geometry", "1400x1200");
-	optionsMap["INTEGRATEDRAW"]    = GOption("Store Time Window Integrated True Information", "na", "hit");
-	optionsMap["INTEGRATEDRAW"].addHelp("- \"beamp\"  aligns z axis to the beam directions specified by BEAM_P.\n");
-	optionsMap["INTEGRATEDRAW"].addHelp("- \"custom, theta*unit, phi*unit\" aligns z axis to a custom direction, changes BEAM_P reference frame.");
-
-	optionsMap["SAVE_ALL_MOTHERS"] = GOption("Save particle hierarchy", 1.0, "run");
-	optionsMap["SAVE_ALL_MOTHERS"] = GOption("Save particle hierarchy", 1.0, "run");
-	optionsMap["FIELD_PROPERTIES"] = GOption("Sets Field Properties", "na", "run");
-
+	optionsMap["geometry"]      = GOption("Window Geometry", "1400x1200");
+	optionsMap["timeWindow"]    = GOption("Defines the Time Window", 100, "time");
+	optionsMap["interpolation"] = GOption("Interpolation algorithm", "linear", "process");
+	optionsMap["interpolation"].addHelp("Possible choices are:\n");
+	optionsMap["interpolation"].addHelp("- linear\n");
+	optionsMap["interpolation"].addHelp("- none (no interpolation)\n");
 }
 
+//! example of main declaring GOptions
 int main(int argc, char* argv[])
 {
 	
 	GOptions *gopts = new GOptions(argc, argv, 1);
 
-
-	cout << " Hello World" << endl;
-
-
+	cout << " example: The option interpolation is set at: " << gopts->getOption("interpolation").getValue() << endl;
+	cout << " example: Interpolation Option: " << gopts->getOption("interpolation") << endl;
 
 	return 1;
 

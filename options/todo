@@ -2,9 +2,8 @@
 - add file format recognizer
 - add catching errors
 - add -? to search for a string in the help - print the matching options
-- add -h help --help cases
 - add ADDOPTION to add an option from command line
-
+- consistency check for option multiple values. Add possible values enum?
 
 
 

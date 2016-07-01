@@ -1,3 +1,44 @@
+/// \mainpage
+/// \section overview Overview
+/// The options framework provides command line and xml parsing of user
+/// defined options.\n
+/// The command line options have the format:\n
+/// <pre> -KEY=VALUE </pre>
+/// where Value can be a number or a string.\n
+/// The corresponding XML syntax is:\n
+/// <pre>  \<option name="KEY" value="Value"/> </pre>
+/// \section User Interface
+/// The users creates his/her own options by filling the optionsMap in the function: \n
+/// <pre> void GOptions::defineOptions()</pre>
+/// The GOption constructor has the format
+/// <pre> GOption("title", defaultValue, category, canBerepated):</pre>
+/// \param title is a short description of the option
+/// \param defaultValue is the default value of the option. It can be a double or a string
+/// \param category(optional) is a string used to group options in categories
+/// \param canBerepated (optional) is "true" or "false". If true options can be repeated. Default: false.
+/// \n\n
+/// An example of defineOptions() is in example.cc: \include example.cc
+/// \section Usage
+/// Running <i>example -h</i> will produce the following log:
+/// ~~~~
+///
+/// Usage:
+///
+/// > -h, -help, --help: print this message and exit.
+/// > -help-all:  print all available options and exit.
+/// > -help-html:  print all available options in HTML format (options.html) and exit.
+///
+/// > Available categories
+///   -help-general........:  general related options
+///   -help-process........:  process related options
+///   -help-time...........:  time related options
+///
+/// ~~~~
+
+/// \author \n &copy; Maurizio Ungaro
+/// \author e-mail: ungaro@jlab.org\n\n\n
+
+
 /// \file options.h
 /// \author \n Maurizio Ungaro
 /// \author mail: ungaro@jlab.org\n\n\n
@@ -19,6 +60,7 @@ using namespace std;
 
 //! formatting spaces for the help
 #define HELPFILLSPACES  "                           "
+//! repeated option internal additional string
 #define HELPREPETITION  "__REPETITION__"
 
 //! a GOption can be a double or a string
@@ -147,7 +189,7 @@ public:
 	//! constructor - ignore is optional
 	GOptions(int argc, char *argv[], bool ignore = false);
 
-	//! users have to define their own options by implementing defineOptions
+	//! users can define their own GOption s by implementing defineOptions
 	void defineOptions() ;
 
 	//! returns all options matching a key
@@ -157,10 +199,14 @@ public:
 		for(const auto &om : optionsMap) {
 			if(om.first.find(which) != string::npos) result.push_back(om.second);
 		}
-
 		return result;
 	}
 
+	//! returns the option matching a key
+	GOption getOption(string which) {
+		return optionsMap[which];
+	}
+	
 private:
 
 	//! GOptions map
