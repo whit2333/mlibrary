@@ -9,7 +9,14 @@
 #include "iostream"
 using namespace std;
 
-void GOptions::defineOptions()
+
+class myOptions : public GOptions {
+	using GOptions::GOptions;
+
+	void defineOptions();
+};
+
+void myOptions::defineOptions()
 {
 	optionsMap["geometry"]      = GOption("Window Geometry", "1400x1200");
 	optionsMap["timeWindow"]    = GOption("Defines the Time Window", 100, "time");
@@ -23,7 +30,7 @@ void GOptions::defineOptions()
 int main(int argc, char* argv[])
 {
 	
-	GOptions *gopts = new GOptions(argc, argv, 1);
+	myOptions *gopts = new myOptions(argc, argv, 1);
 
 	cout << " example: The option interpolation is set at: " << gopts->getOption("interpolation").getValue() << endl;
 	cout << " example: Interpolation Option: " << gopts->getOption("interpolation") << endl;

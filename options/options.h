@@ -190,7 +190,7 @@ public:
 	GOptions(int argc, char *argv[], bool ignore = false);
 
 	//! users can define their own GOption s by implementing defineOptions
-	void defineOptions() ;
+	virtual void defineOptions() { ; }
 
 	//! returns all options matching a key
 	vector<GOption> getOptions(string which) {
@@ -207,7 +207,7 @@ public:
 		return optionsMap[which];
 	}
 	
-private:
+protected:
 
 	//! GOptions map
 	map<string, GOption> optionsMap;
@@ -220,7 +220,7 @@ private:
 	bool ignoreNotFound;
 
 
-private:
+protected:
 
 	//! returns the matching list of keys, including repetitions
 	vector<string> userDefinedOptions(string which) {
