@@ -2,7 +2,7 @@
 //
 // 1. on the general project add "settings.xcconfig" configuration for debug and release
 //
-// 2. Drag frameworks to project:
+// 2. Drag frameworks to project - make sure to copy.
 //
 //    Qt:
 //    open  $QTDIR/lib
