@@ -33,6 +33,13 @@ Changes:
  - DOT_FONTSIZE           = 12
  - HTML_DYNAMIC_SECTIONS  = YES
  - EXTRACT_PRIVATE        = YES (change to NO show just the public interface)
- - EXCLUDE                = example.cc
-
-
+ - RECURSIVE              = YES
+ - EXCLUDE                = README.md \
+									 .git \
+									 html \
+                            example.cc
+ - EXCLUDE_PATTERNS       = *moc*
+ - HTML_TIMESTAMP         = YES
+ - CLASS_GRAPH            = YES
+ - GENERATE_LEGEND        = NO
+2
