@@ -5,10 +5,6 @@
 // options
 #include "options.h"
 
-// c++
-#include "iostream"
-using namespace std;
-
 
 map<string, GOption> defineOptions()
 {
@@ -22,6 +18,7 @@ map<string, GOption> defineOptions()
 
 	return optionsMap;
 }
+
 
 //! example of main declaring GOptions
 int main(int argc, char* argv[])

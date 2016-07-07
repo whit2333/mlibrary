@@ -58,7 +58,6 @@
 #include <map>
 #include <set>
 #include <iostream>
-
 using namespace std;
 
 //! formatting spaces for the help
