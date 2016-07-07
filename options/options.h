@@ -1,5 +1,5 @@
 /// \mainpage
-/// \section overview Overview
+/// \section Overview
 /// The options framework provides command line and xml parsing of user
 /// defined options.\n
 /// The command line options have the format:\n
@@ -7,18 +7,21 @@
 /// where Value can be a number or a string.\n
 /// The corresponding XML syntax is:\n
 /// <pre>  \<option name="KEY" value="Value"/> </pre>
+///
 /// \section User Interface
-/// The users creates his/her own options by filling the optionsMap in the function: \n
-/// <pre> void GOptions::defineOptions()</pre>
+/// The users creates his/her own options by filling the optionsMap in a function: \n
+/// <pre> map<string, GOption> GOptions::defineOptions()</pre>
+/// and then calling the GOptions constructor with command line arguments and defineOptions().
 /// The GOption constructor has the format
 /// <pre> GOption("title", defaultValue, category, canBerepated):</pre>
+///
 /// \param title is a short description of the option
 /// \param defaultValue is the default value of the option. It can be a double or a string
 /// \param category(optional) is a string used to group options in categories
 /// \param canBerepated (optional) is "true" or "false". If true options can be repeated. Default: false.
-/// \n\n
+///
+/// \section Example
 /// An example of defineOptions() is in example.cc: \include example.cc
-/// \section Usage
 /// Running <i>example -h</i> will produce the following log:
 /// ~~~~
 ///
@@ -94,6 +97,7 @@ private:
 public:
 	//! default constructor
 	GOption() = default;
+
 	//! default copy constructor
 	GOption ( const GOption & ) = default;
 
@@ -161,14 +165,12 @@ private:
 	//! Sets the common properties
 	void setUOption(string t, string c, bool m){
 
-
 		title         = t;
 		category      = c;
 		canBeRepeated = m;
 
 		// setting default help to option description
 		help       = HELPFILLSPACES + t;
-
 	}
 
 };
@@ -178,21 +180,15 @@ private:
 /// <b> GOptions </b>\n\n
 /// GOptions contains a map of GOption where the key is the option name.\n
 /// Multiple keys are handled by adding a __REPETITION__ string to they key.\n
-/// A multi_map could be used as well but the merging is controlled by the
-/// mergeCard property, thus the complications would be the same.
 /// \author \n Maurizio Ungaro
 /// \author mail: ungaro@jlab.org\n\n\n
 class GOptions
 {
 public:
-
 	//! constructor - ignore is optional
-	GOptions(int argc, char *argv[], bool ignore = false);
+	GOptions(int argc, char *argv[], map<string, GOption> optionsMap, bool ignore = false);
 
-	//! users can define their own GOption s by implementing defineOptions
-	virtual void defineOptions() { ; }
-
-	//! returns all options matching a key
+	//! returns repetitive options matching a key
 	vector<GOption> getOptions(string which) {
 		vector<GOption> result;
 
@@ -207,7 +203,7 @@ public:
 		return optionsMap[which];
 	}
 	
-protected:
+private:
 
 	//! GOptions map
 	map<string, GOption> optionsMap;
@@ -220,7 +216,7 @@ protected:
 	bool ignoreNotFound;
 
 
-protected:
+private:
 
 	//! returns the matching list of keys, including repetitions
 	vector<string> userDefinedOptions(string which) {

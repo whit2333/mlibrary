@@ -1,5 +1,7 @@
-
+7/7/16
+ - Fixing user interface: users will now use a map<string, GOption> GOptions::defineOptions()
+   to fill the options map
 
 6/28/16
-- first implementation
+ - first implementation
 

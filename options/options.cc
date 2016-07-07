@@ -22,10 +22,10 @@ ostream &operator<<(ostream &stream, GOption gopt)
 
 
 //! constructor - ignore is optional
-GOptions::GOptions(int argc, char *argv[], bool ignore) : ignoreNotFound(ignore)
+GOptions::GOptions(int argc, char *argv[], map<string, GOption> om, bool ignore) : ignoreNotFound(ignore)
 {
+	optionsMap = om;
 	cout << endl;
-	defineOptions();
 
 	// fill the categories set
 	for (const auto &om : optionsMap) {
@@ -124,6 +124,7 @@ void GOptions::checkAndParseCommandLine(int argc, char *argv[])
 	if(findCLOption("-h",         argc, argv) == "yes") printGeneralHelp();
 	if(findCLOption("-help",      argc, argv) == "yes") printGeneralHelp();
 	if(findCLOption("--help",     argc, argv) == "yes") printGeneralHelp();
+	if(findCLOption("--h",        argc, argv) == "yes") printGeneralHelp();
 
 	// prints html file
 	if(findCLOption("-help-html", argc, argv) == "yes") printHTMLHelp();
@@ -153,10 +154,11 @@ void GOptions::checkAndParseCommandLine(int argc, char *argv[])
 
 			// set option value if found
 			setOptionValue(optionKey, value);
-			
 		}
 	}
 	cout << " Command line parsed into options map." << endl;
+
+
 }
 /*! \fn int GOptions::setOptionValue(string optionKey, string value)
 
