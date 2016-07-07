@@ -393,7 +393,7 @@ void GOptions::printHTMLHelp()
 	hf << "	font-family: \"Trebuchet MS\", Verdana, Arial, Helvetica, sans-serif;" << endl;
 	hf << "	font-size: 0.8em;" << endl;
 	hf << "	color: #000;" << endl;
-	hf << "	background: #bcd0e4;" << endl;
+	hf << "	background: #fcf0e4;" << endl;
 	hf << "}" << endl;
 	hf << ".pretty-table caption" << endl;
 	hf << "{" << endl;
@@ -413,7 +413,7 @@ void GOptions::printHTMLHelp()
 	hf << ".pretty-table th[scope=col]" << endl;
 	hf << "{" << endl;
 	hf << "	color: #000;" << endl;
-	hf << "	background-color: #8fadcc;" << endl;
+	hf << "	background-color: #afadcc;" << endl;
 	hf << "	text-transform: uppercase;" << endl;
 	hf << "	font-size: 0.9em;" << endl;
 	hf << "	border-bottom: 2px solid #333;" << endl;
@@ -430,7 +430,9 @@ void GOptions::printHTMLHelp()
 	hf << "	background-color: #b8cfe5;" << endl;
 	hf << "	border-right: 2px solid #333;" << endl;
 	hf << "}" << endl;
-	hf << "pre{font-family:Helvetica;font-size:12pt}" << endl;
+	hf << "pre{font-family:Helvetica;font-size:12pt" << endl;
+	hf << "	overflow: auto; " << endl;
+	hf << "}" << endl;
 
 	hf << "--->" << endl;
 	hf << "</STYLE>" << endl;
