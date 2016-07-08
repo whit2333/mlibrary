@@ -40,7 +40,6 @@ int main(int argc, char* argv[])
 	auto_ptr<Calibration> calib(CalibrationGenerator::CreateCalibration(connection));
 
 	data.clear(); calib->GetCalib(data, database);
-
 	cout << " Data loaded from CCDB with " << data.size() << " columns." << endl;
 
 	// filling translation table
@@ -53,23 +52,23 @@ int main(int argc, char* argv[])
 		int sector = data[row][3];
 		int layer  = data[row][4];
 		int pmt    = data[row][5];
+		int order  = data[row][6];
 
 		if(verbosity) {
 			cout << " crate: " << crate << "  slot: " << slot << "  channel: " << channel ;
-			cout << " sector: " << sector << "  layer: " << layer << "  pmt: " << pmt << endl;
+			cout << " sector: " << sector << "  layer: " << layer << "  pmt: " << pmt << "  order: " << order << endl;
 		}
 
-
-		TT.addHardwareItem({sector, layer, pmt}, Hardware(crate, slot, channel));
+		// order is important as we could have duplicate entries w/o it
+		TT.addHardwareItem({sector, layer, pmt, order}, Hardware(crate, slot, channel));
 	}
 	cout << " Data loaded in translation table. " << endl;
 
 
-	// now inquiring TT for sector     | layer      | component  =  4          | 4          | 1-36
+	// now inquiring TT for sector, layer, component, order  =  4, 4, 1-36, 0
+	for(int i=1; i<36; i++)
+		cout << " hardware: " << TT.getHardware({4, 4, i, 0}) << endl;
 
-	for(int i=0; i<36; i++) {
-		cout << " hardware: " << TT.getHardware({4, 4, i}) << endl;
-	}
 
 	return 1;
 

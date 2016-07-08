@@ -12,7 +12,7 @@ string TranslationTable::hardwareKey(vector<int> c)
 {
 	string hardwareKey = "";
 	for(const auto &v : c)
-		hardwareKey += to_string(v);
+		hardwareKey += to_string(v) + " " ;
 
 	return hardwareKey;
 }
@@ -27,7 +27,7 @@ Hardware TranslationTable::getHardware(vector<int> c)
 	if(search != tt.end())
 		return search->second;
 	else {
-		cout << " !! Error: item not found in translation table " << name << " for item " << search->first << endl;
+		cout << " !! Error: item <" << hk << "> not found in translation table " << name  << endl;
 		return Hardware();
 	}
 
@@ -36,7 +36,15 @@ Hardware TranslationTable::getHardware(vector<int> c)
 void TranslationTable::addHardwareItem(vector<int> c, Hardware h)
 {
 	string hk = hardwareKey(c);
-	tt[hk] = h;
+
+	auto search = tt.find(hk);
+
+	if(search == tt.end())
+		tt[hk] = h;
+	else {
+		cout << " !! Error: item <" << search->first << "> already in " << name << endl;
+		cout << hk << endl;
+	}
 }
 
 
