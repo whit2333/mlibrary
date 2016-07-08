@@ -2,23 +2,15 @@
 //
 // 1. on the general project add "settings.xcconfig" configuration for debug and release
 //
-// 2. Drag frameworks to project - make sure to copy.
-//
-//    Qt:
-//    open  $QTDIR/lib
-//    QtCore QtXml
-//
-// 3. add library target "options"
-//    a. remove options.cpp and other files created
-//    b. source is options.cc (build phases)
-//    c. add framework QtCore and QtXml to target if its not set already
+// 2. add library target "translationTable"
+//    a. remove translationTable.cpp and other files created
+//    b. source is translationTable.cc (build phases)
 //
 // 4. add command tools example, source is example.cc
 //    remove main.cpp created
 //    add libraries and frameworks accordingly:
 //    a. add libraries options in build phases "dependencies" and libraries
-//    b. QtXml, QtCore
-//    c. add @executable_path/../  and @executable_path to 'Runpath Search Paths in Build Settings "Linking"
+//    b. add @executable_path/../  and @executable_path to 'Runpath Search Paths in Build Settings "Linking"
 
 
 // Assigning a relative path to JLAB_SOFTWARE (copy from environment)
@@ -30,8 +22,6 @@ JLAB_SOFTWARE = "/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0"
 // installation of libraries and binaries
 CONFIGURATION_BUILD_DIR = lib
 
-// including QT
-HEADER_SEARCH_PATHS    =  $QT_HEADS
 
 
 

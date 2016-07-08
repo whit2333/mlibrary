@@ -1,13 +1,12 @@
 from init_env import init_environment
 
-env = init_environment("qt5 mlibrary")
-
+env = init_environment("mlibrary")
 
 # Library
 option_sources = Split("""
-	options.cc
+	translationTable.cc
 	""")
-lib = env.Library(source = option_sources, target = "../lib/options")
+lib = env.Library(source = option_sources, target = "../lib/translationTable")
 
 example = env.Program(source = "example.cc", target = "example")
 
