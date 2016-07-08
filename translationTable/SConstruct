@@ -1,6 +1,6 @@
 from init_env import init_environment
 
-env = init_environment("mlibrary")
+env = init_environment("mlibrary ccdb")
 
 # Library
 option_sources = Split("""

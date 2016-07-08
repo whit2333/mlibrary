@@ -8,7 +8,7 @@
 // c++
 #include <iostream>
 
-string translationTable::hardwareKey(vector<int> c)
+string TranslationTable::hardwareKey(vector<int> c)
 {
 	string hardwareKey = "";
 	for(const auto &v : c)
@@ -18,7 +18,7 @@ string translationTable::hardwareKey(vector<int> c)
 }
 
 
-hardware translationTable::getHardware(vector<int> c)
+Hardware TranslationTable::getHardware(vector<int> c)
 {
 	string hk = hardwareKey(c);
 
@@ -28,14 +28,25 @@ hardware translationTable::getHardware(vector<int> c)
 		return search->second;
 	else {
 		cout << " !! Error: item not found in translation table " << name << " for item " << search->first << endl;
-		return hardware();
+		return Hardware();
 	}
 
 }
 
-void translationTable::addHardwareItem(vector<int> c, hardware h)
+void TranslationTable::addHardwareItem(vector<int> c, Hardware h)
 {
 	string hk = hardwareKey(c);
 	tt[hk] = h;
 }
 
+
+//! overloading "<<" to print this class
+ostream &operator<<(ostream &stream, Hardware h)
+{
+
+	stream << " Crate: "   << h.getCrate();
+	stream << " Slot: "    << h.getSlot();
+	stream << " Channel: " << h.getChannel();
+	
+	return stream;
+}

@@ -16,33 +16,39 @@
 #include <vector>
 using namespace std;
 
-struct hardware {
+struct Hardware {
+
+	Hardware(int c, int s, int ch) : crate(c), slot(s), channel(ch) {}
+	Hardware() : crate(0), slot(0), channel(0) {}
 
 private:
-	int crate   = 0;
-	int slot    = 0;
-	int channel = 0;
+	int crate;
+	int slot;
+	int channel;
 
 public:
 	int getCrate()   {return crate;}
 	int getSlot()    {return slot;}
 	int getChannel() {return channel;}
 
+	//! overloading the << operator
+	friend ostream &operator<<(ostream &stream, Hardware);
+
 };
 
 
-class translationTable {
+class TranslationTable {
 public:
-	translationTable(string n) : name(n) { ; }
+	TranslationTable(string n) : name(n) { ; }
 
 private:
-	map<string, hardware> tt;
+	map<string, Hardware> tt;
 	string name;
 	string hardwareKey(vector<int>);
 
 public:
-	hardware getHardware(vector<int>);
-	void addHardwareItem(vector<int>, hardware);
+	Hardware getHardware(vector<int>);
+	void addHardwareItem(vector<int> i, Hardware h);
 
 };
 
