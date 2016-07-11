@@ -40,6 +40,7 @@ public:
 class TranslationTable {
 public:
 	TranslationTable(string n) : name(n) { ; }
+	TranslationTable() = default;
 
 private:
 	map<string, Hardware> tt;
@@ -49,6 +50,7 @@ private:
 public:
 	Hardware getHardware(vector<int>);
 	void addHardwareItem(vector<int> i, Hardware h);
+	string getName() {return name;}
 
 };
 
