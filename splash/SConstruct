@@ -1,0 +1,14 @@
+from init_env import init_environment
+
+env = init_environment("qt5 mlibrary")
+
+
+# Library
+gsplash_sources = Split("""
+	gsplash.cc
+	""")
+lib = env.Library(source = gsplash_sources, target = "../lib/gsplash")
+
+example = env.Program(source = "example.cc", target = "example")
+
+Depends(example,  lib);
