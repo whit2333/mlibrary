@@ -205,7 +205,6 @@ void GOptions::setOptionValue(string optionKey, string value)
 	}
 	// option was not found. ignoreNotFound is 0
 	if(matches == 0) exit(0);
-
 }
 
 
@@ -373,6 +372,53 @@ void GOptions::printOptionDetailedHelp(string which)
 
 }
 
+/*! \fn  GOptions::getDoubleValue(string optionKey)
+
+ - return the option value if the option is in the map
+
+ */
+double GOptions::getDoubleValue(string optionKey) {
+	auto search = optionsMap.find(optionKey);
+
+	if(search != optionsMap.end() ) return search->second.getDoubleValue();
+	return -99;
+}
+
+/*! \fn  GOptions::getBoolValue(string optionKey)
+
+ - return the option value if the option is in the map
+
+ */
+bool GOptions::getBoolValue(string optionKey) {
+	auto search = optionsMap.find(optionKey);
+
+	if(search != optionsMap.end() ) return search->second.getBoolValue();
+	return false;
+}
+
+/*! \fn  GOptions::getValue(string optionKey)
+
+ - return the option value if the option is in the map
+
+ */
+string GOptions::getValue(string optionKey) {
+	auto search = optionsMap.find(optionKey);
+
+	if(search != optionsMap.end() ) return search->second.getValue();
+		return "na";
+}
+
+/*! \fn  GOptions::getValues(string optionKey)
+
+ - return the option values if the option is in the map
+
+ */
+vector<string> GOptions::getValues(string optionKey) {
+	auto search = optionsMap.find(optionKey);
+
+	if(search != optionsMap.end() ) return search->second.getValues();
+	return {"na"};
+}
 
 /*! \fn  GOptions::printHTMLHelp()
 

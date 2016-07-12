@@ -55,6 +55,7 @@
 #include <map>
 #include <set>
 #include <iostream>
+#include <sstream>
 using namespace std;
 
 //! formatting spaces for the help
@@ -147,7 +148,17 @@ public:
 	//! answer can it be repeated question
 	bool canItBeRepeated() const {return canBeRepeated;}
 
-	//! gets the value
+	//! gets the double value
+	double getDoubleValue() const {return valueD;}
+
+	//! gets the bool value - it must be a double type
+	bool getBoolValue() const {
+		if(valueD == 0)
+			return false;
+		return true;
+	}
+	
+	//! gets the generic string value
 	string getValue() const {
 		switch(type) {
 			case isString: return valueS;
@@ -155,7 +166,18 @@ public:
 		}
 	}
 
+	// get a vector of strings from the valueS
+	vector<string> getValues() const {
+		vector<string> values;
 
+		stringstream plist(valueS);
+		while(!plist.eof()) {
+			string tmp;
+			plist >> tmp;
+			values.push_back(tmp);
+		}
+		return values;
+	}
 private:
 
 	//! Sets the common properties
@@ -198,7 +220,15 @@ public:
 	GOption getOption(string which) {
 		return optionsMap[which];
 	}
-	
+
+	//! gets the options values
+	double getDoubleValue(string optionKey);
+	bool getBoolValue(string optionKey);
+	string getStringValue(string optionKey);
+	string getValue(string optionKey);
+	vector<string> getValues(string optionKey);
+
+
 private:
 
 	//! GOptions map

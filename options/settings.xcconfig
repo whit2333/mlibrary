@@ -11,7 +11,7 @@
 // 3. add library target "options"
 //    a. remove options.cpp and other files created
 //    b. source is options.cc (build phases)
-//    c. add framework QtCore and QtXml to target if its not set already
+//    c. add the qt frameworks to target if its not set already
 //
 // 4. add command tools example, source is example.cc
 //    remove main.cpp created
@@ -19,6 +19,7 @@
 //    a. add libraries options in build phases "dependencies" and libraries
 //    b. QtXml, QtCore
 //    c. add @executable_path/../  and @executable_path to 'Runpath Search Paths in Build Settings "Linking"
+//    d. remember to copy the frameworks in the products location
 
 
 // Assigning a relative path to JLAB_SOFTWARE (copy from environment)
