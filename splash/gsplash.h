@@ -11,7 +11,7 @@
 #define GSPLASH_H
 
 // options
-#include "options.h"
+#include "goptions.h"
 
 // Qt
 #include <QSplashScreen>

@@ -1,6 +1,6 @@
 /// \file example.cc
 
-// example on how to use the options framework library
+// example on how to use the splash framework library
 
 // gsplash
 #include "gsplash.h"
@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
 	GOptions *gopts = new GOptions(argc, argv, defineOptions(), 1);
 	bool gui = gopts->getBoolValue("gui");
 
-	QScopedPointer<QCoreApplication> app(createApplication(argc, argv, gui));
+	createApplication(argc, argv, gui);
 
 	GSplash gsplash(gopts);
 
@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
 			gsplash.message(to_string(i));
 
 		gsplash.finish(&window);
-		return app->exec();
+		return qApp->exec();
 	}
 
 	return 1;
