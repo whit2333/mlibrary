@@ -26,14 +26,14 @@ public:
 	GSplash(GOptions* gopt);
 
 private:
-	bool  qt;
+	bool  gui;
 	string header;
-
-	QPixmap       *gsplashPic ;
-	QSplashScreen *gsplash ;
+	QSplashScreen *splash;
 
 public:
+	~GSplash();
 	void message(string);
+	void finish(QMainWindow *window) {if(splash != NULL) splash->finish(window);}
 
 };
 

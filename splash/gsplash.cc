@@ -4,38 +4,51 @@
 // qt
 #include <QApplication>
 
-// c++
-//#include <cstdlib>
-//using namespace std;
-
 GSplash::GSplash(GOptions* gopts)
 {
-	qt     = gopts->getOption("gui").getBoolValue();
-	header = gopts->getOption("header").getValue();
+	gui    = gopts->getBoolValue("gui");
+	header = gopts->getValue("header");
 
-	cout << " ASD " << qt << " " <<  gopts->getOption("gui").getValue() << endl;
-
-	if(qt) {
-		vector<string> splashInfo = gopts->getOption("splashPic").getValues();
+	if(gui) {
+		vector<string> splashInfo = gopts->getValues("splashPic");
 		string picLocation = splashInfo[0];
 		string picName     = splashInfo[1];
 
 		if(getenv(picLocation.c_str()) == NULL) {
-			cout << "  !! Error: <" << picLocation << "> environment variable not defined." << endl;
+			cout << "  !! Warning: <" << picLocation << "> environment variable not defined." << endl;
+			splash = NULL;
 		} else {
 			
-			string filename = ":" + (string) getenv(picLocation.c_str()) + picName;
-			gsplashPic = new QPixmap(filename.c_str());
-			gsplash    = new QSplashScreen(*gsplashPic);
+			string filename = (string) getenv(picLocation.c_str()) + "/" + picName;
 
-			QFont sansFont("Helvetica", 10);
-			gsplash->setFont(sansFont);
+			QPixmap pixmap(filename.c_str());
 
-			gsplash->show();
+			splash = new QSplashScreen(pixmap);
+			splash->show();
+			
 			qApp->processEvents();
 		}
-
-
 	}
+}
 
+// prints a message on the splash if interactive
+// otherwise re-direct to screen
+void GSplash::message(string msg)
+{
+	if(gui) {
+		if(splash != NULL)
+			splash->showMessage(msg.c_str(),  Qt::AlignLeft,  Qt::white );
+
+		qApp->processEvents();
+	}
+	else
+		cout << header << msg << endl;
+
+}
+
+GSplash::~GSplash()
+{
+	if(gui)
+		if(splash != NULL)
+			delete splash ;
 }

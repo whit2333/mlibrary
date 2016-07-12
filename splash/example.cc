@@ -15,7 +15,7 @@ map<string, GOption> defineOptions()
 	optionsMap["splashPic"].addHelp("1. env. variable location of the picture file\n");
 	optionsMap["splashPic"].addHelp("2. picture file\n");
 
-	optionsMap["gui"] = GOption("Use the QT interface", "0", "gui");
+	optionsMap["gui"] = GOption("Use the QT interface", 1, "gui");
 	optionsMap["gui"].addHelp("Possible choices are:\n");
 	optionsMap["gui"].addHelp("0: run the program in batch mode\n");
 	optionsMap["gui"].addHelp("1. run the program in interactive mode\n");
@@ -26,9 +26,9 @@ map<string, GOption> defineOptions()
 }
 
 // distinguishing between graphical and batch mode
-QCoreApplication* createApplication(int &argc, char *argv[], double use_gui)
+QCoreApplication* createApplication(int &argc, char *argv[], bool gui)
 {
-	if(!use_gui)
+	if(!gui)
 		return new QCoreApplication(argc, argv);
 	return new QApplication(argc, argv);
 }
@@ -36,17 +36,25 @@ QCoreApplication* createApplication(int &argc, char *argv[], double use_gui)
 //! example of main declaring GOptions
 int main(int argc, char* argv[])
 {
-
 	GOptions *gopts = new GOptions(argc, argv, defineOptions(), 1);
+	bool gui = gopts->getBoolValue("gui");
 
 
-	
-	QScopedPointer<QCoreApplication> app(createApplication(argc, argv, gopts->getOption("gui").getBoolValue()));
+	QScopedPointer<QCoreApplication> app(createApplication(argc, argv, gui));
 
 	GSplash gsplash(gopts);
 
-	
-	return 1;
+	if(gui) {
+		QMainWindow window;
+		window.show();
 
+		for(int i=0; i<1000000; i++)
+			gsplash.message(to_string(i));
+
+		gsplash.finish(&window);
+		return app->exec();
+	}
+
+	return 1;
 }
 

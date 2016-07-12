@@ -6,20 +6,20 @@
 //
 //    Qt:
 //    open  $QTDIR/lib
-//    QtCore QtXml
+//    QtCore QtXml QtGui QtWidgets
 //
 // 3. add library target "gsplash"
 //    a. remove gsplash and other files created
 //    b. source is gsplash (build phases)
-//    c. add framework QtCore and QtXml to target if its not set already
+//    c. add the qt frameworks to target if its not set already
 //
 // 4. add command tools example, source is example.cc
 //    remove main.cpp created
 //    add libraries and frameworks accordingly:
 //    a. add libraries gsplash in build phases "dependencies" and libraries
-//    b. QtXml, QtCore
+//    b. add the qt frameworks to target if its not set already
 //    c. add @executable_path/../  and @executable_path to 'Runpath Search Paths in Build Settings "Linking"
-
+//    d. remember to copy the frameworks in the products location
 
 // Assigning a relative path to JLAB_SOFTWARE (copy from environment)
 JLAB_SOFTWARE = "/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0"
@@ -31,7 +31,7 @@ JLAB_SOFTWARE = "/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0"
 CONFIGURATION_BUILD_DIR = lib
 
 // including QT
-HEADER_SEARCH_PATHS = $QT_HEADS $MLIBS_HEADS
+HEADER_SEARCH_PATHS = $QT_HEADS $MLIB_HEADS
 
 
 
