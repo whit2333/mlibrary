@@ -151,6 +151,9 @@ public:
 	//! gets the double value
 	double getDoubleValue() const {return valueD;}
 
+	//! gets the Int value
+	int getIntValue() const {return (int) valueD;}
+
 	//! gets the bool value - it must be a double type
 	bool getBoolValue() const {
 		if(valueD == 0)
@@ -223,6 +226,7 @@ public:
 
 	//! gets the options values
 	double getDoubleValue(string optionKey);
+	int getIntValue(string optionKey);
 	bool getBoolValue(string optionKey);
 	string getStringValue(string optionKey);
 	string getValue(string optionKey);

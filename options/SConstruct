@@ -3,13 +3,13 @@ from init_env import init_environment
 env = init_environment("qt5 mlibrary")
 # manually appending this library so the example can be compiled
 # the environment will not load the library if it's not there
-env.Append(LIBS = 'options')
+env.Append(LIBS = 'goptions')
 
 # Library
 option_sources = Split("""
-	options.cc
+	goptions.cc
 	""")
-lib = env.Library(source = option_sources, target = "../lib/options")
+lib = env.Library(source = option_sources, target = "../lib/goptions")
 
 example = env.Program(source = "example.cc", target = "example")
 

@@ -3,7 +3,7 @@
 // example on how to use the options framework library
 
 // options
-#include "options.h"
+#include "goptions.h"
 
 
 map<string, GOption> defineOptions()

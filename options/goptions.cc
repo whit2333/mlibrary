@@ -3,7 +3,7 @@
 /// \author mail: ungaro@jlab.org\n\n\n
 
 // option framework
-#include "options.h"
+#include "goptions.h"
 
 // c++
 #include <fstream>
@@ -384,6 +384,19 @@ double GOptions::getDoubleValue(string optionKey) {
 	return -99;
 }
 
+
+
+/*! \fn  GOptions::getDoubleValue(string optionKey)
+
+ - return the option value if the option is in the map
+
+ */
+int GOptions::getIntValue(string optionKey) {
+	auto search = optionsMap.find(optionKey);
+
+	if(search != optionsMap.end() ) return search->second.getIntValue();
+	return -99;
+}
 /*! \fn  GOptions::getBoolValue(string optionKey)
 
  - return the option value if the option is in the map
