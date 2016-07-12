@@ -2,7 +2,7 @@
 //
 // 1. on the general project add "settings.xcconfig" configuration for debug and release
 //
-// 2. add library target "translationTable"
+// 2. add library target "translationTable" - remember to copy it
 //    a. remove translationTable.cpp and other files created
 //    b. source is translationTable.cc (build phases)
 //
