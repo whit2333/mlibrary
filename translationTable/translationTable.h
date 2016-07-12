@@ -1,6 +1,6 @@
 /// \mainpage
 /// \section Overview
-/// The translation tanle framework provides an interface between an
+/// The translation table framework provides an interface between an
 /// hardware object <Crate Slot Channel> to a vector of int.\n
 
 /// \file translationTable.h

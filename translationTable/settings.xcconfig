@@ -11,6 +11,7 @@
 //    add libraries and frameworks accordingly:
 //    a. add libraries options in build phases "dependencies" and libraries
 //    b. add @executable_path/../  and @executable_path to 'Runpath Search Paths in Build Settings "Linking"
+//    c. remember to copy the frameworks in the products location
 
 
 // Assigning a relative path to JLAB_SOFTWARE (copy from environment)
@@ -23,7 +24,7 @@ JLAB_SOFTWARE = "/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0"
 CONFIGURATION_BUILD_DIR = lib
 
 // including CCDB
-HEADER_SEARCH_PATHS    =  $CCDB_HEADS
+HEADER_SEARCH_PATHS = $CCDB_HEADS
 
 
 
