@@ -5,11 +5,8 @@ env = init_environment("qt5 mlibrary")
 # the environment will not load the library if it's not there
 env.Append(LIBS = 'gruns')
 
-# Library
-gruns_sources = Split("""
-	gruns.cc
-	""")
-lib = env.Library(source = gruns_sources, target = "../lib/gruns")
+
+lib = env.Library(source = "gruns.cc", target = "../lib/gruns")
 
 example = env.Program(source = "example.cc", target = "example")
 

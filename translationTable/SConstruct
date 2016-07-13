@@ -5,12 +5,7 @@ env = init_environment("ccdb mlibrary")
 # the environment will not load the library if it's not there
 env.Append(LIBS = 'translationTable')
 
-# Library
-option_sources = Split("""
-	translationTable.cc
-	""")
-lib = env.Library(source = option_sources, target = "../lib/translationTable")
-
+lib = env.Library(source = "translationTable.cc", target = "../lib/translationTable")
 
 example = env.Program(source = "example.cc", target = "example")
 

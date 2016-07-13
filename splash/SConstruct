@@ -5,12 +5,7 @@ env = init_environment("qt5 mlibrary")
 # the environment will not load the library if it's not there
 env.Append(LIBS = 'gsplash')
 
-
-# Library
-gsplash_sources = Split("""
-	gsplash.cc
-	""")
-lib = env.Library(source = gsplash_sources, target = "../lib/gsplash")
+lib = env.Library(source = "gsplash.cc", target = "../lib/gsplash")
 
 example = env.Program(source = "example.cc", target = "example")
 
