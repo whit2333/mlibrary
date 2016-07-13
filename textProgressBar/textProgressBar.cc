@@ -1,7 +1,6 @@
 // progress Bar
 #include "textProgressBar.h"
 
-
 // c++
 #include <iostream>
 
