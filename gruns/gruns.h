@@ -15,9 +15,6 @@ public:
 
 	bool isNew() {return isNewRun;}
 
-	//! by default there is only 1 weight,
-	//! and the run number is defaultRunNumber for all events
-	int defaultRunNumber;
 
 private:
 
@@ -34,6 +31,12 @@ private:
 	int startEvent;
 
 	bool isNewRun;
+
+	//! by default there is only 1 weight,
+	//! and the run number is defaultRunNumber for all events
+	int defaultRunNumber;
+	//! current run number
+	int runNo;
 
 	void printSummary(int neventsToProcess);
 
