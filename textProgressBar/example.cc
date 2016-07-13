@@ -13,16 +13,14 @@ using namespace std;
 //! example of main declaring GOptions
 int main(int argc, char* argv[])
 {
-	
-	TextProgressBar bar(20, "  index progress: ");
 
-	int bprogress = 0;
-	for(int i=0; i<1000000001; i++) {
-		if(i%10000000 == 0)
-		{
-			bar.setProgress(bprogress);
-			bprogress++;
-		}
+	int nevents = 100000000;
+
+	TextProgressBar bar(20, "  index progress: ", 1, nevents);
+
+	for(int i=1; i<nevents; i++) {
+		bar.setProgress(i);
+
 	}
 
 	return 1;

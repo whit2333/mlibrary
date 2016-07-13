@@ -6,17 +6,30 @@
 
 void TextProgressBar::setProgress(int p)
 {
-	if(p<0 || p > 100) return;
+	if(p < min || p > max) return;
 
-	cout << title << start ;
+	if(p < idn) return;
 
-	int pos = p*barWidth/100;
+	else {
+		idn += dn;
+	}
+
+	cout  << title << start ;
+
+	// progress is between 1 and 100
+	int progress = idn/dn;
+
+	// pos is relative position within the bar
+	int pos = progress*barWidth/TEXTPROGRESSBARNSTEPS;
 	for (int i = 0; i < barWidth; ++i)
 	{
 		if      (i < pos)  cout << middle;
 		else if (i == pos) cout << advance;
 		else cout << " ";
 	}
-	cout << end << p << " %\r";
+	cout << end << progress << " %\r" ;
+
+	if(progress == TEXTPROGRESSBARNSTEPS) cout << endl;
+
 	cout.flush();
 }
