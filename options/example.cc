@@ -9,6 +9,7 @@
 map<string, GOption> defineOptions()
 {
 	map<string, GOption> optionsMap;
+
 	optionsMap["geometry"]      = GOption("Window Geometry", "1400x1200");
 	optionsMap["timeWindow"]    = GOption("Defines the Time Window", 100, "time");
 	optionsMap["interpolation"] = GOption("Interpolation algorithm", "linear", "process");

@@ -1,5 +1,6 @@
 7/14/16
- - added addOptions function
+ - overload += to add two maps
+
 
 7/12/16
  - Added getValues functions in GOptions class

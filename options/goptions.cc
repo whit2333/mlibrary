@@ -434,20 +434,6 @@ vector<string> GOptions::getValues(string optionKey) {
 }
 
 
-/*! \fn  GOptions::addOptions(map<string, GOption> moreOpts)
-
- - add options to the map
-
- */
-void  GOptions::addOptions(map<string, GOption> moreOpts)
-{
-	for(const auto &mo : moreOpts) {
-		optionsMap[mo.first] = mo.second;
-	}
-}
-
-
-
 
 /*! \fn  GOptions::printHTMLHelp()
 
@@ -552,3 +538,16 @@ void GOptions::printHTMLHelp()
 	cout << " Options written to options.html." << endl;
 	exit(0);
 }
+
+
+
+
+//! overload += to add two maps
+map<string, GOption> &operator += (map<string, GOption> &original, map<string, GOption> toadd)
+{
+	for(const auto &mo : toadd) {
+		original[mo.first] = mo.second;
+	}
+	return original;
+}
+

@@ -226,10 +226,6 @@ public:
 	}
 
 
-	//! add options to the map
-	void addOptions(map<string, GOption> moreOpts);
-
-
 	//! gets the options values
 	double getDoubleValue(string optionKey);
 	int getIntValue(string optionKey);
@@ -280,6 +276,8 @@ private:
 
 };
 
+//! overloaded operator to add maps
+map<string, GOption> &operator += (map<string, GOption> &original, map<string, GOption> toadd);
 
 #endif
 

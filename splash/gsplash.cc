@@ -52,3 +52,22 @@ GSplash::~GSplash()
 		if(splash != NULL)
 			delete splash ;
 }
+
+
+map<string, GOption> GSplash::defineOptions()
+{
+	map<string, GOption> optionsMap;
+	optionsMap["splashPic"] = GOption("Splash Screen Picture", "GEMC gemcArchitecture.png", "gui");
+	optionsMap["splashPic"].addHelp("The arguments are:\n");
+	optionsMap["splashPic"].addHelp("1. env. variable location of the picture file\n");
+	optionsMap["splashPic"].addHelp("2. picture file\n");
+
+	optionsMap["gui"] = GOption("Use the QT interface", 1, "gui");
+	optionsMap["gui"].addHelp("Possible choices are:\n");
+	optionsMap["gui"].addHelp("0: run the program in batch mode\n");
+	optionsMap["gui"].addHelp("1. run the program in interactive mode\n");
+
+	optionsMap["header"] = GOption("Message to display on (splash)screen", " > ", "init");
+
+	return optionsMap;
+}
