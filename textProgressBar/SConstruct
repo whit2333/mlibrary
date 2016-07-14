@@ -5,7 +5,8 @@ env = init_environment("mlibrary")
 # the environment will not load the library if it's not there
 env.Append(LIBS = 'textProgressBar')
 
-lib = env.Library(source = "textProgressBar.cc", target = "../lib/textProgressBar")
+# calling SConscript here to build just the library as in the hierarchy build
+lib = SConscript('SConscript')
 
 example = env.Program(source = "example.cc", target = "example")
 

@@ -1,0 +1,4 @@
+from init_env import init_environment
+
+env = init_environment("qt5 mlibrary")
+lib = env.Library(source = "gruns.cc", target = "../lib/gruns")
