@@ -433,6 +433,22 @@ vector<string> GOptions::getValues(string optionKey) {
 	return {"na"};
 }
 
+
+/*! \fn  GOptions::addOptions(map<string, GOption> moreOpts)
+
+ - add options to the map
+
+ */
+void  GOptions::addOptions(map<string, GOption> moreOpts)
+{
+	for(const auto &mo : moreOpts) {
+		optionsMap[mo.first] = mo.second;
+	}
+}
+
+
+
+
 /*! \fn  GOptions::printHTMLHelp()
 
  - Print help in html format and exit

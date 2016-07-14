@@ -181,6 +181,7 @@ public:
 		}
 		return values;
 	}
+
 private:
 
 	//! Sets the common properties
@@ -223,6 +224,11 @@ public:
 	GOption getOption(string which) {
 		return optionsMap[which];
 	}
+
+
+	//! add options to the map
+	void addOptions(map<string, GOption> moreOpts);
+
 
 	//! gets the options values
 	double getDoubleValue(string optionKey);
