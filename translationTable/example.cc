@@ -69,8 +69,6 @@ int main(int argc, char* argv[])
 	for(int i=1; i<36; i++)
 		cout << " hardware: " << TT.getHardware({4, 4, i, 0}) << endl;
 
-
 	return 1;
-
 }
 

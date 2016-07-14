@@ -15,6 +15,9 @@ public:
 
 	bool isNew() {return isNewRun;}
 
+	// gruns options
+	static map<string, GOption> defineOptions();
+
 
 private:
 

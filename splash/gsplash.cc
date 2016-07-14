@@ -57,6 +57,7 @@ GSplash::~GSplash()
 map<string, GOption> GSplash::defineOptions()
 {
 	map<string, GOption> optionsMap;
+
 	optionsMap["splashPic"] = GOption("Splash Screen Picture", "GEMC gemcArchitecture.png", "gui");
 	optionsMap["splashPic"].addHelp("The arguments are:\n");
 	optionsMap["splashPic"].addHelp("1. env. variable location of the picture file\n");

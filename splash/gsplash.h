@@ -35,6 +35,7 @@ public:
 	void message(string);
 	void finish(QMainWindow *window) {if(splash != NULL) splash->finish(window);}
 
+	// gsplash options
 	static map<string, GOption> defineOptions();
 };
 

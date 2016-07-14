@@ -30,7 +30,6 @@ Hardware TranslationTable::getHardware(vector<int> c)
 		cout << " !! Error: item <" << hk << "> not found in translation table " << name  << endl;
 		return Hardware();
 	}
-
 }
 
 void TranslationTable::addHardwareItem(vector<int> c, Hardware h)
@@ -51,7 +50,6 @@ void TranslationTable::addHardwareItem(vector<int> c, Hardware h)
 //! overloading "<<" to print this class
 ostream &operator<<(ostream &stream, Hardware h)
 {
-
 	stream << " Crate: "   << h.getCrate();
 	stream << " Slot: "    << h.getSlot();
 	stream << " Channel: " << h.getChannel();
