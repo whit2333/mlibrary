@@ -91,7 +91,6 @@ int GOptions::parseConfigurationFile(string file)
 	// this will fail if gcard not valid or not existing
 	QDomDocument domDocument = checkAndParseGCard(file);
 
-
 	QDomNodeList options = domDocument.firstChildElement().elementsByTagName("option");
 	for(int i = 0; i < options.count(); i++)
 	{
@@ -231,14 +230,14 @@ QDomDocument GOptions::checkAndParseGCard(string file)
 
 	if( !gcard.exists() )
 	{
-		cout << " >>  gcard: " << file <<" not found. Exiting." << endl;
+		cout << " >>  gcard: " << file << " not found. Exiting." << endl;
 		exit(0);
 	}
 
 	// opening gcard and filling domDocument
 	if(!domDocument.setContent(&gcard))
 	{
-		cout << " >>  gcard format for file <" << file << "> is wrong - check XML syntax. Exiting." << endl;
+		cout << " >>  xml format for file <" << file << "> is wrong - check XML syntax. Exiting." << endl;
 		exit(0);
 	}
 	gcard.close();

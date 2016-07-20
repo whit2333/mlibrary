@@ -167,6 +167,9 @@ public:
 			case isString: return valueS;
 			case isDouble: return to_string(valueD);
 		}
+		// some compilers are not smart enough to know
+		// the above list is exhaustive
+		return valueS;
 	}
 
 	// get a vector of strings from the valueS
