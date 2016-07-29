@@ -1,6 +1,6 @@
 /// \file example.cc
 
-// example on how to use the options framework library
+// example on how to use the goptions framework library
 
 // options
 #include "goptions.h"

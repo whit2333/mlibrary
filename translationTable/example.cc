@@ -1,6 +1,6 @@
 /// \file example.cc
 
-// example on how to use the translationTable  library
+// example on how to use the translationTable library
 // this will load tables from Jefferson Lab CLAS12 CCDB database
 
 // translationTable framework
