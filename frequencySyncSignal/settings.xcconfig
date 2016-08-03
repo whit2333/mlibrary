@@ -23,6 +23,7 @@ JLAB_SOFTWARE = "/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0"
 // installation of libraries and binaries
 CONFIGURATION_BUILD_DIR = lib
 
-
+// including MLIBS
+HEADER_SEARCH_PATHS = $QT_HEADS $MLIB_HEADS
 
 
