@@ -8,7 +8,7 @@
 // remove later
 #include <iostream>
 
-
+// building RF from the start time
 oneRFOutput::oneRFOutput(double timeWindow, double startTime, double radioPeriod, double radioInterval)
 {
 
@@ -36,12 +36,18 @@ oneRFOutput::oneRFOutput(double timeWindow, double startTime, double radioPeriod
 		putRF += radioInterval;
 	}
 
-	// sorting vector.
+	// sorting vector - adding to ids
 	sort(rfValue.begin(), rfValue.end());
+	int rfid = 1;
 	for(auto &v : rfValue) {
-		cout << "after " << v << endl;
+		rfID.push_back(rfid++);
 	}
-	
 }
 
+// building RF from existing RFs
+oneRFOutput::oneRFOutput(vector<double> values, double rfsDistance, double timeWindow, double radioInterval)
+{
+	double firstRf = values.front();
+	
 
+}

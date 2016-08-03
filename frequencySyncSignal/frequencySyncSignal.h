@@ -9,6 +9,7 @@ using namespace std;
 class oneRFOutput {
 public:
 	oneRFOutput(double timeWindow, double startTime, double radioPeriod, double radioInterval);
+	oneRFOutput(vector<double> values, double rfsDistance, double timeWindow, double radioInterval);
 
 private:
 	vector<double> rfID;
