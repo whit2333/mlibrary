@@ -50,9 +50,9 @@ void TranslationTable::addHardwareItem(vector<int> c, Hardware h)
 //! overloading "<<" to print this class
 ostream &operator<<(ostream &stream, Hardware h)
 {
-	stream << " Crate: "   << h.getCrate();
-	stream << " Slot: "    << h.getSlot();
-	stream << " Channel: " << h.getChannel();
+	stream << " Crate: "   << h.crate;
+	stream << " Slot: "    << h.slot;
+	stream << " Channel: " << h.channel;
 	
 	return stream;
 }

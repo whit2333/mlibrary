@@ -14,6 +14,10 @@ public:
 private:
 	vector<double> rfID;
 	vector<double> rfValue;
+
+private:
+	void fillRFValues(double firstRF, double timeWindow, double radioInterval);
+
 };
 
 class FrequencySyncSignal {
@@ -40,6 +44,10 @@ private:
 
 public:
 	vector<oneRFOutput> getOutput() {return  output;}
+
+	//! overloading the << operator
+	friend ostream &operator<<(ostream &stream, FrequencySyncSignal);
+
 };
 
 

@@ -22,6 +22,32 @@ oneRFOutput::oneRFOutput(double timeWindow, double startTime, double radioPeriod
 	while(firstRF<0 || firstRF>timeWindow)
 		firstRF = startTime + radioPeriod*(int)randomDistribution(generator);
 
+	fillRFValues(firstRF, timeWindow, radioInterval);
+
+
+}
+
+// building RF from existing RFs
+oneRFOutput::oneRFOutput(vector<double> values, double rfsDistance, double timeWindow, double radioInterval)
+{
+	double thatFirstRf = values.front();
+
+	double firstRF = thatFirstRf - rfsDistance;
+	// this RF is rfsDistance away from thatFirstRf.
+	if(firstRF < 0 || firstRF > timeWindow)
+		 firstRF = thatFirstRf + rfsDistance;
+
+	if(firstRF < 0 || firstRF > timeWindow) {
+		cout << "  !! error: RF value is outside the timewindow." << endl;
+	}
+
+	fillRFValues(firstRF, timeWindow, radioInterval);
+
+
+}
+
+void oneRFOutput::fillRFValues(double firstRF, double timeWindow, double radioInterval)
+{
 	double putRF = firstRF;
 	// adding earlier RFs
 	while(putRF>0) {
@@ -38,16 +64,25 @@ oneRFOutput::oneRFOutput(double timeWindow, double startTime, double radioPeriod
 
 	// sorting vector - adding to ids
 	sort(rfValue.begin(), rfValue.end());
-	int rfid = 1;
-	for(auto &v : rfValue) {
-		rfID.push_back(rfid++);
+
+	// adding the id
+	for(int n = 0; n<rfValue.size(); n++) {
+		rfID.push_back(n+1);
 	}
+
 }
 
-// building RF from existing RFs
-oneRFOutput::oneRFOutput(vector<double> values, double rfsDistance, double timeWindow, double radioInterval)
+
+//! overloading "<<" to print this class
+ostream &operator<<(ostream &stream, FrequencySyncSignal s)
 {
-	double firstRf = values.front();
-	
+	stream << " Time Window: "   << s.timeWindow;
+	stream << " Event Start Time: "   << s.startTime << endl;
+	stream << " Radio Frequency: "   << s.radioFrequency << " MHz - Period is " << radioPeriod << "ns" << endl;
 
+	return stream;
 }
+
+
+
+
