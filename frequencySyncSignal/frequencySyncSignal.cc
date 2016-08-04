@@ -78,9 +78,16 @@ ostream &operator<<(ostream &stream, FrequencySyncSignal s)
 {
 	stream << " Time Window: "   << s.timeWindow;
 	stream << " Event Start Time: "   << s.startTime << endl;
-	stream << " Radio Frequency: "   << s.radioFrequency << " MHz - Period is " << radioPeriod << "ns" << endl;
+	stream << " Radio Frequency: "   << s.radioFrequency << " MHz - Period is " << s.radioPeriod << "ns" << endl;
 
 	return stream;
+}
+
+
+FrequencySyncSignal::FrequencySyncSignal(string setup)
+{
+	// setup is a string with at least 6 entries.
+	// any entry after that will 
 }
 
 
