@@ -27,6 +27,8 @@ class FrequencySyncSignal {
 	FrequencySyncSignal(string setup);
 
 private:
+	// these quantities are kept here for documentation
+	// to build RFoutputs they do not need to be members
 	double timeWindow;     // total timewindow of one event - in ns
 	double startTime;      // event start time
 	double radioFrequency; // radiofrequency - in GHz

@@ -3,15 +3,15 @@
 
 // c++
 #include <random>
-
-
-// remove later
 #include <iostream>
+
+// gstring
+#include "gstring.h"
+using namespace gstring;
 
 // building RF from the start time
 oneRFOutput::oneRFOutput(double timeWindow, double startTime, double radioPeriod, double radioInterval)
 {
-
 	// generating random number between -timeWindow and timeWindow
 	random_device randomDevice;
 	mt19937 generator(randomDevice());
@@ -23,8 +23,6 @@ oneRFOutput::oneRFOutput(double timeWindow, double startTime, double radioPeriod
 		firstRF = startTime + radioPeriod*(int)randomDistribution(generator);
 
 	fillRFValues(firstRF, timeWindow, radioInterval);
-
-
 }
 
 // building RF from existing RFs
@@ -42,8 +40,6 @@ oneRFOutput::oneRFOutput(vector<double> values, double rfsDistance, double timeW
 	}
 
 	fillRFValues(firstRF, timeWindow, radioInterval);
-
-
 }
 
 void oneRFOutput::fillRFValues(double firstRF, double timeWindow, double radioInterval)
@@ -69,7 +65,6 @@ void oneRFOutput::fillRFValues(double firstRF, double timeWindow, double radioIn
 	for(int n = 0; n<rfValue.size(); n++) {
 		rfID.push_back(n+1);
 	}
-
 }
 
 
@@ -89,7 +84,8 @@ FrequencySyncSignal::FrequencySyncSignal(string setup)
 	// setup is a string with at least 6 entries.
 	// any entry after that will add an additional RFOutput
 
-
+	vector<string> parsedSetup = getStringVectorFromString(setup);
+	timeWindow = parsedSetup[0];
 
 }
 
