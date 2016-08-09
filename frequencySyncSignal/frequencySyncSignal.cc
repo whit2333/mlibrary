@@ -87,7 +87,10 @@ ostream &operator<<(ostream &stream, FrequencySyncSignal s)
 FrequencySyncSignal::FrequencySyncSignal(string setup)
 {
 	// setup is a string with at least 6 entries.
-	// any entry after that will 
+	// any entry after that will add an additional RFOutput
+
+
+
 }
 
 

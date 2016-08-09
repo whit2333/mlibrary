@@ -1,0 +1,10 @@
+// xcode project - start with empty project
+//
+// 1. on the general project add "settings.xcconfig" configuration for debug and release
+
+
+// installation of libraries and binaries
+CONFIGURATION_BUILD_DIR = lib
+
+
+
