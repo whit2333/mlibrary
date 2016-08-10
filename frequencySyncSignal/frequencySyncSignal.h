@@ -11,6 +11,7 @@ public:
 	oneRFOutput(double timeWindow, double startTime, double radioPeriod, double radioInterval);
 	oneRFOutput(vector<double> values, double rfsDistance, double timeWindow, double radioInterval);
 
+	vector<double> getValues() { return rfValue;}
 private:
 	vector<double> rfID;
 	vector<double> rfValue;
@@ -18,10 +19,14 @@ private:
 private:
 	void fillRFValues(double firstRF, double timeWindow, double radioInterval);
 
+	friend ostream &operator<<(ostream &stream, oneRFOutput);
+
+
 };
 
 class FrequencySyncSignal {
 
+public:
 	// constructor from string.
 	// This will be replaced by a goption later on
 	FrequencySyncSignal(string setup);

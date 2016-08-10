@@ -1,5 +1,5 @@
 from init_env import init_environment
 
-env = init_environment("")
+env = init_environment("mlibrary")
 lib = env.Library(source = "frequencySyncSignal.cc", target = "../lib/frequencySyncSignal")
 

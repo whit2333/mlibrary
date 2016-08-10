@@ -67,13 +67,34 @@ void oneRFOutput::fillRFValues(double firstRF, double timeWindow, double radioIn
 	}
 }
 
+//! overloading "<<" to print this class
+ostream &operator<<(ostream &stream, oneRFOutput s)
+{
+	for(unsigned j=0; j< s.rfID.size(); j++) {
+		stream << "  - RFID: "   << s.rfID[j] << "   RF Value: " << s.rfValue[j] << endl;
+
+	}
+
+	return stream;
+
+}
 
 //! overloading "<<" to print this class
 ostream &operator<<(ostream &stream, FrequencySyncSignal s)
 {
 	stream << " Time Window: "   << s.timeWindow;
-	stream << " Event Start Time: "   << s.startTime << endl;
-	stream << " Radio Frequency: "   << s.radioFrequency << " MHz - Period is " << s.radioPeriod << "ns" << endl;
+	stream << ", event Start Time: "   << s.startTime << endl;
+	stream << " Radio Frequency: "   << s.radioFrequency << " MHz: Period is " << s.radioPeriod << "ns" << endl;
+	stream << " Distance between RF buckets "   << s.radioInterval << " ns" << endl;
+
+	for(unsigned i=0; i<s.rfsDistance.size(); i++) {
+		stream << " RF signal n. <" << i+1 << "> is " <<  s.rfsDistance[i] << " ns away." << endl;
+	}
+
+	for(unsigned i=0; i<s.output.size(); i++) {
+		stream << " > RF Output n. " << i+1 << ":" << endl;
+		stream << s.output[i] ;
+	}
 
 	return stream;
 }
@@ -81,13 +102,50 @@ ostream &operator<<(ostream &stream, FrequencySyncSignal s)
 
 FrequencySyncSignal::FrequencySyncSignal(string setup)
 {
+
+	unsigned long numberOfArguments = 4;
+
 	// setup is a string with at least 6 entries.
 	// any entry after that will add an additional RFOutput
-
 	vector<string> parsedSetup = getStringVectorFromString(setup);
-	timeWindow = parsedSetup[0];
+	if(parsedSetup.size() < numberOfArguments) {
+		cout << " !! Error: FrequencySyncSignal initializer incomplete: >" << setup << "< has not enough parameters, at least 6 needed. Exiting" << endl;
+		exit(0);
+	}
 
+	timeWindow     = stod(parsedSetup[0]);
+	startTime      = stod(parsedSetup[1]);
+	radioFrequency = stod(parsedSetup[2]);
+	radioPeriod    = 1.0/radioFrequency; // GHz > ns
+	radioInterval  = stod(parsedSetup[3]);
+
+
+
+	// first RF
+	output.push_back(oneRFOutput(timeWindow, startTime, radioPeriod, radioInterval));
+
+	// other signals
+	if(parsedSetup.size() > numberOfArguments) {
+		vector<double> values = output[0].getValues();
+		unsigned long remainingNRF = parsedSetup.size() - numberOfArguments;
+		for(unsigned i=0; i<remainingNRF; i++) {
+			rfsDistance.push_back(stod(parsedSetup[numberOfArguments+i]));
+			output.push_back(oneRFOutput(values, rfsDistance[i], timeWindow, radioInterval));
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
