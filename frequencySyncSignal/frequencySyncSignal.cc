@@ -109,7 +109,8 @@ FrequencySyncSignal::FrequencySyncSignal(string setup)
 	// any entry after that will add an additional RFOutput
 	vector<string> parsedSetup = getStringVectorFromString(setup);
 	if(parsedSetup.size() < numberOfArguments) {
-		cout << " !! Error: FrequencySyncSignal initializer incomplete: >" << setup << "< has not enough parameters, at least 6 needed. Exiting" << endl;
+		cout << " !! Error: FrequencySyncSignal initializer incomplete: >" << setup << "< has not enough parameters, at least "
+		<<  numberOfArguments << " needed. Exiting" << endl;
 		exit(0);
 	}
 
@@ -118,8 +119,6 @@ FrequencySyncSignal::FrequencySyncSignal(string setup)
 	radioFrequency = stod(parsedSetup[2]);
 	radioPeriod    = 1.0/radioFrequency; // GHz > ns
 	radioInterval  = stod(parsedSetup[3]);
-
-
 
 	// first RF
 	output.push_back(oneRFOutput(timeWindow, startTime, radioPeriod, radioInterval));

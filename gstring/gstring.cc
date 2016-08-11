@@ -4,23 +4,24 @@
 // c++
 #include <sstream>
 
-// returns a vector of strings from a stringstream, space is delimeter
+//! returns a vector of strings from a stringstream, space is delimeter
 vector<string> gstring::getStringVectorFromString(string input)
 {
 	vector<string> pvalues;
 	stringstream plist(input);
-	while(!plist.eof())
-	{
+	while(!plist.eof()) {
 		string tmp;
 		plist >> tmp;
-		pvalues.push_back(trimSpacesFromString(tmp));
+		string toPut = trimSpacesFromString(tmp);
+		if(toPut != "")
+			pvalues.push_back(toPut);
 	}
 
 	return pvalues;
 }
 
 
-// Trims Both leading and trailing spaces
+//! Trims Both leading and trailing spaces
 string gstring::trimSpacesFromString(string in)
 {
 	string out;
@@ -36,3 +37,59 @@ string gstring::trimSpacesFromString(string in)
 
 	return out;
 }
+
+//! returns a vector of strings from a stringstream, x (one char) is delimiter
+vector<string> gstring::getStringVectorFromStringWithDelimiter(string input, string x)
+{
+	vector<string> pvalues;
+
+	string tmp;
+	for(unsigned int i=0; i<input.size(); i++) {
+
+		if(input[i] != x[0]) {
+			tmp += input[i];
+		} else {
+			pvalues.push_back(tmp);
+			tmp = "";
+		}
+
+		// end of line
+		if(i==input.size() - 1) {
+			pvalues.push_back(tmp);
+		}
+	}
+
+	return pvalues;
+}
+
+
+//! Replace all occurences of specific chars in string with a string
+string gstring::replaceCharInStringWithChars(string input, string toReplace, string replacement)
+{
+
+	string output = "";
+
+	for(unsigned int k=0; k<input.size(); k++) {
+
+		int replace = 0;
+
+		for(unsigned int j=0; j<toReplace.size(); j++) {
+			// found common char, replacing it with replacement
+			if(input[k] == toReplace[j]) {
+				output.append(replacement);
+				replace = 1;
+			}
+		}
+		if(!replace) output += input[k];
+	}
+
+	return output;
+}
+
+
+
+
+
+
+
+

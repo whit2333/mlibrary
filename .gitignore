@@ -1,3 +1,11 @@
+releases/devel
+cadmesh
+cadmeshBuild
+bin
+include
+lib
+build_log
+.DS_Store
 .sconsign.dblite
 *.o
 example

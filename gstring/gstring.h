@@ -17,6 +17,9 @@ namespace gstring
 	//! Removes leading and trailing spaces
 	string trimSpacesFromString(string);
 
+	//! Replace all occurences of a char in string with a string
+	string replaceCharInStringWithChars(string input, string toReplace, string replacement);
+
 }
 
 

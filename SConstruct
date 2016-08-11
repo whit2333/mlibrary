@@ -8,4 +8,5 @@ translationTable    = SConscript('translationTable/SConscript')
 splash              = SConscript('splash/SConscript')
 gruns               = SConscript('gruns/SConscript')
 frequencySyncSignal = SConscript('frequencySyncSignal/SConscript')
+gstring             = SConscript('gstring/SConscript')
 
