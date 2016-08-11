@@ -4,6 +4,7 @@
 // c++
 #include <random>
 #include <iostream>
+#include <algorithm> // for sort for gcc
 
 // gstring
 #include "gstring.h"
@@ -62,7 +63,7 @@ void oneRFOutput::fillRFValues(double firstRF, double timeWindow, double radioIn
 	sort(rfValue.begin(), rfValue.end());
 
 	// adding the id
-	for(int n = 0; n<rfValue.size(); n++) {
+	for(unsigned n = 0; n<rfValue.size(); n++) {
 		rfID.push_back(n+1);
 	}
 }
