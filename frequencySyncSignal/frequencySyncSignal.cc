@@ -88,7 +88,7 @@ ostream &operator<<(ostream &stream, FrequencySyncSignal s)
 	stream << " Distance between RF buckets "   << s.radioInterval << " ns" << endl;
 
 	for(unsigned i=0; i<s.rfsDistance.size(); i++) {
-		stream << " RF signal n. <" << i+1 << "> is " <<  s.rfsDistance[i] << " ns away." << endl;
+		stream << " RF signal n. <" << i+2 << "> is " <<  s.rfsDistance[i] << " ns away." << endl;
 	}
 
 	for(unsigned i=0; i<s.output.size(); i++) {
