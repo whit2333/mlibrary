@@ -120,6 +120,12 @@ FrequencySyncSignal::FrequencySyncSignal(string setup)
 	radioPeriod    = 1.0/radioFrequency; // GHz > ns
 	radioInterval  = stod(parsedSetup[3]);
 
+
+	// do nothing if timewindow is 0
+	if(timeWindow ==0) {
+		cout << " ! Warning: timewindow is set to 0. No RF output." << endl;
+		return;
+	}
 	// first RF
 	output.push_back(oneRFOutput(timeWindow, startTime, radioPeriod, radioInterval));
 
