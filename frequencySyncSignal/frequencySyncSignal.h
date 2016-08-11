@@ -11,9 +11,11 @@ public:
 	oneRFOutput(double timeWindow, double startTime, double radioPeriod, double radioInterval);
 	oneRFOutput(vector<double> values, double rfsDistance, double timeWindow, double radioInterval);
 
+	vector<int> getIDs()    { return rfID;}
 	vector<double> getValues() { return rfValue;}
+
 private:
-	vector<double> rfID;
+	vector<int> rfID;
 	vector<double> rfValue;
 
 private:
