@@ -38,6 +38,7 @@ public:
 
 
 class TranslationTable {
+
 public:
 	TranslationTable(string n) : name(n) { ; }
 	TranslationTable() = default;

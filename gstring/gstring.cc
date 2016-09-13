@@ -86,6 +86,24 @@ string gstring::replaceCharInStringWithChars(string input, string toReplace, str
 	return output;
 }
 
+#include <iostream>
+using namespace std;
+
+string gstring::fillDigits(string word, string c, int ndigits)
+{
+	string filled;
+
+	int toFill = ndigits - (int) word.size();
+
+	for(int d=0; d<toFill; d++) {
+		filled += c;
+	}
+
+	filled += word;
+
+	return filled;
+}
+
 
 
 

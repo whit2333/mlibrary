@@ -20,6 +20,8 @@ namespace gstring
 	//! Replace all occurences of a char in string with a string
 	string replaceCharInStringWithChars(string input, string toReplace, string replacement);
 
+	// adds zeros to fill totDigits
+	string fillDigits(string word, string c, int ndigits);
 }
 
 
