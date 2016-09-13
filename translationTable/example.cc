@@ -65,9 +65,9 @@ int main(int argc, char* argv[])
 	cout << " Data loaded in translation table. " << endl;
 
 
-	// now inquiring TT for sector, layer, component, order  =  4, 4, 1-36, 0
+	// now inquiring TT for sector, layer, component, order  =  1, 4, 1-36, 0
 	for(int i=1; i<36; i++)
-		cout << " hardware: " << TT.getHardware({4, 4, i, 0}) << endl;
+		cout << " hardware for pmt: " << i << ": " << TT.getHardware({1, 4, i, 0}) << endl;
 
 	return 1;
 }

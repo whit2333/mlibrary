@@ -51,6 +51,7 @@ public:
 	Hardware getHardware(vector<int>);
 	void addHardwareItem(vector<int> i, Hardware h);
 	string getName() {return name;}
+	void printTable();
 
 };
 
