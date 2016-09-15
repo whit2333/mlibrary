@@ -26,17 +26,17 @@ QCoreApplication* createApplication(int &argc, char *argv[], bool gui)
 int main(int argc, char* argv[])
 {
 	GOptions *gopts = new GOptions(argc, argv, defineOptions(), 1);
-	bool gui = gopts->getBoolValue("gui");
+	bool gui = 1;
 
 	createApplication(argc, argv, gui);
 
-	GSplash gsplash(gopts);
+	GSplash gsplash(gopts, gui);
 
 	if(gui) {
 		QMainWindow window;
 		window.show();
 
-		for(int i=0; i<1000000; i++)
+		for(int i=0; i<200; i++)
 			gsplash.message(to_string(i));
 
 		gsplash.finish(&window);

@@ -23,9 +23,11 @@
 class GSplash
 {
 public:
-	GSplash(GOptions* gopt);
+	GSplash(GOptions* gopt, bool);
 
 private:
+	//! splash is a library that could be used in
+	//! batch mode as well. The gui option controls this
 	bool  gui;
 	string header;
 	QSplashScreen *splash;

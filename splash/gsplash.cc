@@ -4,30 +4,29 @@
 // qt
 #include <QApplication>
 
-GSplash::GSplash(GOptions* gopts)
+GSplash::GSplash(GOptions* gopts, bool g)
 {
-	gui    = gopts->getBoolValue("gui");
+	gui    = g;
 	header = gopts->getValue("header");
 
 	if(gui) {
 		vector<string> splashInfo = gopts->getValues("splashPic");
-		string picLocation = splashInfo[0];
+		string picLocation = ".";
 		string picName     = splashInfo[1];
 
-		if(getenv(picLocation.c_str()) == NULL) {
-			cout << "  !! Warning: <" << picLocation << "> environment variable not defined." << endl;
-			splash = NULL;
-		} else {
-			
-			string filename = (string) getenv(picLocation.c_str()) + "/" + picName;
-
-			QPixmap pixmap(filename.c_str());
-
-			splash = new QSplashScreen(pixmap);
-			splash->show();
-			
-			qApp->processEvents();
+		if(getenv(splashInfo[0].c_str()) != NULL) {
+			picLocation = (string) getenv(splashInfo[0].c_str());
 		}
+
+		string filename = picLocation + "/" + picName;
+
+		// pixmap is empty if filename doesn't exist.
+		QPixmap pixmap(filename.c_str());
+
+		splash = new QSplashScreen(pixmap);
+		splash->show();
+
+		qApp->processEvents();
 	}
 }
 
@@ -43,7 +42,6 @@ void GSplash::message(string msg)
 	}
 	else
 		cout << header << msg << endl;
-
 }
 
 GSplash::~GSplash()
@@ -58,17 +56,12 @@ map<string, GOption> GSplash::defineOptions()
 {
 	map<string, GOption> optionsMap;
 
-	optionsMap["splashPic"] = GOption("Splash Screen Picture", "GEMC gemcArchitecture.png", "gui");
+	optionsMap["splashPic"] = GOption("Splash Screen Picture", "SPLASH gemcArchitecture.png", "gui");
 	optionsMap["splashPic"].addHelp("The arguments are:\n");
 	optionsMap["splashPic"].addHelp("1. env. variable location of the picture file\n");
 	optionsMap["splashPic"].addHelp("2. picture file\n");
 
-	optionsMap["gui"] = GOption("Use the QT interface", 1, "gui");
-	optionsMap["gui"].addHelp("Possible choices are:\n");
-	optionsMap["gui"].addHelp("0: run the program in batch mode\n");
-	optionsMap["gui"].addHelp("1. run the program in interactive mode\n");
-
-	optionsMap["header"] = GOption("Message to display on (splash)screen", " > ", "init");
+	optionsMap["header"] = GOption("Message header to display on (splash)screen", " > ", "init");
 
 	return optionsMap;
 }
