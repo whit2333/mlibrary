@@ -1,0 +1,30 @@
+// xcode project - start with empty project
+//
+// 1. on the general project add "settings.xcconfig" configuration for debug and release
+//
+// 2. add library target "qtButtonsWidget" - remember to copy it
+//    a. remove qtButtonsWidget.cpp and other files created
+//    b. source is qtButtonsWidget.cc (build phases)
+//    c. add the qt frameworks to target if its not set already
+//
+// 4. add command tools example, source is example.cc
+//    remove main.cpp created
+//    add libraries and frameworks accordingly:
+//    a. add libraries options in build phases "dependencies" and libraries
+//    b. add @executable_path/../  and @executable_path to 'Runpath Search Paths in Build Settings "Linking"
+//    c. remember to copy the frameworks in the products location
+
+
+// Assigning a relative path to JLAB_SOFTWARE (copy from environment)
+JLAB_SOFTWARE = "/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0"
+
+// Sourcing local version
+#include "/opt/projects/ceInstall/devel/ce/settings.xcconfig"
+
+// installation of libraries and binaries
+CONFIGURATION_BUILD_DIR = lib
+
+// including QT
+HEADER_SEARCH_PATHS = $QT_HEADS $MLIB_HEADS
+
+

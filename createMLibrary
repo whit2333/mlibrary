@@ -1,0 +1,43 @@
+#!/bin/csh -f
+
+
+
+if($#argv != 1) then
+        echo " "
+        echo "Usage:   "
+        echo  "  >> createMLibrary libraryName"
+        echo " "
+        exit 0
+endif
+
+
+set library = $1
+set templateLibrary = textProgressBar
+
+mkdir $library
+
+
+foreach p (SConstruct SConscript  example.cc settings.xcconfig Doxyfile README.md)
+	cp $templateLibrary/$p $library/
+end
+
+foreach p (changelog todo)
+	touch $library/$p
+end
+
+set header = $library"_h"
+
+set cheader =  `echo $header | tr "[:lower:]" "[:upper:]"`
+
+touch $library/$library".cc"
+
+echo "#ifndef " $cheader  > $library/$library".h"
+echo "#define " $cheader >> $library/$library".h"
+echo                     >> $library/$library".h"
+echo "#endif"            >> $library/$library".h"
+
+
+
+
+
+
