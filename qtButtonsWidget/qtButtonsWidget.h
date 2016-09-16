@@ -21,24 +21,18 @@ struct buttonInfo
 public:
 	QPushButton *thisButton;
 
-private:
-	QIcon iconHover;
-	QIcon iconNorma;
-	QIcon iconCurre;
+	QState *stateNorma;
+	QState *stateHover;
+	QState *stateCurre;
+
+	QIcon getIconForState(int state);
+
+	QIcon *iconNorma;
+	QIcon *iconHover;
+	QIcon *iconCurre;
 
 private:
-	QIcon getIconForState(int state)
-	{
-		switch(state) {
-			case 1: return iconHover; break;
-			case 2: return iconNorma; break;
-			case 3: return iconCurre; break;
-		}
-		return iconNorma;
-	}
-
 	QString doesIconExist(string name);
-
 };
 
 
@@ -52,7 +46,7 @@ private:
 	double buttonsHSize;
 	double buttonsVSize;
 
-	vector<buttonInfo> buttons;
+	vector<buttonInfo*> buttons;
 
 };
 

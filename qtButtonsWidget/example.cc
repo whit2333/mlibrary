@@ -13,15 +13,13 @@ using namespace std;
 //! example of main declaring GOptions
 int main(int argc, char* argv[])
 {
-
-
-
 	QApplication app(argc, argv);
-
 
 	map<string, string> bmodel;
 
-	bmodel["monkey"] = "add monkey";
+	bmodel["monkey1"] = "add monkey 1";
+	bmodel["monkey2"] = "add monkey 2";
+	bmodel["monkey3"] = "add monkey 3";
 
 	QtButtonsWidget window(128, 128, bmodel);
 	window.show();
