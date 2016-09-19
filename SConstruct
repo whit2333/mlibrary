@@ -9,4 +9,5 @@ splash              = SConscript('splash/SConscript')
 gruns               = SConscript('gruns/SConscript')
 frequencySyncSignal = SConscript('frequencySyncSignal/SConscript')
 gstring             = SConscript('gstring/SConscript')
+qtButtonsWidget     = SConscript('qtButtonsWidget/SConscript')
 
