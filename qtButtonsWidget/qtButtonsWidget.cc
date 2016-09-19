@@ -57,9 +57,6 @@ QtButtonsWidget::QtButtonsWidget(double h, double v, map<string, string> bdesc, 
 
 	buttons.clear();
 	for(auto &b : bdesc) {
-
-		cout << b.first << endl;
-
 		buttonInfo *thisButton = new buttonInfo(b.first, b.second);
 		buttons.push_back(thisButton);
 	}
@@ -72,7 +69,8 @@ QtButtonsWidget::QtButtonsWidget(double h, double v, map<string, string> bdesc, 
 
 	layout->setContentsMargins(0, 0, 0, 0);
 	setLayout(layout);
-	
+
+	setGeometry(0, 0, h, v*buttons.size());
 	
 }
 

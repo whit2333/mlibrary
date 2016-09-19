@@ -9,3 +9,5 @@ build_log
 .sconsign.dblite
 *.o
 example
+releases
+qrc_exampleResources.cc

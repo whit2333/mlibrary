@@ -8,6 +8,10 @@ env.Append(LIBS = 'qtButtonsWidget')
 # calling SConscript here to build just the library as in the hierarchy build
 lib = SConscript('SConscript')
 
-example = env.Program(source = "example.cc", target = "example")
+example_sources = Split("""
+	example.cc
+	exampleResources.qrc""")
+
+example = env.Program(source = example_sources, target = "example")
 
 Depends(example,  lib);
