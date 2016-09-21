@@ -1,5 +1,3 @@
-.c_str()/// \file example.cc
-
 // example on how to use the goptions framework library
 
 // options

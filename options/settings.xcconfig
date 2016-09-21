@@ -1,38 +1,36 @@
-// xcode project - start with empty project
+// Version 1.1 - Sept 21 2016
 //
-// 1. on the general project add "settings.xcconfig" configuration for debug and release
+// xcode project - start with empty project. Add all the files.
 //
-// 2. Drag frameworks to project - remember to COPY
+// 1. On the general project add "settings.xcconfig" configuration for debug and release
 //
-//    Qt:
-//    open  $QTDIR/lib
-//    QtCore QtXml
+// 2. Create Frameworks group - drag frameworks to project - link
 //
-// 3. add library target "options"
-//    a. remove options.cpp and other files created
-//    b. source is options.cc (build phases)
-//    c. add the qt frameworks to target if its not set already
+//    Qt: open  $QTDIR/lib
 //
-// 4. add command tools example, source is example.cc
-//    remove main.cpp created
-//    add libraries and frameworks accordingly:
-//    a. add libraries options in build phases "dependencies" and libraries
-//    b. QtXml, QtCore
-//    c. add @executable_path/../  and @executable_path to 'Runpath Search Paths in Build Settings "Linking"
-//    d. remember to copy the frameworks in the products location
-
-
-// Assigning a relative path to JLAB_SOFTWARE (copy from environment)
-JLAB_SOFTWARE = "/opt/jlab_software/devel/Darwin_macosx10.11-x86_64-clang7.3.0"
+// 3. add library target "libraryName". Static to archive the executable
+//    a. remove libraryName dir
+//    b. source is libraryName.cc (build phases)
+//
+// 4. add command tools exampleName, source is example.cc
+//    a. remove exampleName dir
+//    b. add libraries and frameworks accordingly
+//    c. add libraryName in the target dependencies (build phases)
+//    d. add frameworks and products/libraryName in the exampleName target membership
+//
+// 5. remember to manually copy the frameworks/libraries in the products location
+//    pointed by the CONFIGURATION_BUILD_DIR below.
+//
+// 6. For archiving purposes, in build phases copy nexessary items in
+//    executables destination - this includes the rcc file
 
 // Sourcing local version
 #include "/opt/projects/ceInstall/devel/ce/settings.xcconfig"
 
 // installation of libraries and binaries
-CONFIGURATION_BUILD_DIR = lib
+CONFIGURATION_BUILD_DIR = $MYBUILDDIR
 
 // including QT
-HEADER_SEARCH_PATHS = $QT_HEADS
-
+HEADER_SEARCH_PATHS = $MLIB_HEADS
 
 
