@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
 {
 
 	if(argc != 2) {
-		cout << " !! Error: run example with one argument" << endl;
+		cout << " !! Error: run example with exactly one argument" << endl;
 	} else {
 
 	string test = argv[1];

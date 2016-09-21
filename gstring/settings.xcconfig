@@ -1,10 +1,36 @@
-// xcode project - start with empty project
+// Version 1.1 - Sept 21 2016
 //
-// 1. on the general project add "settings.xcconfig" configuration for debug and release
+// xcode project - start with empty project. Add all the files.
+//
+// 1. On the general project add "settings.xcconfig" configuration for debug and release
+//
+// 2. Create Frameworks group - drag frameworks to project - link
+//
+//    Qt: open  $QTDIR/lib
+//
+// 3. add library target "libraryName". Static to archive the executable
+//    a. remove libraryName dir
+//    b. source is libraryName.cc (build phases)
+//
+// 4. add command tools exampleName, source is example.cc
+//    a. remove exampleName dir
+//    b. add libraries and frameworks accordingly
+//    c. add libraryName in the target dependencies (build phases)
+//    d. add frameworks and products/libraryName in the exampleName target membership
+//
+// 5. remember to manually copy the frameworks/libraries in the products location
+//    pointed by the CONFIGURATION_BUILD_DIR below.
+//
+// 6. For archiving purposes, in build phases copy nexessary items in
+//    executables destination - this includes the rcc file
 
+// Sourcing local version
+#include "/opt/projects/ceInstall/devel/ce/settings.xcconfig"
 
 // installation of libraries and binaries
-CONFIGURATION_BUILD_DIR = lib
+CONFIGURATION_BUILD_DIR = $MYBUILDDIR
 
+// including QT
+HEADER_SEARCH_PATHS = $MLIB_HEADS
 
 
