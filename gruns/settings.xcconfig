@@ -14,9 +14,8 @@
 //
 // 4. add command tools exampleName, source is example.cc
 //    a. remove exampleName dir
-//    b. add libraries and frameworks accordingly
-//    c. add libraryName in the target dependencies (build phases)
-//    d. add frameworks and products/libraryName in the exampleName target membership
+//    b. add libraryName in the target dependencies (build phases)
+//    c. add frameworks and products/libraryName in the exampleName target membership
 //
 // 5. remember to manually copy the frameworks/libraries in the products location
 //    pointed by the CONFIGURATION_BUILD_DIR below.
@@ -31,6 +30,6 @@
 CONFIGURATION_BUILD_DIR = $MYBUILDDIR
 
 // includes
-HEADER_SEARCH_PATHS = $MLIB_HEADS
+HEADER_SEARCH_PATHS = $MLIB_HEADS $QT_HEADS
 
 
