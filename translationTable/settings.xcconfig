@@ -8,7 +8,7 @@
 //
 //    Qt: open  $QTDIR/lib
 //
-// 3. add library target "libraryName". Static to archive the executable
+// 3. add library target "libraryName". Static to archive the executable.
 //    a. remove libraryName dir
 //    b. source is libraryName.cc (build phases)
 //
@@ -31,6 +31,6 @@
 CONFIGURATION_BUILD_DIR = $MYBUILDDIR
 
 // includes
-HEADER_SEARCH_PATHS = $MLIB_HEADS
+HEADER_SEARCH_PATHS = $CCDB_HEADS $MLIB_HEADS 
 
 

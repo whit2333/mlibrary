@@ -3,9 +3,13 @@
 // example on how to use the translationTable library
 // this will load tables from Jefferson Lab CLAS12 CCDB database
 
-// translationTable framework
+// translationTable 
 #include "translationTable.h"
 
+// CCDB Warning
+// copying the static library to the build directory will produce compilation errors.
+// not doing so will build the example, but to run it, it will require the ccdb dynamic library.
+// interesting huh?? Why is that.
 
 #include <CCDB/Calibration.h>
 #include <CCDB/Model/Assignment.h>
