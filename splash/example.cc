@@ -5,8 +5,6 @@
 // gsplash
 #include "gsplash.h"
 
-
-
 map<string, GOption> defineOptions()
 {
 	map<string, GOption> optionsMap;
