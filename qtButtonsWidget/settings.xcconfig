@@ -1,18 +1,25 @@
-// xcode project - start with empty project
+// Version 1.0 - Sept 21 2016
+//
+// xcode project - start with empty project. Add all the files.
 //
 // 1. on the general project add "settings.xcconfig" configuration for debug and release
 //
-// 2. add library target "qtButtonsWidget" - remember to copy it
-//    a. remove qtButtonsWidget dir
-//    b. source is qtButtonsWidget.cc (build phases)
-//    c. add the qt frameworks to target if its not set already
+// 2. Create Frameworks group - drag frameworks to project - link
 //
-// 4. add command tools example, source is example.cc
-//    remove main.cpp created
-//    add libraries and frameworks accordingly:
-//    a. add libraries in build phases "dependencies" and libraries (may have to drag them there)
-//    b. add @executable_path/../  and @executable_path to 'Runpath Search Paths in Build Settings "Linking"
-//    c. remember to manually copy the frameworks in the products location
+//    Qt: open  $QTDIR/lib
+//
+// 3. add library target "libraryName" - remember to copy it
+//    a. remove libraryName dir
+//    b. source is libraryName.cc (build phases)
+//    c. add the qt frameworks/libraries to target if its not set already
+//
+// 4. add command tools exampleName, source is example.cc
+//    a. remove exampleName dir
+//    b. add libraries and frameworks accordingly
+//    c. add libraryName in the target dependencies (build phases)
+//    d. add products/libraryName in the exampleName target membership
+//
+// 5. remember to manually copy the frameworks/libraries in the products location
 
 
 // Assigning a relative path to JLAB_SOFTWARE (copy from environment)

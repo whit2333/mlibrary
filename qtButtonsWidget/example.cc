@@ -9,6 +9,9 @@
 #include <iostream>
 using namespace std;
 
+// qt
+#include <QFileDialog>
+
 
 
 //! example of main declaring GOptions
@@ -16,12 +19,18 @@ int main(int argc, char* argv[])
 {
 	QApplication app(argc, argv);
 
+
+	cout << argv[0] << endl;
+
 	// the exampleResources.rcc is obtained with:
 	// rcc -binary exampleResources.qrc -o exampleResources.rcc
 	// it is needed in the executable dir in case it is compiled by xcode
 	// scons on the other hand knows about it because the qt module
 	// compiles exampleResources.qrc directly
-	QResource::registerResource("exampleResources.rcc");
+
+	QFileInfo qrcFileInfoExecutable(argv[0]);
+	QString rccPath = qrcFileInfoExecutable.absolutePath() + "/" + "exampleResources.rcc";
+	QResource::registerResource(rccPath);
 
 	map<string, string> bmodel;
 
@@ -32,9 +41,7 @@ int main(int argc, char* argv[])
 	QtButtonsWidget window(128, 128, bmodel);
 	window.show();
 
-
 	return app.exec();
-
 
 	return 1;
 }
