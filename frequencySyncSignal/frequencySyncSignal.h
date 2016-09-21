@@ -23,7 +23,6 @@ private:
 
 	friend ostream &operator<<(ostream &stream, oneRFOutput);
 
-
 };
 
 class FrequencySyncSignal {

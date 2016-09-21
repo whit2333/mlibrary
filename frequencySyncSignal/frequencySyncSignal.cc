@@ -1,14 +1,15 @@
-// frequencySyncSignal framework
+// frequencySyncSignal
 #include "frequencySyncSignal.h"
+
+// gstring
+#include "gstring.h"
+using namespace gstring;
 
 // c++
 #include <random>
 #include <iostream>
 #include <algorithm> // for sort for gcc
 
-// gstring
-#include "gstring.h"
-using namespace gstring;
 
 // building RF from the start time
 oneRFOutput::oneRFOutput(double timeWindow, double startTime, double radioPeriod, double radioInterval)

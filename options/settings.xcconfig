@@ -30,7 +30,7 @@
 // installation of libraries and binaries
 CONFIGURATION_BUILD_DIR = $MYBUILDDIR
 
-// including QT
+// includes
 HEADER_SEARCH_PATHS = $MLIB_HEADS
 
 
