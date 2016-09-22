@@ -3,18 +3,19 @@
 /// The options framework provides command line and xml parsing of user
 /// defined options.\n
 /// The command line options have the format:\n
-/// <pre> -KEY=VALUE </pre>
-/// where Value can be a number or a string.\n
+/// <pre> -key=value </pre>
+/// where value can be a number or a string.\n
 /// The corresponding XML syntax is:\n
-/// <pre>  \<option name="KEY" value="Value"/> </pre>
+/// <pre>  \<option name="key" value="value"/> </pre>
 ///
 /// \section Main Main Features
-/// - Repeat mechanism: users decide if an option is unique or can be repeated.
-/// - Categories: user can optionally specify a category to group options.
-/// - Default: specified by the user. Any non-default option will be automatically logged on screen.
-/// - Help mechanism: user can specify multiple lines help for each category.
-/// - HTML output: -help-html will print all options in html format.
-/// - Accumulate: options can be loaded from any library.
+/// - Repeat mechanism: options are unique or can be repeated.
+/// - Categories: options can be organized in categories.
+/// - Default value: specified by the user. Non-default automatically logged on screen.
+/// - Help mechanism: short description and multiple lines help for each option.
+/// - HTML output: available html format for documentation.
+/// - Formatting: the options are presented on screen already formatted.
+/// - Accumulate: the options map can be filled from any library.
 ///
 /// \section User Interface
 /// The users creates his/her own options map: \n
@@ -27,7 +28,7 @@
 /// \param category(optional) is a string used to group options in categories
 /// \param canBerepated (optional) is "true" or "false". If true options can be repeated. Default: false.
 ///
-/// The function addHelp
+/// The function GOption::addHelp can be used to add multiple lines help for a specific option.
 ///
 ///
 /// \section Example
@@ -135,6 +136,16 @@ public:
 
 	/*! \fn void addHelp(string h)
 	     Adds lines to the help
+	 \param h  line to added to the help
+	 
+	 Example of 4 lines help code:
+	 <pre>
+	 addHelp("Possible choices are:\n");
+	 addHelp("  up:\n");
+	 addHelp("  down:\n");
+	 addHelp("  left:\n");
+	 addHelp("  right:\n");
+	 </pre>
 	 */
 	void addHelp(string h) {
 		// replaces help if it's the title

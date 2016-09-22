@@ -6,6 +6,7 @@
 #include "goptions.h"
 
 
+// this function defines the options map
 map<string, GOption> defineOptions()
 {
 	map<string, GOption> optionsMap;
@@ -21,7 +22,7 @@ map<string, GOption> defineOptions()
 }
 
 
-//! example of main declaring GOptions
+// example of main loading the options map and printing one values and one option
 int main(int argc, char* argv[])
 {
 	
