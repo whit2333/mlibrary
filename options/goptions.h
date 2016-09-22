@@ -48,8 +48,7 @@
 ///   -help-time...........:  time related options
 ///
 /// ~~~~
-
-
+///
 /// \file goptions.h
 /// \author \n Maurizio Ungaro
 /// \author mail: ungaro@jlab.org\n\n\n
@@ -76,7 +75,6 @@ using namespace std;
 
 //! a GOption can be a double or a string
 enum GOptionType {isDouble, isString};  // option type
-
 
 /// \class GOption
 /// <b> GOption </b>\n\n

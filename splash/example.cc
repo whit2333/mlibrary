@@ -5,6 +5,7 @@
 // gsplash
 #include "gsplash.h"
 
+// load the GSplash option
 map<string, GOption> defineOptions()
 {
 	map<string, GOption> optionsMap;
@@ -30,12 +31,13 @@ int main(int argc, char* argv[])
 
 	GSplash gsplash(gopts, gui);
 
+	for(int i=0; i<200; i++)
+		gsplash.message(to_string(i));
+
+	
 	if(gui) {
 		QMainWindow window;
 		window.show();
-
-		for(int i=0; i<200; i++)
-			gsplash.message(to_string(i));
 
 		gsplash.finish(&window);
 		return qApp->exec();
