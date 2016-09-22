@@ -22,6 +22,7 @@
 //
 // 6. For archiving purposes, in build phases copy nexessary items in
 //    executables destination - this includes the rcc file
+//    To run the app by command line, add @executable_path to run path in Linking
 
 // Sourcing local version
 #include "/opt/projects/ceInstall/devel/ce/settings.xcconfig"
