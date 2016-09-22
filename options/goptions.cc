@@ -1,4 +1,4 @@
-/// \file options.cc
+/// \file goptions.cc
 /// \author \n Maurizio Ungaro
 /// \author mail: ungaro@jlab.org\n\n\n
 
@@ -385,7 +385,7 @@ double GOptions::getDoubleValue(string optionKey) {
 
 
 
-/*! \fn  GOptions::getDoubleValue(string optionKey)
+/*! \fn  GOptions::getIntValue(string optionKey)
 
  - return the option value if the option is in the map
 

@@ -1,4 +1,6 @@
 // example on how to use the goptions framework library
+// This example will create two three options, two of them
+// with their own category: time and process.
 
 // options
 #include "goptions.h"

@@ -8,20 +8,30 @@
 /// The corresponding XML syntax is:\n
 /// <pre>  \<option name="KEY" value="Value"/> </pre>
 ///
+/// \section Main Main Features
+/// - Repeat mechanism: users decide if an option is unique or can be repeated.
+/// - Categories: user can optionally specify a category to group options.
+/// - Default: specified by the user. Any non-default option will be automatically logged on screen.
+/// - Help mechanism: user can specify multiple lines help for each category.
+/// - HTML output: -help-html will print all options in html format.
+/// - Accumulate: options can be loaded from any library.
+///
 /// \section User Interface
-/// The users creates his/her own options by filling the optionsMap in a function: \n
-/// <pre> map<string, GOption> GOptions::defineOptions()</pre>
-/// and then calling the GOptions constructor with command line arguments and defineOptions().
-/// The GOption constructor has the format
+/// The users creates his/her own options map: \n
+/// <pre> map<string, GOption></pre>
+/// by calling the GOptions constructor:
 /// <pre> GOption("title", defaultValue, category, canBerepated):</pre>
 ///
 /// \param title is a short description of the option
-/// \param defaultValue is the default value of the option. It can be a double or a string
+/// \param defaultValue is the default value of the option. It can be a number or a string
 /// \param category(optional) is a string used to group options in categories
 /// \param canBerepated (optional) is "true" or "false". If true options can be repeated. Default: false.
 ///
+/// The function addHelp
+///
+///
 /// \section Example
-/// An example of defineOptions() is in example.cc: \include example.cc
+/// An example of defineOptions() that creates two categories is in example.cc: \include example.cc
 /// Running <i>example -h</i> will produce the following log:
 /// ~~~~
 ///
@@ -39,7 +49,7 @@
 /// ~~~~
 
 
-/// \file options.h
+/// \file goptions.h
 /// \author \n Maurizio Ungaro
 /// \author mail: ungaro@jlab.org\n\n\n
 
@@ -123,7 +133,9 @@ public:
 		}
 	}
 
-	//! Adds lines to the help
+	/*! \fn void addHelp(string h)
+	     Adds lines to the help
+	 */
 	void addHelp(string h) {
 		// replaces help if it's the title
 		if(help == HELPFILLSPACES + title) help = "";
@@ -172,7 +184,7 @@ public:
 		return valueS;
 	}
 
-	// get a vector of strings from the valueS
+	//! get a vector of strings from the valueS
 	vector<string> getValues() const {
 		vector<string> values;
 
@@ -229,11 +241,10 @@ public:
 	}
 
 
-	//! gets the options values
+	// getting the options values
 	double getDoubleValue(string optionKey);
 	int getIntValue(string optionKey);
 	bool getBoolValue(string optionKey);
-	string getStringValue(string optionKey);
 	string getValue(string optionKey);
 	vector<string> getValues(string optionKey);
 
