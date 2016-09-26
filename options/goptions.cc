@@ -173,7 +173,7 @@ void GOptions::setOptionValue(string optionKey, string value)
 
 
 	for (auto &om : optionsMap) {
-		// looking for a valid option. If a two instances of the same option exist
+		// looking for a valid option. 
 		if(optionKey == om.first) {
 			matches++;
 			// first time option is found, or if it cannot be repeated:
