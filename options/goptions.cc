@@ -171,7 +171,6 @@ void GOptions::setOptionValue(string optionKey, string value)
 	// if ignoreNotFound is true then we don't care
 	int matches = ignoreNotFound ? 1 : 0;
 
-
 	for (auto &om : optionsMap) {
 		// looking for a valid option. 
 		if(optionKey == om.first) {
@@ -364,7 +363,7 @@ void GOptions::printOptionDetailedHelp(string which)
 	cout <<  "   - " ;
 	cout.width(20);
 	cout.fill('.');
-	cout << left << which << ": " << optionsMap[which].getTitle() << ". Default set to: " <<  optionsMap[which].getValue() << endl;
+	cout << left << which << ": " << optionsMap[which].getTitle() << ". Default set to: " <<  optionsMap[which].getString() << endl;
 
 	// do not print the help if it's equal to the title
 	if(optionsMap[which].getHelp() != HELPFILLSPACES + optionsMap[which].getTitle()) cout << optionsMap[which].getHelp() << endl;
@@ -376,7 +375,7 @@ void GOptions::printOptionDetailedHelp(string which)
  - return the option value if the option is in the map
 
  */
-double GOptions::getDoubleValue(string optionKey) {
+double GOptions::getDouble(string optionKey) {
 	auto search = optionsMap.find(optionKey);
 
 	if(search != optionsMap.end() ) return search->second.getDoubleValue();
@@ -390,7 +389,7 @@ double GOptions::getDoubleValue(string optionKey) {
  - return the option value if the option is in the map
 
  */
-int GOptions::getIntValue(string optionKey) {
+int GOptions::getInt(string optionKey) {
 	auto search = optionsMap.find(optionKey);
 
 	if(search != optionsMap.end() ) return search->second.getIntValue();
@@ -401,7 +400,7 @@ int GOptions::getIntValue(string optionKey) {
  - return the option value if the option is in the map
 
  */
-bool GOptions::getBoolValue(string optionKey) {
+bool GOptions::getBool(string optionKey) {
 	auto search = optionsMap.find(optionKey);
 
 	if(search != optionsMap.end() ) return search->second.getBoolValue();
@@ -413,10 +412,10 @@ bool GOptions::getBoolValue(string optionKey) {
  - return the option value if the option is in the map
 
  */
-string GOptions::getValue(string optionKey) {
+string GOptions::getString(string optionKey) {
 	auto search = optionsMap.find(optionKey);
 
-	if(search != optionsMap.end() ) return search->second.getValue();
+	if(search != optionsMap.end() ) return search->second.getString();
 		return "na";
 }
 
@@ -425,11 +424,21 @@ string GOptions::getValue(string optionKey) {
  - return the option values if the option is in the map
 
  */
-vector<string> GOptions::getValues(string optionKey) {
+vector<string> GOptions::getStringVector(string optionKey) {
 	auto search = optionsMap.find(optionKey);
 
-	if(search != optionsMap.end() ) return search->second.getValues();
+	if(search != optionsMap.end() ) return search->second.getStringVector();
 	return {"na"};
+}
+
+vector<string> GOptions::getStrings(string which) {
+	vector<string> result;
+
+	for(const auto &om : optionsMap) {
+		if(om.first.find(which) != string::npos) result.push_back(om.second.getString());
+	}
+
+	return result;
 }
 
 

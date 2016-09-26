@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
 	
 	GOptions *gopts = new GOptions(argc, argv, defineOptions(), 1);
 
-	cout << " example: The option interpolation is set at: " << gopts->getValue("interpolation") << endl;
+	cout << " example: The option interpolation is set at: " << gopts->getString("interpolation") << endl;
 	cout << " example: Interpolation Option: " << gopts->getOption("interpolation") << endl << endl;
 
 	return 1;

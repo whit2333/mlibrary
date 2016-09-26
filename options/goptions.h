@@ -183,18 +183,18 @@ public:
 	}
 	
 	//! gets the generic string value
-	string getValue() const {
+	string getString() const {
 		switch(type) {
 			case isString: return valueS;
 			case isDouble: return to_string(valueD);
 		}
 		// some compilers are not smart enough to know
-		// the above list is exhaustive
+		// the above list is exhaustive, so need to add
 		return valueS;
 	}
 
 	//! get a vector of strings from the valueS
-	vector<string> getValues() const {
+	vector<string> getStringVector() const {
 		vector<string> values;
 
 		stringstream plist(valueS);
@@ -251,11 +251,14 @@ public:
 
 
 	// getting the options values
-	double getDoubleValue(string optionKey);
-	int getIntValue(string optionKey);
-	bool getBoolValue(string optionKey);
-	string getValue(string optionKey);
-	vector<string> getValues(string optionKey);
+	double getDouble(string optionKey);
+	int getInt(string optionKey);
+	bool getBool(string optionKey);
+	string getString(string optionKey);
+	vector<string> getStringVector(string optionKey);
+
+	// multiple options
+	vector<string> getStrings(string optionKey);
 
 
 private:
