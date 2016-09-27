@@ -50,6 +50,7 @@ GRuns::GRuns(GOptions* gopts)
 			// distribute events according to weights
 			distributeEvents(neventsToProcess);
 		}
+		in.close();
 	}
 }
 
