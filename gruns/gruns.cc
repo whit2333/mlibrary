@@ -12,13 +12,13 @@ using namespace std;
 
 GRuns::GRuns(GOptions* gopts)
 {
-	string filename = gopts->getValue("runWeightsFile");
-	defaultRunNumber = gopts->getIntValue("runno");
+	string filename = gopts->getString("runWeightsFile");
+	defaultRunNumber = gopts->getInt("runno");
 	runNo = defaultRunNumber;
 	isNewRun = false;
 
 	// number of events to process
-	int neventsToProcess = gopts->getIntValue("N");
+	int neventsToProcess = gopts->getInt("N");
 
 	// if no events to process, exit here
 	if(neventsToProcess == 0) {

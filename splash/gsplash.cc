@@ -7,10 +7,10 @@
 GSplash::GSplash(GOptions* gopts, bool g)
 {
 	gui    = g;
-	header = gopts->getValue("header");
+	header = gopts->getString("header");
 
 	if(gui) {
-		vector<string> splashInfo = gopts->getValues("splashPic");
+		vector<string> splashInfo = gopts->getStringVector("splashPic");
 		string picLocation = ".";
 		string picName     = splashInfo[1];
 
