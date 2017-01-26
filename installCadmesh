@@ -1,0 +1,13 @@
+#!/bin/csh -f
+
+rm -rf cadmesh cadmeshBuild
+
+git clone https://github.com/christopherpoole/CADMesh.git cadmesh
+# mv CADMesh cadmesh
+
+mkdir cadmeshBuild
+cd cadmeshBuild
+
+setenv GIT_SSL_NO_VERIFY false
+cmake ../cadmesh -DCMAKE_INSTALL_PREFIX:PATH=$MLIBRARY
+make -j10 install
