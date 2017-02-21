@@ -1,0 +1,32 @@
+ Feb 13 2017
+
+xcode project - start with empty project. COMMAND-SHIFT-N
+
+- Move the project from  its own dir created to one dir up
+- Add all the files. 
+
+ 1. On the general project add "settings.xcconfig" configuration for debug and release
+
+ 2. Open Framework and library dir of interest
+
+    Qt: open  $QTDIR/lib
+
+ 3. add macos library target "libraryName". Static STLC++ to archive the executable. Identifier: library name
+    a. remove libraryName dir
+    b. source is libraryName.cc (build phases)
+
+ 4. add command tools exampleName, source is example.cc
+    a. remove exampleName dir
+    b. add libraryName in the target dependencies (build phases)
+    c. drag frameworks to link Binary with Libraries on Build Phases 
+    d. drag frameworks to Copy files:
+ 	- no subpath
+	- uncheck Copy only when installing
+	- executables
+
+5.  Build Settings: Code Signing: do not code sign
+
+ 5. For archiving purposes, in build phases copy necessary items in "executables destination", 
+     - this includes the rcc file (in case it's needed, see qtButtonsWidget)
+     - uncheck Copy only when installing
+    To run the app by command line, add @executable_path to run path in Linking

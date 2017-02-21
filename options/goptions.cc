@@ -51,7 +51,7 @@ GOptions::GOptions(int argc, char *argv[], map<string, GOption> om, bool ignore)
 
 Finds a configuration file (gcard). Returns "na' if not found.
  
- \param argc, argv the program arguments
+ \param argc argv the program arguments
  \return The filename if a gcard was found. "na" otherwise
  */
 string GOptions::findConfigurationFile(int argc, char *argv[])
