@@ -7,16 +7,17 @@ xcode project - start with empty project. COMMAND-SHIFT-N
 
  1. On the general project add "settings.xcconfig" configuration for debug and release
 
- 2. Open Framework and library dir of interest
-
-    Qt: open  $QTDIR/lib
-
- 3. add macos library target "libraryName". Static STLC++ to archive the executable. Identifier: library name
+ 2. add macos library target "libraryName". Static STLC++ to archive the executable. Identifier: library name
     a. remove libraryName dir
-    b. source is libraryName.cc (build phases)
+    b. drag source libraryName.cc in Compile Sources build phases
 
- 4. add command tools exampleName, source is example.cc
+ 3. Open Framework and library dir of interest
+
+    Qt:    open $QTDIR/lib
+
+ 4. add command line tool exampleName, source is example.cc
     a. remove exampleName dir
+    b  drag source exampleName.cc in Compile Sources build phase
     b. add libraryName in the target dependencies (build phases)
     c. drag frameworks to link Binary with Libraries on Build Phases 
     d. drag frameworks to Copy files:

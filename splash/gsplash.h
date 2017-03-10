@@ -28,7 +28,6 @@
 #include "goptions.h"
 
 // Qt
-#include <QSplashScreen>
 #include <QtWidgets>
 
 // c++
