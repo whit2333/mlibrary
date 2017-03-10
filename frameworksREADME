@@ -20,14 +20,14 @@ xcode project - start with empty project. COMMAND-SHIFT-N
     b  drag source exampleName.cc in Compile Sources build phase
     b. add libraryName in the target dependencies (build phases)
     c. drag frameworks to link Binary with Libraries on Build Phases 
-    d. drag frameworks to Copy files:
+    d. drag frameworks to Copy files, products
  	- no subpath
 	- uncheck Copy only when installing
 	- executables
 
-5.  Build Settings: Code Signing: do not code sign
+ 5. Build Settings: Code Signing: do not code sign
 
- 5. For archiving purposes, in build phases copy necessary items in "executables destination", 
+ 6. For archiving purposes, in build phases copy necessary items in "executables destination", 
      - this includes the rcc file (in case it's needed, see qtButtonsWidget)
      - uncheck Copy only when installing
-    To run the app by command line, add @executable_path to run path in Linking
+     To run the app by command line, add @executable_path to run path in Linking
