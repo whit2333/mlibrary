@@ -258,7 +258,6 @@ string GOptions::findCLOption(string o, int argc, char *argv[])
 		if(argument == o) found = "yes";
 		// otherwise return the string after the match
 		else if(argument.find(o) != string::npos) found = argument.substr(o.size(), argument.size());
-
 	}
 	return found;
 }
@@ -370,7 +369,7 @@ void GOptions::printOptionDetailedHelp(string which)
 
 }
 
-/*! \fn  GOptions::getDoubleValue(string optionKey)
+/*! \fn  GOptions::getDouble(string optionKey)
 
  - return the option value if the option is in the map
 
@@ -384,7 +383,7 @@ double GOptions::getDouble(string optionKey) {
 
 
 
-/*! \fn  GOptions::getIntValue(string optionKey)
+/*! \fn  GOptions::getInt(string optionKey)
 
  - return the option value if the option is in the map
 
@@ -395,7 +394,7 @@ int GOptions::getInt(string optionKey) {
 	if(search != optionsMap.end() ) return search->second.getIntValue();
 	return -99;
 }
-/*! \fn  GOptions::getBoolValue(string optionKey)
+/*! \fn  GOptions::getBool(string optionKey)
 
  - return the option value if the option is in the map
 
@@ -407,9 +406,9 @@ bool GOptions::getBool(string optionKey) {
 	return false;
 }
 
-/*! \fn  GOptions::getValue(string optionKey)
+/*! \fn  GOptions::getString(string optionKey)
 
- - return the option value if the option is in the map
+ - return the string option value if the option is in the map
 
  */
 string GOptions::getString(string optionKey) {
@@ -419,18 +418,26 @@ string GOptions::getString(string optionKey) {
 		return "na";
 }
 
-/*! \fn  GOptions::getValues(string optionKey)
+/*! \fn  GOptions::getStringVectorValue(string optionKey)
 
- - return the option values if the option is in the map
+ - return the vector<string> option value if the option is in the map
+ - this applies for example to value like "0 12 33"
 
  */
-vector<string> GOptions::getStringVector(string optionKey) {
+vector<string> GOptions::getStringVectorValue(string optionKey) {
 	auto search = optionsMap.find(optionKey);
 
-	if(search != optionsMap.end() ) return search->second.getStringVector();
+	if(search != optionsMap.end() ) return search->second.getOptionValueStringVector();
+
 	return {"na"};
 }
 
+/*! \fn  GOptions::getStrings(string which)
+
+ - return a vector<string> for all options that match a key
+ - the size of the vector is the option multiplicity
+
+ */
 vector<string> GOptions::getStrings(string which) {
 	vector<string> result;
 

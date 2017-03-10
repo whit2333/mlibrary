@@ -21,14 +21,12 @@
 /// The users creates his/her own options map: \n
 /// <pre> map<string, GOption></pre>
 /// by calling the GOptions constructor:
-/// <pre> GOption("title", defaultValue, category, canBerepated):</pre>
+/// <pre> GOptions(argc, argv, defineOptions(), <ignore>):</pre>
 ///
-/// \param title is a short description of the option
-/// \param defaultValue is the default value of the option. It can be a number or a string
-/// \param category(optional) is a string used to group options in categories
-/// \param canBerepated (optional) is "true" or "false". If true options can be repeated. Default: false.
+/// \param defineOptions() is a function returning a map<string, GOption>
+/// \param ignore (optional): set to 1 to ignore options not found.
 ///
-/// The function GOption::addHelp can be used to add multiple lines help for a specific option.
+/// Check the example below to see how to define a single GOption in defineOptions()
 ///
 ///
 /// \section Example
@@ -74,7 +72,10 @@ using namespace std;
 #define HELPREPETITION  "__REPETITION__"
 
 //! a GOption can be a double or a string
-enum GOptionType {isDouble, isString};  // option type
+enum GOptionType {
+	isDouble,
+	isString
+};  // option type
 
 /// \class GOption
 /// <b> GOption </b>\n\n
@@ -109,19 +110,14 @@ public:
 
 	//! Sets a double type option and description
 	GOption(string t, double v, string cat = "general", bool canRepeat = false) : type(isDouble), valueD(v) {
-
 		valueS = "na";
-
 		setUOption(t, cat, canRepeat);
 	}
 
 	//! Sets a string type option and description
 	GOption(string t, string v, string cat = "general", bool canRepeat = false) : type(isString), valueS(v) {
-
 		valueD = -99;
-
 		setUOption(t, cat, canRepeat);
-
 	}
 
 	//! modify value. The argument is always a string
@@ -194,7 +190,7 @@ public:
 	}
 
 	//! get a vector of strings from the valueS
-	vector<string> getStringVector() const {
+	vector<string> getOptionValueStringVector() const {
 		vector<string> values;
 
 		stringstream plist(valueS);
@@ -255,7 +251,7 @@ public:
 	int getInt(string optionKey);
 	bool getBool(string optionKey);
 	string getString(string optionKey);
-	vector<string> getStringVector(string optionKey);
+	vector<string> getStringVectorValue(string optionKey);
 
 	// multiple options
 	vector<string> getStrings(string optionKey);
