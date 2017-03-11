@@ -9,13 +9,11 @@
 /// <pre>  \<option name="key" value="value"/> </pre>
 ///
 /// \section Main Main Features
-/// - Repeat mechanism: options are unique or can be repeated.
-/// - Categories: options can be organized in categories.
-/// - Default value: specified by the user. Non-default automatically logged on screen.
-/// - Help mechanism: short description and multiple lines help for each option.
-/// - HTML output: available html format for documentation.
-/// - Formatting: the options are presented on screen already formatted.
-/// - Accumulate: the options map can be filled from any library.
+/// - Repeat mechanism: options can be unique or can be repeated.
+/// - Options are organized in categories.
+/// - Short description and multiple lines help for each option.
+/// - HTML support.
+/// - Options can be defined from external libraries / executables.
 ///
 /// \section User Interface
 /// The users creates his/her own options map: \n
