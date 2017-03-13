@@ -1,3 +1,7 @@
+3/13/17
+ - making doxygen happy
+ - reversing order on the gsplash option string to make second string optional
+
 9/14/16
  - env variable no more necessary, "." used as default
 

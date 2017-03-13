@@ -50,12 +50,15 @@ private:
 	//! splash is a library that could be used in
 	//! batch mode as well. The gui option controls this
 	bool  gui;
+	//! string that start the log
 	string header;
 	QSplashScreen *splash;
 
 public:
 	~GSplash();
 	void message(string);
+
+	//! exits and returns focus to QMainWindow
 	void finish(QMainWindow *window) {if(splash != NULL) splash->finish(window);}
 
 	// gsplash options
