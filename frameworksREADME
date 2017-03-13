@@ -20,7 +20,7 @@ xcode project - start with empty project. COMMAND-SHIFT-N
     b  drag source exampleName.cc in Compile Sources build phase
     b. add libraryName in the target dependencies (build phases)
     c. drag frameworks to link Binary with Libraries on Build Phases 
-    d. drag frameworks to Copy files, products
+    d. drag frameworks to Copy files, products location must match CONFIGURATION_BUILD_DIR
  	- no subpath
 	- uncheck Copy only when installing
 	- executables

@@ -32,7 +32,7 @@ DOXYFILE_ENCODING      = UTF-8
 # title of most generated pages and in a few other places.
 # The default value is: My Project.
 
-PROJECT_NAME           = "TextProgressBar"
+PROJECT_NAME           = "QtButtonsWidget"
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. This
 # could be handy for archiving the generated documentation or if some version
@@ -44,7 +44,7 @@ PROJECT_NUMBER         = 1.0
 # for a project that appears at the top of each page and should give viewer a
 # quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = "Text Progress Bar Library"
+PROJECT_BRIEF          = "QT Buttons Widget Library"
 
 # With the PROJECT_LOGO tag one can specify a logo or an icon that is included
 # in the documentation. The maximum height of the logo should not exceed 55
@@ -802,7 +802,7 @@ FILE_PATTERNS          =
 # be searched for input files as well.
 # The default value is: NO.
 
-RECURSIVE              = NO
+RECURSIVE              = YES
 
 # The EXCLUDE tag can be used to specify files and/or directories that should be
 # excluded from the INPUT source files. This way you can easily exclude a
@@ -812,7 +812,9 @@ RECURSIVE              = NO
 # run.
 
 EXCLUDE                = example.cc \
-								 README.md
+					      README.md
+						.git
+                        html
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded
@@ -828,7 +830,7 @@ EXCLUDE_SYMLINKS       = NO
 # Note that the wildcards are matched against the file with absolute path, so to
 # exclude all test directories for example use the pattern */test/*
 
-EXCLUDE_PATTERNS       =
+EXCLUDE_PATTERNS       = *moc*
 
 # The EXCLUDE_SYMBOLS tag can be used to specify one or more symbol names
 # (namespaces, classes, functions, etc.) that should be excluded from the
@@ -2397,7 +2399,7 @@ DOT_MULTI_TARGETS      = NO
 # The default value is: YES.
 # This tag requires that the tag HAVE_DOT is set to YES.
 
-GENERATE_LEGEND        = YES
+GENERATE_LEGEND        = NO
 
 # If the DOT_CLEANUP tag is set to YES, doxygen will remove the intermediate dot
 # files that are used to generate the various graphs.

@@ -3,7 +3,7 @@
 #include <iostream>
 
 // returns background stylesheet if file exist
-string buttonInfo::doesIconExist(string name)
+string ButtonInfo::doesIconExist(string name)
 {
 	QFileInfo checkFile(QString(name.c_str()));
 
@@ -15,7 +15,7 @@ string buttonInfo::doesIconExist(string name)
 	return "";
 }
 
-buttonInfo::buttonInfo(string bname, string btext)
+ButtonInfo::ButtonInfo(string bname, string btext)
 {
 
 	thisButton = new QPushButton();
@@ -57,8 +57,7 @@ QtButtonsWidget::QtButtonsWidget(double h, double v, map<string, string> bdesc, 
 
 	buttons.clear();
 	for(auto &b : bdesc) {
-		buttonInfo *thisButton = new buttonInfo(b.first, b.second);
-		buttons.push_back(thisButton);
+		buttons.push_back(new ButtonInfo(b.first, b.second));
 	}
 
 	QVBoxLayout *layout = new QVBoxLayout;

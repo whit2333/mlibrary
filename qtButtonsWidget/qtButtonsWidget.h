@@ -9,14 +9,13 @@ using namespace std;
 // qt
 #include <QtWidgets>
 
-struct buttonInfo
+struct ButtonInfo
 {
-
 	// a button name must have 3 png files:
 	// 1. "name_hover.png"
 	// 2. "name_norma.png"
 	// 3. "name_curre.png"
-	buttonInfo(string bname, string btext);
+	ButtonInfo(string bname, string btext);
 	
 public:
 	QPushButton *thisButton;
@@ -37,7 +36,7 @@ private:
 	double buttonsHSize;
 	double buttonsVSize;
 
-	vector<buttonInfo*> buttons;
+	vector<ButtonInfo*> buttons;
 
 };
 

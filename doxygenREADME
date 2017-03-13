@@ -31,9 +31,9 @@ Changes:
 - EXTRACT_PRIVATE        = YES (change to NO show just the public interface)
 - RECURSIVE              = YES
 - EXCLUDE                = README.md \
-.git \
-html \
-example.cc
+                          .git \
+                          html \
+						  example.cc
 - EXCLUDE_PATTERNS       = *moc*
 - HTML_TIMESTAMP         = YES
 - CLASS_GRAPH            = YES
