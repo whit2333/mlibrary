@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-// returns background stylesheet if file exist
+// returns background stylesheet with image if file exist
 string ButtonInfo::doesIconExist(string name)
 {
 	QFileInfo checkFile(QString(name.c_str()));

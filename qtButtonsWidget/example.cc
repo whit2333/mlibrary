@@ -13,7 +13,6 @@ using namespace std;
 #include <QFileDialog>
 
 
-
 //! example of main declaring GOptions
 int main(int argc, char* argv[])
 {

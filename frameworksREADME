@@ -31,3 +31,24 @@ xcode project - start with empty project. COMMAND-SHIFT-N
      - this includes the rcc file (in case it's needed, see qtButtonsWidget)
      - uncheck Copy only when installing
      To run the app by command line, add @executable_path to run path in Linking
+
+
+Q_OBJECT and xcode
+
+Select your target and in Build Rules make a new custom rule. 
+Set the "Process" drop down to "Source files with names matching" and type in *.h next to that. 
+Set the "Using" drop down to "Custom script:" and in the script type something close to this:
+
+/path/to/your/Qt/bin/moc ${INPUT_FILE_PATH} -o ${DERIVED_FILE_DIR}/${INPUT_FILE_BASE}_moc.cpp
+You'll have to change the path to wherever your moc executable is. Now set the "Output files" to:
+
+${DERIVED_FILE_DIR}/${INPUT_FILE_BASE}_moc.cpp
+That's it for the Custom Rule.
+
+Now to get the headers to be compiled with this rule. While your target is still selected go to "Build Phases". 
+Expand the "Compile Sources" section, hit the "+" button at the bottom. 
+Find and add the header files with Q_OBJECT classes in them. 
+Add those headers to your project first if you can't find them in there.
+
+That's it, Xcode will then run moc on those headers and it will understand 
+that the output from moc is a .cpp and needs to be compiled and linked into you app and do that for you.
