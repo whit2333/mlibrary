@@ -33,8 +33,6 @@ public:
 	QtButtonsWidget(double h, double v, map<string, string> bdesc, QWidget *parent = 0);
 
 private:
-	double buttonsHSize;
-	double buttonsVSize;
 
 	vector<ButtonInfo*> buttons;
 

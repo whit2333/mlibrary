@@ -52,7 +52,7 @@ ButtonInfo::ButtonInfo(string bname, string btext)
 
 
 QtButtonsWidget::QtButtonsWidget(double h, double v, map<string, string> bdesc, QWidget *parent)
-	: QWidget(parent), buttonsHSize(h), buttonsVSize(v)
+	: QWidget(parent)
 {
 
 	buttons.clear();
