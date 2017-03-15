@@ -2,86 +2,99 @@
 
 #include <iostream>
 
-// returns background stylesheet with image if file exist
-string ButtonInfo::doesIconExist(string name)
+// returns icon depending on state
+QIcon ButtonInfo::buttonForState(int state)
 {
-	QFileInfo checkFile(QString(name.c_str()));
+
+	string bname = buttonName;
+
+	if(state == 1) bname += "_norma.png";
+	if(state == 2) bname += "_hover.png";
+	if(state == 3) bname += "_curre.png";
+
+	QFileInfo checkFile(QString(bname.c_str()));
 
 	// check if file exists and if yes: Is it really a file and no directory?
 	if (checkFile.exists() && checkFile.isFile()) {
-		return "background-image: url(" + name + ");";
+		return QIcon(QString(bname.c_str()));
 	}
 	
-	return "";
+	return QIcon();
 }
 
-ButtonInfo::ButtonInfo(string bname, string btext)
+ButtonInfo::ButtonInfo(string bname, string btext)  : buttonName(bname)
 {
+	thisButton = new QListWidgetItem();
 
-	thisButton = new QPushButton();
-	thisButton->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	// default state is normal
+	thisButton->setIcon(buttonForState(1));
+//	thisButton->setText(tr(btext.c_str()));
 
-	QStateMachine *machine = new QStateMachine();
-
-	QState *stateHover = new QState();
-	QState *stateNorma = new QState();
-	QState *stateCurre = new QState();
-
-	stateNorma->assignProperty(thisButton, "styleSheet", doesIconExist(bname + "_norma.png").c_str());
-	stateHover->assignProperty(thisButton, "styleSheet", doesIconExist(bname + "_hover.png").c_str());
-	stateCurre->assignProperty(thisButton, "styleSheet", doesIconExist(bname + "_curre.png").c_str());
-
-	QEventTransition *enterTransition = new QEventTransition(thisButton, QEvent::Enter);
-	QEventTransition *leaveTransition = new QEventTransition(thisButton, QEvent::Leave);
-
-	leaveTransition->setTargetState(stateNorma);
-	enterTransition->setTargetState(stateHover);
-
-	stateNorma->addTransition(enterTransition);
-	stateHover->addTransition(leaveTransition);
-
-	machine->addState(stateHover);
-	machine->addState(stateNorma);
-	machine->addState(stateCurre);
-
-	machine->setInitialState(stateNorma);
-	machine->start();
-
+	thisButton->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 }
 
 
 
-QtButtonsWidget::QtButtonsWidget(double h, double v, map<string, string> bdesc, QWidget *parent)
-	: QWidget(parent)
+QtButtonsWidget::QtButtonsWidget(double h, double v, map<string, string> bdesc, QWidget *parent) : QWidget(parent)
 {
+	static int distanceToMargin = 10;
 
 	buttons.clear();
 	for(auto &b : bdesc) {
 		buttons.push_back(new ButtonInfo(b.first, b.second));
 	}
 
-	QVBoxLayout *layout = new QVBoxLayout;
+	buttonsWidget = new QListWidget;
+	buttonsWidget->setViewMode(QListView::IconMode);
+	buttonsWidget->setIconSize(QSize(h, v));
+	buttonsWidget->setMovement(QListView::Static);
+	buttonsWidget->setMouseTracking(1);
+//	buttonsWidget->setSpacing(2);
 
 	for(auto &b : buttons) {
-		layout->addWidget(b->thisButton);
+		buttonsWidget->addItem(b->thisButton);
 	}
 
+	// maybe call from mother
+//	buttonsWidget->setCurrentRow(1);
+	connect(buttonsWidget,	SIGNAL(itemEntered(QListWidgetItem *)), this, SLOT(buttonWasEntered(QListWidgetItem *)) );
+	connect(buttonsWidget,	SIGNAL(itemPressed(QListWidgetItem *)), this, SLOT(buttonWasPressed(QListWidgetItem *)) );
+
+
+	QVBoxLayout *layout = new QVBoxLayout;
 	layout->setContentsMargins(0, 0, 0, 0);
+	layout->addWidget(buttonsWidget);
+
 	setLayout(layout);
 
-	setGeometry(0, 0, h, v*buttons.size());
+	//setGeometry(0, 0, h+10, v*buttons.size());
 
 
 	// icon container sizes
 	// depends on the OS
 	// on linux platformName returns xcb
 	// see also QGuiApplication Class, property platformName
-	//	if( QGuiApplication::platformName().toStdString() == "cocoa")
+//	if( QGuiApplication::platformName().toStdString() == "cocoa")
+//	buttonsWidget->setFixedSize(76, 600);
+//	else
+//	buttonsWidget->setFixedSize(74, 620);
 
-
-	setFixedSize(h, v*buttons.size());
-
+	setFixedSize(h+distanceToMargin, v*buttons.size());
 }
+
+void QtButtonsWidget::buttonWasEntered(QListWidgetItem* item)
+{
+	for(int i=0; i<buttonsWidget->count(); i++)
+		buttonsWidget->item(i)->setIcon(buttons[i]->buttonForState(1));
+
+	// starts at 0
+	int index = buttonsWidget->currentRow();
+
+	item->setIcon(buttons[index]->buttonForState(3));
+}
+
+
+
 
 
 

@@ -1,5 +1,6 @@
 3/15/17
 - adding size contraints on buttons
+- using QListWidget instead of pushbuttons so items are mutually exclusive
 
 9/16/16
 - first implementation

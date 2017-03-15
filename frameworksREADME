@@ -37,7 +37,7 @@ Q_OBJECT and xcode
 
 Select your target and in Build Rules make a new custom rule. 
 Set the "Process" drop down to "Source files with names matching" and type in *.h next to that. 
-Set the "Using" drop down to "Custom script:" and in the script type something close to this:
+Set the "Using" drop down to "Custom script:" and in the script type:
 
 /path/to/your/Qt/bin/moc ${INPUT_FILE_PATH} -o ${DERIVED_FILE_DIR}/${INPUT_FILE_BASE}_moc.cpp
 You'll have to change the path to wherever your moc executable is. Now set the "Output files" to:
