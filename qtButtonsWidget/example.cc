@@ -2,7 +2,7 @@
 
 // example on how to use the qtButtonsWidget library
 
-// text progress bar
+// qtButtonsWidget
 #include "qtButtonsWidget.h"
 
 // c++

@@ -70,7 +70,17 @@ QtButtonsWidget::QtButtonsWidget(double h, double v, map<string, string> bdesc, 
 	setLayout(layout);
 
 	setGeometry(0, 0, h, v*buttons.size());
-	
+
+
+	// icon container sizes
+	// depends on the OS
+	// on linux platformName returns xcb
+	// see also QGuiApplication Class, property platformName
+	//	if( QGuiApplication::platformName().toStdString() == "cocoa")
+
+
+	setFixedSize(h, v*buttons.size());
+
 }
 
 

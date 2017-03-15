@@ -1,10 +1,13 @@
+3/15/17
+- finish on qwidget not window
+
 3/13/17
- - making doxygen happy
- - reversing order on the gsplash option string to make second string optional
+- making doxygen happy
+- reversing order on the gsplash option string to make second string optional
 
 9/14/16
- - env variable no more necessary, "." used as default
+- env variable no more necessary, "." used as default
 
 7/11/16
- - first implementation
+- first implementation
 

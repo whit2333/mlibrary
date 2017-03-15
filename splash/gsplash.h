@@ -58,8 +58,8 @@ public:
 	~GSplash();
 	void message(string);
 
-	//! exits and returns focus to QMainWindow
-	void finish(QMainWindow *window) {if(splash != NULL) splash->finish(window);}
+	//! exits and returns focus
+	void finish(QWidget *window) {if(splash != NULL) splash->finish(window);}
 
 	// gsplash options
 	static map<string, GOption> defineOptions();
