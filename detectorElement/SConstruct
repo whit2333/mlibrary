@@ -1,0 +1,8 @@
+from init_env import init_environment
+
+env = init_environment("mlibrary geant4 clhep")
+
+# calling SConscript here to build just the library as in the hierarchy build
+lib = env.Library(source = "detectorElement.cc", target = "lib/detectorElement")
+
+
