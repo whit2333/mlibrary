@@ -2,15 +2,21 @@
 
 #include <iostream>
 
+// constructor
+ButtonInfo::ButtonInfo(string icon)  : buttonName(icon)
+{
+	thisButton = new QListWidgetItem();
+
+	// default state is normal
+	thisButton->setIcon(buttonForState(1));
+
+	thisButton->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+}
+
 // returns icon depending on state
 QIcon ButtonInfo::buttonForState(int state)
 {
-
-	string bname = buttonName;
-
-	if(state == 1) bname += "_norma.png";
-	if(state == 2) bname += "_hover.png";
-	if(state == 3) bname += "_curre.png";
+	string bname = buttonName + "_" + to_string(state) + ".png";
 
 	QFileInfo checkFile(QString(bname.c_str()));
 
@@ -22,52 +28,35 @@ QIcon ButtonInfo::buttonForState(int state)
 	return QIcon();
 }
 
-ButtonInfo::ButtonInfo(string bname, string btext)  : buttonName(bname)
-{
-	thisButton = new QListWidgetItem();
-
-	// default state is normal
-	thisButton->setIcon(buttonForState(1));
-//	thisButton->setText(tr(btext.c_str()));
-
-	thisButton->setFlags( Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-}
-
-
-
-QtButtonsWidget::QtButtonsWidget(double h, double v, map<string, string> bdesc, QWidget *parent) : QWidget(parent)
+QtButtonsWidget::QtButtonsWidget(double h, double v, vector<string> bicons, QWidget *parent) : QWidget(parent)
 {
 	static int distanceToMargin = 10;
 
 	buttons.clear();
-	for(auto &b : bdesc) {
-		buttons.push_back(new ButtonInfo(b.first, b.second));
+	for(auto &b : bicons) {
+		buttons.push_back(new ButtonInfo(b));
 	}
 
 	buttonsWidget = new QListWidget;
 	buttonsWidget->setViewMode(QListView::IconMode);
 	buttonsWidget->setIconSize(QSize(h, v));
 	buttonsWidget->setMovement(QListView::Static);
-	buttonsWidget->setMouseTracking(1);
-//	buttonsWidget->setSpacing(2);
+	//buttonsWidget->setMouseTracking(1);
 
 	for(auto &b : buttons) {
 		buttonsWidget->addItem(b->thisButton);
 	}
 
 	// maybe call from mother
-//	buttonsWidget->setCurrentRow(1);
-	connect(buttonsWidget,	SIGNAL(itemEntered(QListWidgetItem *)), this, SLOT(buttonWasEntered(QListWidgetItem *)) );
+	buttonsWidget->setCurrentRow(1);
 	connect(buttonsWidget,	SIGNAL(itemPressed(QListWidgetItem *)), this, SLOT(buttonWasPressed(QListWidgetItem *)) );
 
 
 	QVBoxLayout *layout = new QVBoxLayout;
 	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addWidget(buttonsWidget);
-
 	setLayout(layout);
 
-	//setGeometry(0, 0, h+10, v*buttons.size());
 
 
 	// icon container sizes
@@ -79,10 +68,12 @@ QtButtonsWidget::QtButtonsWidget(double h, double v, map<string, string> bdesc, 
 //	else
 //	buttonsWidget->setFixedSize(74, 620);
 
-	setFixedSize(h+distanceToMargin, v*buttons.size());
+	setFixedSize(h+distanceToMargin, (v+distanceToMargin)*(buttons.size()));
 }
 
-void QtButtonsWidget::buttonWasEntered(QListWidgetItem* item)
+
+
+void QtButtonsWidget::buttonWasPressed(QListWidgetItem* item)
 {
 	for(int i=0; i<buttonsWidget->count(); i++)
 		buttonsWidget->item(i)->setIcon(buttons[i]->buttonForState(1));
@@ -90,7 +81,7 @@ void QtButtonsWidget::buttonWasEntered(QListWidgetItem* item)
 	// starts at 0
 	int index = buttonsWidget->currentRow();
 
-	item->setIcon(buttons[index]->buttonForState(3));
+	item->setIcon(buttons[index]->buttonForState(2));
 }
 
 

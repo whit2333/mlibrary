@@ -11,11 +11,10 @@ using namespace std;
 
 struct ButtonInfo
 {
-	// a button name must have 3 png files:
-	// 1. "name_norma.png"
-	// 2. "name_hover.png"
-	// 3. "name_curre.png"
-	ButtonInfo(string bname, string btext);
+	// a button name must have 2 png files:
+	// 1. "name_1.png"
+	// 2. "name_2.png"
+	ButtonInfo(string icon);
 
 public:
 	QListWidgetItem *thisButton;
@@ -32,7 +31,7 @@ class QtButtonsWidget : public QWidget
 	Q_OBJECT
 
 public:
-	QtButtonsWidget(double h, double v, map<string, string> bdesc, QWidget *parent = 0);
+	QtButtonsWidget(double h, double v, vector<string> bicons, QWidget *parent = 0);
 
 private:
 	QListWidget *buttonsWidget;
@@ -40,7 +39,6 @@ private:
 	vector<ButtonInfo*> buttons;
 
 private slots:
-	void buttonWasEntered(QListWidgetItem*);
 	void buttonWasPressed(QListWidgetItem*);
 };
 

@@ -28,13 +28,12 @@ int main(int argc, char* argv[])
 	QString rccPath = qrcFileInfoExecutable.absolutePath() + "/" + "exampleResources.rcc";
 	QResource::registerResource(rccPath);
 
-	map<string, string> bmodel;
+	vector<string> bicons;
 
-	bmodel[":/images/firstButton"]  = "add monkey 1";
-	bmodel[":/images/secondButton"] = "add monkey 2";
-	bmodel[":/images/thidButton"]   = "add monkey 3";
+	bicons.push_back(":/images/firstButton");
+	bicons.push_back(":/images/secondButton");
 
-	QtButtonsWidget window(128, 128, bmodel);
+	QtButtonsWidget window(128, 128, bicons);
 	window.show();
 
 	return app.exec();
