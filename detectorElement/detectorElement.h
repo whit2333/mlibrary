@@ -27,13 +27,14 @@ private:
 	string          description;   ///< Volume Description, for documentation.
 	string              factory;   ///< Provenience. It can be perl, pyton, cad or gdml
 
-	int                 visible;   ///< visibility of the detector: 0=invisible 1=visible
-	int                   style;   ///< Visual style: 0=wireframe 1=solid
-	string                color;   ///< 6(7) digits colors in RRGGBB format. Last optional digit is transparency
-
-	// solid attributes
+	// solid parameters
 	string                 type;   ///< solid type. This follows the GEANT4 definitions
 	vector<double>   dimensions;   ///< vector of dimensions. Size depends on solid type
+
+	// solid visualization style
+	bool                visible;   ///< visibility of the detector: 0=invisible 1=visible
+	int                   style;   ///< Visual style: 0=wireframe 1=solid
+	string                color;   ///< 6(7) digits colors in RRGGBB format. Last optional digit is transparency
 
 	// logical attributes
 	string             material;   ///< Volume Material name.
@@ -42,8 +43,6 @@ private:
 	// physical attributes
 	G4ThreeVector           pos;   ///< Position relative to the mother volume, as G4ThreeVector
 	G4RotationMatrix        rot;   ///< Rotation Matrix, defined by rotations along x,y,z axis relative to the mother volume
-	bool                  pMany;   ///< Needed by geant4 at G4PVPlacement time
-
 
 	int                   exist;   ///< detector ON/OFF switch
 
@@ -52,8 +51,12 @@ private:
 	// special cases
 	string   copyOf;
 	string   replicaOf;
-	string   solidOperation;
 	int      ncopy;             ///< copy number, in case of copies and replicas
+	string   solidOperation;
+
+	// mirrors
+	string   mirrorType;
+	string   mirrorMaterial;
 
 
 private:
@@ -64,10 +67,17 @@ private:
 
 	// defined in utilities
 	vector< vector<string> > dimensionsType();
+	bool isVerbose(int verbosity, string catchName);
+	void checkG4SolidDimensions(string forType);
 
 public:
-	int buildSolid(int verbosity, string catchName, map<string, DetectorElement*> *detectorsMap); // builds and assigns a G4VSolid to solidVolume
+	G4VSolid*             getSolidVolume() {return solidVolume;}
+	G4LogicalVolume*    getLogicalVolume() {return logicalVolume;}
+	G4VPhysicalVolume* getPhysicalVolume() {return physicalVolume;}
+	G4Material*            getG4material() {return g4material;}
 
+
+	int buildSolid(int verbosity, string catchName, map<string, DetectorElement*> *detectorsMap); // builds and assigns a G4VSolid to solidVolume
 
 
 	// defined in utilities

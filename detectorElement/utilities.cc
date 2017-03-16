@@ -1,47 +1,64 @@
-
+// detectorElement
 #include "detectorElement.h"
+
+// geant4
+#include "G4UnitsTable.hh"
+#include "G4VSolid.hh"
+#include "G4LogicalVolume.hh"
+
+// c++
+#include <set>
+
 
 ostream &operator<<(ostream &stream, DetectorElement detE)
 {
 	cout  << endl;
 	cout << "   Detector name:  "  << detE.name     << "  -  " <<  detE.description << endl;
-	cout << "   Mother:  "         << detE.mother                                   << endl;
-	cout << "   Position (cm):  "  << detE.pos/cm                                   << endl;
-	cout << "   Rotation:       "  << detE.rot                                      << endl;
-	cout << "   Color:  "          << detE.color                                    << endl;
-	cout << "   Type:  "           << detE.type                                     << endl;
+	cout << "   Mother:  "         << detE.mother              << endl;
+	cout << "   Factory:  "        << detE.factory             << endl;
+	cout << "   Type:  "           << detE.type                << endl;
 	vector< vector<string> > dtypes = detE.dimensionsType();
 
-//	if(dtypes.size() != Detector.dimensions.size() && Detector.type.find("CopyOf") != 0)
-//	{
-//		for(unsigned int i=0; i<Detector.dimensions.size(); i++)
-//			cout << "   Size " << i + 1 << ":  "  << Detector.dimensions[i]  << endl;
-//	}
-//	if(dtypes.size() == Detector.dimensions.size() && Detector.type.find("CopyOf") != 0)
-//	for(unsigned int i=0; i<dtypes.size(); i++)
-//		cout << "   " << dtypes[i][0] << ":  "  << G4BestUnit(Detector.dimensions[i], dtypes[i][1])  << endl;
-//
-//	cout << "   Material:  "       << Detector.material                               << endl;
-//	cout << "   Magnetic Field:  " << Detector.magfield                               << endl;
-//	cout << "   Copy Number:  "    << Detector.ncopy                                  << endl;
-//	cout << "   Activated: "       << ( Detector.exist==1 ?   "yes"   : "no" )        << endl;
-//	cout << "   Visible: "         << ( Detector.visible==1 ? "yes"   : "no" )        << endl;
-//	cout << "   Style: "           << ( Detector.style==1 ?   "solid" : "wireframe" ) << endl;
-//	cout << "   Sensitivity: "     << Detector.sensitivity                            << endl;
-//	if(Detector.sensitivity != "no")
-//	cout << "   hitType: "       << Detector.hitType                               << endl;
-//
-//	if(Detector.identity.size())
-//	cout << Detector.identity ;
-//
-//	if(Detector.SolidV) {
-//		cout << "   Volume: "       << bestValueUnits(Detector.SolidV->GetCubicVolume(), "Volume") << endl;
-//		cout << "   Surface Area: " << bestValueUnits(Detector.SolidV-> GetSurfaceArea(), "Surface") << endl;
-//	}
-//	if(Detector.LogicV) {
-//		cout << "   Mass: " << bestValueUnits(Detector.LogicV->GetMass(), "Mass") << endl;
-//	}
-//	cout << endl;
+	if(dtypes.size() == detE.dimensions.size()) {
+		for(unsigned int i=0; i<dtypes.size(); i++){
+			cout << "   " << dtypes[i][0] << ":  "  << G4BestUnit(detE.dimensions[i], dtypes[i][1])  << endl;
+		}
+	}
+
+	string visibility = "yes";
+	if(!detE.visible) {
+		visibility = "no";
+	}
+	string style = "unknown";
+	if(detE.style == 0) {
+		style = "wireframe";
+	} else if(detE.style == 1){
+		style = "solid";
+
+	}
+	cout << "   Color:  "          << detE.color   << "  Visible: " << visibility << ",  with style: "  << style << endl;
+
+	cout << "   Material:  "       << detE.material   << endl;
+	cout << "   Magnetic Field:  " << detE.magfield   << endl;
+
+	cout << "   Position (cm):  "  << detE.pos/cm     << endl;
+	cout << "   Rotation:       "  << detE.rot        << endl;
+
+	if(detE.exist == 0) {
+		cout << "  This detector has existance set to zero." << endl;
+	}
+
+	cout << "   Sensitivity: "     << detE.sensitivity                            << endl;
+
+
+	if(detE.solidVolume) {
+		cout << "   Volume: "       << G4BestUnit(detE.solidVolume->GetCubicVolume(), "Volume")  << endl;
+		cout << "   Surface Area: " << G4BestUnit(detE.solidVolume->GetSurfaceArea(), "Surface") << endl;
+	}
+	if(detE.logicalVolume) {
+		cout << "   Mass: " << G4BestUnit(detE.logicalVolume->GetMass(), "Mass") << endl;
+	}
+	cout << endl;
 
 	return stream;
 }
@@ -49,10 +66,11 @@ ostream &operator<<(ostream &stream, DetectorElement detE)
 bool DetectorElement::operator == (const DetectorElement& detE) const
 {
 	// Name uniquely identifies a volume
-	if(detE.name == this->name)
+	if(detE.name == this->name) {
 		return true;
-	else
+	} else {
 		return false;
+	}
 }
 
 
@@ -64,7 +82,7 @@ vector< vector<string> > DetectorElement::dimensionsType()
 	vector<string> dt;
 	dt.resize(2);
 
-	if(type == "Box")
+	if(type == "G4Box")
 	{
 		dt[0] = "half length in X";
 		dt[1] = "Length";
@@ -73,7 +91,30 @@ vector< vector<string> > DetectorElement::dimensionsType()
 		dtypes.push_back(dt);
 		dt[0] = "half length in Z";
 		dtypes.push_back(dt);
+	} else if(type == "G4Tubs")
+	{
+		dt[1] = "Length";
+		dt[0] = "Inner radius";
+		dtypes.push_back(dt);
+		dt[0] = "Outer radius";
+		dtypes.push_back(dt);
+		dt[0] = "Half length in z";
+		dtypes.push_back(dt);
+		dt[1] = "Angle";
+		dt[0] = "Starting Phi angle";
+		dtypes.push_back(dt);
+		dt[0] = "Delta Phi angle";
+		dtypes.push_back(dt);
 	}
+
+
+
+// to be completed - order is the same as https://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/ForApplicationDeveloper/html/ch04.html
+
+
+
+
+
 
 	if(type == "Sphere")
 	{
@@ -90,21 +131,6 @@ vector< vector<string> > DetectorElement::dimensionsType()
 		dt[0] = "Starting Theta angle of the segment";
 		dtypes.push_back(dt);
 		dt[0] = "Delta Theta angle of the segment";
-		dtypes.push_back(dt);
-	}
-	if(type == "Tube")
-	{
-		dt[1] = "Length";
-		dt[0] = "Inner radius";
-		dtypes.push_back(dt);
-		dt[0] = "Outer radius";
-		dtypes.push_back(dt);
-		dt[0] = "Half length in z";
-		dtypes.push_back(dt);
-		dt[1] = "Angle";
-		dt[0] = "Starting Phi angle";
-		dtypes.push_back(dt);
-		dt[0] = "Delta Phi angle";
 		dtypes.push_back(dt);
 	}
 	if(type == "Trd")
@@ -253,4 +279,47 @@ vector< vector<string> > DetectorElement::dimensionsType()
 
 	return dtypes;
 }
+
+
+bool DetectorElement::isVerbose(int verbosity, string catchName)
+{
+	if(verbosity > 0 || name.find(catchName) != string::npos) {
+		return true;
+	}
+	return false;
+
+}
+
+
+void DetectorElement::checkG4SolidDimensions(string type)
+{
+	set<int> correctDimensions;
+
+		 if(type == "G4Box")     correctDimensions = {3};
+	else if(type == "G4Tubs")    correctDimensions = {5};
+	else if(type == "G4CutTubs") correctDimensions = {7};
+	else if(type == "G4Cons")    correctDimensions = {7};
+
+
+	if(correctDimensions.find((int) dimensions.size()) == correctDimensions.end() ) {
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

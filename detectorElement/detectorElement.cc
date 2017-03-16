@@ -1,5 +1,8 @@
-
+// detectorElement
 #include "detectorElement.h"
+
+// geant4
+#include "G4VSolid.hh"
 
 DetectorElement::DetectorElement()
 {
@@ -10,10 +13,3 @@ DetectorElement::DetectorElement()
 	g4material     = NULL;
 }
 
-
-//int DetectorElement::buildSolid()
-//{
-//
-//	
-//	return 0;
-//}
