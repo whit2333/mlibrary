@@ -65,10 +65,12 @@ private:
 	G4VPhysicalVolume* physicalVolume;   ///< Physical Volume
 	G4Material*            g4material;
 
+	// 0: not build. 1: built. 2: waiting to build. -1: error: could not build
+	int solidBuilt, logicalBuilt, physicalBuilt;
+
 	// defined in utilities
 	vector< vector<string> > dimensionsType();
-	bool isVerbose(int verbosity, string catchName);
-	void checkG4SolidDimensions(string forType);
+	void checkG4SolidDimensions();
 
 public:
 	G4VSolid*             getSolidVolume() {return solidVolume;}
@@ -76,8 +78,8 @@ public:
 	G4VPhysicalVolume* getPhysicalVolume() {return physicalVolume;}
 	G4Material*            getG4material() {return g4material;}
 
-
-	int buildSolid(int verbosity, string catchName, map<string, DetectorElement*> *detectorsMap); // builds and assigns a G4VSolid to solidVolume
+	// sets solidBuilt
+	void buildSolid(map<string, DetectorElement*> *detectorsMap); // builds and assigns a G4VSolid to solidVolume
 
 
 	// defined in utilities

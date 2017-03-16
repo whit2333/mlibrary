@@ -281,17 +281,9 @@ vector< vector<string> > DetectorElement::dimensionsType()
 }
 
 
-bool DetectorElement::isVerbose(int verbosity, string catchName)
-{
-	if(verbosity > 0 || name.find(catchName) != string::npos) {
-		return true;
-	}
-	return false;
-
-}
 
 
-void DetectorElement::checkG4SolidDimensions(string type)
+void DetectorElement::checkG4SolidDimensions()
 {
 	set<int> correctDimensions;
 
@@ -302,9 +294,14 @@ void DetectorElement::checkG4SolidDimensions(string type)
 
 
 	if(correctDimensions.find((int) dimensions.size()) == correctDimensions.end() ) {
-
+		cout << " !! Fatal Error: the number of dimensions for " << name
+		<< " is " << dimensions.size() <<  ":" << endl;
+		for(unsigned int i=0; i<dimensions.size(); i++) {
+			cout << "      dimension " << i + 1 << ": " <<  dimensions[i] << endl;
+		}
+		cout << "      This does not match a " << type <<". Exiting" << endl << endl;
+		exit(0);
 	}
-
 }
 
 
