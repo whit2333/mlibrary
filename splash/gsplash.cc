@@ -12,11 +12,10 @@
  \param g boolean to set gui (true) or batch mode (false)
 
  */
-GSplash::GSplash(GOptions* gopts, bool g)
+GSplash::GSplash(GOptions* gopts, bool g) : gui(g), splash(nullptr)
 {
-	gui    = g;
 	header = gopts->getString("header");
-
+	
 	if(gui) {
 		vector<string> splashInfo = gopts->getStringVectorValue("splashPic");
 
@@ -25,7 +24,7 @@ GSplash::GSplash(GOptions* gopts, bool g)
 
 		// optional second argument
 		if(splashInfo.size() == 2) {
-			if(getenv(splashInfo[0].c_str()) != NULL) {
+			if(getenv(splashInfo[0].c_str()) != nullptr) {
 				picLocation = (string) getenv(splashInfo[0].c_str());
 			}
 		}
@@ -53,7 +52,7 @@ otherwise re-direct to screen
 void GSplash::message(string msg)
 {
 	if(gui) {
-		if(splash != NULL)
+		if(splash != nullptr)
 			splash->showMessage(msg.c_str(),  Qt::AlignLeft,  Qt::white );
 
 		qApp->processEvents();
@@ -71,7 +70,7 @@ GSplash::~GSplash()
 
 {
 	if(gui)
-		if(splash != NULL)
+		if(splash != nullptr)
 			delete splash ;
 }
 

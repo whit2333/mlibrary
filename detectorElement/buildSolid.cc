@@ -17,7 +17,7 @@ void DetectorElement::buildSolid(map<string, DetectorElement*> *detectorsMap)
 	if(solidVolume && solidBuilt == 0) {
 		cout << " ! Warning: a g4 solid exists but solidBuild is 0.";
 	}
-	if(solidVolume == NULL && solidBuilt == 1) {
+	if(solidVolume == nullptr && solidBuilt == 1) {
 		cout << " ! Warning: a g4 solid does not exists but solidBuild is 1.";
 	}
 	// nothing to do

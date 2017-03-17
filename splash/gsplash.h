@@ -59,7 +59,7 @@ public:
 	void message(string);
 
 	//! exits and returns focus
-	void finish(QWidget *window) {if(splash != NULL) splash->finish(window);}
+	void finish(QWidget *window) {if(splash != nullptr) splash->finish(window);}
 
 	// gsplash options
 	static map<string, GOption> defineOptions();

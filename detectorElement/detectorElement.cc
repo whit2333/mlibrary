@@ -7,9 +7,9 @@
 DetectorElement::DetectorElement()
 {
 	// init geant4 pointers to null
-	solidVolume    = NULL;
-	logicalVolume  = NULL;
-	physicalVolume = NULL;
-	g4material     = NULL;
+	solidVolume    = nullptr;
+	logicalVolume  = nullptr;
+	physicalVolume = nullptr;
+	g4material     = nullptr;
 }
 
