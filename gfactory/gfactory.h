@@ -1,63 +1,55 @@
 #ifndef  GFACTORY_H
 #define  GFACTORY_H
 
+
 #include <string>
+#include <functional>
+#include <map>
 using namespace std;
 
-/**
- * @class BaseFactory
- * @brief factory abstract base class that defines its API and is templated on the
- *        base class of the type that its factories are meant to instantiate.
- *        Actual factory classes will use the below Factory<Base, Derived>
- *        version that's defined immediately below.
- *		  Here T must have the class method RegisterFactory
- */
-template <class T>
-class BaseFactory
+class MyBaseClass
 {
 public:
-	/**
-	 * @param typeName The name of the 'type' of object that this factory can create.
-	 */
-	BaseFactory(string typeName) :  fTypeName(typeName) {
-		T::RegisterFactory(typeName, this);
-	}
+	virtual void doSomething() = 0;
+};
 
-	virtual ~BaseFactory() = default;
 
-	virtual T* Create() = 0;
-
-protected:
-	/// the 'type name' for classes created by this factory, which may or
-	/// may not be the same as the C++ name of the classes created by this
-	/// factory.
-	string fTypeName;
+// The factory - implements singleton pattern!
+class GFactory
+{
+public:
+	// Get the single instance of the factory
+	static GFactory * Instance();
+	
+	// register a factory function to create an instance of className
+	void RegisterFactoryFunction(string name, function<MyBaseClass*(void)> classFactoryFunction);
+	
+	// create an instance of a registered class
+	shared_ptr<MyBaseClass> Create(string name);
 	
 private:
-	int verbosity;
+	// a private ctor
+	GFactory(){}
+	
+	// the registry of factory functions
+	map<string, function<MyBaseClass*(void)>> factoryFunctionRegistry;
+	
 };
 
-template <class T, class Derived>
-class Factory : public BaseFactory<T>
-{
+template<class T>
+class Registrar {
 public:
-	Factory(string typeName) :  BaseFactory<T>(typeName) {
-		// compile time assertion to make sure that there's a valid
-		// base/derived relationship between the two classes that this
-		// factory is templated on.
-		static_assert(is_base_of<T, Derived>::value, "");
-	}
-
-	~Factory() = default;
-
-	T* Create() override {
-		T* retval = new Derived();
-		// sets the derived typename
-		if (retval) {
-			retval->SetTypeName(BaseFactory<T>::fTypeName);
-		}
-		return retval;
+	Registrar(string className)
+	{
+		// register the class factory function
+		// using a lambda function
+		GFactory::Instance()->RegisterFactoryFunction(className,
+													  [](void) -> MyBaseClass * { return new T();});
 	}
 };
+
+
+
+
 
 #endif
