@@ -36,7 +36,7 @@ private:
 	
 };
 
-template<class T>
+template<class T, class BaseClass>
 class Registrar {
 public:
 	Registrar(string className)
@@ -44,7 +44,7 @@ public:
 		// register the class factory function
 		// using a lambda function
 		GFactory::Instance()->RegisterFactoryFunction(className,
-													  [](void) -> MyBaseClass * { return new T();});
+													  [](void) -> BaseClass * { return new T();});
 	}
 };
 
