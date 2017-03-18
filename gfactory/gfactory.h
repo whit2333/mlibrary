@@ -32,6 +32,9 @@ protected:
 	/// may not be the same as the C++ name of the classes created by this
 	/// factory.
 	string fTypeName;
+	
+private:
+	int verbosity;
 };
 
 template <class T, class Derived>
