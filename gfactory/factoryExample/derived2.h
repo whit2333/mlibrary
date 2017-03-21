@@ -6,22 +6,15 @@
 #include <iostream>
 using namespace std;
 
-class DerivedClassTwo : public MyBaseClass
+class DerivedClassTwo : public MyBaseClass2
 {
 public:
 	DerivedClassTwo(){};
 	virtual ~DerivedClassTwo(){};
 	
-	virtual void doSomething() { cout << "I am class two" << endl; }
+	virtual void doSomethingElse() { cout << "I am class two" << endl; }
 	
-//	virtual void processEvent() = 0;
 };
 
-
-class p1 : public DerivedClassTwo
-{
-	virtual void processEvent() { cout << "process two" << endl; }
-
-};
 
 #endif // CPPFACTORY_DERIVEDCLASSONE_H

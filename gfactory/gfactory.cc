@@ -1,21 +1,24 @@
 #include "gfactory.h"
 
 
-GFactory * GFactory::Instance()
+template<class BaseClass>
+GFactory<BaseClass> * GFactory<BaseClass>::Instance()
 {
-	static GFactory factory;
+	static GFactory<BaseClass> factory;
 	return &factory;
 }
 
 
-void GFactory::RegisterFactoryFunction(string name, function<MyBaseClass*(void)> classFactoryFunction)
+template<class BaseClass>
+void GFactory<BaseClass>::RegisterFactoryFunction(string name, function<BaseClass*(void)> classFactoryFunction)
 {
 	// register the class factory function
 	factoryFunctionRegistry[name] = classFactoryFunction;
 }
 
 
-shared_ptr<MyBaseClass> GFactory::Create(string name)
+template<class BaseClass>
+shared_ptr<BaseClass> GFactory<BaseClass>::Create(string name)
 {
 	MyBaseClass * instance = nullptr;
 	
@@ -26,7 +29,7 @@ shared_ptr<MyBaseClass> GFactory::Create(string name)
 	
 	// wrap instance in a shared ptr and return
 	if(instance != nullptr)
-		return std::shared_ptr<MyBaseClass>(instance);
+		return std::shared_ptr<BaseClass>(instance);
 	else
 		return nullptr;
 }
