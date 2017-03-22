@@ -1,6 +1,6 @@
 #include "gfactory.h"
-#include "firstFactory.h"
-#include "secondFactory.h"
+#include "ShapeFactory.h"
+#include "Car.h"
 
 #include <iostream>
 using namespace std;
@@ -18,8 +18,8 @@ int main()
 
 	// B manages SecondFactory
 	// registering one derived class from SecondFactory
-	managerB.RegisterObjectFactory<Dodge>("dodge");
-	managerB.RegisterObjectFactory<Ford>("ford");
+//	managerB.RegisterObjectFactory<Dodge>("dodge");
+//	managerB.RegisterObjectFactory<Ford>("ford");
 
 
 	// putting factory in map
