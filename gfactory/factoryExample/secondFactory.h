@@ -1,28 +1,27 @@
 #ifndef SECONDFACTORY_H
 #define SECONDFACTORY_H
 
-class SecondFactory
+class Car
 {
 public:
-	virtual void salute() = 0;
-	virtual ~SecondFactory() = default;
-
+	virtual void go() = 0;
+	virtual ~Car() = default;
 };
 
 
-class FirstSecondDerived : SecondFactory
+class Dodge : Car
 {
 
 public:
-	void salute();
+	void go();
 };
 
 
-class SecondSecondDerived : SecondFactory
+class Ford : Car
 {
 
 public:
-	void salute();
+	void go();
 };
 
 

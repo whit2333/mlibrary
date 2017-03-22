@@ -28,7 +28,6 @@ public:
 	template <class T> void RegisterObjectFactory(string name) {
 		factoryMap[name] = new GFactory<T>();
 		cout << " Registering " << name << " factory. Factory database size is now: " << factoryMap.size() << endl;
-
 	}
 
 	template <class T> T* CreateObject(string name) const {

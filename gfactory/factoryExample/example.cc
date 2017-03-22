@@ -12,35 +12,41 @@ int main()
 
 	// A manages FirstFactory
 	// registering 3 derived classes from FirstFactory
-	managerA.RegisterObjectFactory<FirstFirstDerived>("a11");
-	managerA.RegisterObjectFactory<SecondFirstDerived>("a12");
-	managerA.RegisterObjectFactory<SecondFirstDerived>("a2");
+	managerA.RegisterObjectFactory<Triangle>("triangle");
+	managerA.RegisterObjectFactory<Box>("box1");
+	managerA.RegisterObjectFactory<Box>("box2");
 
 	// B manages SecondFactory
 	// registering one derived class from SecondFactory
-	managerB.RegisterObjectFactory<FirstSecondDerived>("a2");
+	managerB.RegisterObjectFactory<Dodge>("dodge");
+	managerB.RegisterObjectFactory<Ford>("ford");
 
-
-	// creating one factory
-	auto test  = managerA.CreateObject<FirstFactory>("a11");
-	test->Greet();
 
 	// putting factory in map
-	map<string, FirstFactory*> fff;
-	fff["a1"] = test;
-
-	// aaa is same pointer
-	FirstFactory* aaa = fff["a1"];
-
-	for(int i=0; i<5; i++) {
+	map<string, Shape*> fff;
+	fff["triangle"] = managerA.CreateObject<Shape>("triangle");
+	fff["box1"]     = managerA.CreateObject<Shape>("box1");
+	fff["box2"]     = managerA.CreateObject<Shape>("box2");
 
 
-		fff["a1"]->Greet();
+	// aShape is same pointer as map element
+	Shape* aShape = fff["triangle"];
 
-		cout << fff["a1"] << " " << aaa << endl;
+	map<string, Car*> ggg;
+	ggg["dodge"] = managerB.CreateObject<Car>("dodge");
+
+	for(int i=0; i<2; i++) {
+
+
+		aShape->Area();
+		fff["triangle"]->Area();
+		fff["box1"]->Area();
+
+		ggg["dodge"]->go();
+
+		cout << fff["triangle"] << " " << aShape << endl;
 
 	}
-	managerA.DestroyObject(test);
 
 }
 

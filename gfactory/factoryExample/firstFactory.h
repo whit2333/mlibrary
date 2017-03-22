@@ -4,28 +4,28 @@
 #include <string>
 using namespace std;
 
-class FirstFactory
+class Shape
 {
 public:
-	virtual void Greet() = 0;
-	virtual ~FirstFactory() = default;
+	virtual void Area() = 0;
+	virtual ~Shape() = default;
 
 };
 
 
-class FirstFirstDerived : FirstFactory
+class Triangle : Shape
 {
 
 public:
-	void Greet();
+	void Area();
 };
 
 
-class SecondFirstDerived : FirstFactory
+class Box : Shape
 {
 
 public:
-	void Greet();
+	void Area();
 };
 
 
