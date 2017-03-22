@@ -1,11 +1,15 @@
 #ifndef FIRSTFACTORY_H
 #define FIRSTFACTORY_H
 
+#include <string>
+using namespace std;
+
 class FirstFactory
 {
 public:
 	virtual void Greet() = 0;
 	virtual ~FirstFactory() = default;
+
 };
 
 

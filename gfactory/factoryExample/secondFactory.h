@@ -6,6 +6,7 @@ class SecondFactory
 public:
 	virtual void salute() = 0;
 	virtual ~SecondFactory() = default;
+
 };
 
 
