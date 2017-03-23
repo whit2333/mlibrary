@@ -7,37 +7,68 @@
 #include <iostream>
 using namespace std;
 
-class GFactoryBlock {
+// dynamic loading
+#include "gdl.h"
+
+class GFactoryBase {
 public:
 	virtual void* Create() = 0;
 };
 
 
 template <class T>
-class GFactory : public GFactoryBlock
+class GFactory : public GFactoryBase
 {
 	virtual void* Create() override {
 		return new T();
 	}
 };
 
+//
 
 class GManager
 {
 public:
-	template <class T> void RegisterObjectFactory(string name) {
-		factoryMap[name] = new GFactory<T>();
+	// Before instantiating the wanted class we need to register
+	// it (as Derived) in the manager first
+	// Derived is the derived class, i.e. "Triangle" : "Shape"
+	// This implies that the client knows about the derived class (through header)
+	// We can register the Derived the map<string, GFactoryBase*> through a GFactory<Derived>
+	template <class Derived> void RegisterObjectFactory(string name) {
+		factoryMap[name] = new GFactory<Derived>();
 		cout << " Registering " << name << " factory. Factory database size is now: " << factoryMap.size() << endl;
 	}
 
-	template <class T> T* CreateObject(string name) const {
+	// After registering we can create the object
+	// Notice that Base here is the base class, using polymorphism
+	// (a call to a member function will cause a different function to
+	// be executed depending on the type of object that invokes the function.
+	template <class Base> Base* CreateObject(string name) const {
 		auto factory = factoryMap.find(name);
 		if(factory == factoryMap.end())
 			return nullptr;
 
 		cout << " Creating factory " << name << endl;
-		return static_cast<T*>(factory->second->Create());
+		return static_cast<Base*>(factory->second->Create());
 	}
+
+	void registerDL(string name) {
+
+	}
+
+	template <class T> T* LoadObjectFromLibrary(string name) const {
+		
+	thisLib = dynamic_lib("./lib" + name + ".dylib");
+//		dynamic_lib thisLib("./lib" + name + ".dylib");
+//		dynamic_lib *thisLib = new dynamic_lib("./lib" + name + ".dylib");
+
+		cout << " manager loaded with " << thisLib.handle << endl;
+
+		// will return nullptr if handle is null
+		return T::instantiate(thisLib.handle);
+
+	}
+
 
 	template <class T> void DestroyObject(T* object) {
 		delete object;
@@ -45,39 +76,9 @@ public:
 
 
 private:
-	map<string, GFactoryBlock*> factoryMap;
+	map<string, GFactoryBase*> factoryMap;
+	dynamic_lib thisLib;
+//	map<string, GFactoryBase*> factoryMap;
 };
-
-// plugin loading functions
-#include <dlfcn.h>
-
-typedef void* dynamic_lib_handle;
-
-static dynamic_lib_handle load_lib(const string& path);
-static void close_lib(dynamic_lib_handle handle);
-
-struct dynamic_lib {
-	dynamic_lib_handle  handle;
-	string			path;
-	
-	dynamic_lib(string p) : path(p), handle(nullptr) {}
-	
-	~dynamic_lib() {
-		if (handle != nullptr)
-			close_lib(handle);
-	}
-};
-
-
-static dynamic_lib_handle load_lib(const string& path) {
-	cout << "Trying to open: " << path << std::endl;
-	return dlopen(path.data() , RTLD_NOW); // get a handle to the lib, may be nullptr.
-	// RTLD_NOW ensures that all the symbols are resolved immediately. This means that
-	// if a symbol cannot be found, the program will crash now instead of later.
-}
-
-static void close_lib(dynamic_lib_handle handle) {
-	dlclose(handle);
-}
 
 #endif
