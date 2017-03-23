@@ -1,6 +1,9 @@
 #ifndef  GDL_H
 #define  GDL_H
 
+// this code is based on this tutorial:
+// https://0x00sec.org/t/c-dynamic-loading-of-shared-objects-at-runtime/1498
+
 // plugin loading functions
 #include <dlfcn.h>
 

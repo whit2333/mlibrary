@@ -10,35 +10,23 @@ int main()
 	GManager managerA;     // loads known classes Triangle and Box from the base Shape
 	GManager managerB(1);  // loads DLL that instantiate derived factories - we only know of the base one in this case "Car"
 
-	// A manages FirstFactory
+	// A manages Shapes
 	// registering 3 shape classes
 	// notice, here we know of them through the header
 	managerA.RegisterObjectFactory<Triangle>("triangle");
 	managerA.RegisterObjectFactory<Box>("box1");
 	managerA.RegisterObjectFactory<Box>("box2");
 
-	// B manages SecondFactory
-	// registering one derived class from SecondFactory
-//	managerB.RegisterObjectFactory<Dodge>("dodge");
-//	managerB.RegisterObjectFactory<Ford>("ford");
-
-
-	// opening dl
-//	dynamic_lib thisLib("./libdodgeFactory.dylib");
-//	auto test = Car::instantiate(thisLib.handle);
-//	cout << " TEST " <<  test << " " << typeid(test).name() <<  endl;
-//	test->go();
-
-	// putting factory in map
+	// putting A factory in map
 	map<string, Shape*> fff;
 	fff["triangle"] = managerA.CreateObject<Shape>("triangle");
 	fff["box1"]     = managerA.CreateObject<Shape>("box1");
 	fff["box2"]     = managerA.CreateObject<Shape>("box2");
 
-
 	// aShape is same pointer as map element
 	Shape* aShape = fff["triangle"];
 
+	// B manages Cars. Notice, we do not need the derived class headers here!
 	managerB.registerDL("dodgeFactory");
 	managerB.registerDL("fordFactory");
 	

@@ -1,6 +1,10 @@
 #ifndef  GFACTORY_H
 #define  GFACTORY_H
 
+// this code is based on TheComet tutorial here:
+// https://www.gamedev.net/topic/683154-c-extend-class-in-dll/
+
+
 // c++
 #include <map>
 #include <string>
@@ -9,6 +13,7 @@ using namespace std;
 
 // dynamic loading
 #include "gdl.h"
+
 
 class GFactoryBase {
 public:
