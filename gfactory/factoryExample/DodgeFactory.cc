@@ -4,6 +4,6 @@
 using namespace std;
 
 void Dodge::go() {
-	cout << "factory car dodge it works! " << std::endl;
+	cout << " Factory car dodge it works! " << std::endl;
 }
 

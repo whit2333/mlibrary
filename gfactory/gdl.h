@@ -4,15 +4,19 @@
 // plugin loading functions
 #include <dlfcn.h>
 
-typedef void* dynamic_lib_handle;
+typedef void* dlhandle;
 
-static dynamic_lib_handle load_lib(const string& path);
-static void close_lib(dynamic_lib_handle handle);
+static dlhandle load_lib(const string& path);
+static void close_lib(dlhandle handle);
 
 struct dynamic_lib {
-	dynamic_lib_handle  handle;
-	string			path;
 	
+	// default constructor
+	dynamic_lib() = default;
+	
+	dlhandle handle;
+	string   path;
+
 	dynamic_lib(string p) : path(p), handle(nullptr) {
 		cout << " Loading DL " << p << endl;
 		handle = load_lib(p);
@@ -21,14 +25,12 @@ struct dynamic_lib {
 	~dynamic_lib() {
 		if (handle != nullptr)
 			close_lib(handle);
-		cout << " closing " << path << endl;
+		cout << " Closing DL " << path << endl;
 	}
 };
 
 
-static dynamic_lib_handle load_lib(const string& path) {
-
-	cout << " Trying to open: " << path << endl;
+static dlhandle load_lib(const string& path) {
 
 	return dlopen(path.data() , RTLD_NOW);
 	// get a handle to the lib, may be nullptr.
@@ -36,7 +38,7 @@ static dynamic_lib_handle load_lib(const string& path) {
 	// if a symbol cannot be found, the program will crash now instead of later.
 }
 
-static void close_lib(dynamic_lib_handle handle) {
+static void close_lib(dlhandle handle) {
 	dlclose(handle);
 }
 

@@ -10,7 +10,7 @@ public:
 	virtual ~Car() = default;
 
 
-	static Car* instantiate(const dynamic_lib_handle handle) {
+	static Car* instantiate(const dlhandle handle) {
 
 		if (handle == nullptr) return nullptr;
 
