@@ -7,8 +7,8 @@ using namespace std;
 
 int main()
 {
-	GManager managerA;  // loads known classes Triangle and Box from the base Shape
-	GManager managerB;  // loads DLL that instantiate derived factories - we only know of the base one in this case "Car"
+	GManager managerA;     // loads known classes Triangle and Box from the base Shape
+	GManager managerB(1);  // loads DLL that instantiate derived factories - we only know of the base one in this case "Car"
 
 	// A manages FirstFactory
 	// registering 3 shape classes

@@ -29,6 +29,9 @@ class GFactory : public GFactoryBase
 class GManager
 {
 public:
+	GManager(int v = 0) : verbosity(v) {}
+	
+public:
 	// Before instantiating the wanted class we need to register
 	// it (as Derived) in the manager first
 	// Derived is the derived class, i.e. "Triangle" : "Shape"
@@ -36,7 +39,10 @@ public:
 	// We can register the Derived the map<string, GFactoryBase*> through a GFactory<Derived>
 	template <class Derived> void RegisterObjectFactory(string name) {
 		factoryMap[name] = new GFactory<Derived>();
-		cout << " GManager: Registering " << name << " factory. Factory database size is now: " << factoryMap.size() << endl;
+		if(verbosity > 0) {
+			cout << " GManager: Registering " << name << " factory.";
+			cout << " Factory database size is now: " << factoryMap.size() << endl;
+		}
 	}
 	
 	// After registering we can create the object
@@ -47,21 +53,26 @@ public:
 		auto factory = factoryMap.find(name);
 		if(factory == factoryMap.end())
 			return nullptr;
-		
-		cout << " GManager: Creating factory " << name << endl;
+		if(verbosity > 0) {
+			cout << " GManager: Creating factory " << name << endl;
+		}
 		return static_cast<Base*>(factory->second->Create());
 	}
 	
 	// setting file name depending on OS
 	void registerDL(string name) {
 		dlMap[name] = new dynamic_lib("./lib" + name + ".dylib");
-		cout << " GManager: Loading DL " << name << endl;
+		if(verbosity > 0) {
+			cout << " GManager: Loading DL " << name << endl;
+		}
 	}
 	
 	template <class T> T* LoadObjectFromLibrary(string name) {
 		// will return nullptr if handle is null
 		
-		cout << " GManager: Creating factory " << name << endl;
+		if(verbosity > 0) {
+			cout << " GManager: Creating factory " << name << endl;
+		}
 		return T::instantiate(dlMap[name]->handle);
 	}
 	
@@ -83,6 +94,8 @@ private:
 	// for some reason declaring a dynamic_lib local variable in LoadObjectFromLibrary
 	// scope does not work
 	map<string, dynamic_lib*> dlMap;
+	
+	int verbosity;
 };
 
 #endif

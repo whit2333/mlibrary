@@ -1,3 +1,7 @@
+3/23/17
+- DL mechanism implemented inside factory manager
+- verbosity added in GManager constructor
+
 3/22/17
 - working version
 
