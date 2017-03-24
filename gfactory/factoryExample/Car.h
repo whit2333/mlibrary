@@ -27,10 +27,6 @@ public:
 
 		return func();
 	}
-
-
-
-
 };
 
 
