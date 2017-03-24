@@ -17,8 +17,8 @@ struct dynamic_lib {
 	// default constructor
 	dynamic_lib() = default;
 	
-	dlhandle handle;
 	string   path;
+	dlhandle handle;
 
 	dynamic_lib(string p) : path(p), handle(nullptr) {
 		cout << " Loading DL " << p << endl;
