@@ -4,7 +4,7 @@
 // this code is based on this tutorial:
 // https://0x00sec.org/t/c-dynamic-loading-of-shared-objects-at-runtime/1498
 
-// plugin loading functions
+// c++ plugin loading functions
 #include <dlfcn.h>
 
 typedef void* dlhandle;
@@ -12,20 +12,28 @@ typedef void* dlhandle;
 static dlhandle load_lib(const string& path);
 static void close_lib(dlhandle handle);
 
-struct dynamic_lib {
+/**
+ * @struct DynamicLib
+ * @brief  Structure to load dynamically symbols from a shared library
+ */
+struct DynamicLib {
 	
 	// default constructor
-	dynamic_lib() = default;
+	DynamicLib() = default;
 	
-	string   path;
-	dlhandle handle;
+	
+	string   path;    ///< filename base of the dynamic library
+	dlhandle handle;  ///< posix handle of the dynamic library
 
-	dynamic_lib(string p) : path(p), handle(nullptr) {
+	/**
+	 * @param p name of the dynamic library
+	 */
+	DynamicLib(string p) : path(p), handle(nullptr) {
 		cout << " Loading DL " << p << endl;
 		handle = load_lib(p);
 	}
 	
-	~dynamic_lib() {
+	~DynamicLib() {
 		if (handle != nullptr)
 			close_lib(handle);
 		cout << " Closing DL " << path << endl;

@@ -49,12 +49,10 @@ int main()
 
 	}
 
-	// why this need to be cleared here?
+	// why this need to be cleared here, and not after the factories are
+	// put in the map?
 	managerB.clearDLMap();
 
-	
-	
-	
 }
 
 
