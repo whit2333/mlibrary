@@ -10,4 +10,4 @@ cd cadmeshBuild
 
 setenv GIT_SSL_NO_VERIFY false
 cmake ../cadmesh -DCMAKE_INSTALL_PREFIX:PATH=$MLIBRARY
-make -j10 install
+make -j4 install
