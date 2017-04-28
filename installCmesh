@@ -1,13 +1,13 @@
 #!/bin/csh -f
 
-rm -rf cadmesh cadmeshBuild
+# cadmesh is coming from:
+# git clone https://github.com/christopherpoole/CADMesh.git cadmesh
+# it requires two additional submodules, that are fetched during the cmake (unless they are already there).
+# setenv GIT_SSL_NO_VERIFY false
 
-git clone https://github.com/christopherpoole/CADMesh.git cadmesh
-# mv CADMesh cadmesh
-
+rm -rf cadmeshBuild
 mkdir cadmeshBuild
 cd cadmeshBuild
 
-setenv GIT_SSL_NO_VERIFY false
 cmake ../cadmesh -DCMAKE_INSTALL_PREFIX:PATH=$MLIBRARY
 make -j4 install
