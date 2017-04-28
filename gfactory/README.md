@@ -1,2 +1,2 @@
-# textProgressBar library
+# gFactory library
 
