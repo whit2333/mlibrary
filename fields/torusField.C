@@ -108,7 +108,6 @@ void torusField()
 					OUT << iphi << "\t" << ir << "\t" << iz << "\t" << sbx << "\t" << sby << "\t" << sbz << endl;
 				}
 
-				if(everyPhi == everyPhiMax) everyPhi = 1;
 
 
 			}
@@ -118,6 +117,8 @@ void torusField()
 			cout << "tag " << iphi << endl;
 		}
 		everyPhi++;
+
+		if(everyPhi == everyPhiMax) everyPhi = 1;
 
 
 	}
