@@ -8,8 +8,11 @@ using namespace std;
 
 class oneRFOutput {
 public:
-	oneRFOutput(double timeWindow, double startTime, double radioPeriod, double radioInterval);
-	oneRFOutput(vector<double> values, double rfsDistance, double timeWindow, double radioInterval);
+	// first RF constructor
+	oneRFOutput(double timeWindow, double startTime, double radioPeriod, int rfBunchGap);
+
+	// subsequent RFs signals
+	oneRFOutput(double oneRFValue, double rfsTimeDistance, double timeWindow, double intervalBetweenBunches);
 
 	vector<int> getIDs()    { return rfID;}
 	vector<double> getValues() { return rfValue;}
@@ -19,7 +22,7 @@ private:
 	vector<double> rfValue;
 
 private:
-	void fillRFValues(double firstRF, double timeWindow, double radioInterval);
+	void fillRFValues(double firstRF, double timeWindow, double intervalBetweenBunches);
 
 	friend ostream &operator<<(ostream &stream, oneRFOutput);
 
@@ -30,6 +33,12 @@ class FrequencySyncSignal {
 public:
 	// constructor from string.
 	// This will be replaced by a goption later on
+	// setup example: "250, 100, 0.5, 80, 40":
+	// - 250: Time window for all RFs
+	// - 100: Event start time
+	// - 0.5: Beam frequency (GHz)
+	// - 80:  Distance between signals in the same RF, in number of bunches (1 bunch time = 1/frequency)
+    // - 40:  Distance between RFs, in number of bunches (1 bunch time = 1/frequency)
 	FrequencySyncSignal(string setup);
 
 private:
@@ -39,14 +48,15 @@ private:
 	double startTime;      // event start time
 	double radioFrequency; // radiofrequency - in GHz
 	double radioPeriod;    // period - in ns. It's 1/radioFrequency
-	double radioInterval;  // interval between RF bunches
+	int rfBunchGap;        // time between RF bunches within the same RF signal, in number of radioPeriod
 
-	vector<int> rfsDistance; // distance (in number of radioInterval) between multiple RF signals
+	vector<int> rfBunchDistance; // distance (in number of radioInterval) between multiple RF signals
 
-	// output is a 2D vector:
-	// The number of Radiofrequency banks is nRadiofrequency
-	// The number of Radiofrequency signals within one bank is defined by
-	// filling the timewindow based on the radioFrequency
+	// output is a vector of oneRFOutput
+	// The number of Radiofrequency signals is defined by the size of rfsDistance.
+	// If that's 0, then we only have the first RF.
+	// Within one RF, the number of bunches is defined by the total time window and
+	// the radioperiod: the timewindow is filled with bunches.
 	vector<oneRFOutput> output;
 
 

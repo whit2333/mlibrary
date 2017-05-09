@@ -11,56 +11,62 @@ using namespace gstring;
 #include <algorithm> // for sort for gcc
 
 
-// building RF from the start time
-oneRFOutput::oneRFOutput(double timeWindow, double startTime, double radioPeriod, double radioInterval)
+// building first RF from the start time
+oneRFOutput::oneRFOutput(double timeWindow, double startTime, double radioPeriod, int rfBunchGap)
 {
 	// generating random number between -timeWindow and timeWindow
 	random_device randomDevice;
 	mt19937 generator(randomDevice());
 	uniform_real_distribution<> randomDistribution(-timeWindow/radioPeriod, timeWindow/radioPeriod);
 
+	// very first RF time
 	double firstRF = startTime + radioPeriod*(int)randomDistribution(generator);
 
+	// making sure the first RF is within the timewindow
 	while(firstRF<0 || firstRF>timeWindow)
 		firstRF = startTime + radioPeriod*(int)randomDistribution(generator);
 
-	fillRFValues(firstRF, timeWindow, radioInterval);
+	// now filling the full signal
+	fillRFValues(firstRF, timeWindow, rfBunchGap*radioPeriod);
 }
 
 // building RF from existing RFs
-oneRFOutput::oneRFOutput(vector<double> values, double rfsDistance, double timeWindow, double radioInterval)
+oneRFOutput::oneRFOutput(double oneRFValue, double rfsDistance, double timeWindow, double intervalBetweenBunches)
 {
-	double thatFirstRf = values.front();
 
-	double firstRF = thatFirstRf - rfsDistance;
-	// this RF is rfsDistance away from thatFirstRf.
+	// going backward in time by the distance
+	double firstRF = oneRFValue - rfsDistance;
+
+	// if that doesn't work, going forward
 	if(firstRF < 0 || firstRF > timeWindow)
-		 firstRF = thatFirstRf + rfsDistance;
+		 firstRF = oneRFValue + rfsDistance;
 
+	// if that didn't work either, the distance between RFs is too big
 	if(firstRF < 0 || firstRF > timeWindow) {
 		cout << "  !! error: RF value is outside the timewindow." << endl;
+	} else {
+		fillRFValues(firstRF, timeWindow, intervalBetweenBunches);
 	}
-
-	fillRFValues(firstRF, timeWindow, radioInterval);
 }
 
-void oneRFOutput::fillRFValues(double firstRF, double timeWindow, double radioInterval)
+void oneRFOutput::fillRFValues(double firstRF, double timeWindow, double intervalBetweenBunches)
 {
 	double putRF = firstRF;
+
 	// adding earlier RFs
 	while(putRF>0) {
 		rfValue.push_back(putRF);
-		putRF -= radioInterval;
+		putRF -= intervalBetweenBunches;
 	}
 
 	// adding later RFs
-	putRF = firstRF + radioInterval;
+	putRF = firstRF + intervalBetweenBunches;
 	while(putRF<timeWindow) {
 		rfValue.push_back(putRF);
-		putRF += radioInterval;
+		putRF += intervalBetweenBunches;
 	}
 
-	// sorting vector - adding to ids
+	// sorting vector
 	sort(rfValue.begin(), rfValue.end());
 
 	// adding the id
@@ -78,7 +84,6 @@ ostream &operator<<(ostream &stream, oneRFOutput s)
 	}
 
 	return stream;
-
 }
 
 //! overloading "<<" to print this class
@@ -87,10 +92,10 @@ ostream &operator<<(ostream &stream, FrequencySyncSignal s)
 	stream << " Time Window: "   << s.timeWindow;
 	stream << ", event Start Time: "   << s.startTime << endl;
 	stream << " Radio Frequency: "   << s.radioFrequency << " MHz: Period is " << s.radioPeriod << "ns" << endl;
-	stream << " Distance between RF buckets "   << s.radioInterval << " ns" << endl;
+	stream << " Distance between RF bunches "   << s.rfBunchGap*s.radioPeriod << " ns" << endl;
 
-	for(unsigned i=0; i<s.rfsDistance.size(); i++) {
-		stream << " RF signal n. <" << i+2 << "> is " <<  s.rfsDistance[i] << " ns away." << endl;
+	for(unsigned i=0; i<s.rfBunchDistance.size(); i++) {
+		stream << " Additional RF signal n. " << i+2 << " is " <<  s.rfBunchDistance[i]*s.radioPeriod << " ns away." << endl;
 	}
 
 	for(unsigned i=0; i<s.output.size(); i++) {
@@ -105,14 +110,14 @@ ostream &operator<<(ostream &stream, FrequencySyncSignal s)
 FrequencySyncSignal::FrequencySyncSignal(string setup)
 {
 
-	unsigned long numberOfArguments = 4;
+	unsigned long minNumberOfArguments = 4;
 
-	// setup is a string with at least 6 entries.
+	// setup is a string with at least minNumberOfArguments entries.
 	// any entry after that will add an additional RFOutput
 	vector<string> parsedSetup = getStringVectorFromString(setup);
-	if(parsedSetup.size() < numberOfArguments) {
+	if(parsedSetup.size() < minNumberOfArguments) {
 		cout << " !! Error: FrequencySyncSignal initializer incomplete: >" << setup << "< has not enough parameters, at least "
-		<<  numberOfArguments << " needed. Exiting" << endl;
+		<<  minNumberOfArguments << " needed. Exiting" << endl;
 		exit(0);
 	}
 
@@ -120,7 +125,7 @@ FrequencySyncSignal::FrequencySyncSignal(string setup)
 	startTime      = stod(parsedSetup[1]);
 	radioFrequency = stod(parsedSetup[2]);
 	radioPeriod    = 1.0/radioFrequency; // GHz > ns
-	radioInterval  = stod(parsedSetup[3]);
+	rfBunchGap     = stoi(parsedSetup[3]);
 
 
 	// do nothing if timewindow is 0
@@ -129,15 +134,18 @@ FrequencySyncSignal::FrequencySyncSignal(string setup)
 		return;
 	}
 	// first RF
-	output.push_back(oneRFOutput(timeWindow, startTime, radioPeriod, radioInterval));
+	output.push_back(oneRFOutput(timeWindow, startTime, radioPeriod, rfBunchGap));
 
 	// other signals
-	if(parsedSetup.size() > numberOfArguments) {
-		vector<double> values = output[0].getValues();
-		unsigned long remainingNRF = parsedSetup.size() - numberOfArguments;
+	if(parsedSetup.size() > minNumberOfArguments) {
+		// getting first RF values
+		double oneValue = output[0].getValues().front();
+		// total number of RF signals
+		unsigned long remainingNRF = parsedSetup.size() - minNumberOfArguments;
+		// adding oneRFOutput for each addtional RF signal
 		for(unsigned i=0; i<remainingNRF; i++) {
-			rfsDistance.push_back(stod(parsedSetup[numberOfArguments+i]));
-			output.push_back(oneRFOutput(values, rfsDistance[i], timeWindow, radioInterval));
+			rfBunchDistance.push_back(stoi(parsedSetup[minNumberOfArguments+i]));
+			output.push_back(oneRFOutput(oneValue, rfBunchDistance[i]*radioPeriod, timeWindow, radioPeriod*rfBunchGap));
 		}
 	}
 }
