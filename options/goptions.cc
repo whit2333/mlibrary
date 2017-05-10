@@ -126,14 +126,14 @@ void GOptions::checkAndParseCommandLine(int argc, char *argv[])
 	if(findCLOption("--h",        argc, argv) == "yes") printGeneralHelp();
 
 	// prints html file
-	if(findCLOption("-help-html", argc, argv) == "yes") printHTMLHelp();
+	if(findCLOption("-h-html", argc, argv) == "yes") printHTMLHelp();
 
 	// prints all help
-	if(findCLOption("-help-all", argc, argv) == "yes")
+	if(findCLOption("-h-all", argc, argv) == "yes")
 	printAvailableHelp("all");
 	// prints category help
 	else  {
-		string catCandidate = findCLOption("-help-", argc, argv);
+		string catCandidate = findCLOption("-h-", argc, argv);
 		if(catCandidate != "no") {
 		 if(categories.find(catCandidate) != categories.end())
 			printCategoryHelp(catCandidate);
@@ -302,13 +302,12 @@ void GOptions::printGeneralHelp()
 	cout << endl;
 	cout <<  "    Usage:" <<  endl << endl ;
 	cout <<  "   > -h, -help, --help: print this message and exit. "    << endl;
-	cout <<  "   > -help-all:  print all available options and exit. "  << endl;
-	cout <<  "   > -help-html:  print all available options in HTML format (options.html) and exit. "  << endl << endl;
+	cout <<  "   > -h-all:  print all available options and exit. "  << endl;
+	cout <<  "   > -h-html:  print all available options in HTML format (options.html) and exit. "  << endl << endl;
 	cout <<  "   > Available categories "  << endl;
 
-	for(const auto &c : categories)
-	{
-		cout << "     -help-" ;
+	for(const auto &c : categories) {
+		cout << "     -h-" ;
 		cout.width(15);
 		cout.fill('.');
 		cout << left << c << ":  " << c << " related options" << endl;
@@ -524,7 +523,7 @@ void GOptions::printHTMLHelp()
 	hf << "<table cellsize=20>" << endl;
 	hf << "<tr><td>" << endl;
 	hf << "<table class=\"pretty-table\">" << endl;
-	hf << "<caption>options. This table is produced with the option: -help-html </caption>" << endl;
+	hf << "<caption>options. This table is produced with the option: -h-html </caption>" << endl;
 	hf << "<tr><th scope=\"col\" >Category</th>" << endl;
 	hf << "    <th scope=\"col\" >Option</th>" << endl;
 	hf << "    <th scope=\"col\" >Help</th></tr>" << endl;
