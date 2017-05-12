@@ -1,5 +1,5 @@
 // detectorElement
-#include "detectorElement.h"
+#include "DetectorElement.h"
 
 // geant4
 #include "G4UnitsTable.hh"

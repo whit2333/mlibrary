@@ -65,7 +65,7 @@ private:
 	G4VPhysicalVolume* physicalVolume;   ///< Physical Volume
 	G4Material*            g4material;
 
-	// 0: not build. 1: built. 2: waiting to build. -1: error: could not build
+	// Phases statuses: 0: not build. 1: built. 2: waiting to build. -1: error: could not build
 	int solidBuilt, logicalBuilt, physicalBuilt;
 
 	// defined in utilities
