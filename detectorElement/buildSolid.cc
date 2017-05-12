@@ -1,5 +1,5 @@
 // detectorElement
-#include "detectorElement.h"
+#include "DetectorElement.h"
 
 // geant4
 #include "G4VSolid.hh"
@@ -15,18 +15,19 @@ void DetectorElement::buildSolid(map<string, DetectorElement*> *detectorsMap)
 
 	// how can it exist already?
 	if(solidVolume && solidBuilt == 0) {
-		cout << " ! Warning: a g4 solid exists but solidBuild is 0.";
+		cout << " ! Warning: a member g4 solid exists but solidBuild is 0. This should never happen." << endl;
 	}
 	if(solidVolume == nullptr && solidBuilt == 1) {
-		cout << " ! Warning: a g4 solid does not exists but solidBuild is 1.";
+		cout << " ! Warning: a g4 solid does not exists but solidBuild is 1. This should never happen." << endl;
 	}
+
 	// nothing to do
-	if(solidBuilt == 1) return;
+	if(solidVolume && solidBuilt == 1) return;
 
+	// init to error status
+	solidBuilt = -1;
 
-	solidBuilt = -1; // error if this will never change
-
-	// check dimensions
+	// check solid number of parameters vs geant4 constructors
 	checkG4SolidDimensions();
 
 	// the order of these objects is the same as on the geant4 website

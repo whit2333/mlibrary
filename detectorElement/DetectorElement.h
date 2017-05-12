@@ -69,7 +69,7 @@ private:
 	int solidBuilt, logicalBuilt, physicalBuilt;
 
 	// defined in utilities
-	vector< vector<string> > dimensionsType();
+	vector< vector<string> > dimensionsType();  // check dimensions size to geant4 constructors
 	void checkG4SolidDimensions();
 
 public:
@@ -79,7 +79,9 @@ public:
 	G4Material*            getG4material() {return g4material;}
 
 	// sets solidBuilt
-	void buildSolid(map<string, DetectorElement*> *detectorsMap); // builds and assigns a G4VSolid to solidVolume
+	// builds and assigns a G4VSolid to solidVolume
+	// need the detectorMap in case this is a boolean operation
+	void buildSolid(map<string, DetectorElement*> *detectorsMap);
 
 
 	// defined in utilities
