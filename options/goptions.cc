@@ -155,10 +155,8 @@ void GOptions::checkAndParseCommandLine(int argc, char *argv[])
 			setOptionValue(optionKey, value);
 		}
 	}
-	cout << " Command line parsed into options map." << endl;
-
-
 }
+
 /*! \fn int GOptions::setOptionValue(string optionKey, string value)
 
   - set optionsMap[optionKey] value to value
@@ -272,9 +270,9 @@ void GOptions::printUserSettings()
 {
 	if(userSettings.size())
 	{
-		cout << " > Selected User Options: " << endl;
+		cout << " # Selected User Options: " << endl;
 		for (auto &s : userSettings) {
-			cout <<  "   - " ;
+			cout <<  " # - " ;
 			cout.width(20);
 			cout.fill('.');
 
