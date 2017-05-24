@@ -285,6 +285,7 @@ private:
 	void checkAndParseCommandLine(int argc, char *argv[]); ///< check and parse the command line options
 	string findCLOption(string o, int argc, char *argv[]); ///< finds an option from the command line arguments
 	void printUserSettings();                              ///< print all user settings
+	void printDefaultSettings();                           ///< print default (not set by user) settings
 	void setOptionValue(string key, string value);         ///< set optionsMap[key] value - or add REPETITION option
 
 	// helps

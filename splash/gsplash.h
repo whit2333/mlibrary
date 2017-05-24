@@ -50,8 +50,6 @@ private:
 	//! splash is a library that could be used in
 	//! batch mode as well. The gui option controls this
 	bool  gui;
-	//! string that start the log
-	string header;
 	QSplashScreen *splash;
 
 public:

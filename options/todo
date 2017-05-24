@@ -4,5 +4,5 @@
 - add ADDOPTION to add an option from command line
 - consistency check for option multiple values. Add possible values enum?
 - add units, and getNumber
-
+- add option to print default settings as well as user settings
 

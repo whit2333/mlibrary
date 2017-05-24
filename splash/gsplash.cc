@@ -14,8 +14,6 @@
  */
 GSplash::GSplash(GOptions* gopts, bool g) : gui(g), splash(nullptr)
 {
-	header = gopts->getString("header");
-	
 	if(gui) {
 		vector<string> splashInfo = gopts->getStringVectorValue("splashPic");
 
@@ -58,7 +56,7 @@ void GSplash::message(string msg)
 		qApp->processEvents();
 	}
 	else
-		cout << header << msg << endl;
+		cout << msg << endl;
 }
 
 /*! \fn GSplash::~GSplash()
@@ -89,8 +87,6 @@ map<string, GOption> GSplash::defineOptions()
 	optionsMap["splashPic"].addHelp("1. env. variable location of the picture file\n");
 	optionsMap["splashPic"].addHelp("2. picture file\n");
 
-	// prints ">" for every message on splash or on screen
-	optionsMap["header"] = GOption("Message header to display on (splash)screen", " > ", "init");
 
 	return optionsMap;
 }

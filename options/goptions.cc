@@ -44,6 +44,7 @@ GOptions::GOptions(int argc, char *argv[], map<string, GOption> om, bool ignore)
 
 	// now print the user settings
 	printUserSettings();
+	printDefaultSettings();
 	cout << endl;
 }
 
@@ -268,10 +269,41 @@ string GOptions::findCLOption(string o, int argc, char *argv[])
  */
 void GOptions::printUserSettings()
 {
-	if(userSettings.size())
-	{
+	if(userSettings.size()) {
 		cout << " # Selected User Options: " << endl;
 		for (auto &s : userSettings) {
+			cout <<  " # - " ;
+			cout.width(20);
+			cout.fill('.');
+
+			string optionKey = s;
+
+			// parse out REPETITION
+			auto repPos = s.find(HELPREPETITION) ;
+			if(repPos != string::npos)
+				optionKey = s.substr(0, repPos);
+
+			cout << left << optionKey << ": " << optionsMap[s] << endl;
+		}
+	}
+}
+
+/*! \fn  GOptions::printDefaultSettings(string file)
+
+ - Loops over the default (non user) settings and print on screen.
+
+ */
+void GOptions::printDefaultSettings()
+{
+	vector<string> defaultNonUser;
+	for (auto &om : optionsMap) {
+		if(find(userSettings.begin(), userSettings.end(), om.first) == userSettings.end()) {
+			defaultNonUser.push_back(om.first);
+		}
+	}
+	if(defaultNonUser.size()) {
+		cout << " # Default User Options: " << endl;
+		for (auto &s : defaultNonUser) {
 			cout <<  " # - " ;
 			cout.width(20);
 			cout.fill('.');
@@ -355,7 +387,6 @@ void GOptions::printCategoryHelp(string cat)
  */
 void GOptions::printOptionDetailedHelp(string which)
 {
-
 	cout <<  "   - " ;
 	cout.width(20);
 	cout.fill('.');
