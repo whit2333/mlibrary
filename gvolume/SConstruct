@@ -8,6 +8,6 @@ env.Append(LIBS = 'gVolume')
 # calling SConscript here to build just the library as in the hierarchy build
 lib = SConscript('SConscript')
 
-example = env.Program(source = "example.cc", target = "example")
+# example = env.Program(source = "example.cc", target = "example")
 
-Depends(example,  lib);
+# Depends(example,  lib);
