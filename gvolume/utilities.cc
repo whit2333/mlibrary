@@ -1,5 +1,5 @@
 // gvolume
-#include "gvolume.h"
+#include "gVolume.h"
 
 // c++
 #include <iostream>
