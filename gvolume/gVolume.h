@@ -3,9 +3,12 @@
 
 // c++
 #include <string>
+#include <array>
 #include <vector>
 using namespace std;
 
+//// options
+//#include "goptions.h"
 
 class GVolume
 {
@@ -48,8 +51,25 @@ private:
 	string   mirrorMaterial;
 
 	// defined in utilities
-	friend ostream &operator<<(ostream &stream, GVolume); ///< Overloaded "<<" for DetectorElement class. Dumps infos on screen.
+//	friend ostream &operator<<(ostream &stream, GVolume); ///< Overloaded "<<" for DetectorElement class. Dumps infos on screen.
+
+public:
+	// GVolume options
+//	static map<string, GOption> defineOptions();
+
 };
 
+
+// the class GTable is the interface to the detector
+class GTable {
+public:
+	GTable();
+	
+private:
+	array<string, 20> validKeys = {"name"   , "mother", "description", "factory" , "type"    , "dimensions",
+		                           "visible", "style" , "color"      , "material", "magfield", "pos"       ,
+									"rot", "sensitivity", "copyOf", "replicaOf", "ncopy", "solidOperation", "mirrorType", "mirrorMaterial"};
+	
+};
 
 #endif
