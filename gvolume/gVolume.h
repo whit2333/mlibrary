@@ -5,6 +5,7 @@
 #include <string>
 #include <array>
 #include <vector>
+#include <map>
 using namespace std;
 
 //// options
@@ -51,7 +52,7 @@ private:
 	string   mirrorMaterial;
 
 	// defined in utilities
-//	friend ostream &operator<<(ostream &stream, GVolume); ///< Overloaded "<<" for DetectorElement class. Dumps infos on screen.
+	friend ostream &operator<<(ostream &stream, GVolume); ///< Logs infos on screen.
 
 public:
 	// GVolume options
@@ -66,10 +67,38 @@ public:
 	GTable();
 	
 private:
-	array<string, 20> validKeys = {"name"   , "mother", "description", "factory" , "type"    , "dimensions",
-		                           "visible", "style" , "color"      , "material", "magfield", "pos"       ,
-									"rot", "sensitivity", "copyOf", "replicaOf", "ncopy", "solidOperation", "mirrorType", "mirrorMaterial"};
-	
+	array<string, 20> validKeys = {
+		"name",
+		"mother",
+		"description",
+		"factory",
+		"type",
+		"dimensions",
+		"visible",
+		"style",
+		"color",
+		"material",
+		"magfield",
+		"pos"       ,
+		"rot",
+		"sensitivity",
+		"copyOf",
+		"replicaOf",
+		"ncopy",
+		"solidOperation",
+		"mirrorType",
+		"mirrorMaterial" };
+
+	map<string, string> gtable;
+
+public:
+	bool addData(string key, string data);
+	string getData(string key);
+
+
+private:
+	bool isValidKey(string key);
+
 };
 
 #endif

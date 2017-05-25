@@ -7,7 +7,6 @@ using namespace std;
 
 namespace gstring
 {
-
 	//! a vector of strings from a stringstream, space is delimiter
 	vector<string> getStringVectorFromString(string);
 
