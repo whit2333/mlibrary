@@ -25,6 +25,8 @@ ostream &operator<<(ostream &stream, GOption gopt)
 GOptions::GOptions(int argc, char *argv[], map<string, GOption> om, bool ignore) : ignoreNotFound(ignore)
 {
 	optionsMap = om;
+	optionsMap["showDefaults"] = GOption("Show Default Settings", 0);
+
 	cout << endl;
 
 	// fill the categories set
@@ -44,7 +46,11 @@ GOptions::GOptions(int argc, char *argv[], map<string, GOption> om, bool ignore)
 
 	// now print the user settings
 	printUserSettings();
-	printDefaultSettings();
+
+	if(getInt("showDefaults") == 1) {
+		cout << " #" << endl;
+		printDefaultSettings();
+	}
 	cout << endl;
 }
 
@@ -59,15 +65,13 @@ string GOptions::findConfigurationFile(int argc, char *argv[])
 {
 	// finds gcard file as one of the argument
 	// extension is .gcard
-	for(int i=1;i<argc;i++)
-	{
+	for(int i=1;i<argc;i++) {
 		string arg = argv[i];
 		size_t pos = arg.find(".gcard");
 		if(pos != string::npos) return arg;
 	}
 	// finds gcard file as one of the options
-	for(int i=1;i<argc;i++)
-	{
+	for(int i=1;i<argc;i++) {
 		string arg = argv[i];
 		size_t pos = arg.find("gcard=");
 		if(pos != string::npos) return arg.substr(pos+6);
@@ -93,11 +97,9 @@ int GOptions::parseConfigurationFile(string file)
 	QDomDocument domDocument = checkAndParseGCard(file);
 
 	QDomNodeList options = domDocument.firstChildElement().elementsByTagName("option");
-	for(int i = 0; i < options.count(); i++)
-	{
+	for(int i = 0; i < options.count(); i++) {
 		QDomNode elm = options.at(i);
-		if(elm.isElement())
-		{
+		if(elm.isElement()) {
 			QDomElement e = elm.toElement();
 			string optionKey = e.attribute("name").toStdString();
 			string value     = e.attribute("value").toStdString();
@@ -130,10 +132,10 @@ void GOptions::checkAndParseCommandLine(int argc, char *argv[])
 	if(findCLOption("-h-html", argc, argv) == "yes") printHTMLHelp();
 
 	// prints all help
-	if(findCLOption("-h-all", argc, argv) == "yes")
-	printAvailableHelp("all");
-	// prints category help
-	else  {
+	if(findCLOption("-h-all", argc, argv) == "yes") {
+		printAvailableHelp("all");
+	} else  {
+		// prints category help
 		string catCandidate = findCLOption("-h-", argc, argv);
 		if(catCandidate != "no") {
 		 if(categories.find(catCandidate) != categories.end())
@@ -226,15 +228,13 @@ QDomDocument GOptions::checkAndParseGCard(string file)
 
 	QFile gcard(file.c_str());
 
-	if( !gcard.exists() )
-	{
+	if( !gcard.exists() ) {
 		cout << " >>  gcard: " << file << " not found. Exiting." << endl;
 		exit(0);
 	}
 
 	// opening gcard and filling domDocument
-	if(!domDocument.setContent(&gcard))
-	{
+	if(!domDocument.setContent(&gcard)) {
 		cout << " >>  xml format for file <" << file << "> is wrong - check XML syntax. Exiting." << endl;
 		exit(0);
 	}
@@ -302,7 +302,7 @@ void GOptions::printDefaultSettings()
 		}
 	}
 	if(defaultNonUser.size()) {
-		cout << " # Default User Options: " << endl;
+		cout << " # Options using default settings: " << endl;
 		for (auto &s : defaultNonUser) {
 			cout <<  " # - " ;
 			cout.width(20);
