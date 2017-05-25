@@ -63,6 +63,7 @@ ostream &operator<<(ostream &stream, DetectorElement detE)
 	return stream;
 }
 
+// do we ever need this?
 bool DetectorElement::operator == (const DetectorElement& detE) const
 {
 	// Name uniquely identifies a volume

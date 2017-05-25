@@ -1,9 +1,6 @@
 #ifndef  DETECTORELEMENT_H
 #define  DETECTORELEMENT_H
 
-// c++
-#include <string>
-using namespace std;
 
 // geant4
 #include "G4PVPlacement.hh"
