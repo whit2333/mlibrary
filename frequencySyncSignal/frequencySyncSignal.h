@@ -1,5 +1,5 @@
 #ifndef FREQUENCYSYNCSIGNAL_H
-#define FREQUENCYSYNCSIGNAL_H
+#define FREQUENCYSYNCSIGNAL_H 1
 
 // c++
 #include <string>

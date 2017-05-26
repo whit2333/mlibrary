@@ -1,3 +1,14 @@
+5/26/17
+- added utilities for QT object conversions to c++
+- Removed, I think they fixed it?
+	#ifdef _MSC_VER
+		return input.toString().toLatin1();
+	#else
+
+return input.toString().toStdString();
+}
+
+
 9/13/16
 - added function to fill a string with a char until it is ndigits long
 

@@ -1,9 +1,13 @@
 #ifndef GSTRING_H
-#define GSTRING_H
+#define GSTRING_H 1
 
+// c++
 #include <vector>
 #include <string>
 using namespace std;
+
+// qt
+#include <QtXml>
 
 namespace gstring
 {
@@ -21,6 +25,22 @@ namespace gstring
 
 	// adds zeros to fill totDigits
 	string fillDigits(string word, string c, int ndigits);
+
+
+	// returns values (with defaults) from a QDomElement
+	string assignAttribute(QDomElement e, string attribute, string defaultValue);
+	int    assignAttribute(QDomElement e, string attribute, int defaultValue);
+	double assignAttribute(QDomElement e, string attribute, double defaultValue);
+
+	// returns a string from a QVariant
+	inline string qVariantToStdString(QVariant input) {
+		return input.toString().toStdString();
+	}
+
+	// getting a number from a string that contains units
+	double getG4Number(string input, bool warnIfNotUnit = false);  
+
+
 }
 
 

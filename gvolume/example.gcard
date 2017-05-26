@@ -1,0 +1,12 @@
+<gcard>
+
+	<system name="ctof" factory="TEXT" variation="cad" run="12"/>
+	<system name="cad/" factory="CAD"/>
+
+
+	<modifier volume="ec_s3">
+		<position x="0*cm"  y="0*cm"  z="200*cm"  />
+		<rotation x="0*deg"  y="0*deg"  z="20*deg"  />
+	</modifier>
+
+</gcard>

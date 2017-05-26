@@ -15,7 +15,8 @@ extern array<string, 20> gTableValidKeys;
 extern array<string, 20> GVolumeNecessaryKeys;
 
 
-// the class GTable is the interface to the detector
+// GTable is the interface to the detector
+// This class is read by the different factories: CAD, GDML, TEXT and MYSQL
 class GTable {
 public:
 	GTable();
@@ -38,7 +39,7 @@ public:
 	GVolume(GTable gt);
 
 private:
-	string        name;   ///< Name of the volume. Since this is the key of the STL map, it has to be unique.
+	string        name;   ///< Name of the volume.
 	string      mother;   ///< Mother Volume name.
 	string description;   ///< Volume Description, for documentation.
 	string     factory;   ///< Provenience. It can be perl, pyton, cad or gdml
