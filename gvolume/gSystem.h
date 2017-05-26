@@ -8,8 +8,9 @@ using namespace std;
 // gvolume
 #include "gVolume.h"
 
-// options
+// mlibrary
 #include "goptions.h"
+#include "gfactory.h"
 
 #define setupLogHeader " - setup:"
 
@@ -43,16 +44,19 @@ public:
 		if(dr != r) cout << " (non default) ";
 		cout << endl;
 	}
+	void setPaths(vector<string> p) {paths = p;}
 
 private:
-	string      name;    // System name
-	string   factory;    // Factory that builds the detector
-	string variation;    // Variation of the detector. Default is "default"
-	int    runNumber;    // Run Number selected for this detector. Default is 1
+	string      name;     // System name
+	string   factory;     // Factory that builds the detector
+	string variation;     // Variation of the detector. Default is "default"
+	int    runNumber;     // Run Number selected for this detector. Default is 1
+	vector<string> paths; // Paths to system data
 
 	// map containing the volumes
 	// the key is system + volume name so the names must be unique in each system
 	map<string, GVolume*> systems;
+	map<string, GManager> systemGFactories;
 
 };
 
@@ -67,7 +71,7 @@ private:
 	map<string, GModifiers*> setupModifiers;
 
 public:
-	// GSetup options
+	// GSetup options - defined in utilities.cc
 	static map<string, GOption> defineOptions();
 
 };

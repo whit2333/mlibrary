@@ -1,5 +1,5 @@
 #ifndef  GDL_H
-#define  GDL_H
+#define  GDL_H 1
 
 // this code is based on this tutorial:
 // https://0x00sec.org/t/c-dynamic-loading-of-shared-objects-at-runtime/1498

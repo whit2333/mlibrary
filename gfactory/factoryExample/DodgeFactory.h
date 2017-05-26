@@ -1,5 +1,5 @@
 #ifndef SECONDFACTORY_H
-#define SECONDFACTORY_H
+#define SECONDFACTORY_H 1
 
 #include "Car.h"
 

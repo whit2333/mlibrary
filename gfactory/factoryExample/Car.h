@@ -1,5 +1,5 @@
 #ifndef CAR_H
-#define CAR_H
+#define CAR_H 1
 
 #include "gfactory.h"
 
@@ -9,7 +9,7 @@ public:
 	virtual void go() = 0;
 	virtual ~Car() = default;
 
-
+	// this method must be present for the dynamic loaded factories
 	static Car* instantiate(const dlhandle handle) {
 
 		if (handle == nullptr) return nullptr;

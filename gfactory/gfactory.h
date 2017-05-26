@@ -1,5 +1,5 @@
 #ifndef  GFACTORY_H
-#define  GFACTORY_H
+#define  GFACTORY_H 1
 
 // this code is based on TheComet tutorial here:
 // https://www.gamedev.net/topic/683154-c-extend-class-in-dll/

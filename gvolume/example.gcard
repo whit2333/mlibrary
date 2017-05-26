@@ -1,7 +1,10 @@
 <gcard>
 
 	<system name="ctof" factory="TEXT" variation="cad" runno="12"/>
+
+	<!--
 	<system name="cad/" factory="CAD"/>
+	-->
 
 	<modifier volume="ec_s3" position="0, 0, 0 cm"/>
 	<modifier volume="ec_s4" rotation="0, 0, 0 cm" position="10, 20, 30 cm"/>

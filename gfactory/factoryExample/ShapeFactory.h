@@ -1,5 +1,5 @@
 #ifndef FIRSTFACTORY_H
-#define FIRSTFACTORY_H
+#define FIRSTFACTORY_H 1
 
 #include <string>
 using namespace std;
