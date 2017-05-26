@@ -50,7 +50,7 @@
 /// \author mail: ungaro@jlab.org\n\n\n
 
 #ifndef GOPTIONS_H
-#define GOPTIONS_H
+#define GOPTIONS_H 1
 
 // qt
 #include <QDomDocument>

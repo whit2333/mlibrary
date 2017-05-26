@@ -1,27 +1,22 @@
 /// \file example.cc
 
-// example on how to use the text progress bar library
+// example on how to use load a setup
 
-// text progress bar
-#include "gvolume.h"
+// options
+#include "gSystem.h"
 
 // c++
 #include <iostream>
 using namespace std;
 
+// options
+#include "goptions.h"
+
 
 //! example of main declaring GOptions
 int main(int argc, char* argv[])
 {
-
-	int nevents = 100000000;
-
-	TextProgressBar bar(20, "  index progress: ", 1, nevents);
-
-	for(int i=1; i<nevents; i++) {
-		bar.setProgress(i);
-
-	}
+	GOptions *gopts = new GOptions(argc, argv, GSetup::defineOptions(), 1);
 
 	return 1;
 }

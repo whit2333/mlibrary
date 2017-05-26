@@ -8,9 +8,6 @@
 #include <map>
 using namespace std;
 
-//// options
-//#include "goptions.h"
-
 extern array<string, 20> gTableValidKeys;
 extern array<string, 20> GVolumeNecessaryKeys;
 

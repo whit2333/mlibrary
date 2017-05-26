@@ -8,6 +8,10 @@ using namespace std;
 // gvolume
 #include "gVolume.h"
 
+// options
+#include "goptions.h"
+
+
 class GSystem {
 
 private:
@@ -27,5 +31,17 @@ private:
 
 };
 
+class GSetup {
+	// constructor from a gcard
+	GSetup(GOptions* gopt);
+
+private:
+	map<string, GSystem> setup;
+
+public:
+	// GSetup options
+	static map<string, GOption> defineOptions();
+
+};
 
 #endif

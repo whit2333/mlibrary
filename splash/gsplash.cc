@@ -75,7 +75,7 @@ GSplash::~GSplash()
 
 /*! \fn map<string, GOption> GSplash::defineOptions()
 
- \return the class options - users should overwrite these
+ \return defines GSplash specific options
 
  */
 map<string, GOption> GSplash::defineOptions()

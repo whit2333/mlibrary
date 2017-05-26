@@ -22,7 +22,7 @@
 /// \author mail: ungaro@jlab.org\n\n\n
 
 #ifndef GSPLASH_H
-#define GSPLASH_H
+#define GSPLASH_H 1
 
 // options
 #include "goptions.h"
