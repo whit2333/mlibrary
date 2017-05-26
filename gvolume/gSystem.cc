@@ -58,4 +58,29 @@ GSetup::GSetup(GOptions* gopt, int runNo)
 	}
 
 
+	// loading static factories with setup verbosity
+	GManager gSystemManager(gopt->getInt("vsetup"));
+
+	for(auto &s : setup) {
+		string gSFactoryType = s.second->getFactory();
+
+		if(gSFactoryType == "text") {
+			// factory not found, registering it in the manager and loading it into the map
+			if(systemFactory.find(gSFactoryType) == systemFactory.end()) {
+				gSystemManager.RegisterObjectFactory<GSystemTextFactory>(gSFactoryType);
+				systemFactory[gSFactoryType] = gSystemManager.CreateObject<GSystemFactory>(gSFactoryType);
+			}
+		}
+	}
+
+	// now building the detector
+
+}
+
+
+GSystem::GSystem(string n, string f, string v, int r, int dr) : name(n), factory(f), variation(v), runNumber(r) {
+	cout << setupLogHeader << " System " << name << " loaded with factory " << factory;
+	cout << ", variation: " << variation << ", run number: " << runNumber ;
+	if(dr != r) cout << " (non default) ";
+	cout << endl;
 }

@@ -1,6 +1,9 @@
 <gcard>
 
-	<system name="ctof" factory="TEXT" variation="cad" runno="12"/>
+<system name="ctof" factory="text" variation="cad" runno="12"/>
+<system name="ctof" factory="text" variation="cad" runno="12"/>
+<system name="ctof" factory="text" variation="cad" runno="12"/>
+<system name="ctof" factory="text" variation="cad" runno="12"/>
 
 	<!--
 	<system name="cad/" factory="CAD"/>

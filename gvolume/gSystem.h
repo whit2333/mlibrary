@@ -8,9 +8,11 @@ using namespace std;
 // gvolume
 #include "gVolume.h"
 
+
 // mlibrary
 #include "goptions.h"
 #include "gfactory.h"
+#include "systemFactories/systemTextFactory.h"
 
 #define setupLogHeader " - setup:"
 
@@ -35,29 +37,23 @@ private:
 	bool present; // true by default
 };
 
+
 class GSystem {
 
 public:
-	GSystem(string n, string f, string v, int r, int dr) : name(n), factory(f), variation(v), runNumber(r) {
-		cout << setupLogHeader << " System " << name << " loaded with factory " << factory;
-		cout << ", variation: " << variation << ", run number: " << runNumber ;
-		if(dr != r) cout << " (non default) ";
-		cout << endl;
-	}
-	void setPaths(vector<string> p) {paths = p;}
+	GSystem(string n, string f, string v, int r, int dr);
+public:
+	string getFactory() const { return factory; }
 
 private:
 	string      name;     // System name
 	string   factory;     // Factory that builds the detector
 	string variation;     // Variation of the detector. Default is "default"
 	int    runNumber;     // Run Number selected for this detector. Default is 1
-	vector<string> paths; // Paths to system data
 
 	// map containing the volumes
 	// the key is system + volume name so the names must be unique in each system
 	map<string, GVolume*> systems;
-	map<string, GManager> systemGFactories;
-
 };
 
 class GSetup {
@@ -69,6 +65,7 @@ public:
 private:
 	map<string, GSystem*> setup;
 	map<string, GModifiers*> setupModifiers;
+	map<string, GSystemFactory*> systemFactory;
 
 public:
 	// GSetup options - defined in utilities.cc

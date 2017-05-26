@@ -1,11 +1,16 @@
 #ifndef SYSTEMTEXTFACTORY_H
 #define SYSTEMTEXTFACTORY_H 1
 
+#include "systemFactory.h"
+
 // system factory
-class GSystemTextFactory
+class GSystemTextFactory : GSystemFactory
 {
 public:
-	void loadSystem();
+	void loadSystem(GOptions* gopt);
+private:
+	vector<string> paths; // Paths to system data
+
 };
 
 
