@@ -18,6 +18,10 @@ int main(int argc, char* argv[])
 {
 	GOptions *gopts = new GOptions(argc, argv, GSetup::defineOptions(), 1);
 
+	GSetup *setup = new GSetup(gopts);
+
+	if(gopts) delete gopts;
+	delete setup;
 	return 1;
 }
 

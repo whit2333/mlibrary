@@ -94,9 +94,9 @@ int GOptions::parseConfigurationFile(string file)
 	if(file == "na") return 0;
 
 	// this will fail if gcard not valid or not existing
-	QDomDocument domDocument = checkAndParseGCard(file);
+	checkAndParseGCard(file);
 
-	QDomNodeList options = domDocument.firstChildElement().elementsByTagName("option");
+	QDomNodeList options = configurationQDomDocument.firstChildElement().elementsByTagName("option");
 	for(int i = 0; i < options.count(); i++) {
 		QDomNode elm = options.at(i);
 		if(elm.isElement()) {
@@ -107,7 +107,6 @@ int GOptions::parseConfigurationFile(string file)
 			// set option value if found
 			setOptionValue(optionKey, value);
 		}
-
 	}
 	cout << " Configuration file: " << file << " parsed into options map." << endl;
 	return 1;
@@ -208,10 +207,6 @@ void GOptions::setOptionValue(string optionKey, string value)
 
 
 
-
-
-
-
 /*! \fn  GOptions::checkAndParseGCard(string file)
 
  - Checks if the gcard is valid
@@ -219,28 +214,24 @@ void GOptions::setOptionValue(string optionKey, string value)
  - Parse the gcard onto a QDomDocument
 
  \param file the filename
- \return the QDomDocument
-
  */
-QDomDocument GOptions::checkAndParseGCard(string file)
+void GOptions::checkAndParseGCard(string file)
 {
-	QDomDocument domDocument;
+	configurationQDomDocument = QDomDocument();
 
 	QFile gcard(file.c_str());
 
 	if( !gcard.exists() ) {
-		cout << " >>  gcard: " << file << " not found. Exiting." << endl;
+		cout << " !!! Fatal error:" << file << " not found." << endl;
 		exit(0);
 	}
 
 	// opening gcard and filling domDocument
-	if(!domDocument.setContent(&gcard)) {
-		cout << " >>  xml format for file <" << file << "> is wrong - check XML syntax. Exiting." << endl;
+	if(!configurationQDomDocument.setContent(&gcard)) {
+		cout << " !!! Fatal error: <" << file << "> has wrong XML syntax. You can use online validators like http://www.xmlvalidation.com to fix it." << endl;
 		exit(0);
 	}
 	gcard.close();
-
-	return domDocument;
 }
 
 /*! \fn GOptions::findCLOption(string o, int argc, char *argv[])

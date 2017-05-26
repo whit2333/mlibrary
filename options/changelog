@@ -1,6 +1,8 @@
+5/26/17
+ - making domDocument public
+
 7/14/16
  - overload += to add two maps
-
 
 7/12/16
  - Added getValues functions in GOptions class

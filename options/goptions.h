@@ -254,6 +254,8 @@ public:
 	// multiple options
 	vector<string> getStrings(string optionKey);
 
+	// configuration file
+	QDomDocument configurationQDomDocument;
 
 private:
 
@@ -281,7 +283,7 @@ private:
 
 	string findConfigurationFile(int argc, char *argv[]);  ///< finds a configuration file (gcard). Returns "na' if not found.
 	int parseConfigurationFile(string file);               ///< parse a gcard in the GOptions map
-	QDomDocument checkAndParseGCard(string file);          ///< check a gcard and parse it in a QDomDocument
+	void checkAndParseGCard(string file);                  ///< check a gcard and parse it in a QDomDocument
 	void checkAndParseCommandLine(int argc, char *argv[]); ///< check and parse the command line options
 	string findCLOption(string o, int argc, char *argv[]); ///< finds an option from the command line arguments
 	void printUserSettings();                              ///< print all user settings
