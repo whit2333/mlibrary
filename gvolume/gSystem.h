@@ -11,21 +11,34 @@ using namespace std;
 // options
 #include "goptions.h"
 
+#define setupLogHeader " - setup:"
 
 class GModifiers {
+public:
+	GModifiers(string n, string s, string t, string e) : name(n), shift(s), tilts(t) {
+
+		present = true;
+		if(e == "no") present = false;
+
+
+		cout << setupLogHeader <<  " Volume " << name << " modified with:";
+		if (  shift != "default") cout << " - shift: "     << shift   ;
+		if (  tilts != "default") cout << " - tilts: "     << tilts   ;
+		if (present != true)      cout << " - existance: " << present ;
+		cout << endl;
+	}
 private:
 	string name;  // volume name
 	string shift;
 	string tilts;
 	bool present; // true by default
-
 };
 
 class GSystem {
 
 public:
 	GSystem(string n, string f, string v, int r, int dr) : name(n), factory(f), variation(v), runNumber(r) {
-		cout << " System " << name << " loaded with factory " << factory;
+		cout << setupLogHeader << " System " << name << " loaded with factory " << factory;
 		cout << ", variation: " << variation << ", run number: " << runNumber ;
 		if(dr != r) cout << " (non default) ";
 		cout << endl;
