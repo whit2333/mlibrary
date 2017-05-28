@@ -99,7 +99,7 @@ public:
 	 - 0: no not print any log
 	 - 1: print gmanager registering and instantiating classes
 	 */
-	GManager(int v = 0) : verbosity(v) {}
+	GManager( int v = 0, string log = " > ") : verbosity(v), logHeader(log) {}
 	
 public:
 	/**
@@ -114,8 +114,8 @@ public:
 	template <class Derived> void RegisterObjectFactory(string name) {
 		factoryMap[name] = new GFactory<Derived>();
 		if(verbosity > 0) {
-			cout << " GManager: Registering " << name << " factory.";
-			cout << " Factory database size is now: " << factoryMap.size() << endl;
+			cout << logHeader << " GManager: Registering " << name << " factory.";
+			cout << logHeader << " Factory database size is now: " << factoryMap.size() << endl;
 		}
 	}
 	
@@ -133,7 +133,7 @@ public:
 		if(factory == factoryMap.end())
 			return nullptr;
 		if(verbosity > 0) {
-			cout << " GManager: Creating factory " << name << endl;
+			cout << logHeader << " GManager: Creating factory " << name << endl;
 		}
 		return static_cast<Base*>(factory->second->Create());
 	}
@@ -147,7 +147,7 @@ public:
 	void registerDL(string name) {
 		dlMap[name] = new DynamicLib("./lib" + name + ".dylib");
 		if(verbosity > 0) {
-			cout << " GManager: Loading DL " << name << endl;
+			cout << logHeader << " GManager: Loading DL " << name << endl;
 		}
 	}
 	
@@ -162,7 +162,7 @@ public:
 		// will return nullptr if handle is null
 		
 		if(verbosity > 0) {
-			cout << " GManager: Creating factory " << name << endl;
+			cout << logHeader << " GManager: Creating factory " << name << endl;
 		}
 		return T::instantiate(dlMap[name]->handle);
 	}
@@ -198,6 +198,7 @@ private:
 	map<string, DynamicLib*> dlMap;
 	
 	int verbosity;
+	string logHeader;
 };
 
 #endif

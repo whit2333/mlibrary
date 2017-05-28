@@ -18,17 +18,18 @@ using namespace std;
 
 class GModifiers {
 public:
-	GModifiers(string n, string s, string t, string e) : name(n), shift(s), tilts(t) {
+	GModifiers(string n, string s, string t, string e, int verbosity) : name(n), shift(s), tilts(t) {
 
 		present = true;
 		if(e == "no") present = false;
 
-
-		cout << setupLogHeader <<  " Volume " << name << " modified with:";
-		if (  shift != "default") cout << " - shift: "     << shift   ;
-		if (  tilts != "default") cout << " - tilts: "     << tilts   ;
-		if (present != true)      cout << " - existance: " << present ;
-		cout << endl;
+		if(verbosity > 0) {
+			cout << setupLogHeader <<  " Volume " << name << " modified with:";
+			if (  shift != "default") cout << " - shift: "     << shift   ;
+			if (  tilts != "default") cout << " - tilts: "     << tilts   ;
+			if (present != true)      cout << " - existance: " << present ;
+			cout << endl;
+		}
 	}
 private:
 	string name;  // volume name
@@ -41,7 +42,7 @@ private:
 class GSystem {
 
 public:
-	GSystem(string n, string f, string v, int r, int dr);
+	GSystem(string n, string f, string v, int r, int dr, int verbosity);
 public:
 	string getFactory() const { return factory; }
 
@@ -66,7 +67,10 @@ private:
 	map<string, GSystem*> setup;
 	map<string, GModifiers*> setupModifiers;
 	map<string, GSystemFactory*> systemFactory;
-
+	
+	GManager gSystemManager;
+	void registerFactory(string factoryType);
+	
 public:
 	// GSetup options - defined in utilities.cc
 	static map<string, GOption> defineOptions();

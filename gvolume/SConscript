@@ -6,6 +6,7 @@ sources = Split("""
 	gVolume.cc
 	utilities.cc
 	gSystem.cc
+	systemFactories/registerFactory.cc
 	systemFactories/systemTextFactory.cc
 	""")
 
