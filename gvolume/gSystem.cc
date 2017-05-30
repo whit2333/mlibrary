@@ -60,20 +60,9 @@ GSetup::GSetup(GOptions* gopt, int runNo)
 		domNode = domNode.nextSibling();
 	}
 
-
-	// gSystemManager load factories with setup verbosity
 	gSystemManager = GManager(verbosity, setupLogHeader);
+	registerFactoriesAndLoadSystems(gopt);
 
-	// registering the needed factories
-	for(auto &s : setup) {
-		registerFactory(s.second->getFactory());
-	}
-
-	// now loading detector definitions
-	for(auto &s : setup) {
-		string factory = s.second->getFactory();
-		systemFactory[factory]->loadSystem(gopt);
-	}
 }
 
 

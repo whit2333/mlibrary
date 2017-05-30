@@ -12,7 +12,7 @@ using namespace std;
 // mlibrary
 #include "goptions.h"
 #include "gfactory.h"
-#include "systemFactories/text/systemTextFactory.h"
+
 
 #define setupLogHeader " - setup:"
 
@@ -45,6 +45,7 @@ public:
 	GSystem(string n, string f, string v, int r, int dr, int verbosity);
 public:
 	string getFactory() const { return factory; }
+	string getName() const    { return name; }
 
 private:
 	string      name;     // System name
@@ -57,6 +58,7 @@ private:
 	map<string, GVolume*> systems;
 };
 
+
 class GSetup {
 public:
 	// constructor from a gcard
@@ -66,10 +68,10 @@ public:
 private:
 	map<string, GSystem*> setup;
 	map<string, GModifiers*> setupModifiers;
-	map<string, GSystemFactory*> systemFactory;
-	
+
+	// manager to register the factories
 	GManager gSystemManager;
-	void registerFactory(string factoryType);
+	void registerFactoriesAndLoadSystems(GOptions* gopt);
 	
 public:
 	// GSetup options - defined in utilities.cc

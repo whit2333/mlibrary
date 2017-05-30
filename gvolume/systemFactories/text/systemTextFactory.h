@@ -7,10 +7,10 @@
 class GSystemTextFactory : GSystemFactory
 {
 public:
-	void loadSystem(GOptions* gopt) {
+	void loadSystem(GOptions* gopt, GSystem *s) {
 		verbosity = gopt->getInt("vsetup");
 		if(verbosity > 1) {
-			cout << " Loading <text> systems " << endl;
+			cout << " Loading <text> system " << s->getName() << endl;
 		}
 		loadMaterial();
 		loadGeometry();

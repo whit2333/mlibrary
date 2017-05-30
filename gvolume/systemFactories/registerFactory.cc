@@ -1,13 +1,36 @@
+// gVolume
 #include "gSystem.h"
+#include "systemFactory.h"
+#include "text/systemTextFactory.h"
 
-void GSetup::registerFactory(string factoryType)
+// mlibrary
+#include "gfactory.h"
+
+void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 {
-	if(factoryType == "text") {
-		// factory not found, registering it in the manager and loading it into the map
-		if(systemFactory.find(factoryType) == systemFactory.end()) {
-			gSystemManager.RegisterObjectFactory<GSystemTextFactory>(factoryType);
-			systemFactory[factoryType] = gSystemManager.CreateObject<GSystemFactory>(factoryType);
+
+	map<string, GSystemFactory*> systemFactory;
+
+	for(auto &s : setup) {
+		string factory = s.second->getFactory();
+
+		if(factory == "text") {
+			// factory not found, registering it in the manager and loading it into the map
+			if(systemFactory.find(factory) == systemFactory.end()) {
+				gSystemManager.RegisterObjectFactory<GSystemTextFactory>(factory);
+				systemFactory[factory] = gSystemManager.CreateObject<GSystemFactory>(factory);
+			}
 		}
+
 	}
-	
+
+
+
+	// now loading detector definitions
+	for(auto &s : setup) {
+		string factory = s.second->getFactory();
+		systemFactory[factory]->loadSystem(gopt, setup[s.first]);
+	}
+
+
 }

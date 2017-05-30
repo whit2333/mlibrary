@@ -9,11 +9,15 @@ using namespace std;
 // mlibrary
 #include "goptions.h"
 
+// gVolume
+#include "gSystem.h"
+
+
 // system factory
 class GSystemFactory
 {
 public:
-	virtual void loadSystem(GOptions* gopt) = 0;
+	virtual void loadSystem(GOptions* gopt, GSystem *s) = 0;
 	virtual ~GSystemFactory() = default;
 
 private:
