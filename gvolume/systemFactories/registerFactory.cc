@@ -1,7 +1,5 @@
 #include "gSystem.h"
 
-
-
 void GSetup::registerFactory(string factoryType)
 {
 	if(factoryType == "text") {

@@ -12,7 +12,7 @@ using namespace std;
 // mlibrary
 #include "goptions.h"
 #include "gfactory.h"
-#include "systemFactories/systemTextFactory.h"
+#include "systemFactories/text/systemTextFactory.h"
 
 #define setupLogHeader " - setup:"
 
