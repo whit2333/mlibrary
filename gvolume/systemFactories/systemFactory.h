@@ -16,6 +16,11 @@ public:
 	virtual void loadSystem(GOptions* gopt) = 0;
 	virtual ~GSystemFactory() = default;
 
+private:
+	virtual void loadMaterial() = 0;
+	virtual void loadGeometry() = 0;
+	
+
 };
 
 #endif

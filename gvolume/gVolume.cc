@@ -117,8 +117,6 @@ GVolume::GVolume(GTable gt)
 			else if(s == "mirrorMat")     mirrorMat = tableValue;
 		}
 	}
-
-
 }
 
 

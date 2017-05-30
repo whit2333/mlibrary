@@ -11,6 +11,10 @@ public:
 private:
 	vector<string> paths; // Paths to system data
 
+private:
+	virtual void loadMaterial();
+	virtual void loadGeometry();
+
 };
 
 
