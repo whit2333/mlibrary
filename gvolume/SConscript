@@ -7,7 +7,8 @@ sources = Split("""
 	utilities.cc
 	gSystem.cc
 	systemFactories/registerFactory.cc
-	systemFactories/text/systemTextFactory.cc
+	systemFactories/text/gMaterial.cc
+	systemFactories/text/gVolume.cc
 	""")
 
 lib = env.Library(source = sources, target = "../lib/gVolume")

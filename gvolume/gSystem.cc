@@ -12,7 +12,6 @@ GSetup::GSetup(GOptions* gopt, int runNo)
 	QDomDocument domDocument = gopt->configurationQDomDocument;
 	int verbosity = gopt->getInt("vsetup");
 	
-	
 	// load the systems
 	QDomNode domNode = domDocument.documentElement().firstChild();
 	while(!domNode.isNull()) {

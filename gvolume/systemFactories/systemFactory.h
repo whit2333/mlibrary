@@ -20,7 +20,6 @@ private:
 	virtual void loadMaterial() = 0;
 	virtual void loadGeometry() = 0;
 	
-
 };
 
 #endif
