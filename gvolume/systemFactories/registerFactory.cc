@@ -14,8 +14,10 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 	for(auto &s : setup) {
 		string factory = s.second->getFactory();
 
+		// text
+		// ----
 		if(factory == "text") {
-			// factory not found, registering it in the manager and loading it into the map
+			// if factory not found, registering it in the manager and loading it into the map
 			if(systemFactory.find(factory) == systemFactory.end()) {
 				gSystemManager.RegisterObjectFactory<GSystemTextFactory>(factory);
 				systemFactory[factory] = gSystemManager.CreateObject<GSystemFactory>(factory);
@@ -25,11 +27,12 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 	}
 
 
-
 	// now loading detector definitions
 	for(auto &s : setup) {
-		string factory = s.second->getFactory();
-		systemFactory[factory]->loadSystem(gopt, setup[s.first]);
+		string factory    = s.second->getFactory();
+		string systemName = s.first;
+		
+		systemFactory[factory]->loadSystem(gopt, setup[systemName]);
 	}
 
 

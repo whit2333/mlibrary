@@ -4,6 +4,7 @@
 
 // c++
 #include <iostream>
+#include <fstream>
 
 ostream &operator<<(ostream &stream, GVolume gVol)
 {
@@ -66,7 +67,7 @@ map<string, GOption> GSetup::defineOptions()
 	optionsMap["addSystem"].addHelp(" - system run number (default: 1)\n");
 	optionsMap["addSystem"].addHelp(" Example: -addSystem=\"ctof, cad, default, 12\"\n");
 
-	optionsMap["setupDir"] = GOption("Add a path to check for setup", "na", "system", true);
+	optionsMap["setupDir"] = GOption("Path(s) to check for setup, separated by space", "na", "system", true);
 
 	optionsMap["vsetup"] = GOption("Setup Verbosity", 1, "system");
 	optionsMap["vsetup"].addHelp("Possible values:\n");
@@ -78,6 +79,35 @@ map<string, GOption> GSetup::defineOptions()
 }
 
 
+ifstream GSystem::gSystemFile(int which, vector<string> locations, int verbosity)
+{
+	string fname;
+	if(which == 0)       fname = name +  "__materials_" ;
+	else if (which == 1) fname = name +  "__geometry_" ;
+	fname += variation + ".txt";
+
+	// default dir is "."
+	ifstream IN(fname.c_str());
+
+	if(!IN) {
+		for(auto locs : locations) {
+			string newName = locs + "/" + fname;
+			ifstream IN(newName.c_str());
+			if(verbosity > 1) {
+				cout << setupLogHeader << " Trying " << newName << endl;
+			}
+			if(IN) {
+				if(verbosity > 0) {
+					cout << setupLogHeader << " Opening " << newName << endl;
+				}
+				return  IN;
+			}
+		}
+	}
+
+	return IN;
+
+}
 
 
 

@@ -7,8 +7,8 @@
 using namespace std;
 
 
-void GSystemTextFactory::loadMaterial() {
+void GSystemTextFactory::loadMaterial(GOptions* gopt, GSystem *s) {
 	if(verbosity > 1) {
-		cout << " Loading <text> materials " << endl;
+		cout << setupLogHeader << " Loading <text> materials for " <<  s->getName() << endl;
 	}
 }

@@ -60,7 +60,9 @@ GSetup::GSetup(GOptions* gopt, int runNo)
 		domNode = domNode.nextSibling();
 	}
 
+	// now loading gmanager
 	gSystemManager = GManager(verbosity, setupLogHeader);
+	// register the factories needed and load the systems
 	registerFactoriesAndLoadSystems(gopt);
 
 }

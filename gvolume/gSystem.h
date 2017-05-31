@@ -43,9 +43,11 @@ class GSystem {
 
 public:
 	GSystem(string n, string f, string v, int r, int dr, int verbosity);
+
 public:
 	string getFactory() const { return factory; }
 	string getName() const    { return name; }
+	ifstream gSystemFile(int which, vector<string> locations, int verbosity);  // 0: material. 1: geometry
 
 private:
 	string      name;     // System name
@@ -56,6 +58,8 @@ private:
 	// map containing the volumes
 	// the key is system + volume name so the names must be unique in each system
 	map<string, GVolume*> systems;
+
+
 };
 
 

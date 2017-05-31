@@ -1,3 +1,7 @@
+5/31/17
+ - added utility to open geo and material files
+ - implementing verbosity throughout
+
 5/27/17
  - added factory registration with verbosity and logheader
 

@@ -1,7 +1,11 @@
 #ifndef SYSTEMTEXTFACTORY_H
 #define SYSTEMTEXTFACTORY_H 1
 
+// gvolume
 #include "../systemFactory.h"
+
+// c++
+// #include <fstream>
 
 // system factory
 class GSystemTextFactory : GSystemFactory
@@ -10,10 +14,10 @@ public:
 	void loadSystem(GOptions* gopt, GSystem *s) {
 		verbosity = gopt->getInt("vsetup");
 		if(verbosity > 1) {
-			cout << " Loading <text> system " << s->getName() << endl;
+			cout << setupLogHeader << " Loading <text> system " << s->getName() << endl;
 		}
-		loadMaterial();
-		loadGeometry();
+		loadMaterial(gopt, s);
+		loadGeometry(gopt, s);
 	}
 
 private:
@@ -21,8 +25,8 @@ private:
 	int verbosity;
 
 private:
-	virtual void loadMaterial();
-	virtual void loadGeometry();
+	virtual void loadMaterial(GOptions* gopt, GSystem *s);
+	virtual void loadGeometry(GOptions* gopt, GSystem *s);
 
 };
 
