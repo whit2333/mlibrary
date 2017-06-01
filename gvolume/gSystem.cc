@@ -67,7 +67,7 @@ GSetup::GSetup(GOptions* gopt, int runNo)
 
 }
 
-
+// init system based on name, factory, variation and run number
 GSystem::GSystem(string n, string f, string v, int r, int dr, int verbosity) : name(n), factory(f), variation(v), runNumber(r) {
 	if(verbosity > 0) {
 		cout << setupLogHeader << " System " << name << " factory: " << factory;
@@ -77,7 +77,7 @@ GSystem::GSystem(string n, string f, string v, int r, int dr, int verbosity) : n
 	}
 }
 
-
+// build and add a volume to the map
 void GSystem::addGVolume(vector<string> pars, int verbosity)
 {
 	if( pars.size() != gVolumeNumberOfParameters) {
