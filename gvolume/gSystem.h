@@ -13,7 +13,6 @@ using namespace std;
 #include "goptions.h"
 #include "gfactory.h"
 
-
 #define setupLogHeader " - setup:"
 
 class GModifiers {
@@ -48,6 +47,12 @@ public:
 	string getFactory() const { return factory; }
 	string getName() const    { return name; }
 	ifstream gSystemFile(int which, vector<string> locations, int verbosity);  // 0: material. 1: geometry
+
+	void addGVolume(vector<string> pars, int verbosity);
+
+	GVolume* getGVolume(string key) {
+		return systems[key];
+	}
 
 private:
 	string      name;     // System name

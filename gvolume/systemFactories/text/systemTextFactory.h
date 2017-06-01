@@ -4,9 +4,6 @@
 // gvolume
 #include "../systemFactory.h"
 
-// c++
-// #include <fstream>
-
 // system factory
 class GSystemTextFactory : GSystemFactory
 {

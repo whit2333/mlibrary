@@ -11,7 +11,6 @@ ostream &operator<<(ostream &stream, GVolume gVol)
 	cout  << endl;
 	cout << "   Volume Name:  "    << gVol.name     << "  -  " <<  gVol.description << endl;
 	cout << "   Mother:  "         << gVol.mother              << endl;
-	cout << "   Factory:  "        << gVol.factory             << endl;
 	cout << "   Type:  "           << gVol.type                << endl;
 	cout << "   Dimensions:  "     ;
 
@@ -41,6 +40,7 @@ ostream &operator<<(ostream &stream, GVolume gVol)
 	cout << "   Rotation:       "  << gVol.rot << endl;
 
 	cout << "   Sensitivity: "     << gVol.sensitivity << endl;
+	cout << "   Touchable ID: "    << gVol.touchableID << endl;
 
 	return stream;
 }
@@ -74,6 +74,7 @@ map<string, GOption> GSetup::defineOptions()
 	optionsMap["vsetup"].addHelp(" - 0: silent\n");
 	optionsMap["vsetup"].addHelp(" - 1: summary information\n");
 	optionsMap["vsetup"].addHelp(" - 2: details\n");
+	optionsMap["vsetup"].addHelp(" - 3: verbose details\n");
 
 	return optionsMap;
 }
@@ -84,25 +85,30 @@ ifstream GSystem::gSystemFile(int which, vector<string> locations, int verbosity
 	string fname;
 	if(which == 0)       fname = name +  "__materials_" ;
 	else if (which == 1) fname = name +  "__geometry_" ;
+	else if (which == 2) fname = name +  "__mirrors_" ;
 	fname += variation + ".txt";
 
 	// default dir is "."
 	ifstream IN(fname.c_str());
 
-	if(!IN) {
+	if(!IN.good()) {
 		for(auto locs : locations) {
 			string newName = locs + "/" + fname;
-			ifstream IN(newName.c_str());
+			IN.open(newName.c_str());
 			if(verbosity > 1) {
 				cout << setupLogHeader << " Trying " << newName << endl;
 			}
-			if(IN) {
+			if(IN.good()) {
 				if(verbosity > 0) {
 					cout << setupLogHeader << " Opening " << newName << endl;
 				}
 				return  IN;
 			}
 		}
+		if(verbosity > 1) {
+			cout << setupLogHeader << " File " << fname << "not found " << endl;
+		}
+
 	}
 
 	return IN;

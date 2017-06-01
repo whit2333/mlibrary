@@ -78,6 +78,17 @@ GSystem::GSystem(string n, string f, string v, int r, int dr, int verbosity) : n
 }
 
 
+void GSystem::addGVolume(vector<string> pars, int verbosity)
+{
+	if( pars.size() != gVolumeNumberOfParameters) {
+		cout << " !!! Error: Incorrect number of system parameters (" << pars.size() << ") for " << pars[0] << endl;
+	} else {
+		systems[pars[0]] = new GVolume(pars);
+		if(verbosity == 3) {
+			cout << setupLogHeader << ": adding " << systems[pars[0]] << endl;
+		}
+	}
+}
 
 
 

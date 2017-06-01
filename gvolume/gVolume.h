@@ -8,38 +8,18 @@
 #include <map>
 using namespace std;
 
-extern array<string, 20> gTableValidKeys;
-extern array<string, 20> GVolumeNecessaryKeys;
-
-
-// GTable is the interface to the detector
-// This class is read by the different factories: CAD, GDML, TEXT and MYSQL
-class GTable {
-public:
-	GTable();
-
-private:
-	map<string, string> gtable;
-
-public:
-	bool addData(string key, string data);
-	string getData(string key);
-
-private:
-	bool isValidKey(string key);
-	
-};
+#define gVolumeNumberOfParameters 19
+extern array<string, gVolumeNumberOfParameters> gVolumeValidKeys;
 
 class GVolume
 {
 public:
-	GVolume(GTable gt);
+	GVolume(vector<string> pars);
 
 private:
 	string        name;   ///< Name of the volume.
 	string      mother;   ///< Mother Volume name.
 	string description;   ///< Volume Description, for documentation.
-	string     factory;   ///< Provenience. It can be perl, pyton, cad or gdml
 
 	// solid parameters
 	string        type;   ///< solid type. This follows the GEANT4 definitions
@@ -59,6 +39,7 @@ private:
 	string          rot;   ///< Rotation Matrix, defined by rotations along x,y,z axis relative to the mother volume
 
 	string  sensitivity;   ///< Assigns digitization type and collection ID
+	string  touchableID;   ///< Assigns identifier to single volume
 
 	// special cases
 	string       copyOf;   ///< name of gvolume to copy from
@@ -67,18 +48,11 @@ private:
 	string    solidsOpr;   ///< solids operation
 
 	// mirrors
-	string   mirrorType;
-	string    mirrorMat;
+	string       mirror;
 
 	// defined in utilities
 	friend ostream &operator<<(ostream &stream, GVolume); ///< Logs infos on screen.
 
-public:
-	// GVolume options
-//	static map<string, GOption> defineOptions();
-
-private:
-	void initGVolumeMembers();
 };
 
 
