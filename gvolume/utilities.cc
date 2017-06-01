@@ -3,50 +3,7 @@
 #include "gSystem.h"
 
 // c++
-#include <iostream>
 #include <fstream>
-
-ostream &operator<<(ostream &stream, GVolume gVol)
-{
-	cout  << endl;
-	cout << "   Volume Name:  "    << gVol.name     << "  -  " <<  gVol.description << endl;
-	cout << "   Mother:  "         << gVol.mother              << endl;
-	cout << "   Type:  "           << gVol.type                << endl;
-	cout << "   Dimensions:  "     ;
-
-	for(unsigned int i=0; i<gVol.dimensions.size(); i++) {
-		cout << "  " << gVol.dimensions[i]   << "  " ;
-	}
-	cout << endl;
-
-
-	string visibility = "yes";
-	if(!gVol.visible) {
-		visibility = "no";
-	}
-	string style = "unknown";
-	if(gVol.style == 0) {
-		style = "wireframe";
-	} else if(gVol.style == 1){
-		style = "solid";
-
-	}
-	cout << "   Color:  "          << gVol.color   << "  Visible: " << visibility << ",  with style: "  << style << endl;
-
-	cout << "   Material:  "       << gVol.material << endl;
-	cout << "   Magnetic Field:  " << gVol.magfield << endl;
-
-	cout << "   Position (cm):  "  << gVol.pos << endl;
-	cout << "   Rotation:       "  << gVol.rot << endl;
-
-	cout << "   Sensitivity: "     << gVol.sensitivity << endl;
-	cout << "   Touchable ID: "    << gVol.touchableID << endl;
-
-	return stream;
-}
-
-
-
 
 
 /*! \fn map<string, GOption> GSplash::defineOptions()
@@ -108,11 +65,9 @@ ifstream GSystem::gSystemFile(int which, vector<string> locations, int verbosity
 		if(verbosity > 1) {
 			cout << setupLogHeader << " File " << fname << "not found " << endl;
 		}
-
 	}
 
 	return IN;
-
 }
 
 
