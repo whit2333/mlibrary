@@ -11,6 +11,8 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 
 	map<string, GSystemFactory*> systemFactory;
 
+	// registering factories in the manager
+	// and adding them to systemFactory
 	for(auto &s : setup) {
 		string factory = s.second->getFactory();
 
