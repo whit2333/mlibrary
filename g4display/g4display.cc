@@ -26,12 +26,17 @@ G4Display::G4Display(GOptions* gopts)
 {
 	vector<string> viewOptions = gopts->getStringVectorValue("g4view");
 
+	string gViewOptions = "/vis/open " + getViewerFromOption(viewOptions) + " " + getGeoFromOption(viewOptions) + getPosFromOption(viewOptions);
+
 	G4UImanager* UIM = G4UImanager::GetUIpointer();
 
 	if(UIM) {
 		UIM->ApplyCommand("/vis/scene/create GHall");
 
-		UIM->ApplyCommand("/vis/open OGLIQt 800x800");
+		UIM->ApplyCommand(gViewOptions);
+//		UIM->ApplyCommand("/vis/viewer/set/autoRefresh 1");
+//		UIM->ApplyCommand("/vis/scene/add/trajectories");
+//		UIM->ApplyCommand("/vis/viewer/set/backgrounda .8 .9 .98 1");
 
 
 	} else {
@@ -48,7 +53,6 @@ string G4Display::getViewerFromOption(vector<string> opt)
 		}
 	}
 
-	cout << "  Warning: viewer not recognized. Using default: " << defaultGViewerDriver << endl;
 	return defaultGViewerDriver;
 }
 
@@ -74,8 +78,8 @@ string G4Display::getGeoFromOption(vector<string> opt)
 string G4Display::getPosFromOption(vector<string> opt)
 {
 	for(auto &o: opt) {
-		if(o.find("-") != string::npos) {
-			vector<string> possibleGeo = getStringVectorFromStringWithDelimiter(o, "x");
+		if(o.find("+") != string::npos) {
+			vector<string> possibleGeo = getStringVectorFromStringWithDelimiter(o, "+");
 			if(possibleGeo.size() == 2) {
 				int w = stoi(possibleGeo[0]);
 				int h = stoi(possibleGeo[1]);

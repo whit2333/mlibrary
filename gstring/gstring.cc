@@ -43,18 +43,20 @@ vector<string> gstring::getStringVectorFromStringWithDelimiter(string input, str
 {
 	vector<string> pvalues;
 
-	string tmp;
+	string tmp = "";
 	for(unsigned int i=0; i<input.size(); i++) {
 
 		if(input[i] != x[0]) {
 			tmp += input[i];
 		} else {
-			pvalues.push_back(tmp);
+			if(tmp != "") {
+				pvalues.push_back(tmp);
+			}
 			tmp = "";
 		}
 
 		// end of line
-		if(i==input.size() - 1) {
+		if(i==input.size() - 1 && tmp != "") {
 			pvalues.push_back(tmp);
 		}
 	}
