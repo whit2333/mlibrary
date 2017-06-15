@@ -13,7 +13,8 @@ xcode project - start with empty project. COMMAND-SHIFT-N
 
  3. Open Framework and library dir of interest
 
-    Qt:    open $QTDIR/lib
+    Qt:     open $QTDIR/lib
+	geant4: open $G4ROOT/$GEANT4_VERSION/lib
 
  4. add command line tool exampleName, source is example.cc
     a. remove exampleName dir
