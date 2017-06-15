@@ -24,7 +24,7 @@
 #ifndef GSPLASH_H
 #define GSPLASH_H 1
 
-// options
+// mlibrary
 #include "goptions.h"
 
 // Qt

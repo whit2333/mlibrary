@@ -6,7 +6,7 @@
 #include <fstream>
 
 
-/*! \fn map<string, GOption> GSplash::defineOptions()
+/*! \fn map<string, GOption> GSetup::defineOptions()
 
  \return defines GSetup specific options
 

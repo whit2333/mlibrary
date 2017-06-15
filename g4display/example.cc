@@ -1,28 +1,20 @@
 /// \file example.cc
 
-// example on how to use the text progress bar library
+// example on how to use the g4displa library
 
-// text progress bar
+// g4displa
 #include "g4display.h"
 
-// c++
-#include <iostream>
-using namespace std;
 
 
 //! example of main declaring GOptions
 int main(int argc, char* argv[])
 {
+	GOptions *gopts = new GOptions(argc, argv, G4Display::defineOptions(), 1);
 
-	int nevents = 100000000;
+	G4Display *g4Display = new G4Display(gopts);
 
-	g4display bar(20, "  index progress: ", 1, nevents);
-
-	for(int i=1; i<nevents; i++) {
-		bar.setProgress(i);
-
-	}
-
+	delete g4Display;
 	return 1;
 }
 
