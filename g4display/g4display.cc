@@ -34,10 +34,6 @@ G4Display::G4Display(GOptions* gopts)
 		UIM->ApplyCommand("/vis/scene/create GHall");
 
 		UIM->ApplyCommand(gViewOptions);
-//		UIM->ApplyCommand("/vis/viewer/set/autoRefresh 1");
-//		UIM->ApplyCommand("/vis/scene/add/trajectories");
-//		UIM->ApplyCommand("/vis/viewer/set/backgrounda .8 .9 .98 1");
-
 
 	} else {
 		cout << " No UIManager found. " << endl;
