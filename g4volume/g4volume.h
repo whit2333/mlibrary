@@ -10,8 +10,9 @@
 using namespace std;
 
 class g4Volume {
+
 public:
-	G4VSolid* getSolid() { return solidVolume;}
+	G4VSolid* getSolid() const { return solidVolume;}
 	
 private:
 	G4VSolid*             solidVolume;   ///< G4 Solid
@@ -23,9 +24,15 @@ private:
 
 class g4Setup {
 
+public:
+	void createG4Volume(g4Volume g4v, string name);
+
 private:
 
-	map<int, g4Volume> setup;
+	// the key has the form system/volumename
+	map<string, g4Volume> setup;
+
+
 	
 };
 

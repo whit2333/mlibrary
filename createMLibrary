@@ -36,8 +36,16 @@ echo "#define " $cheader >> $library/$library".h"
 echo                     >> $library/$library".h"
 echo "#endif"            >> $library/$library".h"
 
+foreach f(README.md Doxyfile example.cc SConscript SConstruct)
+	sed s/textProgressBar/$library/g $library/$f > tmp
+	mv tmp $library/$f
+	sed s/TextProgressBar/$library/g $library/$f > tmp
+	mv tmp $library/$f
+	sed s/"Text Progress Bar"/$library/g $library/$f > tmp
+	mv tmp $library/$f
+end
 
-
-
+echo "// $library "              > $library/$library".cc"
+echo '#include "'$library'.h"'  >> $library/$library".cc"
 
 
