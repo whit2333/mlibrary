@@ -6,7 +6,7 @@
 // installation of libraries and binaries
 CONFIGURATION_BUILD_DIR = $MYBUILDDIR
 
-// includes
-HEADER_SEARCH_PATHS = $MLIB_HEADS $QT_HEADS
+// includes. chlep and geant4 are needed for gstring
+HEADER_SEARCH_PATHS = $MLIB_HEADS $QT_HEADS $GEANT4_HEADS $CLHEP_HEADS
 
 

@@ -1,4 +1,4 @@
 from init_env import init_environment
 
-env = init_environment("qt5 clhep")
+env = init_environment("qt5 clhep geant4")
 lib = env.Library(source = "gstring.cc", target = "../lib/gstring")

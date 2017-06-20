@@ -192,5 +192,17 @@ double gstring::getG4Number(string v, bool warnIfNotUnit)
 }
 
 
+G4ThreeVector gstring::vectorFromStringVector(vector<string> sv)
+{
+	if(sv.size() == 3) {
+		double uno = getG4Number(sv[0]);
+		double due = getG4Number(sv[1]);
+		double tre = getG4Number(sv[2]);
+
+		return G4ThreeVector(uno, due, tre);
+	}
+
+	return G4ThreeVector(0,0,0);
+}
 
 

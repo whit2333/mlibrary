@@ -12,4 +12,5 @@ gstring             = SConscript('gstring/SConscript')
 qtButtonsWidget     = SConscript('qtButtonsWidget/SConscript')
 gVolume             = SConscript('gVolume/SConscript')
 g4display           = SConscript('g4display/SConscript')
+g4volume            = SConscript('g4volume/SConscript')
 

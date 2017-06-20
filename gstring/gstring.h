@@ -9,6 +9,9 @@ using namespace std;
 // qt
 #include <QtXml>
 
+// geant4
+#include "G4ThreeVector.hh"
+
 namespace gstring
 {
 	//! a vector of strings from a stringstream, space is delimiter
@@ -40,7 +43,7 @@ namespace gstring
 	// getting a number from a string that contains units
 	double getG4Number(string input, bool warnIfNotUnit = false);  
 
-
+	G4ThreeVector vectorFromStringVector(vector<string> sv);
 }
 
 
