@@ -9,11 +9,18 @@
 #include <map>
 using namespace std;
 
-class g4Volume {
+// mlibrary
+#include "goptions.h"
+#include "gfactory.h"
+#include "gSystem.h"
+
+class G4Volume {
 
 public:
-	G4VSolid* getSolid() const { return solidVolume;}
-	
+	G4VSolid*          getSolid()    const { return solidVolume;}
+	G4LogicalVolume*   getLogical()  const { return logicalVolume;}
+	G4VPhysicalVolume* getPhysical() const { return physicalVolume;}
+
 private:
 	G4VSolid*             solidVolume;   ///< G4 Solid
 	G4LogicalVolume*    logicalVolume;   ///< Logical Volume
@@ -22,18 +29,23 @@ private:
 };
 
 
-class g4Setup {
+class G4Setup {
 
 public:
-	void createG4Volume(g4Volume g4v, string name);
+	G4Setup(GSetup gsetup);
 
 private:
 
 	// the key has the form system/volumename
-	map<string, g4Volume> setup;
+	map<string, G4Volume> setup;
+
+public:
+	void createG4Volume(G4Volume g4v, string name);
+
+	// G4Setup options - defined in utilities.cc
+	static map<string, GOption> defineOptions();
 
 
-	
 };
 
 #endif
