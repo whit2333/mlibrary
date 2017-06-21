@@ -12,8 +12,12 @@ using namespace std;
 // mlibrary
 #include "goptions.h"
 #include "gfactory.h"
+#include "gsystem.h"
 
 class G4Volume {
+
+public:
+	G4Volume(G4VSolid* s, G4LogicalVolume* l, G4VPhysicalVolume* p) : solidVolume(s), logicalVolume(l), physicalVolume(p) { ; }
 
 public:
 	G4VSolid*          getSolid()    const { return solidVolume;}
@@ -21,7 +25,7 @@ public:
 	G4VPhysicalVolume* getPhysical() const { return physicalVolume;}
 
 private:
-	G4VSolid*             solidVolume;   ///< G4 Solid
+	G4VSolid*             solidVolume;   ///< Solid
 	G4LogicalVolume*    logicalVolume;   ///< Logical Volume
 	G4VPhysicalVolume* physicalVolume;   ///< Physical Volume
 
@@ -32,6 +36,7 @@ class G4Setup {
 
 public:
 	G4Setup(GSetup* gsetup, GOptions* gopt) {
+		g4setup = new map<string, G4Volume*>;
 		buildSetup(gsetup, gopt);
 	}
 
@@ -47,6 +52,7 @@ private:
 	// manager to register the factories
 	GManager g4SystemManager;
 	void registerFactoriesAndLoadG4Volumes(GSetup* gsetup, GOptions* gopt);
+	void buildWorld(GOptions* gopt);
 
 public:
 	void createG4Volume(G4Volume *g4v, string name);

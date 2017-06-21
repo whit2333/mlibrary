@@ -1,6 +1,6 @@
 // gvolume
-#include "gVolume.h"
-#include "gSystem.h"
+#include "gvolume.h"
+#include "gsystem.h"
 
 // c++
 #include <fstream>

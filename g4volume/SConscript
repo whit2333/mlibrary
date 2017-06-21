@@ -5,6 +5,7 @@ env = init_environment("mlibrary qt5 geant4 clhep")
 sources = Split("""
 	g4volume.cc
 	utilities.cc
+	world.cc
 	""")
 
 lib = env.Library(source = sources, target = "../lib/g4volume")

@@ -6,7 +6,7 @@
 using namespace std;
 
 // gvolume
-#include "gVolume.h"
+#include "gvolume.h"
 
 
 // mlibrary
@@ -16,6 +16,7 @@ using namespace std;
 #define setupLogHeader " - setup:"
 
 class GModifiers {
+
 public:
 	GModifiers(string n, string s, string t, string e, int verbosity) : name(n), shift(s), tilts(t) {
 
@@ -81,7 +82,7 @@ private:
 	// manager to register the factories
 	GManager gSystemManager;
 	void registerFactoriesAndLoadSystems(GOptions* gopt);
-	
+
 public:
 	// GSetup options - defined in utilities.cc
 	static map<string, GOption> defineOptions();

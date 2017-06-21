@@ -5,7 +5,7 @@
 #include "goptions.h"
 
 // gVolume
-#include "gSystem.h"
+#include "gsystem.h"
 
 
 // system factory
