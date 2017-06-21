@@ -32,15 +32,21 @@ private:
 class G4Setup {
 
 public:
-	G4Setup(GSetup gsetup);
+	G4Setup(GSetup* gsetup, GOptions* gopt) {
+		buildSetup(gsetup, gopt);
+	}
+
+	G4VPhysicalVolume* getPhysical(string vname) const;
 
 private:
 
 	// the key has the form system/volumename
-	map<string, G4Volume> setup;
+	map<string, G4Volume*> *g4setup;
+	void buildSetup(GSetup* gsetup, GOptions* gopt);
+	G4Volume* getG4Volume(string name) const;
 
 public:
-	void createG4Volume(G4Volume g4v, string name);
+	void createG4Volume(G4Volume *g4v, string name);
 
 	// G4Setup options - defined in utilities.cc
 	static map<string, GOption> defineOptions();

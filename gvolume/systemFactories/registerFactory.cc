@@ -8,7 +8,7 @@
 
 void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 {
-
+	int verbosity = gopt->getInt("vsetup");
 	map<string, GSystemFactory*> systemFactory;
 
 	// registering factories in the manager
@@ -25,7 +25,6 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 				systemFactory[factory] = gSystemManager.CreateObject<GSystemFactory>(factory);
 			}
 		}
-
 	}
 
 
@@ -35,6 +34,11 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 		string systemName = s.first;
 		
 		systemFactory[factory]->loadSystem(gopt, setup[systemName]);
+
+//		if(verbosity > 0) {
+//			cout << setupLogHeader << factory << " factory produced " << setup.size() << " volumes in system " << systemName << endl ;
+//		}
+
 	}
 
 

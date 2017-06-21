@@ -66,7 +66,6 @@ ifstream GSystem::gSystemFile(int which, vector<string> locations, int verbosity
 			cout << setupLogHeader << " File " << fname << "not found " << endl;
 		}
 	}
-
 	return IN;
 }
 
