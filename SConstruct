@@ -10,7 +10,7 @@ gruns               = SConscript('gruns/SConscript')
 frequencySyncSignal = SConscript('frequencySyncSignal/SConscript')
 gstring             = SConscript('gstring/SConscript')
 qtButtonsWidget     = SConscript('qtButtonsWidget/SConscript')
-gVolume             = SConscript('gVolume/SConscript')
+gvolume             = SConscript('gvolume/SConscript')
 g4display           = SConscript('g4display/SConscript')
 g4volume            = SConscript('g4volume/SConscript')
 
