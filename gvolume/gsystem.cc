@@ -1,5 +1,5 @@
 // gVolume
-#include "gSystem.h"
+#include "gsystem.h"
 
 // mlibrary
 #include "gstring.h"

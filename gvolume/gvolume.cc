@@ -1,5 +1,5 @@
 // gVolume
-#include "gVolume.h"
+#include "gvolume.h"
 
 // the double brackets is used because
 // initializer lists ambiguity:

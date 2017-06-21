@@ -1,14 +1,13 @@
 // gVolume
-#include "gSystem.h"
+#include "gsystem.h"
 #include "systemFactory.h"
 #include "text/systemTextFactory.h"
 
-// mlibrary
-#include "gfactory.h"
 
 void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 {
-	int verbosity = gopt->getInt("vsetup");
+	// int verbosity = gopt->getInt("vsetup");
+
 	map<string, GSystemFactory*> systemFactory;
 
 	// registering factories in the manager
@@ -32,8 +31,13 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 	for(auto &s : setup) {
 		string factory    = s.second->getFactory();
 		string systemName = s.first;
-		
-		systemFactory[factory]->loadSystem(gopt, setup[systemName]);
+
+
+		if(systemFactory.find(factory) != systemFactory.end()) {
+			systemFactory[factory]->loadSystem(gopt, setup[systemName]);
+		} else {
+			cout << " !!! Error: factory <" << factory << "> not found for " << systemName << endl;
+		}
 
 //		if(verbosity > 0) {
 //			cout << setupLogHeader << factory << " factory produced " << setup.size() << " volumes in system " << systemName << endl ;

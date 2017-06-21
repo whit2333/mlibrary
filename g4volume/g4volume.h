@@ -12,7 +12,6 @@ using namespace std;
 // mlibrary
 #include "goptions.h"
 #include "gfactory.h"
-#include "gSystem.h"
 
 class G4Volume {
 
@@ -44,6 +43,10 @@ private:
 	map<string, G4Volume*> *g4setup;
 	void buildSetup(GSetup* gsetup, GOptions* gopt);
 	G4Volume* getG4Volume(string name) const;
+
+	// manager to register the factories
+	GManager g4SystemManager;
+	void registerFactoriesAndLoadG4Volumes(GSetup* gsetup, GOptions* gopt);
 
 public:
 	void createG4Volume(G4Volume *g4v, string name);
