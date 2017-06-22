@@ -26,8 +26,8 @@ private:
 	bool buildLogical( GOptions* gopt, GVolume *s, map<string, G4Volume*> *g4s);
 	bool buildPhysicsl(GOptions* gopt, GVolume *s, map<string, G4Volume*> *g4s);
 
-	vector<string> descriptionsOfParameters(GVolume *s);         // returns description of geant4 constructor parameters
-	vector<string> checkAndReturnParameters(GVolume *s); // checks and returns the number of parameters matches the geant4 constructor
+	vector<string> descriptionsOfParameters(GVolume *s); // returns description of geant4 constructor parameters
+	vector<double> checkAndReturnParameters(GVolume *s); // checks and returns the number of parameters matches the geant4 constructor
 
 };
 

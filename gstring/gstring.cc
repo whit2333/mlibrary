@@ -205,4 +205,15 @@ G4ThreeVector gstring::vectorFromStringVector(vector<string> sv)
 	return G4ThreeVector(0,0,0);
 }
 
+vector<double> gstring::getG4NumbersFromStringVector(vector<string> vstring)
+{
+	vector<double> output;
+
+	for(auto &s: vstring) {
+		output.push_back(getG4Number(s, true));
+	}
+
+	return output;
+}
+
 
