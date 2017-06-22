@@ -23,7 +23,7 @@ private:
 
 	// solid parameters
 	string        type;   ///< solid type. This follows the GEANT4 definitions
-	string  dimensions;   ///< vector of dimensions. Size depends on solid type
+	string  parameters;   ///< vector of parameters used in the geant4 solid constructor
 
 	// solid visualization style
 	bool        visible;   ///< visibility of the detector: 0=invisible 1=visible
@@ -53,6 +53,10 @@ private:
 	// defined in utilities
 	friend ostream &operator<<(ostream &stream, GVolume); ///< Logs infos on screen.
 
+public:
+	string getName()       {return name;}
+	string getType()       {return type;}
+	string getParameters() {return parameters;}
 };
 
 

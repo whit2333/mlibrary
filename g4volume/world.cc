@@ -34,6 +34,4 @@ void G4Setup::buildWorld(GOptions* gopt)
 
 
 	(*g4setup)["world"] = new G4Volume(solidWorld, logicWorld, physiWorld);
-
-	cout << " ASD creating " << physiWorld << endl;
 }

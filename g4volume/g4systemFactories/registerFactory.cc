@@ -17,10 +17,28 @@ void G4Setup::registerFactoriesAndBuildG4Volumes(GSetup* gsetup, GOptions* gopt)
 			// if factory not found, registering it in the manager and loading it into the map
 			if(g4setupactory.find(factory) == g4setupactory.end()) {
 				g4SystemManager.RegisterObjectFactory<G4NativeSystemFactory>(factory);
-//				g4setupactory[factory] = g4SystemManager.CreateObject<G4SetupFactory>(factory);
+				g4setupactory[factory] = g4SystemManager.CreateObject<G4SetupFactory>(factory);
 			}
 		}
 	}
-	
+
+
+	// now building geant4 objects
+	int remainingVolumes ;
+	do {
+		remainingVolumes = 0;
+		// looping over systems
+		for(auto &s : gsetup->getSetup()) {
+			string factory = s.second->getFactory();
+			// looping over volumes in that system
+			for(auto &v : s.second->getSytems()) {
+				if(g4setupactory.find(factory) != g4setupactory.end()) {
+					g4setupactory[factory]->loadG4Setup(gopt, v.second, g4setup);
+				} else {
+					cout << " !!! Error: g4setupactory factory <" << factory << "> not found." << endl;
+				}
+			}
+		}
+	} while (remainingVolumes > 0);
 
 }

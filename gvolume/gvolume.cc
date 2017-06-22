@@ -45,7 +45,7 @@ GVolume::GVolume(vector<string> pars)
 	description = trimSpacesFromString(pars[2]);
 
 	type        = trimSpacesFromString(pars[3]);
-	dimensions  = trimSpacesFromString(pars[4]);
+	parameters  = trimSpacesFromString(pars[4]);
 
 	string pvis = trimSpacesFromString(pars[5]);
 	visible     = (pvis == "1") ? true : false;
@@ -88,7 +88,7 @@ ostream &operator<<(ostream &stream, GVolume gVol)
 	stream << "   - Name:           "    << gVol.name     << "  -  " <<  gVol.description << endl;
 	stream << "   - Mother:         "    << gVol.mother      << endl;
 	stream << "   - Type:           "    << gVol.type        << endl;
-	stream << "   - Dimensions:     "    << gVol.dimensions  << endl;
+	stream << "   - Parameters:     "    << gVol.parameters  << endl;
 	stream << "   - Color:          "    << gVol.color   << "  , visible: " << visibility << ",  with style: "  << style << endl;
 	stream << "   - Material:       "    << gVol.material << endl;
 	stream << "   - Magnetic Field: "    << gVol.magfield << endl;

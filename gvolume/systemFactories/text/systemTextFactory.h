@@ -22,6 +22,7 @@ private:
 	int verbosity;
 
 private:
+	// PRAGMA TODO: is GOptions necessary?
 	virtual void loadMaterial(GOptions* gopt, GSystem *s);
 	virtual void loadGeometry(GOptions* gopt, GSystem *s);
 

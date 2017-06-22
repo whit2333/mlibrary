@@ -17,12 +17,16 @@ using namespace std;
 class G4Volume {
 
 public:
-	G4Volume(G4VSolid* s, G4LogicalVolume* l, G4VPhysicalVolume* p) : solidVolume(s), logicalVolume(l), physicalVolume(p) { ; }
+	G4Volume(G4VSolid* s = nullptr, G4LogicalVolume* l = nullptr, G4VPhysicalVolume* p = nullptr) : solidVolume(s), logicalVolume(l), physicalVolume(p) { ; }
 
 public:
-	G4VSolid*          getSolid()    const { return solidVolume;}
-	G4LogicalVolume*   getLogical()  const { return logicalVolume;}
-	G4VPhysicalVolume* getPhysical() const { return physicalVolume;}
+	G4VSolid*          getSolid()    const { if(solidVolume)    return solidVolume;    else return nullptr;}
+	G4LogicalVolume*   getLogical()  const { if(logicalVolume)  return logicalVolume;  else return nullptr;}
+	G4VPhysicalVolume* getPhysical() const { if(physicalVolume) return physicalVolume; else return nullptr;}
+
+	void addSolid(G4VSolid* s)             { solidVolume = s;}
+	void addLogical(G4LogicalVolume* l)    { logicalVolume = l;}
+	void addPhysical(G4VPhysicalVolume* p) { physicalVolume = p;}
 
 private:
 	G4VSolid*             solidVolume;   ///< Solid
@@ -39,6 +43,8 @@ public:
 		buildSetup(gsetup, gopt);
 	}
 
+	G4VSolid*          getSolid(string vname) const;
+	G4LogicalVolume*   getLogical(string vname) const;
 	G4VPhysicalVolume* getPhysical(string vname) const;
 
 private:
@@ -54,7 +60,7 @@ private:
 	void buildWorld(GOptions* gopt);
 
 public:
-	void createG4Volume(G4Volume *g4v, string name);
+	void addG4Volume(G4Volume *g4v, string name);
 
 	// G4Setup options - defined in utilities.cc
 	static map<string, GOption> defineOptions();

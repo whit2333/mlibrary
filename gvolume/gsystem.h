@@ -55,6 +55,9 @@ public:
 		return systems[key];
 	}
 
+	map<string, GVolume*> getSytems() const {return systems;}
+
+
 private:
 	string      name;     // System name
 	string   factory;     // Factory that builds the detector
@@ -63,6 +66,8 @@ private:
 
 	// map containing the volumes
 	// the key is system + volume name so the names must be unique in each system
+	// PRAGMA
+	// this should be pointer
 	map<string, GVolume*> systems;
 
 
@@ -75,7 +80,7 @@ public:
 	// by default all systems will have the same run number but
 	GSetup(GOptions* gopt, int runNo = 1);
 
-	map<string, GSystem*> getSetup() {return setup;}
+	map<string, GSystem*> getSetup() const {return setup;}
 	map<string, GModifiers*> getSetupModifiers() {return setupModifiers;}
 
 
