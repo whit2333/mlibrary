@@ -75,7 +75,13 @@ public:
 	// by default all systems will have the same run number but
 	GSetup(GOptions* gopt, int runNo = 1);
 
+	map<string, GSystem*> getSetup() {return setup;}
+	map<string, GModifiers*> getSetupModifiers() {return setupModifiers;}
+
+
 private:
+	// PRAGMA
+	// these should be pointers
 	map<string, GSystem*> setup;
 	map<string, GModifiers*> setupModifiers;
 

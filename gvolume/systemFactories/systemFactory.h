@@ -4,7 +4,7 @@
 // mlibrary
 #include "goptions.h"
 
-// gVolume
+// gvolume
 #include "gsystem.h"
 
 

@@ -1,29 +1,28 @@
-#ifndef SYSTEMTEXTFACTORY_H
-#define SYSTEMTEXTFACTORY_H 1
+#ifndef G4NATIVEVOLUMEFACTORY_H
+#define G4NATIVEVOLUMEFACTORY_H 1
 
-// gvolume
-#include "../systemFactory.h"
+// g4volume
+#include "../g4VolumeFactory.h"
 
 // system factory
-class G4NativeSystemFactory : G4SystemFactory
+class G4NativeSystemFactory : G4SetupFactory
 {
 public:
-	void loadSystem(GOptions* gopt, G4Setup *s) {
+	bool loadG4Setup(GOptions* gopt, G4Setup *s) {
 		verbosity = gopt->getInt("vsetup");
 		if(verbosity > 1) {
-			cout << setupLogHeader << " Loading <text> system " << s->getName() << endl;
+			cout << setupLogHeader << " Building geant4 volumes." << endl;
 		}
-		loadMaterial(gopt, s);
-		loadGeometry(gopt, s);
+		return true;
 	}
 
 private:
 	int verbosity;
 
 private:
-	virtual void buildSolid(GOptions* gopt, G4Setup *s)    = 0;
-	virtual void buildLogical(GOptions* gopt, G4Setup *s)  = 0;
-	virtual void buildPhysicsl(GOptions* gopt, G4Setup *s) = 0;
+	void buildSolid(   GOptions* gopt, G4Setup *s) ;
+	void buildLogical( GOptions* gopt, G4Setup *s);
+	void buildPhysicsl(GOptions* gopt, G4Setup *s);
 
 };
 

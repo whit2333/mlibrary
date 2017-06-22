@@ -22,7 +22,14 @@ void G4Setup::createG4Volume(G4Volume *g4v, string name) {
 
 void G4Setup::buildSetup(GSetup* gsetup, GOptions* gopt)
 {
+	int verbosity = gopt->getInt("vsetup");
 	buildWorld(gopt);
+
+	// now loading gmanager
+	g4SystemManager = GManager(verbosity, setupLogHeader);
+
+	// register the factories needed and build the geant4 volumes
+	registerFactoriesAndBuildG4Volumes(gsetup, gopt);
 }
 
 G4Volume* G4Setup::getG4Volume(string name) const

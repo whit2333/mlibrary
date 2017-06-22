@@ -1,14 +1,14 @@
-#ifndef G4SYSTEMFACTORY_H
-#define SG4YSTEMFACTORY_H 1
+#ifndef G4SETUPFACTORY_H
+#define G4SETUPFACTORY_H 1
 
 // mlibrary
 #include "goptions.h"
 
-// gVolume
-#include "g4System.h"
+// g4volume
+#include "g4volume.h"
 
 
-// system factory
+// G4SetupFactory factory
 class G4SetupFactory
 {
 public:
@@ -16,6 +16,7 @@ public:
 	// returns false if dependencies are not met
 	virtual bool loadG4Setup(GOptions* gopt, G4Setup *s) = 0;
 	virtual ~G4SetupFactory() = default;
+
 
 };
 

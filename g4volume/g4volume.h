@@ -28,7 +28,6 @@ private:
 	G4VSolid*             solidVolume;   ///< Solid
 	G4LogicalVolume*    logicalVolume;   ///< Logical Volume
 	G4VPhysicalVolume* physicalVolume;   ///< Physical Volume
-
 };
 
 
@@ -51,7 +50,7 @@ private:
 
 	// manager to register the factories
 	GManager g4SystemManager;
-	void registerFactoriesAndLoadG4Volumes(GSetup* gsetup, GOptions* gopt);
+	void registerFactoriesAndBuildG4Volumes(GSetup* gsetup, GOptions* gopt);
 	void buildWorld(GOptions* gopt);
 
 public:
