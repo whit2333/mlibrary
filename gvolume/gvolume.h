@@ -57,6 +57,7 @@ public:
 	string getName()       {return name;}
 	string getType()       {return type;}
 	string getParameters() {return parameters;}
+	string getMaterial()   {return material;}
 };
 
 
