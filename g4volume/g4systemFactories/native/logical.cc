@@ -15,6 +15,7 @@ bool G4NativeSystemFactory::buildLogical(GOptions* gopt, GVolume *s, map<string,
 	G4Volume *thisG4Volume = nullptr;
 
 	// check if g4s already exists
+	// it could not exist if this is a copy
 	if(g4s->find(vname) != g4s->end()) {
 		thisG4Volume = (*g4s)[vname];
 		// if the solid is already built, nothing to do
@@ -35,9 +36,11 @@ bool G4NativeSystemFactory::buildLogical(GOptions* gopt, GVolume *s, map<string,
 			// you set an option incorrectly, error!
 			cout << " !!! Error: options default material " << dmat << " not found. Exiting." << endl;
 			exit(99);
-
 		}
 	}
+
+
+	
 
 	return false;
 }
