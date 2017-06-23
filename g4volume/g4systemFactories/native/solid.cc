@@ -32,6 +32,8 @@ bool G4NativeSetupFactory::buildSolid(GOptions* gopt, GVolume *s, map<string, G4
 		if(thisG4Volume->getSolid() != nullptr) return true;
 	} else {
 		thisG4Volume = new G4Volume();
+		// adding volume to the map
+		(*g4s)[vname] = thisG4Volume;
 	}
 
 

@@ -80,7 +80,7 @@ bool G4NativeSetupFactory::buildLogical(GOptions* gopt, GVolume *s, map<string, 
 
 
 
-	return false;
+	return true;
 }
 
 

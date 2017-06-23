@@ -3,7 +3,7 @@
 
 // geant4
 
-bool G4NativeSetupFactory::buildPhysicsl(GOptions* gopt, GVolume *s, map<string, G4Volume*> *g4s)
+bool G4NativeSetupFactory::buildPhysical(GOptions* gopt, GVolume *s, map<string, G4Volume*> *g4s)
 {
 	int    verbosity = gopt->getInt("vsetup");
 	string logVolume = gopt->getString("logVolume");
@@ -64,5 +64,5 @@ bool G4NativeSetupFactory::buildPhysicsl(GOptions* gopt, GVolume *s, map<string,
 												)
 							  );
 
-	return false;
+	return true;
 }

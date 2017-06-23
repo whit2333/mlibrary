@@ -1,6 +1,8 @@
 6/23/17
 - renaming files, added base methods to retrieve g4 volumes
-- added base methods to check solid and logical dependencies
+- added base methods to check solid and physical dependencies
+- added verbosity to debug building of geant4 volumes
+- first iteration of native geant4 volume completed. Missing: rotation and position.
 
 6/22/17
 - starting factories implementation for solid, logical volumes
