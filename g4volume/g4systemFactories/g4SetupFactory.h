@@ -22,7 +22,8 @@ protected:
 	G4LogicalVolume*   getLogicalFromMap( string vname, map<string, G4Volume*> *g4s) const;
 	G4VPhysicalVolume* getPhysicalFromMap(string vname, map<string, G4Volume*> *g4s) const;
 
-
+	bool checkSolidDependencies(  GVolume *s, map<string, G4Volume*> *g4s);
+	bool checkLogicalDependencies(GVolume *s, map<string, G4Volume*> *g4s);
 };
 
 #endif

@@ -13,10 +13,11 @@ using namespace gstring;
 
 bool G4NativeSetupFactory::buildSolid(GOptions* gopt, GVolume *s, map<string, G4Volume*> *g4s)
 {
-
-	string vname = s->getName();
+	// check dependencies first
+	if(!checkSolidDependencies(s, g4s)) return false;
 
 	// if the g4volume doesn't exist, create one and add it to the map
+	string vname = s->getName();
 	G4Volume *thisG4Volume = nullptr;
 
 	// check if g4s already exists

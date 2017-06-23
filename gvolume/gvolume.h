@@ -55,6 +55,7 @@ private:
 
 public:
 	string getName()       {return name;}
+	string getMother()     {return mother;}
 	string getType()       {return type;}
 	string getParameters() {return parameters;}
 	string getMaterial()   {return material;}

@@ -31,8 +31,6 @@ private:
 	vector<double> checkAndReturnParameters(GVolume *s); // checks and returns the number of parameters matches the geant4 constructor
 
 
-	// logical
-	bool checkDependencies(GVolume *s, map<string, G4Volume*> *g4s);
 };
 
 

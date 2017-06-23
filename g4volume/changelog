@@ -1,3 +1,7 @@
+6/23/17
+- renaming files, added base methods to retrieve g4 volumes
+- added base methods to check solid and logical dependencies
+
 6/22/17
 - starting factories implementation for solid, logical volumes
 

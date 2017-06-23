@@ -8,6 +8,7 @@ sources = Split("""
 	world.cc
 	g4systemFactories/registerFactory.cc
 	g4systemFactories/getG4Volumes.cc
+	g4systemFactories/checkDependencies.cc
 	g4systemFactories/native/g4SolidConstructorDescription.cc
 	g4systemFactories/native/checkAndReturnParameters.cc
 	g4systemFactories/native/solid.cc
