@@ -29,7 +29,7 @@ vector<double> G4NativeSetupFactory::checkAndReturnParameters(GVolume *s)
 
 		 if(type == "G4Box")     possibleNumberOfParameters = {3};
 	else if(type == "G4Tubs")    possibleNumberOfParameters = {5};
-	else if(type == "G4CutTubs") possibleNumberOfParameters = {7};
+	else if(type == "G4CutTubs") possibleNumberOfParameters = {11};
 	else if(type == "G4Cons")    possibleNumberOfParameters = {7};
 	else if(type == "G4Para")    possibleNumberOfParameters = {6};
 	else if(type == "G4Trd")     possibleNumberOfParameters = {5};
@@ -66,8 +66,8 @@ vector<double> G4NativeSetupFactory::checkAndReturnParameters(GVolume *s)
 		} else {
 			return parameters;
 		}
-
 	}
+	
 	else if(type == "G4EllipticalTube") possibleNumberOfParameters = {3};
 	else if(type == "G4Ellipsoid")      possibleNumberOfParameters = {5};
 	else if(type == "G4EllipticalCone") possibleNumberOfParameters = {4};
