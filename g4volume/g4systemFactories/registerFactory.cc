@@ -1,6 +1,6 @@
 // g4volume
-#include "g4VolumeFactory.h"
-#include "native/nativeVolumeFactory.h"
+#include "g4SetupFactory.h"
+#include "native/g4NativeSetupFactory.h"
 
 void G4Setup::registerFactoriesAndBuildG4Volumes(GSetup* gsetup, GOptions* gopt)
 {
@@ -16,7 +16,7 @@ void G4Setup::registerFactoriesAndBuildG4Volumes(GSetup* gsetup, GOptions* gopt)
 		if(factory == "text") {
 			// if factory not found, registering it in the manager and loading it into the map
 			if(g4setupactory.find(factory) == g4setupactory.end()) {
-				g4SystemManager.RegisterObjectFactory<G4NativeSystemFactory>(factory);
+				g4SystemManager.RegisterObjectFactory<G4NativeSetupFactory>(factory);
 				g4setupactory[factory] = g4SystemManager.CreateObject<G4SetupFactory>(factory);
 			}
 		}

@@ -58,6 +58,12 @@ public:
 	string getType()       {return type;}
 	string getParameters() {return parameters;}
 	string getMaterial()   {return material;}
+
+	// special cases
+	string getCopyOf()     {return copyOf;}
+	string getReplicaOf()  {return replicaOf;}
+	string getSolidsOpr()  {return solidsOpr;}
+
 };
 
 

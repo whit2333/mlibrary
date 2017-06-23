@@ -16,6 +16,13 @@ public:
 	// returns false if dependencies are not met
 	virtual bool loadG4Setup(GOptions* gopt, GVolume *s, map<string, G4Volume*> *g4s) = 0;
 	virtual ~G4SetupFactory() = default;
+
+protected:
+	G4VSolid*          getSolidFromMap(   string vname, map<string, G4Volume*> *g4s) const;
+	G4LogicalVolume*   getLogicalFromMap( string vname, map<string, G4Volume*> *g4s) const;
+	G4VPhysicalVolume* getPhysicalFromMap(string vname, map<string, G4Volume*> *g4s) const;
+
+
 };
 
 #endif

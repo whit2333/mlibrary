@@ -1,14 +1,16 @@
 // g4volume
-#include "nativeVolumeFactory.h"
+#include "g4NativeSetupFactory.h"
 
 
+// to be completed - order is the same as https://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/ForApplicationDeveloper/html/ch04.html
 
 
 // returns description of geant4 constructor parameters
-vector<string> descriptionsOfParameters(GVolume *s)
+vector<string> G4NativeSetupFactory::descriptionsOfParameters(GVolume *s)
 {
 	vector<string> parsDescription;
 	string type = s->getType();
+
 
 	       if(type == "G4Box") {
 		parsDescription.push_back({"half length in X", "Length"});
@@ -24,7 +26,6 @@ vector<string> descriptionsOfParameters(GVolume *s)
 
 
 
-	// to be completed - order is the same as https://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/ForApplicationDeveloper/html/ch04.html
 
 
 
