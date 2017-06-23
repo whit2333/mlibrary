@@ -24,7 +24,7 @@ void G4Setup::registerFactoriesAndBuildG4Volumes(GSetup* gsetup, GOptions* gopt)
 
 
 	// now building geant4 objects
-	int remainingVolumes ;
+	int remainingVolumes;
 	do {
 		remainingVolumes = 0;
 		// looping over systems
@@ -33,7 +33,7 @@ void G4Setup::registerFactoriesAndBuildG4Volumes(GSetup* gsetup, GOptions* gopt)
 			// looping over volumes in that system
 			for(auto &v : s.second->getSytems()) {
 				if(g4setupactory.find(factory) != g4setupactory.end()) {
-					g4setupactory[factory]->loadG4Setup(gopt, v.second, g4setup);
+					if(g4setupactory[factory]->loadG4Setup(gopt, v.second, g4setup) == false) remainingVolumes = remainingVolumes + 1;
 				} else {
 					cout << " !!! Error: g4setupactory factory <" << factory << "> not found." << endl;
 				}

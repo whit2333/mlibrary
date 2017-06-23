@@ -29,7 +29,6 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 		string factory    = s.second->getFactory();
 		string systemName = s.first;
 
-
 		if(systemFactory.find(factory) != systemFactory.end()) {
 			systemFactory[factory]->loadSystem(gopt, setup[systemName]);
 		} else {

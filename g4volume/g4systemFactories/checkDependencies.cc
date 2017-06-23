@@ -4,7 +4,7 @@
 #include "gstring.h"
 using namespace gstring;
 
-bool G4SetupFactory::checkSolidDependencies(GVolume *s, map<string, G4Volume*> *g4s)
+bool G4SetupFactory::checkSolidDependencies(bool verbosity, GVolume *s, map<string, G4Volume*> *g4s)
 {
 	// checking if it's a copy, replica or solid operation
 	// they are mutually exclusve
@@ -16,13 +16,25 @@ bool G4SetupFactory::checkSolidDependencies(GVolume *s, map<string, G4Volume*> *
 	if(copyOf != "na") {
 		vector<string> copies = getStringVectorFromString(copyOf);
 		if(copies.size() == 2) {
+			// first string must be copyOf
 			if(copies[0] == "copyOf:") {
 				// checking if the copy solid exists
-				if(getSolidFromMap(copies[1], g4s) != nullptr) return true;
-			} else return false;
-
-		} else return false;
-
+				if(verbosity) cout << " " << s->getName() << " is a copy of " << copies[1] ;
+				if(getSolidFromMap(copies[1], g4s) != nullptr) {
+					if(verbosity) cout << " which already exists" << endl; ;
+					return true;
+				} else {
+					if(verbosity) cout << " which does not exist yet." << endl; ;
+					return false;
+				}
+			} else {
+				if(verbosity) cout << " Did you intend to make a copy? The first string must be: \"copyOf:\" but you have " << copies[0] << endl ;
+				return false;
+			}
+		} else {
+			if(verbosity) cout << " Did you intend to make a copy? The syntax is \"copyOf:\" volumeName, but you have " << copyOf << endl; ;
+			return false;
+		}
 		// replica
 	} else if(replicaOf != "na") {
 
@@ -42,10 +54,37 @@ bool G4SetupFactory::checkSolidDependencies(GVolume *s, map<string, G4Volume*> *
 	return true;
 }
 
-bool G4SetupFactory::checkLogicalDependencies(GVolume *s, map<string, G4Volume*> *g4s)
+bool G4SetupFactory::checkLogicalDependencies(bool verbosity, GVolume *s, map<string, G4Volume*> *g4s)
 {
-	// checking if mother logical volume exists
+	// maybe check material here?
 
+	return true;
+}
+
+bool G4SetupFactory::checkPhysicalDependencies(bool verbosity, GVolume *s, map<string, G4Volume*> *g4s)
+{
+	string vname      = s->getName();
+	string motherName = s->getMother();
+
+	// the gvolume must exist
+	if(g4s->find(vname) == g4s->end()) {
+
+		if(verbosity) cout << "  " << vname << " not found in gvolume map yet." << endl ;
+
+		return false;
+	}
+
+	// checking if its and mother logical volume exists
+	if(getLogicalFromMap(vname, g4s)   == nullptr) {
+		if(verbosity) cout << "  " << vname << " logical volume not found yet." << endl ;
+		return false;
+	}
+	if(getLogicalFromMap(motherName, g4s) == nullptr) {
+		if(verbosity) cout << "  " << vname << " mother " << motherName << " logical volume not found yet." << endl ;
+		return false;
+	}
+
+	if(verbosity) cout << "  " << vname << " and mother " << motherName << " logical volumes are found. Ready to build Physical volume." << endl ;
 
 	return true;
 }

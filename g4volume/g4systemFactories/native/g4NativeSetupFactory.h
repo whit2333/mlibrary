@@ -9,16 +9,12 @@ class G4NativeSetupFactory : G4SetupFactory
 {
 public:
 	bool loadG4Setup(GOptions* gopt, GVolume *s, map<string, G4Volume*> *g4s) {
-		verbosity = gopt->getInt("vsetup");
-		if(verbosity > 1) {
+		if(gopt->getInt("vsetup") > 1) {
 			cout << setupLogHeader << " Building geant4 volumes." << endl;
 		}
 
-		return buildSolid(gopt, s, g4s) + buildLogical(gopt, s, g4s) + buildPhysicsl(gopt, s, g4s);;
+		return buildSolid(gopt, s, g4s) + buildLogical(gopt, s, g4s) + buildPhysicsl(gopt, s, g4s);
 	}
-
-private:
-	int verbosity;
 
 private:
 	// PRAGMA TODO: is GOptions necessary?
@@ -29,8 +25,6 @@ private:
 	// solid
 	vector<string> descriptionsOfParameters(GVolume *s); // returns description of geant4 constructor parameters
 	vector<double> checkAndReturnParameters(GVolume *s); // checks and returns the number of parameters matches the geant4 constructor
-
-
 };
 
 

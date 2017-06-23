@@ -44,8 +44,9 @@ private:
 	// special cases
 	string       copyOf;   ///< name of gvolume to copy from
 	string    replicaOf;   ///< name of gvolume to replica from
-	int           ncopy;   ///< copy number, in case of copies and replicas
 	string    solidsOpr;   ///< solids operation
+	// PRAGMA: is this used in g4?
+	int         pCopyNo;   ///< copy number, in case of copies and replicas
 
 	// mirrors
 	string       mirror;
@@ -59,6 +60,7 @@ public:
 	string getType()       {return type;}
 	string getParameters() {return parameters;}
 	string getMaterial()   {return material;}
+	int    getPCopyNo()    {return pCopyNo;}
 
 	// special cases
 	string getCopyOf()     {return copyOf;}

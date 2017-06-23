@@ -13,11 +13,16 @@ using namespace gstring;
 
 bool G4NativeSetupFactory::buildSolid(GOptions* gopt, GVolume *s, map<string, G4Volume*> *g4s)
 {
+	int    verbosity = gopt->getInt("vsetup");
+	string logVolume = gopt->getString("logVolume");
+	string vname = s->getName();
+
+	bool depVerbosity = (verbosity > 2) || (vname == logVolume);
+
 	// check dependencies first
-	if(!checkSolidDependencies(s, g4s)) return false;
+	if(!checkSolidDependencies(depVerbosity, s, g4s)) return false;
 
 	// if the g4volume doesn't exist, create one and add it to the map
-	string vname = s->getName();
 	G4Volume *thisG4Volume = nullptr;
 
 	// check if g4s already exists
@@ -54,8 +59,17 @@ bool G4NativeSetupFactory::buildSolid(GOptions* gopt, GVolume *s, map<string, G4
 										  parameters[4])   ///< Delta Phi angle of the segment
 							   );
 		return true;
+	} else {
+		// PRAGMA TODO:
+		// throw exception here if solid is unknown to system
+		cout << " " << vname << " solid " << type << " uknown! " << endl;
 	}
 
+
+	// if we are at this point the solid is not built
+	if(depVerbosity) {
+		cout << " " << vname << " solid is not built." << endl;
+	}
 
 	return false;
 }

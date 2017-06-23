@@ -26,12 +26,14 @@ map<string, GOption> GSetup::defineOptions()
 
 	optionsMap["setupDir"] = GOption("Path(s) to check for setup, separated by space", "na", "system", true);
 
-	optionsMap["vsetup"] = GOption("Setup Verbosity", 1, "system");
+	optionsMap["vsetup"] = GOption("Volume Verbosity", 1, "system");
 	optionsMap["vsetup"].addHelp("Possible values:\n");
 	optionsMap["vsetup"].addHelp(" - 0: silent\n");
 	optionsMap["vsetup"].addHelp(" - 1: summary information\n");
 	optionsMap["vsetup"].addHelp(" - 2: details\n");
 	optionsMap["vsetup"].addHelp(" - 3: verbose details\n");
+
+	optionsMap["logVolume"] = GOption("Print everything related to this volume", "na", "system");
 
 	return optionsMap;
 }

@@ -11,7 +11,7 @@ GSetup::GSetup(GOptions* gopt, int runNo)
 	// this is already validated for XML syntax and file existance
 	QDomDocument domDocument = gopt->configurationQDomDocument;
 	int verbosity = gopt->getInt("vsetup");
-	
+
 	// load the systems
 	QDomNode domNode = domDocument.documentElement().firstChild();
 	while(!domNode.isNull()) {
@@ -89,7 +89,7 @@ void GSystem::addGVolume(vector<string> pars, int verbosity)
 
 			systems[nameKey] = new GVolume(pars);
 			if(verbosity == 3) {
-				cout << setupLogHeader << ": adding gVolume" << *(systems[nameKey]) << endl;
+				cout << setupLogHeader << " adding gVolume" << *(systems[nameKey]) << endl;
 			}
 		} else {
 			cout << setupLogHeader << " Warning: a volume with the name " << nameKey << " already exists. This entry will be ignored." << endl;

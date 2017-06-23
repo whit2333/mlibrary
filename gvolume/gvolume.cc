@@ -63,7 +63,7 @@ GVolume::GVolume(vector<string> pars)
 
 	copyOf      = trimSpacesFromString(pars[14]);
 	replicaOf   = trimSpacesFromString(pars[15]);
-	ncopy       = stoi(trimSpacesFromString(pars[16]));
+	pCopyNo     = stoi(trimSpacesFromString(pars[16]));
 	solidsOpr   = trimSpacesFromString(pars[17]);
 
 	mirror      = trimSpacesFromString(pars[18]);
