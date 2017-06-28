@@ -216,4 +216,15 @@ vector<double> gstring::getG4NumbersFromStringVector(vector<string> vstring)
 	return output;
 }
 
+vector<double>  gstring::getG4NumbersFromString(string vstring) {
+	return getG4NumbersFromStringVector(getStringVectorFromString(vstring));
+}
+
+
+
+
+
+
+
+
 
