@@ -65,6 +65,13 @@ public:
 	string getMaterial()   {return material;}
 	int    getPCopyNo()    {return pCopyNo;}
 
+	string getPos()   {return pos;}
+	string getRot()   {return rot;}
+	string getShift() {return shift;}
+	string getTilt()  {return tilt;}
+
+
+
 	// special cases
 	string getCopyOf()     {return copyOf;}
 	string getReplicaOf()  {return replicaOf;}

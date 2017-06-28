@@ -23,7 +23,7 @@ vector<double> G4NativeSetupFactory::checkAndReturnParameters(GVolume *s)
 	string type = s->getType();
 	string name = s->getName();
 
-	vector<double> parameters = getG4NumbersFromStringVector(getStringVectorFromString(s->getParameters()));
+	vector<double> parameters = getG4NumbersFromString(s->getParameters());
 
 	int actualNumberOfParameters = (int) parameters.size();
 
