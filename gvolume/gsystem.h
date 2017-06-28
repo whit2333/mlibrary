@@ -36,6 +36,11 @@ private:
 	string shift;
 	string tilts;
 	bool present; // true by default
+
+public:
+	string getShift()     { return shift; }
+	string getTilts()     { return tilts; }
+	bool   getExistence() { return present; }
 };
 
 
@@ -52,7 +57,11 @@ public:
 	void addGVolume(vector<string> pars, int verbosity);
 
 	GVolume* getGVolume(string key) {
-		return systems[key];
+		if(systems.find(key) != systems.end()) {
+			return systems[key];
+		} else {
+			return nullptr;
+		}
 	}
 
 	map<string, GVolume*> getSytems() const {return systems;}
@@ -81,7 +90,6 @@ public:
 	GSetup(GOptions* gopt, int runNo = 1);
 
 	map<string, GSystem*> getSetup() const {return setup;}
-	map<string, GModifiers*> getSetupModifiers() {return setupModifiers;}
 
 
 private:

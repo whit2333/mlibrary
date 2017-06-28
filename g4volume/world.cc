@@ -14,7 +14,7 @@ using namespace gstring;
 
 void G4Setup::buildWorld(GOptions* gopt)
 {
-	bool gui = gopt->getOption("gui").getBoolValue();
+//	bool gui = gopt->getOption("gui").getBoolValue();
 
 	G4NistManager* NISTman = G4NistManager::Instance();
 	G4Material* air  = NISTman->FindOrBuildMaterial("G4_AIR");

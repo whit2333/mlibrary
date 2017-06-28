@@ -37,6 +37,9 @@ private:
 	// physical attributes
 	string          pos;   ///< Position relative to the mother volume
 	string          rot;   ///< Rotation Matrix, defined by rotations along x,y,z axis relative to the mother volume
+	string        shift;   ///< Position modifier
+	string         tilt;   ///< Rotation modifier
+	bool          exist;  ///< Existance modifier
 
 	string  sensitivity;   ///< Assigns digitization type and collection ID
 	string  touchableID;   ///< Assigns identifier to single volume
@@ -67,6 +70,10 @@ public:
 	string getReplicaOf()  {return replicaOf;}
 	string getSolidsOpr()  {return solidsOpr;}
 
+	// assign modifier
+	void modifyPos(string s)     {shift = s;}
+	void modifyRot(string t)     {tilt  = t;}
+	void modifyExistence(bool e) {exist = e;}
 };
 
 

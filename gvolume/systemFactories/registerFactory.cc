@@ -44,5 +44,17 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 
 	}
 
+	// applying modifiers
+	for(auto &m : setupModifiers) {
+		for(auto &s : setup) {
+			GVolume *thisVolume = s.second->getGVolume(m.first);
+			if(thisVolume != nullptr) {
+				thisVolume->modifyPos(m.second->getShift());
+				thisVolume->modifyRot(m.second->getTilts());
+				thisVolume->modifyExistence(m.second->getExistence());
+			}
+		}
+	}
+
 
 }

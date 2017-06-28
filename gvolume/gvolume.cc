@@ -67,6 +67,12 @@ GVolume::GVolume(vector<string> pars)
 	solidsOpr   = trimSpacesFromString(pars[17]);
 
 	mirror      = trimSpacesFromString(pars[18]);
+
+	// modifiers
+	shift = "no";
+	tilt  = "no";
+	exist = true;
+
 }
 
 
