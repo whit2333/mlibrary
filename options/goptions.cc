@@ -222,13 +222,13 @@ void GOptions::checkAndParseGCard(string file)
 	QFile gcard(file.c_str());
 
 	if( !gcard.exists() ) {
-		cout << " !!! Fatal error:" << file << " not found." << endl;
+		cerr << " !!! Fatal error:" << file << " not found." << endl;
 		exit(0);
 	}
 
 	// opening gcard and filling domDocument
 	if(!configurationQDomDocument.setContent(&gcard)) {
-		cout << " !!! Fatal error: <" << file << "> has wrong XML syntax. You can use online validators like http://www.xmlvalidation.com to fix it." << endl;
+		cerr << " !!! Fatal error: <" << file << "> has wrong XML syntax. You can use online validators like http://www.xmlvalidation.com to fix it." << endl;
 		exit(0);
 	}
 	gcard.close();

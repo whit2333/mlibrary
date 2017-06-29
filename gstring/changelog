@@ -1,3 +1,6 @@
+6/29/16
+- errors to cerr
+
 6/27/17
 - added utility to return vector<double> directly from string
 

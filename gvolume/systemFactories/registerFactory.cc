@@ -32,7 +32,8 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 		if(systemFactory.find(factory) != systemFactory.end()) {
 			systemFactory[factory]->loadSystem(gopt, setup[systemName]);
 		} else {
-			cout << " !!! Error: systemFactory factory <" << factory << "> not found for " << systemName << endl;
+			cerr << " !!! Fatal Error: systemFactory factory <" << factory << "> not found for " << systemName << endl;
+			exit(0);
 		}
 
 

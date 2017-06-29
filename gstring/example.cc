@@ -13,7 +13,7 @@ using namespace gstring;
 int main(int argc, char* argv[])
 {
 	if(argc != 2) {
-		cout << " !! Error: run example with exactly one argument" << endl;
+		cerr << " !! Error: run example with exactly one argument" << endl;
 	} else {
 
 		string test = argv[1];

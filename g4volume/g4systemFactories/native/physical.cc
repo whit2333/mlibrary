@@ -20,10 +20,6 @@ bool G4NativeSetupFactory::buildPhysical(GOptions* gopt, GVolume *s, map<string,
 	string matName = s->getMaterial();
 	if(matName == "component") return true;
 
-	G4Volume *thisG4Volume = (*g4s)[vname];
-
-	G4LogicalVolume* thisG4LogicalVolume = thisG4Volume->getLogical();
-	G4LogicalVolume* momG4LogicalVolume  = getLogicalFromMap(s->getMother(), g4s);
 
 
 	// First  G4 Constructor
@@ -52,13 +48,14 @@ bool G4NativeSetupFactory::buildPhysical(GOptions* gopt, GVolume *s, map<string,
 	bool checkForOverlaps = false;
 	if(gopt->getInt("checkOverlaps") > 0) checkForOverlaps = true;
 
+	G4Volume *thisG4Volume = (*g4s)[vname];
 
 	thisG4Volume->addPhysical(new G4PVPlacement(getRotation(s),
 												getPosition(s),
-												thisG4LogicalVolume,
+												thisG4Volume->getLogical(),
 												vname,
-												momG4LogicalVolume,
-												0,
+												getLogicalFromMap(s->getMother(), g4s),
+												false,
 												s->getPCopyNo(),
 												checkForOverlaps
 												)

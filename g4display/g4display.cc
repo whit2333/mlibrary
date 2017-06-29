@@ -33,7 +33,10 @@ G4Display::G4Display(GOptions* gopts)
 	if(UIM) {
 		UIM->ApplyCommand("/vis/scene/create GHall");
 
+
 		UIM->ApplyCommand(gViewOptions);
+
+		UIM->ApplyCommand("/vis/scene/add/axes 26 0 0 100 cm");
 
 	} else {
 		cout << " No UIManager found. " << endl;
