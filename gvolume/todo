@@ -1,2 +1,3 @@
 - should give warning for not found files
 - infinite loop for converted ctof
+- need to check that "mother" is defined. In a second loop in gvolume

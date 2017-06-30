@@ -57,5 +57,18 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 		}
 	}
 
-
+	// making sure every detector mother is defined
+	for(auto &s : setup) {
+		
+		for(auto &vname: s.second->getAllVolumeNames()) {
+			string mother = s.second->getGVolume(vname)->getMother();
+			if(mother != "world") {
+				if(s.second->getGVolume(mother) == nullptr) {
+					cerr << " !!! Fatal Error: mother <" << mother << "> not found for " << s.first << endl;
+					exit(0);
+				}
+			}
+		}
+	}
+	
 }

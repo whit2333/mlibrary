@@ -65,7 +65,7 @@ public:
 	}
 
 	map<string, GVolume*> getSytems() const {return systems;}
-
+	vector<string> getAllVolumeNames() const;
 
 private:
 	string      name;     // System name

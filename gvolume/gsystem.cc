@@ -98,6 +98,14 @@ void GSystem::addGVolume(vector<string> pars, int verbosity)
 	}
 }
 
+vector<string> GSystem::getAllVolumeNames() const
+{
+	vector<string> names;
+	for(auto &s: systems) {
+		names.push_back(s.first);
+	}
+	return names;
+}
 
 
 
