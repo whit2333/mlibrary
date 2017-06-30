@@ -53,7 +53,7 @@ GVolume::GVolume(vector<string> pars)
 	color       = trimSpacesFromString(pars[7]);
 
 	material    = trimSpacesFromString(pars[8]);
-	magfield    = trimSpacesFromString(pars[9]);
+	emfield     = trimSpacesFromString(pars[9]);
 
 	pos         = trimSpacesFromString(pars[10]);
 	rot         = trimSpacesFromString(pars[11]);
@@ -68,7 +68,7 @@ GVolume::GVolume(vector<string> pars)
 
 	mirror      = trimSpacesFromString(pars[18]);
 
-	// modifiers
+	// modifiers - these are only accessed through options/gcard
 	shift = "no";
 	tilt  = "no";
 	exist = true;
@@ -97,7 +97,7 @@ ostream &operator<<(ostream &stream, GVolume gVol)
 	stream << "   - Parameters:     "    << gVol.parameters  << endl;
 	stream << "   - Color:          "    << gVol.color   << "  , visible: " << visibility << ",  with style: "  << style << endl;
 	stream << "   - Material:       "    << gVol.material << endl;
-	stream << "   - Magnetic Field: "    << gVol.magfield << endl;
+	stream << "   - E.M. Field: "        << gVol.emfield << endl;
 	stream << "   - Position (cm):  "    << gVol.pos << endl;
 	stream << "   - Rotation:       "    << gVol.rot << endl;
 	stream << "   - Sensitivity:    "    << gVol.sensitivity << endl;

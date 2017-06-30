@@ -32,7 +32,7 @@ private:
 
 	// logical attributes
 	string     material;   ///< Volume Material name.
-	string     magfield;   ///< Magnetic Field. The string "no" means that the field is inherited from the mother volume.
+	string     emfield;    ///< Magnetic Field. The string "no" means that the field is inherited from the mother volume.
 
 	// physical attributes
 	string          pos;   ///< Position relative to the mother volume
