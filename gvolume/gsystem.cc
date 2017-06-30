@@ -81,8 +81,8 @@ GSystem::GSystem(string n, string f, string v, int r, int dr, int verbosity) : n
 void GSystem::addGVolume(vector<string> pars, int verbosity)
 {
 	if( pars.size() != gVolumeNumberOfParameters) {
-		G4cerr << " !!! Fatal Error: Incorrect number of system parameters (" << pars.size() << ") for " << pars[0] ;
-		G4cerr << " It should be " << gVolumeNumberOfParameters << endl;
+		cerr << " !!! Fatal Error: Incorrect number of system parameters (" << pars.size() << ") for " << pars[0] ;
+		cerr << " It should be " << gVolumeNumberOfParameters << endl;
 		exit(0);
 	} else {
 		string nameKey = pars[0];
@@ -90,10 +90,10 @@ void GSystem::addGVolume(vector<string> pars, int verbosity)
 
 			systems[nameKey] = new GVolume(pars);
 			if(verbosity == 3) {
-				G4cout << setupLogHeader << " adding gVolume" << *(systems[nameKey]) << endl;
+				cout << setupLogHeader << " adding gVolume" << *(systems[nameKey]) << endl;
 			}
 		} else {
-			G4cout << setupLogHeader << " Warning: a volume with the name " << nameKey << " already exists. This entry will be ignored." << endl;
+			cout << setupLogHeader << " Warning: a volume with the name " << nameKey << " already exists. This entry will be ignored." << endl;
 		}
 	}
 }

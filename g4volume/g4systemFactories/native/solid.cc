@@ -124,13 +124,13 @@ bool G4NativeSetupFactory::buildSolid(GOptions* gopt, GVolume *s, map<string, G4
 	else {
 		// PRAGMA TODO:
 		// throw exception here if solid is unknown to system
-		cout << " " << vname << " solid " << type << " uknown! " << endl;
+		G4cout << " " << vname << " solid " << type << " uknown! " << endl;
 	}
 
 
 	// if we are at this point the solid is not built
 	if(depVerbosity) {
-		cout << " " << vname << " solid is not built." << endl;
+		G4cout << " " << vname << " solid is not built." << endl;
 	}
 
 	return false;

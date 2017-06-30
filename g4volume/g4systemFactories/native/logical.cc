@@ -46,7 +46,7 @@ bool G4NativeSetupFactory::buildLogical(GOptions* gopt, GVolume *s, map<string, 
 	G4Material* thisMaterial = NISTman->FindOrBuildMaterial(matName);
 	// if not found, use the material specified in the options
 	if(thisMaterial == nullptr) {
-		cout << " ! Warning: material " << matName << " not found for volume " << vname << ". Using " << dmat << " instead." << endl;
+		G4cout << " ! Warning: material " << matName << " not found for volume " << vname << ". Using " << dmat << " instead." << endl;
 		thisMaterial = NISTman->FindOrBuildMaterial(dmat);
 		if(thisMaterial == nullptr) {
 			// you set an option incorrectly, error!
