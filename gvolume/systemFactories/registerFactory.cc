@@ -17,8 +17,8 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 		if(factory == "text") {
 			// if factory not found, registering it in the manager and loading it into the map
 			if(systemFactory.find(factory) == systemFactory.end()) {
-				gSystemManager.RegisterObjectFactory<GSystemTextFactory>(factory);
-				systemFactory[factory] = gSystemManager.CreateObject<GSystemFactory>(factory);
+				gSystemManager.RegisterObjectFactory<GSystemTextFactory>("GSystemTextFactory");
+				systemFactory[factory] = gSystemManager.CreateObject<GSystemFactory>("GSystemTextFactory");
 			}
 		}
 	}

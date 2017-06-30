@@ -52,21 +52,23 @@ ifstream GSystem::gSystemFile(int which, vector<string> locations, int verbosity
 
 	if(!IN.good()) {
 		for(auto locs : locations) {
-			string newName = locs + "/" + fname;
-			IN.open(newName.c_str());
-			if(verbosity > 1) {
-				cout << setupLogHeader << " Trying " << newName << endl;
-			}
-			if(IN.good()) {
-				if(verbosity > 0) {
-					cout << setupLogHeader << " Opening " << newName << endl;
+			if(locs != "na") {
+				string newName = locs + "/" + fname;
+				IN.open(newName.c_str());
+				if(verbosity > 2) {
+					cout << setupLogHeader << " Trying " << newName << endl;
 				}
-				return  IN;
+				if(IN.good()) {
+					if(verbosity > 0) {
+						cout << setupLogHeader << " Opening " << newName << endl;
+					}
+					return  IN;
+				}
 			}
 		}
-		if(verbosity > 1) {
-			cout << setupLogHeader << " File " << fname << "not found " << endl;
-		}
+		// file not found
+		cout << setupLogHeader << " File " << fname << " not found " << endl;
+
 	}
 	return IN;
 }
