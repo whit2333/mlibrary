@@ -50,14 +50,14 @@ vector<string> gstring::getStringVectorFromStringWithDelimiter(string input, str
 			tmp += input[i];
 		} else {
 			if(tmp != "") {
-				pvalues.push_back(tmp);
+				pvalues.push_back(trimSpacesFromString(tmp));
 			}
 			tmp = "";
 		}
 
 		// end of line
 		if(i==input.size() - 1 && tmp != "") {
-			pvalues.push_back(tmp);
+			pvalues.push_back(trimSpacesFromString(tmp));
 		}
 	}
 

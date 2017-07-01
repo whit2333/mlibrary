@@ -39,7 +39,7 @@ private:
 	string          rot;   ///< Rotation Matrix, defined by rotations along x,y,z axis relative to the mother volume
 	string        shift;   ///< Position modifier
 	string         tilt;   ///< Rotation modifier
-	bool          exist;  ///< Existance modifier
+	bool          exist;   ///< Existance modifier
 
 	string  sensitivity;   ///< Assigns digitization type and collection ID
 	string  touchableID;   ///< Assigns identifier to single volume
@@ -48,8 +48,8 @@ private:
 	string       copyOf;   ///< name of gvolume to copy from
 	string    replicaOf;   ///< name of gvolume to replica from
 	string    solidsOpr;   ///< solids operation
-	// PRAGMA: is this used in g4?
-	int         pCopyNo;   ///< copy number, in case of copies and replicas
+	
+	int         pCopyNo;   ///< should be set to 0 for the first volume of a given type
 
 	// mirrors
 	string       mirror;

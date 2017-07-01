@@ -91,17 +91,17 @@ ostream &operator<<(ostream &stream, GVolume gVol)
 	}
 
 	stream  << endl;
-	stream << "   - Name:           "    << gVol.name     << "  -  " <<  gVol.description << endl;
-	stream << "   - Mother:         "    << gVol.mother      << endl;
-	stream << "   - Type:           "    << gVol.type        << endl;
-	stream << "   - Parameters:     "    << gVol.parameters  << endl;
-	stream << "   - Color:          "    << gVol.color   << "  , visible: " << visibility << ",  with style: "  << style << endl;
-	stream << "   - Material:       "    << gVol.material << endl;
-	stream << "   - E.M. Field: "        << gVol.emfield << endl;
-	stream << "   - Position (cm):  "    << gVol.pos << endl;
-	stream << "   - Rotation:       "    << gVol.rot << endl;
-	stream << "   - Sensitivity:    "    << gVol.sensitivity << endl;
-	stream << "   - Touchable ID:   "    << gVol.touchableID << endl;
+	stream << "   - Name:            "    << gVol.name     << "  -  " <<  gVol.description << endl;
+	stream << "   - Mother:          "    << gVol.mother      << endl;
+	stream << "   - Type:            "    << gVol.type        << endl;
+	stream << "   - Parameters:      "    << gVol.parameters  << endl;
+	stream << "   - Col, Vis, Style: "    << gVol.color   << ", " << visibility << ", "  << style << endl;
+	stream << "   - Material:        "    << gVol.material << endl;
+	stream << "   - E.M. Field:      "    << gVol.emfield << endl;
+	stream << "   - Position (cm):   "    << gVol.pos << endl;
+	stream << "   - Rotation:        "    << gVol.rot << endl;
+	stream << "   - Sensitivity:     "    << gVol.sensitivity << endl;
+	stream << "   - Touchable ID:    "    << gVol.touchableID << endl;
 
 	return stream;
 }

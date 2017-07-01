@@ -13,7 +13,7 @@ bool G4SetupFactory::checkSolidDependencies(bool verbosity, GVolume *s, map<stri
 	string solidsOpr = s->getSolidsOpr();
 
 	// copy
-	if(copyOf != "na") {
+	if(copyOf != "no") {
 		vector<string> copies = getStringVectorFromString(copyOf);
 		if(copies.size() == 2) {
 			// first string must be copyOf
@@ -36,10 +36,10 @@ bool G4SetupFactory::checkSolidDependencies(bool verbosity, GVolume *s, map<stri
 			return false;
 		}
 		// replica
-	} else if(replicaOf != "na") {
+	} else if(replicaOf != "no") {
 
 		// solid operation
-	} else if(solidsOpr != "na") {
+	} else if(solidsOpr != "no") {
 		vector<string> solidOperations = getStringVectorFromString(solidsOpr);
 		if(solidOperations.size() == 3) {
 			if(solidOperations[1] == "+" || solidOperations[1] == "-" || solidOperations[1] == "*") {

@@ -1,5 +1,8 @@
 6/30/17
  - magfield is actually em field, as electric field will be included
+ - fixed to default values of copies, replicas
+ - trimming spaces in gstring
+ - better gvolume description
 
 6/29/17
  - errors to cerr
