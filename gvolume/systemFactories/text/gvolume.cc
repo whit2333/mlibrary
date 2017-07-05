@@ -16,10 +16,10 @@ void GSystemTextFactory::loadGeometry(GOptions* gopt, GSystem *s) {
 
 
 	vector<string> possibleLocations = gopt->getStringVectorValue("setupDir");
-	ifstream IN = s->gSystemFile(1, possibleLocations, verbosity);
+	ifstream *IN = s->gSystemFile(1, possibleLocations, verbosity);
 
 	// it could be not found
-	if(!IN.good()) {
+	if(!IN->good()) {
 		return;
 	}
 
@@ -28,10 +28,10 @@ void GSystemTextFactory::loadGeometry(GOptions* gopt, GSystem *s) {
 	}
 
 	// loading volumes
-	while(!IN.eof()) {
+	while(!IN->eof()) {
 
 		string dbline;
-		getline(IN, dbline);
+		getline(*IN, dbline);
 
 		if(!dbline.size())
 			continue;
@@ -39,7 +39,7 @@ void GSystemTextFactory::loadGeometry(GOptions* gopt, GSystem *s) {
 		s->addGVolume(getStringVectorFromStringWithDelimiter(dbline, "|"), verbosity);
 	}
 
-	IN.close();
+	IN->close();
 
 }
 

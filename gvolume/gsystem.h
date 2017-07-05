@@ -52,7 +52,7 @@ public:
 public:
 	string getFactory() const { return factory; }
 	string getName() const    { return name; }
-	ifstream gSystemFile(int which, vector<string> locations, int verbosity);  // 0: material. 1: geometry
+	ifstream* gSystemFile(int which, vector<string> locations, int verbosity);  // 0: material. 1: geometry
 
 	void addGVolume(vector<string> pars, int verbosity);
 

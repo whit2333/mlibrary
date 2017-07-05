@@ -39,7 +39,7 @@ map<string, GOption> GSetup::defineOptions()
 }
 
 
-ifstream GSystem::gSystemFile(int which, vector<string> locations, int verbosity)
+ifstream* GSystem::gSystemFile(int which, vector<string> locations, int verbosity)
 {
 	string fname;
 	if(which == 0)       fname = name +  "__materials_" ;
@@ -48,17 +48,17 @@ ifstream GSystem::gSystemFile(int which, vector<string> locations, int verbosity
 	fname += variation + ".txt";
 
 	// default dir is "."
-	ifstream IN(fname.c_str());
+	ifstream *IN = new ifstream(fname.c_str());
 
-	if(!IN.good()) {
+	if(!IN->good()) {
 		for(auto locs : locations) {
 			if(locs != "na") {
 				string newName = locs + "/" + fname;
-				IN.open(newName.c_str());
+				IN->open(newName.c_str());
 				if(verbosity > 2) {
 					cout << setupLogHeader << " Trying " << newName << endl;
 				}
-				if(IN.good()) {
+				if(IN->good()) {
 					if(verbosity > 0) {
 						cout << setupLogHeader << " Opening " << newName << endl;
 					}
