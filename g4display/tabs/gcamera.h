@@ -13,6 +13,10 @@ public:
 	GCamera(GOptions* gopt, QWidget* parent = 0);
 
 
+private:
+	QDial *cameraTheta;
+	QDial *cameraPhi;
+
 };
 
 

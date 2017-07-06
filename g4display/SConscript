@@ -5,6 +5,9 @@ env = init_environment("mlibrary qt5 geant4 clhep")
 sources = Split("""
 	g4display.cc
 	utilities.cc
+	displayUI.cc
+	tabs/gcamera.cc
+	tabs/gslice.cc
 	""")
 
 lib = env.Library(source = sources, target = "../lib/g4display")

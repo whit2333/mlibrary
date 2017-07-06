@@ -25,8 +25,10 @@ int main(int argc, char* argv[])
 	window->setWindowTitle(QString::fromUtf8("displayUI example"));
 	window->resize(600, 800);
 
-	DisplayUI *DUI = new DisplayUI(gopts, window);
 
+	DisplayUI *dUI = new DisplayUI(gopts, window);
+
+	window->setCentralWidget(dUI);
 
 
 	window->show();

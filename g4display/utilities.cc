@@ -16,6 +16,7 @@ map<string, GOption> G4Display::defineOptions()
 	string defaultSizeOption   = string(defaultGViewerSize);
 	string defaultPosOption    = string(defaultGViewerPos);
 
+	// geant4 view option
 	optionsMap["g4view"] = GOption("The geant4 viewer, size and position", defaultG4viewOption, "g4display", true);
 	optionsMap["g4view"].addHelp("The available viewers are:\n");
 	for(auto &v : availableG4Viewers) {
@@ -24,6 +25,10 @@ map<string, GOption> G4Display::defineOptions()
 	optionsMap["g4view"].addHelp("Size and position optional arguments:\n");
 	optionsMap["g4view"].addHelp(" - widthxheigth: window size. Default: "                  + defaultSizeOption + "\n");
 	optionsMap["g4view"].addHelp(" - +xcoordinate+ycoordinate): window position. Default: " + defaultPosOption  + "\n");
+
+	// camera options
+	optionsMap["cameraAngles"] = GOption("Theta and phi angles of the camera, in degrees", "90 90", "camera", true);
+
 
 	return optionsMap;
 }
