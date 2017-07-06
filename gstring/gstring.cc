@@ -205,19 +205,19 @@ G4ThreeVector gstring::vectorFromStringVector(vector<string> sv)
 	return G4ThreeVector(0,0,0);
 }
 
-vector<double> gstring::getG4NumbersFromStringVector(vector<string> vstring)
+vector<double> gstring::getG4NumbersFromStringVector(vector<string> vstring, bool warnIfNotUnit)
 {
 	vector<double> output;
 
 	for(auto &s: vstring) {
-		output.push_back(getG4Number(s, true));
+		output.push_back(getG4Number(s, warnIfNotUnit));
 	}
 
 	return output;
 }
 
-vector<double>  gstring::getG4NumbersFromString(string vstring) {
-	return getG4NumbersFromStringVector(getStringVectorFromString(vstring));
+vector<double>  gstring::getG4NumbersFromString(string vstring, bool warnIfNotUnit) {
+	return getG4NumbersFromStringVector(getStringVectorFromString(vstring), warnIfNotUnit);
 }
 
 

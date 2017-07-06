@@ -27,7 +27,8 @@ map<string, GOption> G4Display::defineOptions()
 	optionsMap["g4view"].addHelp(" - +xcoordinate+ycoordinate): window position. Default: " + defaultPosOption  + "\n");
 
 	// camera options
-	optionsMap["cameraAngles"] = GOption("Theta and phi angles of the camera, in degrees", "90 90", "camera", true);
+	optionsMap["cameraAngles"] = GOption("Theta and phi angles of the camera, in degrees", "0 0", "camera", true);
+	optionsMap["cameraAngles"].addHelp("Default: 0*deg 0*deg");
 
 
 	return optionsMap;

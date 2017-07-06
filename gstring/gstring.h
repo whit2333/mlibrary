@@ -42,8 +42,8 @@ namespace gstring
 
 	// getting a number from a string that contains units
 	double getG4Number(string input, bool warnIfNotUnit = false);
-	vector<double> getG4NumbersFromStringVector(vector<string> vstring);
-	vector<double> getG4NumbersFromString(string vstring);
+	vector<double> getG4NumbersFromStringVector(vector<string> vstring, bool warnIfNotUnit = false);
+	vector<double> getG4NumbersFromString(string vstring, bool warnIfNotUnit = false);
 
 	G4ThreeVector vectorFromStringVector(vector<string> sv);
 }

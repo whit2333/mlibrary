@@ -7,15 +7,27 @@
 // mlibrary
 #include "goptions.h"
 
+// geant4 headers
+#include "G4UImanager.hh"
+
 class GCamera: public QWidget {
+
+	// metaobject required for non-qt slots
+	Q_OBJECT
 
 public:
 	GCamera(GOptions* gopt, QWidget* parent = 0);
 
 
 private:
-	QDial *cameraTheta;
-	QDial *cameraPhi;
+	QSlider *cameraTheta;
+	QSlider *cameraPhi;
+
+	// geant4 UIManager
+	G4UImanager  *g4uim;
+
+private slots:
+	void changeCameraDirection();
 
 };
 

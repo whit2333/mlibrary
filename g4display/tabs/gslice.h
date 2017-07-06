@@ -7,11 +7,17 @@
 // mlibrary
 #include "goptions.h"
 
+// geant4 headers
+#include "G4UImanager.hh"
+
 class GSlice: public QWidget {
 
 public:
 	GSlice(GOptions* gopt, QWidget* parent = 0);
 
+private:
+	// geant4 UIManager
+	G4UImanager  *g4uim;
 
 };
 
