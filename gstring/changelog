@@ -1,3 +1,6 @@
+7/6/17
+- using the bool argument to warn about no units
+
 6/29/16
 - errors to cerr
 

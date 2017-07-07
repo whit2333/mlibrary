@@ -16,7 +16,7 @@ class GCamera: public QWidget {
 	Q_OBJECT
 
 public:
-	GCamera(GOptions* gopt, QWidget* parent = 0);
+	GCamera(GOptions* gopt, QWidget* parent = Q_NULLPTR);
 
 
 private:

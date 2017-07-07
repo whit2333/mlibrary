@@ -13,7 +13,7 @@
 class GSlice: public QWidget {
 
 public:
-	GSlice(GOptions* gopt, QWidget* parent = 0);
+	GSlice(GOptions* gopt, QWidget* parent = Q_NULLPTR);
 
 private:
 	// geant4 UIManager

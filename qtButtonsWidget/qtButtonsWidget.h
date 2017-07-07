@@ -31,7 +31,7 @@ class QtButtonsWidget : public QWidget
 	Q_OBJECT
 
 public:
-	QtButtonsWidget(double h, double v, vector<string> bicons, QWidget *parent = 0);
+	QtButtonsWidget(double h, double v, vector<string> bicons, QWidget *parent = Q_NULLPTR);
 
 private:
 	QListWidget *buttonsWidget;

@@ -10,7 +10,7 @@
 class DisplayUI: public QTabWidget {
 
 public:
-	DisplayUI(GOptions* gopt, QWidget* parent = 0);
+	DisplayUI(GOptions* gopt, QWidget* parent = Q_NULLPTR);
 
 public:
 	// DisplayUI options
