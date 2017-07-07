@@ -36,7 +36,7 @@ G4Display::G4Display(GOptions* gopts)
 
 		UIM->ApplyCommand(gViewOptions);
 
-		UIM->ApplyCommand("/vis/scene/add/axes 26 0 0 100 cm");
+		UIM->ApplyCommand("/vis/scene/add/axes 0 0 0 100 cm");
 
 	} else {
 		cout << " No UIManager found. " << endl;
