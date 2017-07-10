@@ -48,7 +48,6 @@ bool G4SetupFactory::checkSolidDependencies(bool verbosity, GVolume *s, map<stri
 			} else return false;
 
 		} else return false;
-
 	}
 
 	return true;

@@ -22,11 +22,11 @@ void G4Setup::addG4Volume(G4Volume *g4v, string name) {
 
 void G4Setup::buildSetup(GSetup* gsetup, GOptions* gopt)
 {
-	int verbosity = gopt->getInt("vsetup");
+	int verbosity = gopt->getInt("g4volumev");
 	buildWorld(gopt);
 
 	// now loading gmanager
-	g4SystemManager = GManager(verbosity, setupLogHeader);
+	g4SystemManager = GManager(verbosity - 1, g4setupLogHeader);
 
 	// register the factories needed and build the geant4 volumes
 	registerFactoriesAndBuildG4Volumes(gsetup, gopt);
@@ -69,6 +69,26 @@ G4VPhysicalVolume* G4Setup::getPhysical(string vname) const
 	return nullptr;
 }
 
+
+
+
+void G4Volume::addSolid(G4VSolid* s, int verbosity)
+{
+	solidVolume = s;
+
+	if(verbosity>2) {
+		cout << g4setupLogHeader << " Geant4 Solid " << s->GetName() << " created." << endl;
+	}
+
+}
+void G4Volume::addLogical(G4LogicalVolume* l, int verbosity)
+{
+	logicalVolume = l;
+}
+void G4Volume::addPhysical(G4VPhysicalVolume* p, int verbosity)
+{
+	physicalVolume = p;
+}
 
 
 

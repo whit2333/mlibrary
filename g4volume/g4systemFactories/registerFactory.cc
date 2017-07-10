@@ -22,7 +22,6 @@ void G4Setup::registerFactoriesAndBuildG4Volumes(GSetup* gsetup, GOptions* gopt)
 		}
 	}
 
-
 	// now building geant4 objects
 	int remainingVolumes;
 	do {
@@ -41,5 +40,4 @@ void G4Setup::registerFactoriesAndBuildG4Volumes(GSetup* gsetup, GOptions* gopt)
 			}
 		}
 	} while (remainingVolumes > 0);
-
 }

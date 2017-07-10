@@ -10,7 +10,7 @@ GSetup::GSetup(GOptions* gopt, int runNo)
 {
 	// this is already validated for XML syntax and file existance
 	QDomDocument domDocument = gopt->configurationQDomDocument;
-	int verbosity = gopt->getInt("vsetup");
+	int verbosity = gopt->getInt("gvolumev");
 
 	// load the systems
 	QDomNode domNode = domDocument.documentElement().firstChild();
@@ -61,7 +61,7 @@ GSetup::GSetup(GOptions* gopt, int runNo)
 	}
 
 	// now loading gmanager
-	gSystemManager = GManager(verbosity, setupLogHeader);
+	gSystemManager = GManager(verbosity-1, setupLogHeader);
 	// register the factories needed and load the systems
 	registerFactoriesAndLoadSystems(gopt);
 
@@ -70,7 +70,7 @@ GSetup::GSetup(GOptions* gopt, int runNo)
 // init system based on name, factory, variation and run number
 GSystem::GSystem(string n, string f, string v, int r, int dr, int verbosity) : name(n), factory(f), variation(v), runNumber(r) {
 	if(verbosity > 0) {
-		cout << setupLogHeader << " System " << name << " factory: " << factory;
+		cout << setupLogHeader << " loading system " << name << " with factory: " << factory;
 		cout << ", variation: " << variation << ", run number: " << runNumber ;
 		if(dr != r) cout << " (non default) ";
 		cout << endl;

@@ -9,7 +9,7 @@ class GSystemTextFactory : GSystemFactory
 {
 public:
 	void loadSystem(GOptions* gopt, GSystem *s) {
-		verbosity = gopt->getInt("vsetup");
+		verbosity = gopt->getInt("gvolumev");
 		if(verbosity > 1) {
 			cout << setupLogHeader << " Loading <text> system " << s->getName() << endl;
 		}

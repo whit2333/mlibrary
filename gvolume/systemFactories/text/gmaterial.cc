@@ -9,6 +9,6 @@ using namespace std;
 
 void GSystemTextFactory::loadMaterial(GOptions* gopt, GSystem *s) {
 //	if(verbosity > 1) {
-//		cout << setupLogHeader << " Loading <text> materials for " <<  s->getName() << endl;
+//		cout << g4setupLogHeader << " Loading <text> materials for " <<  s->getName() << endl;
 //	}
 }

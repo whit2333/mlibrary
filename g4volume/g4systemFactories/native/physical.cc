@@ -5,7 +5,7 @@
 
 bool G4NativeSetupFactory::buildPhysical(GOptions* gopt, GVolume *s, map<string, G4Volume*> *g4s)
 {
-	int    verbosity = gopt->getInt("vsetup");
+	int    verbosity = gopt->getInt("g4volumev");
 	string logVolume = gopt->getString("logVolume");
 	string vname = s->getName();
 

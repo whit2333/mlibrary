@@ -13,7 +13,7 @@ using namespace std;
 #include "goptions.h"
 #include "gfactory.h"
 
-#define setupLogHeader " - setup:"
+#define setupLogHeader " % gvolume->"
 
 class GModifiers {
 

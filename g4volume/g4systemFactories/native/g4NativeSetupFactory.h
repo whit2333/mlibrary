@@ -10,10 +10,10 @@ class G4NativeSetupFactory : G4SetupFactory
 public:
 	bool loadG4Setup(GOptions* gopt, GVolume *s, map<string, G4Volume*> *g4s) {
 		
-		int verbosity = gopt->getInt("vsetup");
+		int verbosity = gopt->getInt("g4volumev");
 		
 		if(verbosity > 1) {
-			G4cout << setupLogHeader << " Building geant4 volumes." << endl;
+			G4cout << g4setupLogHeader << " Building geant4 volumes." << endl;
 		}
 
 		bool sbuild = buildSolid(gopt, s, g4s);

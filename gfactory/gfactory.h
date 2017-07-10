@@ -114,8 +114,7 @@ public:
 	template <class Derived> void RegisterObjectFactory(string name) {
 		factoryMap[name] = new GFactory<Derived>();
 		if(verbosity > 0) {
-			cout << logHeader << " GManager: Registering " << name << " factory.";
-			cout << logHeader << " Factory database size is now: " << factoryMap.size() << endl;
+			cout << logHeader << " GManager: Registering " << name << " factory. Database size is now: " << factoryMap.size() << endl;
 		}
 	}
 	

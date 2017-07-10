@@ -4,6 +4,7 @@
 // geant4
 #include "G4PVPlacement.hh"
 #include "G4VisManager.hh"
+#include <G4VSolid.hh>
 
 // c++
 #include <map>
@@ -13,6 +14,8 @@ using namespace std;
 #include "goptions.h"
 #include "gfactory.h"
 #include "gsystem.h"
+
+#define g4setupLogHeader " % g4setup->"
 
 class G4Volume {
 
@@ -24,9 +27,9 @@ public:
 	G4LogicalVolume*   getLogical()  const { if(logicalVolume)  return logicalVolume;  else return nullptr;}
 	G4VPhysicalVolume* getPhysical() const { if(physicalVolume) return physicalVolume; else return nullptr;}
 
-	void addSolid(G4VSolid* s)             { solidVolume = s;}
-	void addLogical(G4LogicalVolume* l)    { logicalVolume = l;}
-	void addPhysical(G4VPhysicalVolume* p) { physicalVolume = p;}
+	void addSolid(G4VSolid* s, int verbosity=0);
+	void addLogical(G4LogicalVolume* l, int verbosity=0);
+	void addPhysical(G4VPhysicalVolume* p, int verbosity=0);
 
 private:
 	G4VSolid*             solidVolume;   ///< Solid
