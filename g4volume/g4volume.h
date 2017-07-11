@@ -1,5 +1,5 @@
 #ifndef  G4VOLUME_H
-#define  G4VOLUME_H
+#define  G4VOLUME_H 1
 
 // geant4
 #include "G4PVPlacement.hh"

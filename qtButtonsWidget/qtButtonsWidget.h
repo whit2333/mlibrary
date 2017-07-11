@@ -1,5 +1,5 @@
 #ifndef  QTBUTTONSWIDGET_H
-#define  QTBUTTONSWIDGET_H
+#define  QTBUTTONSWIDGET_H 1
 
 // c++
 #include <string>
