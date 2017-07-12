@@ -1,4 +1,4 @@
-#ifndef GSTRING_H
+	#ifndef GSTRING_H
 #define GSTRING_H 1
 
 // c++

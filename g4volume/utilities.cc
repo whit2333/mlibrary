@@ -1,9 +1,6 @@
 // g4volume
 #include "g4volume.h"
 
-// c++
-#include <fstream>
-
 
 /*! \fn map<string, GOption> G4Setup::defineOptions()
 

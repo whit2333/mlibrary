@@ -1,8 +1,6 @@
 // g4display
 #include "g4display.h"
 
-
-
 /*! \fn map<string, GOption> G4Display::defineOptions()
 
  \return defines GSetup specific options

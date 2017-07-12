@@ -70,6 +70,7 @@ public:
 	string getShift() {return shift;}
 	string getTilt()  {return tilt;}
 
+	string  getSensitivity(){return sensitivity;}   
 
 
 	// special cases
