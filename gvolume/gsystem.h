@@ -79,7 +79,10 @@ private:
 	// this should be pointer
 	map<string, GVolume*> systems;
 
-
+	// system parameters:
+	// - timewindow
+	// - energy threshold
+	map<string, double> systemParameters;
 };
 
 
