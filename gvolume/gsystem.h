@@ -75,8 +75,7 @@ private:
 
 	// map containing the volumes
 	// the key is system + volume name so the names must be unique in each system
-	// PRAGMA
-	// this should be pointer
+	// PRAGMA TODO:  this should be pointer
 	map<string, GVolume*> systems;
 
 	// system parameters:
@@ -96,8 +95,7 @@ public:
 
 
 private:
-	// PRAGMA
-	// these should be pointers
+	// PRAGMA TODO: these should be pointers
 	map<string, GSystem*> setup;
 	map<string, GModifiers*> setupModifiers;
 

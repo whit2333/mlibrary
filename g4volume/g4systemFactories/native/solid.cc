@@ -122,8 +122,7 @@ bool G4NativeSetupFactory::buildSolid(GOptions* gopt, GVolume *s, map<string, G4
 
 
 	else {
-		// PRAGMA TODO:
-		// throw exception here if solid is unknown to system
+		// PRAGMA TODO  throw exception here if solid is unknown to system
 		G4cout << " " << vname << " solid " << type << " uknown! " << endl;
 	}
 

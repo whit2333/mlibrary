@@ -36,7 +36,7 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 			exit(0);
 		}
 
-		// PRAGMA: TODO
+		// PRAGMA TODO: accounting
 		// account number of volume definitions loaded
 	}
 
@@ -64,5 +64,9 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 			}
 		}
 	}
-	
+
+
+	// PRAGMA TODO: Loads material
+	// PRAGMA TODO: Loads system parameters
+
 }

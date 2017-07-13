@@ -24,8 +24,8 @@ vector<string> availableG4Viewers = {
  */
 G4Display::G4Display(GOptions* gopts)
 {
-	// PRAGMA: add resolution option, hits, here?
-	// PRAGMA: if run/beamOn is given (e.g. command line optios) then the label needs to be updated!
+	// PRAGMA TODO: add resolution option, hits, here?
+	// PRAGMA TOOO: if run/beamOn is given (e.g. command line optios) then the label needs to be updated!
 
 	vector<string> viewOptions = gopts->getStringVectorValue("g4view");
 

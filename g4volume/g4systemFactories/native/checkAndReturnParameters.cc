@@ -9,7 +9,7 @@ using namespace gstring;
 vector<double> G4NativeSetupFactory::checkAndReturnParameters(GVolume *s)
 {
 
-	// PRAGMA TODO
+	// PRAGMA TODO: check non zero pars for various constructor
 	// Check that the pars are not zero, for example:
 	// checking that G4Box does not have null dimensions
 	//	for(unsigned i=0; i<parameters.size(); i++) {

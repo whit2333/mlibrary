@@ -33,8 +33,6 @@ bool G4NativeSetupFactory::buildLogical(GOptions* gopt, GVolume *s, map<string, 
 		if(thisG4Volume->getLogical() != nullptr) return true;
 
 		// if the solid does not exist, can't build the logical
-		// PRAGMA TODO:
-		// catch exception here if solid is unknown to system
 		if(thisG4Volume->getSolid() == nullptr) return false;
 	} else {
 		thisG4Volume = new G4Volume();
