@@ -69,7 +69,7 @@ GSetup::GSetup(GOptions* gopt, int runNo)
 
 // init system based on name, factory, variation and run number
 GSystem::GSystem(string n, string f, string v, int r, int dr, int verbosity) : name(n), factory(f), variation(v), runNumber(r) {
-	if(verbosity > 0) {
+	if(verbosity > GVERBOSITY_SILENT) {
 		cout << setupLogHeader << " loading system " << name << " with factory: " << factory;
 		cout << ", variation: " << variation << ", run number: " << runNumber ;
 		if(dr != r) cout << " (non default) ";
@@ -89,7 +89,7 @@ void GSystem::addGVolume(vector<string> pars, int verbosity)
 		if(systems.find(nameKey) == systems.end()) {
 
 			systems[nameKey] = new GVolume(pars);
-			if(verbosity == 3) {
+			if(verbosity == GVERBOSITY_ALL) {
 				cout << setupLogHeader << " adding gVolume" << *(systems[nameKey]) << endl;
 			}
 		} else {

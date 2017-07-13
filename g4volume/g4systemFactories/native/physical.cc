@@ -9,7 +9,7 @@ bool G4NativeSetupFactory::buildPhysical(GOptions* gopt, GVolume *s, map<string,
 	string logVolume = gopt->getString("logVolume");
 	string vname = s->getName();
 
-	bool depVerbosity = (verbosity > 2) || (vname == logVolume);
+	bool depVerbosity = (verbosity == GVERBOSITY_ALL) || (vname == logVolume);
 	// check dependencies first
 	// gvolume
 	// logical volume must exist

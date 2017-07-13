@@ -17,10 +17,10 @@ map<string, GOption> G4Setup::defineOptions()
 
 	optionsMap["g4volumev"] = GOption("Geant4 Volume Verbosity", 0, "verbosity");
 	optionsMap["g4volumev"].addHelp("Possible values:\n");
-	optionsMap["g4volumev"].addHelp(" - 0: silent\n");
-	optionsMap["g4volumev"].addHelp(" - 1: summary information\n");
-	optionsMap["g4volumev"].addHelp(" - 2: details\n");
-	optionsMap["g4volumev"].addHelp(" - 3: verbose details\n");
+	optionsMap["g4volumev"].addHelp(GVERBOSITY_SILENT_D);
+	optionsMap["g4volumev"].addHelp(GVERBOSITY_SUMMARY_D);
+	optionsMap["g4volumev"].addHelp(GVERBOSITY_DETAILS_D);
+	optionsMap["g4volumev"].addHelp(GVERBOSITY_ALL_D);
 
 	return optionsMap;
 }

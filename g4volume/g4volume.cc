@@ -76,7 +76,7 @@ void G4Volume::addSolid(G4VSolid* s, int verbosity)
 {
 	solidVolume = s;
 
-	if(verbosity>2) {
+	if(verbosity == GVERBOSITY_ALL) {
 		cout << g4setupLogHeader << " Geant4 Solid " << s->GetName() << " created." << endl;
 	}
 

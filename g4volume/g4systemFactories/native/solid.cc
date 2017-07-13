@@ -21,7 +21,7 @@ bool G4NativeSetupFactory::buildSolid(GOptions* gopt, GVolume *s, map<string, G4
 	string logVolume = gopt->getString("logVolume");
 	string vname = s->getName();
 
-	bool depVerbosity = (verbosity > 2) || (vname == logVolume);
+	bool depVerbosity = (verbosity == GVERBOSITY_ALL) || (vname == logVolume);
 
 	// check dependencies first
 	if(!checkSolidDependencies(depVerbosity, s, g4s)) return false;

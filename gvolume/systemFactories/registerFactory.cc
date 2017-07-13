@@ -39,7 +39,7 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 
 		// PRAGMA: TODO
 		// account number of volume definitions loaded
-//		if(verbosity > 0) {
+//		if(verbosity > GVERBOSITY_SILENT) {
 //			cout << setupLogHeader << factory << " factory produced " << setup.size() << " volumes in system " << systemName << endl ;
 //		}
 

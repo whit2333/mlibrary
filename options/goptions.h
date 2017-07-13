@@ -69,6 +69,16 @@ using namespace std;
 //! repeated option internal additional string
 #define HELPREPETITION  "__REPETITION__"
 
+#define GVERBOSITY_SILENT  0
+#define GVERBOSITY_SUMMARY 1
+#define GVERBOSITY_DETAILS 2
+#define GVERBOSITY_ALL     3
+
+#define GVERBOSITY_SILENT_D  " - 0: silent\n"
+#define GVERBOSITY_SUMMARY_D " - 1: summary information\n"
+#define GVERBOSITY_DETAILS_D " - 2: detailed information\n"
+#define GVERBOSITY_ALL_D     " - 3: max verbosity\n"
+
 //! a GOption can be a double or a string
 enum GOptionType {
 	isDouble,

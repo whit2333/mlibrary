@@ -10,7 +10,7 @@ class GSystemTextFactory : GSystemFactory
 public:
 	void loadSystem(GOptions* gopt, GSystem *s) {
 		verbosity = gopt->getInt("gvolumev");
-		if(verbosity > 1) {
+		if(verbosity > GVERBOSITY_SUMMARY) {
 			cout << setupLogHeader << " Loading <text> system " << s->getName() << endl;
 		}
 		loadMaterial(gopt, s);

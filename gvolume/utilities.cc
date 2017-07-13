@@ -28,10 +28,10 @@ map<string, GOption> GSetup::defineOptions()
 
 	optionsMap["gvolumev"] = GOption("Volume Verbosity", 0, "verbosity");
 	optionsMap["gvolumev"].addHelp("Possible values:\n");
-	optionsMap["gvolumev"].addHelp(" - 0: silent\n");
-	optionsMap["gvolumev"].addHelp(" - 1: summary information\n");
-	optionsMap["gvolumev"].addHelp(" - 2: details\n");
-	optionsMap["gvolumev"].addHelp(" - 3: verbose details\n");
+	optionsMap["gvolumev"].addHelp(GVERBOSITY_SILENT_D);
+	optionsMap["gvolumev"].addHelp(GVERBOSITY_SUMMARY_D);
+	optionsMap["gvolumev"].addHelp(GVERBOSITY_DETAILS_D);
+	optionsMap["gvolumev"].addHelp(GVERBOSITY_ALL_D);
 
 	optionsMap["logVolume"] = GOption("Print everything related to this volume", "na", "verbosity");
 
@@ -55,11 +55,11 @@ ifstream* GSystem::gSystemFile(int which, vector<string> locations, int verbosit
 			if(locs != "na") {
 				string newName = locs + "/" + fname;
 				IN->open(newName.c_str());
-				if(verbosity > 2) {
+				if(verbosity == GVERBOSITY_ALL) {
 					cout << setupLogHeader << " Trying " << newName << endl;
 				}
 				if(IN->good()) {
-					if(verbosity > 0) {
+					if(verbosity > GVERBOSITY_SILENT) {
 						cout << setupLogHeader << " Opening " << newName << endl;
 					}
 					return  IN;
