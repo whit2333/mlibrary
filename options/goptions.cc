@@ -127,6 +127,14 @@ void GOptions::checkAndParseCommandLine(int argc, char *argv[])
 	if(findCLOption("--help",     argc, argv) == "yes") printGeneralHelp();
 	if(findCLOption("--h",        argc, argv) == "yes") printGeneralHelp();
 
+	// software version
+	if(findCLOption("-v",         argc, argv) == "yes") printVersion();
+	if(findCLOption("-V",         argc, argv) == "yes") printVersion();
+	if(findCLOption("--v",        argc, argv) == "yes") printVersion();
+	if(findCLOption("--V",        argc, argv) == "yes") printVersion();
+	if(findCLOption("-version",   argc, argv) == "yes") printVersion();
+	if(findCLOption("--version",  argc, argv) == "yes") printVersion();
+
 	// prints html file
 	if(findCLOption("-h-html", argc, argv) == "yes") printHTMLHelp();
 
@@ -350,6 +358,15 @@ void GOptions::printAvailableHelp(string search)
 	for (const auto &om : optionsMap) {
 		if(search == "all" || om.second.getTitle().find(search) != string::npos)
 			printOptionDetailedHelp(om.first);
+	}
+	exit(0);
+}
+
+void GOptions::printVersion()
+{
+	for (const auto &om : optionsMap) {
+		if(om.second.getTitle().find("softwareVersion") != string::npos)
+			cout << om.second.getString() << endl << endl;
 	}
 	exit(0);
 }

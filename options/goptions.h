@@ -306,6 +306,7 @@ private:
 	void printCategoryHelp(string cat);          ///< print help options that match a category
 	void printOptionDetailedHelp(string opt);    ///< print an option help
 	void printHTMLHelp();                        ///< prints all option in HTML format (options.html)
+	void printVersion();                         ///< prints software version then exit
 
 };
 

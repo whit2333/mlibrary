@@ -1,5 +1,6 @@
 71317
  - added default gverbosity
+ - added softwareVersion option to define version. Use with -v, -V, --v, --V, -version --version
 
 5/26/17
  - making domDocument public
