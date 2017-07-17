@@ -14,8 +14,16 @@ using namespace std;
 int main(int argc, char* argv[])
 {
 
+	GManager manager(1);  // loads DLL that instantiate derived factories - we only know of the base one in this case "Car"
 
-	GManager managerB(1);  // loads DLL that instantiate derived factories - we only know of the base one in this case "Car"
+	manager.registerDL("ctofRoutines");
+
+//	map<string, GDynamic*> dynamicRoutines;
+//	dynamicRoutines["ctof"] = manager.LoadObjectFromLibrary<GDynamic>("ctofRoutines");
+//
+//
+//	dynamicRoutines["ctof"]->loadConstants();
+	
 
 	return 1;
 }

@@ -1,13 +1,20 @@
 #ifndef  GDYNAMIC_H
-#define  GDYNAMIC_H
+#define  GDYNAMIC_H 1
 
+// mlibrary
+#include "gfactory.h"
+#include "gtouchable.h"
 
+// c++
+#include <vector>
+using namespace std;
 
+// geant4
+#include "G4Step.hh"
 
 class GDynamic {
 
 public:
-
 
 
 	// by default the touchable is not changed
@@ -15,6 +22,9 @@ public:
 	virtual vector<GTouchable*> processTouchable(GTouchable *gTouchID, G4Step* thisStep) {return { gTouchID } ;}
 
 
+	// loads the calibration constants
+	// return false for failure
+	virtual bool loadConstants() { return false; }
 
 
 	// this method must be present for the dynamic loaded factories
@@ -35,9 +45,6 @@ public:
 
 		return func();
 	}
-
-
-
 
 };
 
