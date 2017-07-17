@@ -6,7 +6,9 @@
 class Dodge : public Car
 {
 public:
+	Dodge();
 	void go();
+	double dodgeVar[2][2];
 };
 
 extern "C" Car* CarFactory(void) {

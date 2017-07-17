@@ -1,13 +1,16 @@
+7/17/17
+ - added constants in each plugin factory
+
 5/27/17
-- added logHeader for screen log
+ - added logHeader for screen log
 
 3/23/17
-- DL mechanism implemented inside factory manager
-- verbosity added in GManager constructor
-- added reference doc on the web
+ - DL mechanism implemented inside factory manager
+ - verbosity added in GManager constructor
+ - added reference doc on the web
 
 3/22/17
-- working version
+ - working version
 
 3/17/17
-- first implementation
+ - first implementation
