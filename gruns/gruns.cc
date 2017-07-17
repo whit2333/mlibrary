@@ -12,33 +12,28 @@ using namespace std;
 
 GRuns::GRuns(GOptions* gopts)
 {
-	string filename = gopts->getString("runWeightsFile");
-	defaultRunNumber = gopts->getInt("runno");
-	runNo = defaultRunNumber;
-	isNewRun = false;
+	int neventsToProcess = gopts->getInt("n");
 
-	// number of events to process
-	int neventsToProcess = gopts->getInt("N");
+	// nothing to do here
+	if(neventsToProcess == 0) return;
 
-	// if no events to process, exit here
-	if(neventsToProcess == 0) {
-		printSummary(neventsToProcess);
+	int verbosity        = gopts->getInt("grunv");
+	string filename      = gopts->getString("runWeightsFile");
+
+	// nothing to do
+	if(filename == "na" && neventsToProcess > 0 ) {
+		runEvents[gopts->getInt("runno")]  = neventsToProcess;
 		return;
-	}
-	// if there is no filename, the weight map contains only one entry
-	else if(filename == "na") {
-		runWeights[defaultRunNumber] = 1;
-		runEvents[defaultRunNumber]  = neventsToProcess;
-		printSummary(neventsToProcess);
-		return;
-	}
-	// there is an available filename
-	else {
+	} else {
+		 // there is an available filename
 		ifstream in(filename.c_str());
 		if(!in) {
-			cerr << " !! Error: can't open input file " << filename << ". Check your spelling. Exiting. " << endl;
+			cerr << " !!! Error: can't open run weights input file " << filename << ". Check your spelling. Exiting. " << endl;
 			exit(1);
 		} else {
+			if(verbosity > 0) {
+				cout << " % Loading run weights from " << filename << endl;
+			}
 			// filling weight map
 			while (!in.eof()) {
 				int run;
@@ -51,13 +46,16 @@ GRuns::GRuns(GOptions* gopts)
 			distributeEvents(neventsToProcess);
 		}
 		in.close();
+		if(verbosity == 3) {
+			printRunsDetails(neventsToProcess);
+		}
 	}
 }
 
 void GRuns::distributeEvents(int nevts)
 {
 	// now randomizing the run of each event
-	TextProgressBar bar(50, " > Distributing events according to run weights ", 0, nevts);
+	TextProgressBar bar(50, " % Distributing events according to run weights ", 0, nevts);
 
 	// generating random number
 	// reference: http://en.cppreference.com/w/cpp/numeric/random/uniform_real_distribution
@@ -76,50 +74,22 @@ void GRuns::distributeEvents(int nevts)
 				break;
 			}
 		}
-
 		bar.setProgress(i);
 	}
-
-
-	printSummary(nevts);
 }
 
-void GRuns::printSummary(int nevts)
+void GRuns::printRunsDetails(int neventsToProcess)
 {
-	cout << " > Runs have " << nevts << " events" << endl;
-	for(const auto &weight : runWeights)
+	int ntot = 0;
+	cout << " % Runs initialized with " << neventsToProcess << " events:" << endl;
+	for(const auto &weight : runWeights) {
 		cout << "    - run: " << weight.first << "\t weight: " << runWeights[weight.first] << "\t  n. events: " << runEvents[weight.first] << endl;
-
-}
-
-
-int GRuns::getRunNumber(int evn)
-{
-	int dn = evn - startEvent ;
-
-	double nn = 0;
-
-	for(const auto &events : runEvents) {
-		nn += events.second;
-		// if we're in the next run batch
-		if(dn < nn) {
-			// check if this is a new run
-			if(events.first != runNo) {
-				isNewRun = true;
-				runNo = events.first;
-			} else {
-				// not a new run. nothing to do
-				isNewRun = false;
-			}
-			return events.first;
-		}
+		ntot += runEvents[weight.first];
 	}
-
-	// default comes from the option map
-	runNo = defaultRunNumber;
-
-	return runNo;
+	cout << "                                            ---------- " << endl;
+	cout << "                                             " << ntot << endl;
 }
+
 
 
 
@@ -128,11 +98,9 @@ map<string, GOption> GRuns::defineOptions()
 {
 	map<string, GOption> optionsMap;
 
-	optionsMap["startEvent"] = GOption("Start Event Number", 1, "run");
-	optionsMap["runno"]      = GOption("Run Number", 1, "run");
-
 	// by default, do not process any event
-	optionsMap["N"]          = GOption("Number of events to process", 0, "run");
+	optionsMap["n"]     = GOption("Number of events to process", 0, "run");
+	optionsMap["runno"] = GOption("Use this run number", 1, "run");
 
 	optionsMap["runWeightsFile"] = GOption("Text filename with run list and weights", "na", "run");
 	optionsMap["runWeightsFile"].addHelp("The text file must have two columns, run# and weight.\n");
@@ -141,6 +109,13 @@ map<string, GOption> GRuns::defineOptions()
 	optionsMap["runWeightsFile"].addHelp(" 12 0.7\n");
 	optionsMap["runWeightsFile"].addHelp(" 13 0.2\n");
 	optionsMap["runWeightsFile"].addHelp("Will simulate 10% of events with run number 11 conditions, 70% for run 12 and 20% for run 13.\n");
+
+	optionsMap["grunv"] = GOption("GRuns Verbosity", 0, "run");
+	optionsMap["grunv"].addHelp("Possible values:\n");
+	optionsMap["grunv"].addHelp(GVERBOSITY_SILENT_D);
+	optionsMap["grunv"].addHelp(GVERBOSITY_SUMMARY_D);
+	optionsMap["grunv"].addHelp(GVERBOSITY_DETAILS_D);
+	optionsMap["grunv"].addHelp(GVERBOSITY_ALL_D);
 
 	return optionsMap;
 }
