@@ -14,16 +14,15 @@ using namespace std;
 int main(int argc, char* argv[])
 {
 
-	GManager manager(1);  // loads DLL that instantiate derived factories - we only know of the base one in this case "Car"
+	GManager manager(1);
 
-	manager.registerDL("ctofRoutines");
+	// DL is the name of the
+	manager.registerDL("ctofRoutinesExample");
 
-//	map<string, GDynamic*> dynamicRoutines;
-//	dynamicRoutines["ctof"] = manager.LoadObjectFromLibrary<GDynamic>("ctofRoutines");
-//
-//
-//	dynamicRoutines["ctof"]->loadConstants();
-	
+	map<string, GDynamic*> dynamicRoutines;
+	dynamicRoutines["ctof"] = manager.LoadObjectFromLibrary<GDynamic>("ctofRoutinesExample");
+
+	dynamicRoutines["ctof"]->loadConstants();
 
 	return 1;
 }

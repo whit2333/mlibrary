@@ -27,6 +27,9 @@ int main()
 	Shape* aShape = fff["triangle"];
 
 	// B manages Cars. Notice, we do not need the derived class headers here!
+	// PRAGMA: These two names must match in the registerDL and in the LoadObjectFromLibrary:
+	// dodgeFactory
+	// that's ok but need to spit error if that doesn't happen
 	managerB.registerDL("dodgeFactory");
 	managerB.registerDL("fordFactory");
 	
