@@ -81,9 +81,9 @@ void GRuns::distributeEvents(int nevts)
 void GRuns::printRunsDetails(int neventsToProcess)
 {
 	int ntot = 0;
-	cout << " % Runs initialized with " << neventsToProcess << " events:" << endl;
+	cout << " % GRuns initialized with " << neventsToProcess << " events distributed among " << runWeights.size() << " runs:" << endl;
 	for(const auto &weight : runWeights) {
-		cout << "    - run: " << weight.first << "\t weight: " << runWeights[weight.first] << "\t  n. events: " << runEvents[weight.first] << endl;
+		cout << "   > run: " << weight.first << "\t weight: " << runWeights[weight.first] << "\t  n. events: " << runEvents[weight.first] << endl;
 		ntot += runEvents[weight.first];
 	}
 	cout << "                                            ---------- " << endl;

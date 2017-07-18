@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
 	map<string, GDynamic*> dynamicRoutines;
 	dynamicRoutines["ctof"] = manager.LoadObjectFromLibrary<GDynamic>("ctofRoutinesExample");
 
-	dynamicRoutines["ctof"]->loadConstants();
+	dynamicRoutines["ctof"]->loadConstants(1, "original");
 
 	return 1;
 }
