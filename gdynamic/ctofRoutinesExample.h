@@ -11,7 +11,7 @@ using namespace std;
 class CTofRoutineExample : public GDynamic {
 
 public:
-	bool loadConstants();
+	bool loadConstants(int runno, string variation);
 
 private:
 

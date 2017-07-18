@@ -24,7 +24,7 @@ public:
 
 	// loads the calibration constants
 	// return false for failure
-	virtual bool loadConstants() { return false; }
+	virtual bool loadConstants(int runno, string variation) { return false; }
 
 
 	// this method must be present for the dynamic loaded factories
