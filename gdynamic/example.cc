@@ -22,7 +22,22 @@ int main(int argc, char* argv[])
 	map<string, GDynamic*> dynamicRoutines;
 	dynamicRoutines["ctof"] = manager.LoadObjectFromLibrary<GDynamic>("ctofRoutinesExample");
 
+
+	shared_ptr<GDynamic> globalCtof1(manager.LoadObjectFromLibrary<GDynamic>("ctofRoutinesExample"));
+	shared_ptr<GDynamic> globalCtof2(manager.LoadObjectFromLibrary<GDynamic>("ctofRoutinesExample"));
+
+	// increments reference count
+	// to be used in the local thread
+	auto globalCtof3(globalCtof2);
+
+	cout << dynamicRoutines["ctof"] << " " << globalCtof1 << " " << globalCtof2 << " " << globalCtof3 << endl;
+
+
 	dynamicRoutines["ctof"]->loadConstants(1, "original");
+	globalCtof1->loadConstants(1, "original");
+	globalCtof2->loadConstants(1, "original");
+	globalCtof3->loadConstants(1, "original");
+
 
 	return 1;
 }
