@@ -46,6 +46,10 @@ namespace gstring
 	vector<double> getG4NumbersFromString(string vstring, bool warnIfNotUnit = false);
 
 	G4ThreeVector vectorFromStringVector(vector<string> sv);
+	
+	
+	// get path from filename with path
+	string getPathFromFilename(string file);
 }
 
 

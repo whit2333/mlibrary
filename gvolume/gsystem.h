@@ -66,7 +66,8 @@ public:
 
 	map<string, GVolume*> getSytems() const {return systems;}
 	vector<string> getAllVolumeNames() const;
-
+	string getSystemPath();
+	
 private:
 	string      name;     // System name
 	string   factory;     // Factory that builds the detector

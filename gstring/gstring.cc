@@ -221,6 +221,18 @@ vector<double>  gstring::getG4NumbersFromString(string vstring, bool warnIfNotUn
 }
 
 
+// get path from filename with path
+string gstring::getPathFromFilename(string file)
+{
+	// PRAGMA TODO:
+	// can use the c++17 filename path
+	// for now using string manipulation but should account for WINDOWS machines as well
+	
+	auto lastSlash = file.find_last_of('/');
+	
+	return file.substr(0, lastSlash);
+}
+
 
 
 

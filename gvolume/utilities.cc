@@ -5,6 +5,9 @@
 // c++
 #include <fstream>
 
+// mlibrary
+#include "gstring.h"
+using namespace gstring;
 
 /*! \fn map<string, GOption> GSetup::defineOptions()
 
@@ -62,6 +65,7 @@ ifstream* GSystem::gSystemFile(int which, vector<string> locations, int verbosit
 					if(verbosity > GVERBOSITY_SILENT) {
 						cout << setupLogHeader << " Opening " << newName << endl;
 					}
+					// file found
 					return  IN;
 				}
 			}
@@ -70,8 +74,14 @@ ifstream* GSystem::gSystemFile(int which, vector<string> locations, int verbosit
 		cout << setupLogHeader << " File " << fname << " not found " << endl;
 
 	}
+	// file was found
 	return IN;
 }
 
+string GSystem::getSystemPath()
+{
+	return getPathFromFilename(name);
+
+}
 
 
