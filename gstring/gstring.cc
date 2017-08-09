@@ -244,7 +244,7 @@ string gstring::getFilenameFromFilename(string file)
 	
 	auto lastSlash = file.find_last_of('/');
 	
-	return file.substr(lastSlash, file.length());
+	return file.substr(lastSlash + 1, file.length());
 }
 
 

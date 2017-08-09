@@ -16,11 +16,12 @@ static void close_lib(dlhandle handle);
  * @struct DynamicLib
  * @brief  Structure to load dynamically symbols from a shared library
  */
+// PRAGMA TODO: add verbosity option?
+// add error if DL is not found, with msg
 struct DynamicLib {
 	
 	// default constructor
 	DynamicLib() = default;
-	
 	
 	string   path;    ///< filename base of the dynamic library
 	dlhandle handle;  ///< posix handle of the dynamic library
@@ -29,14 +30,14 @@ struct DynamicLib {
 	 * @param p name of the dynamic library
 	 */
 	DynamicLib(string p) : path(p), handle(nullptr) {
-		cout << " Loading DL " << p << endl;
+	//	cout << " Loading DL " << p << endl;
 		handle = load_lib(p);
 	}
 	
 	~DynamicLib() {
 		if (handle != nullptr)
 			close_lib(handle);
-		cout << " Closing DL " << path << endl;
+//		cout << " Closing DL " << path << endl;
 	}
 };
 

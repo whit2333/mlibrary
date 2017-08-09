@@ -13,7 +13,7 @@ bool CTofRoutineExample::loadConstants(int runno, string variation)
 
 	var4 = "hello";
 
-	cout << " Constants loaded for ctof!" << endl;
+	cout << " Constants loaded for run number " << runno << " for ctof! var1  is " << var1 << " var2 pointer is " << var2 << endl;
 
 	return true;
 }
