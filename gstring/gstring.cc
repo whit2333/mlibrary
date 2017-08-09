@@ -235,6 +235,20 @@ string gstring::getPathFromFilename(string file)
 
 
 
+// get filename from filename with path
+string gstring::getFilenameFromFilename(string file)
+{
+	// PRAGMA TODO:
+	// can use the c++17 filename path
+	// for now using string manipulation but should account for WINDOWS machines as well
+	
+	auto lastSlash = file.find_last_of('/');
+	
+	return file.substr(lastSlash, file.length());
+}
+
+
+
 
 
 
