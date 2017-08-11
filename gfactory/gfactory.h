@@ -144,7 +144,8 @@ public:
 	 * The full filename is OS dependent
 	 */
 	void registerDL(string name) {
-		dlMap[name] = new DynamicLib("./lib" + name + ".dylib");
+		// PRAGMA TODO: make it OS independent?
+		dlMap[name] = new DynamicLib( name + ".gplugin");
 		if(verbosity > 0) {
 			cout << logHeader << " GManager: Loading DL " << name << endl;
 		}
