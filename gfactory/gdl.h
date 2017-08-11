@@ -7,6 +7,9 @@
 // c++ plugin loading functions
 #include <dlfcn.h>
 
+// c++ to check if file exists
+#include <sys/stat.h>
+
 typedef void* dlhandle;
 
 static dlhandle load_lib(const string& path);
@@ -26,12 +29,18 @@ struct DynamicLib {
 	string   path;    ///< filename base of the dynamic library
 	dlhandle handle;  ///< posix handle of the dynamic library
 
+	
 	/**
 	 * @param p name of the dynamic library
 	 */
 	DynamicLib(string p) : path(p), handle(nullptr) {
 	//	cout << " Loading DL " << p << endl;
-		handle = load_lib(p);
+		if(FileExists(path)) {
+			handle = load_lib(p);
+		} else {
+			// PRAGMA TODO: no warning here. But give error if digitization is requested but not found
+			cout << " !!! Warning " << path << " " << FileExists(path) << endl;
+		}
 	}
 	
 	~DynamicLib() {
@@ -39,6 +48,12 @@ struct DynamicLib {
 			close_lib(handle);
 //		cout << " Closing DL " << path << endl;
 	}
+	
+	bool FileExists(const std::string& name) {
+  		struct stat buffer;
+  		return (stat (name.c_str(), &buffer) == 0);
+	}
+ 
 };
 
 
