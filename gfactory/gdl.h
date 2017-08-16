@@ -40,7 +40,8 @@ struct DynamicLib {
 			handle = load_lib(p);
 		} else {
 			// PRAGMA TODO: no warning here. But give error if digitization is requested but not found
-			cout << " !!! Warning " << path << " " << FileExists(path) << endl;
+			// either exception or mutex lock
+			cout << " !!! Warning " << path << " not found." << endl;
 		}
 	}
 	
