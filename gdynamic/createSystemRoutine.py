@@ -107,6 +107,17 @@ def writeLoadConstants(sName):
 	constantsFile.write('\treturn true;\n')
 	constantsFile.write('}\n')
 
+def writeSConstruct(sName, routines):
+	sconsFile = open('SConstruct', 'w')
+	sconsFile.write('\n')
+	sconsFile.write('\n')
+	sconsFile.write('\n')
+	sconsFile.write('\n')
+	sconsFile.write('\n')
+	sconsFile.write('\n')
+	sconsFile.write('\n')
+	sconsFile.write('\n')
+	sconsFile.write('\n')
 
 # parsing and writing sources
 systemName = parseSystem(sys.argv[1:])
