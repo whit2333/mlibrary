@@ -7,7 +7,7 @@
 using namespace std;
 
 // defaults value for viewing
-#define defaultGViewerDriver "OGLSQt"
+#define defaultGViewerDriver "OGL"
 #define defaultGViewerSize   "800x800"
 #define defaultGViewerPos    "+400+100"
 

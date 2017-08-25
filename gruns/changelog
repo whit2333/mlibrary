@@ -1,3 +1,6 @@
+8/24/17
+ - getting and setting current run and runIndex;
+
 7/17/17
  - removed unnecessary methods and variables removed
  - added verbosity and summary print

@@ -39,6 +39,7 @@ GRuns::GRuns(GOptions* gopts)
 				int run;
 				double weight;
 				in >> run >> weight;
+				listOfRuns.push_back(run);
 				runWeights[run] = weight;
 				runEvents[run] = 0;
 			}

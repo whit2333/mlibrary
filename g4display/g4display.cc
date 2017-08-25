@@ -13,7 +13,8 @@ using namespace gstring;
 
 vector<string> availableG4Viewers = {
 	"OGLSQt",
-	"OGLIQt" } ;
+	"OGLIQt",
+	"OGL"} ;
 
 /*! \fn G4Display::G4Display(GOptions* goptsG4Display)
 

@@ -14,7 +14,9 @@ public:
 
 	// public api
 	map<int, int> getRunEvents() {return runEvents;}
-
+	
+	int getCurrentRun() {return listOfRuns[runIndex];}
+	void setNextRun() {runIndex++;}
 
 private:
 
@@ -23,11 +25,15 @@ private:
 
 	// map with numnber of events for each run, based on weight map
 	map<int, int> runEvents;
+	
+	vector<int> listOfRuns;
 
 	// fill the number of events map
 	void distributeEvents(int neventsToProcess);
 
 	void printRunsDetails(int neventsToProcess);
+	
+	int runIndex;
 };
 
 #endif
