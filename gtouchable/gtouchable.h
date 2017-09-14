@@ -4,6 +4,7 @@
 
 // c++
 #include <vector>
+#include <string>  // < not needed with clang but needed on Linux gcc 4.8.5
 using namespace std;
 
 enum GType { readout, flux, counter };
