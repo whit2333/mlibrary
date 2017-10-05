@@ -147,11 +147,11 @@ int GRuns::processEvents()
 		int runNumber = run.first;
 		int nevents   = run.second;
 		
-		if(verbosity > GVERBOSITY_SILENT) {
-			cout << " % Starting Run Number |" << runNumber << "|" << endl;
-		}
-		
 		g4uim->ApplyCommand("/run/beamOn " + to_string(nevents));
+
+		if(verbosity > GVERBOSITY_SILENT) {
+			cout << " % Run Number |" << runNumber << "| processed with " << nevents << " events." << endl;
+		}
 	}
 	
 	return 1;
