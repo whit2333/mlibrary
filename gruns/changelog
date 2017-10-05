@@ -2,6 +2,7 @@
  - added processEvent routine to initialize available plugins with current run, process all runs
  - added gDynamic map
  - added geant4 messenger to provide beamOn()
+ - using map of gDynamic pointers
 
 8/24/17
  - getting and setting current run and runIndex;

@@ -14,7 +14,7 @@
 class GRuns {
 
 public:
-	GRuns(GOptions* gopt, map<string, GDynamic> *gDigi);
+	GRuns(GOptions* gopt, map<string, GDynamic*> *gDigi);
 
 	// gruns options
 	static map<string, GOption> defineOptions();
@@ -55,7 +55,7 @@ private:
 	int runIndex;
 
 	// private
-	map<string, GDynamic> *gDigitizationGlobal;
+	map<string, GDynamic*> *gDigitizationGlobal;
 
 	
 };

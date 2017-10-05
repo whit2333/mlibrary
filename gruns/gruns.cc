@@ -10,7 +10,7 @@ using namespace std;
 // progress bar
 #include "textProgressBar.h"
 
-GRuns::GRuns(GOptions* gopts, map<string, GDynamic> *gDigi) : gDigitizationGlobal(gDigi)
+GRuns::GRuns(GOptions* gopts, map<string, GDynamic*> *gDigi) : gDigitizationGlobal(gDigi)
 {
 	verbosity   = gopts->getInt("grunv");
 	
