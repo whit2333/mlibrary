@@ -4,10 +4,17 @@
 // options
 #include "goptions.h"
 
+// mlibrary
+#include "gdynamic.h"
+
+// geant4
+#include "G4UImanager.hh"
+
+
 class GRuns {
 
 public:
-	GRuns(GOptions* gopt);
+	GRuns(GOptions* gopt, map<string, GDynamic> *gDigi);
 
 	// gruns options
 	static map<string, GOption> defineOptions();
@@ -16,9 +23,21 @@ public:
 	map<int, int> getRunEvents() {return runEvents;}
 	
 	int getCurrentRun() {return listOfRuns[runIndex];}
+	
+	// increase run index
 	void setNextRun() {runIndex++;}
 
+	// sums number of events across all runs
+	int getTotalNumberOfEvents();
+	
+	// this will:
+	// initiate all available gdynamic plugins for each run
+	// run beamOn for each run
+	// log on screen infos if enough verbosity
+	int processEvents();
+	
 private:
+	int verbosity;
 
 	// map of runs with weights as coming from the file
 	map<int, double> runWeights;
@@ -34,6 +53,11 @@ private:
 	void printRunsDetails(int neventsToProcess);
 	
 	int runIndex;
+
+	// private
+	map<string, GDynamic> *gDigitizationGlobal;
+
+	
 };
 
 #endif
