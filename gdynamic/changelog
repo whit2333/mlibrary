@@ -1,2 +1,5 @@
+10/6/17
+ - added sanity check abstract checkPlugin()
+
 7/17/17
-- first implementation
+ - first implementation

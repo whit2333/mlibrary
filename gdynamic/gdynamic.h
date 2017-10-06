@@ -25,6 +25,10 @@ public:
 	// loads the calibration constants
 	// return false for failure
 	virtual bool loadConstants(int runno, string variation) { return false; }
+	
+	// the implementation should always return true
+	// this is used as sanity check that the DL is actually loaded
+	virtual bool checkPlugin() { return false; }
 
 
 	// this method must be present for the dynamic loaded factories

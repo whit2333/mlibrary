@@ -17,3 +17,8 @@ bool CTofRoutineExample::loadConstants(int runno, string variation)
 
 	return true;
 }
+
+bool CTofRoutineExample::checkPlugin()
+{
+	return true;
+}
