@@ -10,6 +10,8 @@
 // geant4
 #include "G4UImanager.hh"
 
+#define GRUNLOGMSGITEM  " ■"
+#define GRUNERRMSGITEM  " ■"
 
 class GRuns {
 

@@ -29,11 +29,11 @@ GRuns::GRuns(GOptions* gopts, map<string, GDynamic*> *gDigi) : gDigitizationGlob
 		// there is an available filename
 		ifstream in(filename.c_str());
 		if(!in) {
-			cerr << " !!! Error: can't open run weights input file " << filename << ". Check your spelling. Exiting. " << endl;
+			cerr << GRUNERRMSGITEM << " Error: can't open run weights input file " << filename << ". Check your spelling. Exiting. " << endl;
 			exit(1);
 		} else {
 			if(verbosity > 0) {
-				cout << " % Loading run weights from " << filename << endl;
+				cout << GRUNLOGMSGITEM " Loading run weights from " << filename << endl;
 			}
 			// filling weight map
 			while (!in.eof()) {
@@ -57,7 +57,7 @@ GRuns::GRuns(GOptions* gopts, map<string, GDynamic*> *gDigi) : gDigitizationGlob
 void GRuns::distributeEvents(int nevts)
 {
 	// now randomizing the run of each event
-	TextProgressBar bar(50, " % Distributing events according to run weights ", 0, nevts);
+	TextProgressBar bar(50, string(GRUNLOGMSGITEM) + " Distributing events according to run weights ", 0, nevts);
 	
 	// generating random number
 	// reference: http://en.cppreference.com/w/cpp/numeric/random/uniform_real_distribution
@@ -83,11 +83,11 @@ void GRuns::distributeEvents(int nevts)
 void GRuns::printRunsDetails(int neventsToProcess)
 {
 	int ntot = 0;
-	cout << " % GRuns initialized with " << neventsToProcess << " events distributed among " << runWeights.size() << " runs:" << endl;
+	cout << " ■ GRuns initialized with " << neventsToProcess << " events distributed among " << runWeights.size() << " runs:" << endl;
 	if(verbosity > GVERBOSITY_SILENT) {
 		
 		for(const auto &weight : runWeights) {
-			cout << "   > run: " << weight.first << "\t weight: " << runWeights[weight.first] << "\t  n. events: " << runEvents[weight.first] << endl;
+			cout << GRUNLOGMSGITEM << GRUNLOGMSGITEM << " run: " << weight.first << "\t weight: " << runWeights[weight.first] << "\t  n. events: " << runEvents[weight.first] << endl;
 			ntot += runEvents[weight.first];
 		}
 	}
@@ -150,7 +150,7 @@ int GRuns::processEvents()
 		g4uim->ApplyCommand("/run/beamOn " + to_string(nevents));
 
 		if(verbosity > GVERBOSITY_SILENT) {
-			cout << " % Run Number |" << runNumber << "| processed with " << nevents << " events." << endl;
+			cout << " ■ Run Number |" << runNumber << "| processed with " << nevents << " events." << endl;
 		}
 	}
 	
