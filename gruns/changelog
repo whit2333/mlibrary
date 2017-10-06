@@ -1,5 +1,6 @@
 10/6/17
  - added LOG and ERR symbols
+ - no need to display the sum
 
 10/5/17
  - added processEvent routine to initialize available plugins with current run, process all runs

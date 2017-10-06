@@ -33,7 +33,7 @@ GRuns::GRuns(GOptions* gopts, map<string, GDynamic*> *gDigi) : gDigitizationGlob
 			exit(1);
 		} else {
 			if(verbosity > 0) {
-				cout << GRUNLOGMSGITEM " Loading run weights from " << filename << endl;
+				cout << endl << GRUNLOGMSGITEM " Loading run weights from " << filename << endl;
 			}
 			// filling weight map
 			while (!in.eof()) {
@@ -83,7 +83,7 @@ void GRuns::distributeEvents(int nevts)
 void GRuns::printRunsDetails(int neventsToProcess)
 {
 	int ntot = 0;
-	cout << " ■ GRuns initialized with " << neventsToProcess << " events distributed among " << runWeights.size() << " runs:" << endl;
+	cout << GRUNLOGMSGITEM << " GRuns initialized with " << neventsToProcess << " events distributed among " << runWeights.size() << " runs:" << endl;
 	if(verbosity > GVERBOSITY_SILENT) {
 		
 		for(const auto &weight : runWeights) {
@@ -91,8 +91,6 @@ void GRuns::printRunsDetails(int neventsToProcess)
 			ntot += runEvents[weight.first];
 		}
 	}
-	cout << "                                            ---------- " << endl;
-	cout << "                                             " << ntot << endl;
 }
 
 
@@ -148,11 +146,12 @@ int GRuns::processEvents()
 		int nevents   = run.second;
 		
 		g4uim->ApplyCommand("/run/beamOn " + to_string(nevents));
-
+		
 		if(verbosity > GVERBOSITY_SILENT) {
 			cout << " ■ Run Number |" << runNumber << "| processed with " << nevents << " events." << endl;
 		}
 	}
+	cout << endl;
 	
 	return 1;
 }
