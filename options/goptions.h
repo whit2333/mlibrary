@@ -69,6 +69,9 @@ using namespace std;
 //! repeated option internal additional string
 #define HELPREPETITION  "__REPETITION__"
 
+//! characther to be displayed when summarizing options, includes indent
+#define ITEMCHAR  " ◻︎"
+
 #define GVERBOSITY_SILENT  0
 #define GVERBOSITY_SUMMARY 1
 #define GVERBOSITY_DETAILS 2

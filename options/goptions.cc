@@ -48,7 +48,7 @@ GOptions::GOptions(int argc, char *argv[], map<string, GOption> om, bool ignore)
 	printUserSettings();
 
 	if(getInt("showDefaults") == 1) {
-		cout << " #" << endl;
+		cout << ITEMCHAR << endl;
 		printDefaultSettings();
 	}
 	cout << endl;
@@ -269,9 +269,9 @@ string GOptions::findCLOption(string o, int argc, char *argv[])
 void GOptions::printUserSettings()
 {
 	if(userSettings.size()) {
-		cout << " # Selected User Options: " << endl;
+		cout << ITEMCHAR << " Selected User Options: " << endl;
 		for (auto &s : userSettings) {
-			cout <<  " # - " ;
+			cout <<  ITEMCHAR << " → " ;
 			cout.width(20);
 			cout.fill('.');
 
@@ -301,9 +301,9 @@ void GOptions::printDefaultSettings()
 		}
 	}
 	if(defaultNonUser.size()) {
-		cout << " # Options using default settings: " << endl;
+		cout << ITEMCHAR << " Options using default settings: " << endl;
 		for (auto &s : defaultNonUser) {
-			cout <<  " # - " ;
+			cout <<  ITEMCHAR << " - " ;
 			cout.width(20);
 			cout.fill('.');
 

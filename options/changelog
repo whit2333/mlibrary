@@ -1,4 +1,7 @@
-71317
+10/6/17
+ - changed log symbols to something cooler
+
+7/13/17
  - added default gverbosity
  - added softwareVersion option to define version. Use with -v, -V, --v, --V, -version --version
 
