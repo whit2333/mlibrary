@@ -99,7 +99,7 @@ public:
 	 - 0: no not print any log
 	 - 1: print gmanager registering and instantiating classes
 	 */
-	GManager( int v = 0, string log = " > ") : verbosity(v), logHeader(log) {}
+	GManager( int v = 0, string log = " ▸") : verbosity(v), logHeader(log) {}
 	
 public:
 	/**
@@ -131,9 +131,9 @@ public:
 		auto factory = factoryMap.find(name);
 		if(factory == factoryMap.end())
 			return nullptr;
-		if(verbosity > 0) {
-			cout << logHeader << " GManager: Creating factory " << name << endl;
-		}
+//		if(verbosity > 0) {
+//			cout << logHeader << " GManager: Creating factory " << name << endl;
+//		}
 		return static_cast<Base*>(factory->second->Create());
 	}
 	
@@ -147,7 +147,7 @@ public:
 		// PRAGMA TODO: make it OS independent?
 		dlMap[name] = new DynamicLib( name + ".gplugin");
 		if(verbosity > 0) {
-			cout << logHeader << " GManager: Loading DL " << name << endl;
+			cout << endl << logHeader << " GManager: Loading DL " << name << endl << endl;
 		}
 	}
 	
@@ -161,9 +161,9 @@ public:
 	template <class T> T* LoadObjectFromLibrary(string name) {
 		// will return nullptr if handle is null
 		
-		if(verbosity > 0) {
-			cout << logHeader << " GManager: Creating factory " << name << endl;
-		}
+//		if(verbosity > 0) {
+//			cout << logHeader << " GManager: Creating factory " << name << endl;
+//		}
 		return T::instantiate(dlMap[name]->handle);
 	}
 	
