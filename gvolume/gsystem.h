@@ -93,7 +93,9 @@ public:
 	GSetup(GOptions* gopt, int runNo = 1);
 
 	map<string, GSystem*> getSetup() const {return setup;}
-
+	
+	// key is sensitive name, value is path
+	map<string, string> getSensitiveVolumes();
 
 private:
 	// PRAGMA TODO: these should be pointers

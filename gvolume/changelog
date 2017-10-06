@@ -1,3 +1,6 @@
+10/6/17
+ - added method getSensitiveVolumes() to retrieve the the sensitive names and their paths, so the plugins can be loaded
+
 7/13/17
  - using default verbosity
  - method to get gTouchable string
