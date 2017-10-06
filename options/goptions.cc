@@ -108,7 +108,7 @@ int GOptions::parseConfigurationFile(string file)
 			setOptionValue(optionKey, value);
 		}
 	}
-	cout << " Configuration file: " << file << " parsed into options map." << endl;
+	cout << ITEMCHAR << " Configuration file: " << file << " parsed into options map." << endl;
 	return 1;
 }
 
@@ -271,7 +271,7 @@ void GOptions::printUserSettings()
 	if(userSettings.size()) {
 		cout << ITEMCHAR << " Selected User Options: " << endl;
 		for (auto &s : userSettings) {
-			cout <<  ITEMCHAR << " → " ;
+			cout <<  ITEMCHAR << ITEMCHAR << " " ;
 			cout.width(20);
 			cout.fill('.');
 
