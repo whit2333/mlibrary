@@ -142,8 +142,15 @@ int GRuns::processEvents()
 	G4UImanager *g4uim   = G4UImanager::GetUIpointer();
 	
 	for(auto &run : runEvents) {
+		
 		int runNumber = run.first;
 		int nevents   = run.second;
+		
+		// loads the constants
+		// PRAGMA TODO: pass variation to this routine
+		for(auto gDigi: (*gDigitizationGlobal)) {
+			gDigi.second->loadConstants(runNumber, "default");
+		}
 		
 		g4uim->ApplyCommand("/run/beamOn " + to_string(nevents));
 		
