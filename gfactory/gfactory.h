@@ -99,7 +99,7 @@ public:
 	 - 0: no not print any log
 	 - 1: print gmanager registering and instantiating classes
 	 */
-	GManager( int v = 0, string log = " ▸") : verbosity(v), logHeader(log) {}
+	GManager( int v = 0, string log = " ↑") : verbosity(v), logHeader(log) {}
 	
 public:
 	/**
