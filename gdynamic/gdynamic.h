@@ -16,7 +16,6 @@ class GDynamic {
 
 public:
 
-
 	// by default the touchable is not changed
 	// this function is loaded by plugin methods
 	virtual vector<GTouchable*> processTouchable(GTouchable *gTouchID, G4Step* thisStep) {return { gTouchID } ;}
@@ -26,6 +25,9 @@ public:
 	// return false for failure
 	virtual bool loadConstants(int runno, string variation) { return false; }
 	
+	// logs the constants
+	virtual void showConstants() { cout << " Please implement showConstants() in your plugin." << endl;}
+
 	// the implementation should always return true
 	// this is used as sanity check that the DL is actually loaded
 	virtual bool checkPlugin() { return false; }

@@ -1,3 +1,6 @@
+10/9/17
+ - added new abstract showConstants()
+
 10/6/17
  - added sanity check abstract checkPlugin()
 
