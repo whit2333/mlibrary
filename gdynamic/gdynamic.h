@@ -26,7 +26,7 @@ public:
 	virtual bool loadConstants(int runno, string variation) { return false; }
 	
 	// logs the constants
-	virtual void showConstants() { cout << " Please implement showConstants() in your plugin." << endl;}
+	virtual vector<string> showConstants() { return  {" Please implement showConstants() in your plugin."}; }
 
 	// the implementation should always return true
 	// this is used as sanity check that the DL is actually loaded
