@@ -16,7 +16,7 @@ void G4Setup::addG4Volume(G4Volume *g4v, string name) {
 	if(g4setup->find(name) != g4setup->end()) {
 		(*g4setup)[name] = g4v;
 	} else {
-		G4cout << " !! Warning: volume " << name << " already exists." << endl;
+		G4cout << " !! Warning: volume " << name << " already exists." << G4endl;
 	}
 }
 
@@ -37,7 +37,7 @@ G4Volume* G4Setup::getG4Volume(string name) const
 	if(g4setup->find(name) != g4setup->end()) {
 		return (*g4setup)[name];
 	} else {
-		G4cout << " !! Warning: volume " << name << " does not exist in g4setup." << endl;
+		G4cout << " !! Warning: volume " << name << " does not exist in g4setup." << G4endl;
 	}
 	return nullptr;
 }
@@ -77,7 +77,7 @@ void G4Volume::addSolid(G4VSolid* s, int verbosity)
 	solidVolume = s;
 
 	if(verbosity == GVERBOSITY_ALL) {
-		cout << g4setupLogHeader << " Geant4 Solid " << s->GetName() << " created." << endl;
+		G4cout << g4setupLogHeader << " Geant4 Solid " << s->GetName() << " created." << G4endl;
 	}
 
 }

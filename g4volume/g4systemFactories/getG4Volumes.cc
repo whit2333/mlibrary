@@ -83,7 +83,7 @@ G4RotationMatrix* G4SetupFactory::getRotation(GVolume *s)
 				rot->rotateX(rotPars[2]);
 			} else {
 				G4cerr << " !!! Fatal Error: Ordered rotation <" << order << "> for " << s->getName() << " is wrong, it must be one of the following:"
-				<< " xzy, yxz, yzx, zxy or zyx. Exiting." << endl;
+				<< " xzy, yxz, yzx, zxy or zyx. Exiting." << G4endl;
 				exit(0);
 			}
 		}

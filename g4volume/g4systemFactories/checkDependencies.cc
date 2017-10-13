@@ -21,18 +21,18 @@ bool G4SetupFactory::checkSolidDependencies(bool verbosity, GVolume *s, map<stri
 				// checking if the copy solid exists
 				if(verbosity) G4cout << " " << s->getName() << " is a copy of " << copies[1] ;
 				if(getSolidFromMap(copies[1], g4s) != nullptr) {
-					if(verbosity) G4cout << " which already exists" << endl; ;
+					if(verbosity) G4cout << " which already exists" << G4endl; ;
 					return true;
 				} else {
-					if(verbosity) G4cout << " which does not exist yet." << endl; ;
+					if(verbosity) G4cout << " which does not exist yet." << G4endl; ;
 					return false;
 				}
 			} else {
-				if(verbosity) G4cout << " Did you intend to make a copy? The first string must be: \"copyOf:\" but you have " << copies[0] << endl ;
+				if(verbosity) G4cout << " Did you intend to make a copy? The first string must be: \"copyOf:\" but you have " << copies[0] << G4endl ;
 				return false;
 			}
 		} else {
-			if(verbosity) G4cout << " Did you intend to make a copy? The syntax is \"copyOf:\" volumeName, but you have " << copyOf << endl; ;
+			if(verbosity) G4cout << " Did you intend to make a copy? The syntax is \"copyOf:\" volumeName, but you have " << copyOf << G4endl; ;
 			return false;
 		}
 		// replica
@@ -68,22 +68,22 @@ bool G4SetupFactory::checkPhysicalDependencies(bool verbosity, GVolume *s, map<s
 	// the gvolume must exist
 	if(g4s->find(vname) == g4s->end()) {
 
-		if(verbosity) G4cout << "  - g4setup dependencies: " << vname << " not found in gvolume map yet." << endl ;
+		if(verbosity) G4cout << "  - g4setup dependencies: " << vname << " not found in gvolume map yet." << G4endl ;
 
 		return false;
 	}
 
 	// checking if its and mother logical volume exists
 	if(getLogicalFromMap(vname, g4s)   == nullptr) {
-		if(verbosity) G4cout << "  <" << vname << ">  - g4setup logical volume not found yet." << endl ;
+		if(verbosity) G4cout << "  <" << vname << ">  - g4setup logical volume not found yet." << G4endl ;
 		return false;
 	}
 	if(getLogicalFromMap(motherName, g4s) == nullptr) {
-		if(verbosity) G4cout << "  - g4setup dependencies: <" << vname << "> mother <" << motherName << "> logical volume not found yet." << endl ;
+		if(verbosity) G4cout << "  - g4setup dependencies: <" << vname << "> mother <" << motherName << "> logical volume not found yet." << G4endl ;
 		return false;
 	}
 
-	if(verbosity) G4cout << " - g4setup dependencies: <" << vname << "> and mother <" << motherName << "> logical volumes are found. Ready to build Physical volume." << endl ;
+	if(verbosity) G4cout << " - g4setup dependencies: <" << vname << "> and mother <" << motherName << "> logical volumes are found. Ready to build Physical volume." << G4endl ;
 
 	return true;
 }

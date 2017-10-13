@@ -34,7 +34,7 @@ void G4Setup::registerFactoriesAndBuildG4Volumes(GSetup* gsetup, GOptions* gopt)
 				if(g4setupactory.find(factory) != g4setupactory.end()) {
 					if(g4setupactory[factory]->loadG4Setup(gopt, v.second, g4setup) == false) remainingVolumes = remainingVolumes + 1;
 				} else {
-					G4cerr << " !!! Fatal Error: g4setupactory factory <" << factory << "> not found." << endl;
+					G4cerr << " !!! Fatal Error: g4setupactory factory <" << factory << "> not found." << G4endl;
 					exit(0);
 				}
 			}
