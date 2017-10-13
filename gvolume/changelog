@@ -2,6 +2,7 @@
  - removed gVolumeValidKeys, not needed
  - using FATALERRORL, GWARNING symbols
  - added importFilename for imports, set by factory
+ - added utility functions to check directories content of import
 
 10/6/17
  - added method getSensitiveVolumes() to retrieve the the sensitive names and their paths, so the plugins can be loaded

@@ -1,11 +1,9 @@
 // gvolume
 #include "systemTextFactory.h"
 
-
 // c++
 #include <iostream>
 using namespace std;
-
 
 void GSystemTextFactory::loadMaterial(GOptions* gopt, GSystem *s) {
 //	if(verbosity > GVERBOSITY_SUMMARY) {

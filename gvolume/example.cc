@@ -3,7 +3,7 @@
 // example on how to use load a setup
 
 // options
-#include "gSystem.h"
+#include "gsystem.h"
 
 // c++
 #include <iostream>

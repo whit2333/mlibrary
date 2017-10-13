@@ -1,6 +1,7 @@
 // gvolume
 #include "systemFactory.h"
 #include "text/systemTextFactory.h"
+#include "cad/systemCadFactory.h"
 
 // PRAGMA TODO: Add proper log messages
 
@@ -22,6 +23,16 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 				systemFactory[factory] = gSystemManager.CreateObject<GSystemFactory>("GSystemTextFactory");
 			}
 		}
+		
+		if(factory == "cad") {
+			// if factory not found, registering it in the manager and loading it into the map
+			if(systemFactory.find(factory) == systemFactory.end()) {
+				gSystemManager.RegisterObjectFactory<GSystemCadFactory>("GSystemCadFactory");
+				systemFactory[factory] = gSystemManager.CreateObject<GSystemFactory>("GSystemCadFactory");
+			}
+		}
+
+		
 	}
 
 

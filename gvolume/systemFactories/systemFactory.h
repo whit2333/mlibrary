@@ -18,7 +18,10 @@ public:
 private:
 	virtual void loadMaterial(GOptions* gopt, GSystem *s) = 0;
 	virtual void loadGeometry(GOptions* gopt, GSystem *s) = 0;
-	
+
+protected:
+	int verbosity;
+
 };
 
 #endif

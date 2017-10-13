@@ -19,14 +19,11 @@ public:
 
 private:
 	vector<string> paths; // Paths to system data
-	int verbosity;
 
 private:
 	// PRAGMA TODO: is GOptions necessary?
 	virtual void loadMaterial(GOptions* gopt, GSystem *s);
 	virtual void loadGeometry(GOptions* gopt, GSystem *s);
-
 };
-
 
 #endif
