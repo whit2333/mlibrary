@@ -48,7 +48,7 @@ bool G4NativeSetupFactory::buildLogical(GOptions* gopt, GVolume *s, map<string, 
 		thisMaterial = NISTman->FindOrBuildMaterial(dmat);
 		if(thisMaterial == nullptr) {
 			// you set an option incorrectly, error!
-			G4cerr << " !!! Fatal Error: options default material " << dmat << " not found. Exiting." << G4endl;
+			G4cerr << FATALERRORL << "  Fatal Error: options default material " << dmat << " not found. Exiting." << G4endl;
 			exit(99);
 		}
 	}

@@ -16,7 +16,7 @@ void G4Setup::addG4Volume(G4Volume *g4v, string name) {
 	if(g4setup->find(name) != g4setup->end()) {
 		(*g4setup)[name] = g4v;
 	} else {
-		G4cout << " !! Warning: volume " << name << " already exists." << G4endl;
+		G4cout << GWARNING << " Warning: volume " << name << " already exists." << G4endl;
 	}
 }
 
@@ -37,7 +37,7 @@ G4Volume* G4Setup::getG4Volume(string name) const
 	if(g4setup->find(name) != g4setup->end()) {
 		return (*g4setup)[name];
 	} else {
-		G4cout << " !! Warning: volume " << name << " does not exist in g4setup." << G4endl;
+		G4cout << GWARNING << " Warning: volume " << name << " does not exist in g4setup." << G4endl;
 	}
 	return nullptr;
 }

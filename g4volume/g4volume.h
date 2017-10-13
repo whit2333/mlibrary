@@ -17,7 +17,8 @@ using namespace std;
 
 #define g4setupLogHeader " % g4setup->"
 
-class G4Volume {
+class G4Volume
+{
 
 public:
 	G4Volume(G4VSolid* s = nullptr, G4LogicalVolume* l = nullptr, G4VPhysicalVolume* p = nullptr) : solidVolume(s), logicalVolume(l), physicalVolume(p) { ; }
@@ -38,7 +39,8 @@ private:
 };
 
 
-class G4Setup {
+class G4Setup
+{
 
 public:
 	G4Setup(GSetup* gsetup, GOptions* gopt) {
@@ -67,7 +69,6 @@ public:
 
 	// G4Setup options - defined in utilities.cc
 	static map<string, GOption> defineOptions();
-
 
 };
 

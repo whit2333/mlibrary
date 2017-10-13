@@ -1,5 +1,6 @@
 10/13/17
  - using G4cout and G4cerr consistently with endline for routines involving geant4
+ - using FATALERRORL, GWARNING symbols
 
 10/5/17
  - Detector is global, so using cerr is ok

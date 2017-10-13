@@ -14,7 +14,7 @@ vector<double> G4NativeSetupFactory::checkAndReturnParameters(GVolume *s)
 	// checking that G4Box does not have null dimensions
 	//	for(unsigned i=0; i<parameters.size(); i++) {
 	//		if(getG4Number(parameters[i]) == 0) {
-	//			cout <<   " !! Warning: G4Box has one side null!" << endl;
+	//			cout <<   GWARNING << " Warning: G4Box has one side null!" << endl;
 	//		}
 	//	}
 
@@ -43,7 +43,7 @@ vector<double> G4NativeSetupFactory::checkAndReturnParameters(GVolume *s)
 		// the first constructor must have a number of pars multiple of 3
 		// the second constructor must have a number of pars (-3) multiple of 2
 		if(actualNumberOfParameters%3 !=0 && (actualNumberOfParameters - 3)%2 != 0) {
-			G4cerr << " !!! Fatal Error: the number of parameters in the constructor of " << name << ", " << type
+			G4cerr << FATALERRORL << "  Fatal Error: the number of parameters in the constructor of " << name << ", " << type
 			<< " is " << actualNumberOfParameters <<  ":" << s->getParameters() << G4endl;
 
 			G4cerr << "      This does not match a " << type <<". Exiting." << G4endl << G4endl;
@@ -58,7 +58,7 @@ vector<double> G4NativeSetupFactory::checkAndReturnParameters(GVolume *s)
 		// the first constructor must have a number of pars (-4) multiple of 3
 		// the second constructor must have a number of pars (-4) multiple of 2
 		if((actualNumberOfParameters - 4)%3 !=0 && (actualNumberOfParameters - 3)%2 != 0) {
-			G4cerr << " !!! Fatal Error: the number of parameters in the constructor of " << name << ", " << type
+			G4cerr << FATALERRORL << "  Fatal Error: the number of parameters in the constructor of " << name << ", " << type
 			<< " is " << actualNumberOfParameters <<  ":" << s->getParameters() << G4endl;
 
 			G4cerr << "      This does not match a " << type <<". Exiting." << G4endl << G4endl;
@@ -81,7 +81,7 @@ vector<double> G4NativeSetupFactory::checkAndReturnParameters(GVolume *s)
 
 
 	if(possibleNumberOfParameters.find(actualNumberOfParameters) == possibleNumberOfParameters.end() ) {
-		G4cerr << " !!! Fatal Error: the number of parameters in the constructor of " << name << ", " << type
+		G4cerr << FATALERRORL << "  Fatal Error: the number of parameters in the constructor of " << name << ", " << type
 		<< " is " << actualNumberOfParameters <<  ":" << s->getParameters() << G4endl;
 
 		G4cerr << "      This does not match a " << type <<". Exiting." << G4endl << G4endl;
