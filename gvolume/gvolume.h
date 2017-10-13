@@ -9,7 +9,6 @@
 using namespace std;
 
 #define gVolumeNumberOfParameters 19
-extern array<string, gVolumeNumberOfParameters> gVolumeValidKeys;
 
 class GVolume
 {
@@ -17,13 +16,14 @@ public:
 	GVolume(vector<string> pars);
 
 private:
-	string        name;   ///< Name of the volume.
-	string      mother;   ///< Mother Volume name.
-	string description;   ///< Volume Description, for documentation.
-
+	string        name;    ///< Name of the volume.
+	string      mother;    ///< Mother Volume name.
+	string description;    ///< Volume Description, for documentation.
+	string importFilename; ///< For imports, filename with path, set with the import factory
+	
 	// solid parameters
-	string        type;   ///< solid type. This follows the GEANT4 definitions
-	string  parameters;   ///< vector of parameters used in the geant4 solid constructor
+	string        type;    ///< solid type. This follows the GEANT4 definitions
+	string  parameters;    ///< vector of parameters used in the geant4 solid constructor
 
 	// solid visualization style
 	bool        visible;   ///< visibility of the detector: 0=invisible 1=visible
@@ -72,7 +72,6 @@ public:
 
 	string  getSensitivity(){return sensitivity;}
 	string  getTouchableID(){return touchableID;}
-
 
 	// special cases
 	string getCopyOf()     {return copyOf;}

@@ -12,9 +12,8 @@ using namespace std;
 
 
 
-void GSystemTextFactory::loadGeometry(GOptions* gopt, GSystem *s) {
-
-
+void GSystemTextFactory::loadGeometry(GOptions* gopt, GSystem *s)
+{
 	vector<string> possibleLocations = gopt->getStringVectorValue("setupDir");
 	ifstream *IN = s->gSystemFile(1, possibleLocations, verbosity);
 

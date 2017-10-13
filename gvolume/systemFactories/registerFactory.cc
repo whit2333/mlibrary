@@ -2,6 +2,7 @@
 #include "systemFactory.h"
 #include "text/systemTextFactory.h"
 
+// PRAGMA TODO: Add proper log messages
 
 void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 {
@@ -32,7 +33,7 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 		if(systemFactory.find(factory) != systemFactory.end()) {
 			systemFactory[factory]->loadSystem(gopt, setup[systemName]);
 		} else {
-			cerr << " !!! Fatal Error: systemFactory factory <" << factory << "> not found for " << systemName << endl;
+			cerr << FATALERRORL << " Fatal Error: systemFactory factory <" << factory << "> not found for " << systemName << endl;
 			exit(0);
 		}
 
@@ -58,7 +59,7 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 			string mother = s.second->getGVolume(vname)->getMother();
 			if(mother != "world") {
 				if(s.second->getGVolume(mother) == nullptr) {
-					cerr << " !!! Fatal Error: mother <" << mother << "> not found for <" << vname << ">" << endl;
+					cerr << FATALERRORL << " Fatal Error: mother <" << mother << "> not found for <" << vname << ">" << endl;
 					exit(0);
 				}
 			}

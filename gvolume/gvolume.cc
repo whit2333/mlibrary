@@ -1,35 +1,6 @@
 // gVolume
 #include "gvolume.h"
 
-// the double brackets is used because
-// initializer lists ambiguity:
-//
-// std::vector<int> i{10, 0};    // 10 elements of value zero
-// std::vector<int> j{{10, 0}};  // 2 elements of value 10 and 0 respectively
-
-array<string, gVolumeNumberOfParameters> gVolumeValidKeys = { {
-	"name",
-	"mother",
-	"description",
-	"type",
-	"dimensions",
-	"visible",
-	"style",
-	"color",
-	"material",
-	"magfield",
-	"pos"       ,
-	"rot",
-	"sensitivity",
-	"touchableID",
-	"copyOf",
-	"replicaOf",
-	"ncopy",
-	"solidsOpr",
-	"mirror" } } ;
-
-
-
 // c++
 #include <iostream>
 
@@ -39,40 +10,50 @@ using namespace gstring;
 
 GVolume::GVolume(vector<string> pars)
 {
-	// size is already checked in addVolume, the only interface to volume
-	name        = trimSpacesFromString(pars[0]);
-	mother      = trimSpacesFromString(pars[1]);
-	description = trimSpacesFromString(pars[2]);
+	if( pars.size() != gVolumeNumberOfParameters) {
+		cerr << FATALERRORL << " Fatal Error: Incorrect number of system parameters (" << pars.size() << ") for " << pars[0] ;
+		cerr << " It should be " << gVolumeNumberOfParameters << endl;
+		exit(0);
+	} else {
+		// size is already checked in addVolume, the only interface to volume
+		int i=0;
+		
+		name         = trimSpacesFromString(pars[i++]);
+		mother       = trimSpacesFromString(pars[i++]);
+		description  = trimSpacesFromString(pars[i++]);
 
-	type        = trimSpacesFromString(pars[3]);
-	parameters  = trimSpacesFromString(pars[4]);
-
-	string pvis = trimSpacesFromString(pars[5]);
-	visible     = (pvis == "1") ? true : false;
-	style       = stoi(trimSpacesFromString(pars[6]));
-	color       = trimSpacesFromString(pars[7]);
-
-	material    = trimSpacesFromString(pars[8]);
-	emfield     = trimSpacesFromString(pars[9]);
-
-	pos         = trimSpacesFromString(pars[10]);
-	rot         = trimSpacesFromString(pars[11]);
-
-	sensitivity = trimSpacesFromString(pars[12]);
-	touchableID = trimSpacesFromString(pars[13]);
-
-	copyOf      = trimSpacesFromString(pars[14]);
-	replicaOf   = trimSpacesFromString(pars[15]);
-	pCopyNo     = stoi(trimSpacesFromString(pars[16]));
-	solidsOpr   = trimSpacesFromString(pars[17]);
-
-	mirror      = trimSpacesFromString(pars[18]);
-
-	// modifiers - these are only accessed through options/gcard
-	shift = "no";
-	tilt  = "no";
-	exist = true;
-
+		type        = trimSpacesFromString(pars[i++]);
+		parameters  = trimSpacesFromString(pars[i++]);
+		
+		string pvis = trimSpacesFromString(pars[i++]);
+		visible     = (pvis == "1") ? true : false;
+		style       = stoi(trimSpacesFromString(pars[i++]));
+		color       = trimSpacesFromString(pars[i++]);
+		
+		material    = trimSpacesFromString(pars[i++]);
+		emfield     = trimSpacesFromString(pars[i++]);
+		
+		pos         = trimSpacesFromString(pars[i++]);
+		rot         = trimSpacesFromString(pars[i++]);
+		
+		sensitivity = trimSpacesFromString(pars[i++]);
+		touchableID = trimSpacesFromString(pars[i++]);
+		
+		copyOf      = trimSpacesFromString(pars[i++]);
+		replicaOf   = trimSpacesFromString(pars[i++]);
+		pCopyNo     = stoi(trimSpacesFromString(pars[i++]));
+		solidsOpr   = trimSpacesFromString(pars[i++]);
+		
+		mirror      = trimSpacesFromString(pars[i++]);
+		
+		// modifiers - these are only accessed through options/gcard
+		shift = "no";
+		tilt  = "no";
+		exist = true;
+		
+		// set with the import factory:
+		importFilename = "na";
+	}
 }
 
 
@@ -83,13 +64,12 @@ ostream &operator<<(ostream &stream, GVolume gVol)
 		style = "wireframe";
 	} else if(gVol.style == 1){
 		style = "solid";
-
 	}
 	string visibility = "yes";
 	if(!gVol.visible) {
 		visibility = "no";
 	}
-
+	
 	stream  << endl;
 	stream << "   - Name:            "    << gVol.name     << "  -  " <<  gVol.description << endl;
 	stream << "   - Mother:          "    << gVol.mother      << endl;
@@ -102,7 +82,7 @@ ostream &operator<<(ostream &stream, GVolume gVol)
 	stream << "   - Rotation:        "    << gVol.rot << endl;
 	stream << "   - Sensitivity:     "    << gVol.sensitivity << endl;
 	stream << "   - Touchable ID:    "    << gVol.touchableID << endl;
-
+	
 	return stream;
 }
 

@@ -20,7 +20,7 @@ GSystem::GSystem(string n, string f, string v, int r, int dr, int verbosity) : n
 void GSystem::addGVolume(vector<string> pars, int verbosity)
 {
 	if( pars.size() != gVolumeNumberOfParameters) {
-		cerr << " !!! Fatal Error: Incorrect number of system parameters (" << pars.size() << ") for " << pars[0] ;
+		cerr << FATALERRORL << " Fatal Error: Incorrect number of system parameters (" << pars.size() << ") for " << pars[0] ;
 		cerr << " It should be " << gVolumeNumberOfParameters << endl;
 		exit(0);
 	} else {

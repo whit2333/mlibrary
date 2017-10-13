@@ -13,9 +13,10 @@ using namespace std;
 #include "goptions.h"
 #include "gfactory.h"
 
-#define setupLogHeader " % gvolume->"
+#define setupLogHeader " ❒ gvolume▷"
 
-class GModifiers {
+class GModifiers
+{
 
 public:
 	GModifiers(string n, string s, string t, string e, int verbosity) : name(n), shift(s), tilts(t) {
@@ -44,7 +45,8 @@ public:
 };
 
 
-class GSystem {
+class GSystem
+{
 
 public:
 	GSystem(string n, string f, string v, int r, int dr, int verbosity);
@@ -86,7 +88,8 @@ private:
 };
 
 
-class GSetup {
+class GSetup
+{
 public:
 	// constructor from a gcard
 	// by default all systems will have the same run number but
