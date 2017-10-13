@@ -1,5 +1,10 @@
-	#ifndef GSTRING_H
+#ifndef GSTRING_H
 #define GSTRING_H 1
+
+#ifndef FATALERRORL
+	#define	FATALERRORL " ☣︎"
+	#define	GWARNING    " ⚠︎"
+#endif
 
 // c++
 #include <vector>

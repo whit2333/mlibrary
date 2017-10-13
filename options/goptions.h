@@ -52,6 +52,11 @@
 #ifndef GOPTIONS_H
 #define GOPTIONS_H 1
 
+#ifndef FATALERRORL
+	#define	FATALERRORL " ☣︎"
+	#define	GWARNING    " ⚠︎"
+#endif
+
 // qt
 #include <QDomDocument>
 #include <QFile>

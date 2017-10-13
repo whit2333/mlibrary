@@ -206,7 +206,7 @@ void GOptions::setOptionValue(string optionKey, string value)
 	}
 	// option was not found. if ignoreNotFound is 1 matches is 1.
 	if(matches < 2) {
-		cout << "  !! Attention: the option " << optionKey
+		cout << GWARNING << " Attention: the option " << optionKey
 		<< " is not known to this system. Please check your spelling." << endl;
 	}
 	// option was not found. ignoreNotFound is 0
@@ -230,13 +230,13 @@ void GOptions::checkAndParseGCard(string file)
 	QFile gcard(file.c_str());
 
 	if( !gcard.exists() ) {
-		cerr << " !!! Fatal error:" << file << " not found." << endl;
+		cerr << FATALERRORL << "  Fatal error:" << file << " not found." << endl;
 		exit(0);
 	}
 
 	// opening gcard and filling domDocument
 	if(!configurationQDomDocument.setContent(&gcard)) {
-		cerr << " !!! Fatal error: <" << file << "> has wrong XML syntax. You can use online validators like http://www.xmlvalidation.com to fix it." << endl;
+		cerr << FATALERRORL << "  Fatal error: <" << file << "> has wrong XML syntax. You can use online validators like http://www.xmlvalidation.com to fix it." << endl;
 		exit(0);
 	}
 	gcard.close();
