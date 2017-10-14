@@ -55,8 +55,9 @@ namespace gstring
 	
 	// get path from filename with path
 	string getPathFromFilename(string file);
+	
 	// get filename from filename with path
-	string getFilenameFromFilename(string file);
+	string getFilenameFromFilenameWithPath(string file);
 }
 
 

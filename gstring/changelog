@@ -1,29 +1,28 @@
+10/14/17
+ - renamed getFilenameFromFilename to getFilenameFromFilenameWithPath
+
 10/13/17
-- added FATALERRORL symbols
+ - added FATALERRORL symbols
 
 7/6/17
-- using the bool argument to warn about no units
+ - using the bool argument to warn about no units
 
 6/29/16
-- errors to cerr
+ - errors to cerr
 
 6/27/17
-- added utility to return vector<double> directly from string
+ - added utility to return vector<double> directly from string
 
 5/26/17
-- added utilities for QT object conversions to c++
-- Removed, I think they fixed it?
+ - added utilities for QT object conversions to c++
+ - Removed window version of toString I think they fixed it?
 	#ifdef _MSC_VER
 		return input.toString().toLatin1();
 	#else
 
-return input.toString().toStdString();
-}
-
-
 9/13/16
-- added function to fill a string with a char until it is ndigits long
+ - added function to fill a string with a char until it is ndigits long
 
 8/9/16
-- first implementation
+ - first implementation
 

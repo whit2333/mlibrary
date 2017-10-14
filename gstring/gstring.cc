@@ -236,7 +236,7 @@ string gstring::getPathFromFilename(string file)
 
 
 // get filename from filename with path
-string gstring::getFilenameFromFilename(string file)
+string gstring::getFilenameFromFilenameWithPath(string file)
 {
 	// PRAGMA TODO:
 	// can use the c++17 filename path
