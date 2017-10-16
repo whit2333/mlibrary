@@ -14,7 +14,7 @@ using namespace std;
 #include "goptions.h"
 #include "gfactory.h"
 
-#define setupLogHeader " ❒ gvolume▷"
+#define setupLogHeader " ⎚ gvolume ▸"
 
 #define WORLDNAME     "world"
 

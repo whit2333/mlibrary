@@ -15,7 +15,7 @@ using namespace std;
 #include "gfactory.h"
 #include "gsystem.h"
 
-#define g4setupLogHeader " % g4setup->"
+#define g4setupLogHeader " ⌂ g4setup ▸"
 
 class G4Volume
 {

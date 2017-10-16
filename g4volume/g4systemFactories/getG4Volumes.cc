@@ -22,7 +22,6 @@ G4LogicalVolume* G4SetupFactory::getLogicalFromMap(string vname, map<string, G4V
 	if(g4s->find(vname) != g4s->end()) {
 		auto thisGVolume = (*g4s)[vname];
 		return thisGVolume->getLogical();
-
 	}
 
 	return nullptr;
@@ -34,7 +33,6 @@ G4VPhysicalVolume* G4SetupFactory::getPhysicalFromMap(string vname, map<string, 
 	if(g4s->find(vname) != g4s->end()) {
 		auto thisGVolume = (*g4s)[vname];
 		return thisGVolume->getPhysical();
-
 	}
 
 	return nullptr;
@@ -98,8 +96,6 @@ G4RotationMatrix* G4SetupFactory::getRotation(GVolume *s)
 			rot->rotateY(tiltVector[2]);
 		}
 	}
-
-
 	return rot;
 }
 

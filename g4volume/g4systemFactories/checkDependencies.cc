@@ -55,7 +55,8 @@ bool G4SetupFactory::checkSolidDependencies(bool verbosity, GVolume *s, map<stri
 
 bool G4SetupFactory::checkLogicalDependencies(bool verbosity, GVolume *s, map<string, G4Volume*> *g4s)
 {
-	// maybe check material here?
+	// PRAGMA TODO
+	// check material here
 
 	return true;
 }
