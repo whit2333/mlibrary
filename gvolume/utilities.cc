@@ -18,7 +18,7 @@ map<string, GOption> GSetup::defineOptions()
 {
 	map<string, GOption> optionsMap;
 
-	optionsMap["addSystem"] = GOption("Adds a system", "na", "system", true);
+	optionsMap["addSystem"] = GOption("Adds a system", NOTAPPLICABLE, "system", true);
 	optionsMap["addSystem"].addHelp("The mandatory arguments, separated by commas, are:\n");
 	optionsMap["addSystem"].addHelp(" - system name \n");
 	optionsMap["addSystem"].addHelp(" - system factory\n");
@@ -27,7 +27,7 @@ map<string, GOption> GSetup::defineOptions()
 	optionsMap["addSystem"].addHelp(" - system run number (default: 1)\n");
 	optionsMap["addSystem"].addHelp(" Example: -addSystem=\"ctof, cad, default, 12\"\n");
 
-	optionsMap["setupDir"] = GOption("Path(s) to check for setup, separated by space", "na", "system", true);
+	optionsMap["setupDir"] = GOption("Path(s) to check for setup, separated by space", NOTAPPLICABLE, "system", true);
 
 	optionsMap["gvolumev"] = GOption("Volume Verbosity", 0, "verbosity");
 	optionsMap["gvolumev"].addHelp("Possible values:\n");
@@ -36,7 +36,7 @@ map<string, GOption> GSetup::defineOptions()
 	optionsMap["gvolumev"].addHelp(GVERBOSITY_DETAILS_D);
 	optionsMap["gvolumev"].addHelp(GVERBOSITY_ALL_D);
 
-	optionsMap["logVolume"] = GOption("Print everything related to this volume", "na", "verbosity");
+	optionsMap["logVolume"] = GOption("Print everything related to this volume", NOTAPPLICABLE, "verbosity");
 
 	return optionsMap;
 }
@@ -55,7 +55,7 @@ ifstream* GSystem::gSystemFile(int which, vector<string> locations, int verbosit
 
 	if(!IN->good()) {
 		for(auto locs : locations) {
-			if(locs != "na") {
+			if(locs != NOTAPPLICABLE) {
 				string newName = locs + "/" + fname;
 				IN->open(newName.c_str());
 				if(verbosity == GVERBOSITY_ALL) {
@@ -79,23 +79,21 @@ ifstream* GSystem::gSystemFile(int which, vector<string> locations, int verbosit
 }
 
 // returns a vector of import files, checking all possible directories.
-vector<string> GSystem::gImportFiles(int which, vector<string> locations, int verbosity, vector<string> possibleExtensions)
+vector<string> GSystem::gImportFiles(vector<string> locations, int verbosity, vector<string> possibleExtensions)
 {
-	vector<string> importFiles;
-	
 	DIR *possibleDir = opendir(name.c_str());
+		
 	if(possibleDir != nullptr) {
-		loadImportFilesInDir(possibleDir, possibleExtensions);
+		return loadImportFilesInDir(name, possibleDir, possibleExtensions);
 	} else {
 		
 	}
 	
-	
-	return importFiles;
+	return {};
 }
 
-// load all names in the directory matching extension. Defined in utilities.cc.
-vector<string> GSystem::loadImportFilesInDir(DIR* directory, vector<string> withExtension)
+// returns filenames in the directory matching extension. Defined in utilities.cc.
+vector<string> GSystem::loadImportFilesInDir(string path, DIR* directory, vector<string> withExtension)
 {
 	vector<string> filesWithExtension;
 	
@@ -107,21 +105,17 @@ vector<string> GSystem::loadImportFilesInDir(DIR* directory, vector<string> with
 		// checking that the file has the correct 3 char extension (with ".", that's 5 chars minimum
 		if(filename.size() > 4) {
 			string thisFilenameRoot(filename.begin(), filename.end() - 4);
+			string fileExtension(filename.end()-3, filename.end());
 			
-			// now trying all the extensions
-			for(auto fileExtension: withExtension) {
-				string filenameWithExtension = thisFilenameRoot + "." + fileExtension;
-				ifstream isItGoodFile(filenameWithExtension.c_str());
-				if(isItGoodFile.good()) {
-					filesWithExtension.push_back(filenameWithExtension);
-				}
-				isItGoodFile.close();
+			// if the file has the wanted extension, add it to the list
+			if(find(begin(withExtension), end(withExtension), fileExtension) != end(withExtension)) {
+				filesWithExtension.push_back(path + "/" + thisFilenameRoot + "." + fileExtension);
 			}
 		}
+		thisDirStructure = readdir(directory);
 	}
 	
 	return filesWithExtension;
-
 }
 
 string GSystem::getSystemPath()

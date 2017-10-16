@@ -9,16 +9,17 @@
 using namespace std;
 
 #define gVolumeNumberOfParameters 19
+#define NOTAPPLICABLE "na"
 
 class GVolume
 {
 public:
-	GVolume(vector<string> pars);
+	GVolume(vector<string> pars, string importPath = NOTAPPLICABLE);
 
 private:
-	string        name;    ///< Name of the volume.
-	string      mother;    ///< Mother Volume name.
-	string description;    ///< Volume Description, for documentation.
+	string           name; ///< Name of the volume.
+	string         mother; ///< Mother Volume name.
+	string    description; ///< Volume Description, for documentation.
 	string importFilename; ///< For imports, filename with path, set with the import factory
 	
 	// solid parameters
@@ -32,7 +33,7 @@ private:
 
 	// logical attributes
 	string     material;   ///< Volume Material name.
-	string     emfield;    ///< Magnetic Field. The string "no" means that the field is inherited from the mother volume.
+	string     emfield;    ///< Magnetic Field. Possible choices: "inherit", "fieldName", "noField"
 
 	// physical attributes
 	string          pos;   ///< Position relative to the mother volume

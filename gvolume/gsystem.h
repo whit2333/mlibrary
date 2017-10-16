@@ -16,6 +16,9 @@ using namespace std;
 
 #define setupLogHeader " ❒ gvolume▷"
 
+#define WORLDNAME     "world"
+
+
 class GModifiers
 {
 	
@@ -60,10 +63,11 @@ public:
 	ifstream* gSystemFile(int which, vector<string> locations, int verbosity);  // 0: material. 1: geometry
 	
 	// returns a vector of import files, checking all possible directories. Defined in utilities.cc
-	vector<string> gImportFiles(int which, vector<string> locations, int verbosity, vector<string> possibleExtensions);
+	vector<string> gImportFiles(vector<string> locations, int verbosity, vector<string> possibleExtensions);
 	
 	void addGVolume(vector<string> pars, int verbosity);
-	
+	void addGImportedVolume(string importType, string filename, int verbosity);
+
 	GVolume* getGVolume(string key) {
 		if(systems.find(key) != systems.end()) {
 			return systems[key];
@@ -93,8 +97,7 @@ private:
 	map<string, double> systemParameters;
 	
 	// load all names in the directory matching extension. Defined in utilities.cc.
-	vector<string> loadImportFilesInDir(DIR* directory, vector<string> withExtension);
-	
+	vector<string> loadImportFilesInDir(string path, DIR* directory, vector<string> withExtension);
 };
 
 
@@ -122,7 +125,6 @@ private:
 public:
 	// GSetup options - defined in utilities.cc
 	static map<string, GOption> defineOptions();
-	
 };
 
 #endif

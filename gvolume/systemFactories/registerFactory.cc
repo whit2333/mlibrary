@@ -68,7 +68,7 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 	for(auto &s : setup) {
 		for(auto &vname: s.second->getAllVolumeNames()) {
 			string mother = s.second->getGVolume(vname)->getMother();
-			if(mother != "world") {
+			if(mother != WORLDNAME) {
 				if(s.second->getGVolume(mother) == nullptr) {
 					cerr << FATALERRORL << " Fatal Error: mother <" << mother << "> not found for <" << vname << ">" << endl;
 					exit(0);

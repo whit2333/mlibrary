@@ -8,7 +8,7 @@
 #include "gstring.h"
 using namespace gstring;
 
-GVolume::GVolume(vector<string> pars)
+GVolume::GVolume(vector<string> pars, string importPath)
 {
 	if( pars.size() != gVolumeNumberOfParameters) {
 		cerr << FATALERRORL << " Fatal Error: Incorrect number of system parameters (" << pars.size() << ") for " << pars[0] ;
@@ -47,12 +47,12 @@ GVolume::GVolume(vector<string> pars)
 		mirror      = trimSpacesFromString(pars[i++]);
 		
 		// modifiers - these are only accessed through options/gcard
-		shift = "no";
-		tilt  = "no";
+		shift = NOTAPPLICABLE;
+		tilt  = NOTAPPLICABLE;
 		exist = true;
 		
-		// set with the import factory:
-		importFilename = "na";
+		// set file with path if it's an import
+		importFilename = importPath;
 	}
 }
 
