@@ -1,7 +1,6 @@
 #ifndef  GTOUCHABLE_H
 #define  GTOUCHABLE_H 1
 
-
 // c++
 #include <vector>
 #include <string>  // < not needed with clang but needed on Linux gcc 4.8.5
@@ -9,13 +8,10 @@ using namespace std;
 
 enum GType { readout, flux, counter };
 
-
 class GTouchable {
-
 
 public:
 	GTouchable(string sensitivity, string gtouchableString, double tWindow);
-
 
 private:
 	GType       gType;

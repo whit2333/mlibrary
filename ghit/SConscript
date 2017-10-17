@@ -1,0 +1,4 @@
+from init_env import init_environment
+
+env = init_environment("mlibrary clhep geant4")
+lib = env.Library(source = "ghit.cc", target = "../lib/ghit")
