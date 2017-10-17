@@ -83,6 +83,9 @@ public:
 	void modifyPos(string s)     {shift = s;}
 	void modifyRot(string t)     {tilt  = t;}
 	void modifyExistence(bool e) {exist = e;}
+
+	// imported volumes
+	string getImportedFile() {return importFilename;}
 };
 
 
