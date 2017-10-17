@@ -6,14 +6,14 @@
 void G4Setup::registerFactoriesAndBuildG4Volumes(GSetup* gsetup, GOptions* gopt)
 {
 	int verbosity = gopt->getInt("g4volumev");
-
+	
 	map<string, G4SetupFactory*> g4setupactory;
-
+	
 	// registering factories in the manager
 	// and adding them to systemFactory
 	for(auto &s : gsetup->getSetup()) {
 		string factory = s.second->getFactory();
-
+		
 		// text
 		// ----
 		if(factory == "text") {
@@ -31,7 +31,7 @@ void G4Setup::registerFactoriesAndBuildG4Volumes(GSetup* gsetup, GOptions* gopt)
 		}
 		
 	}
-
+	
 	// now building geant4 objects
 	// every volume that is not built (due to dependencies) increments remainingVolumes
 	int remainingVolumes;
@@ -54,7 +54,7 @@ void G4Setup::registerFactoriesAndBuildG4Volumes(GSetup* gsetup, GOptions* gopt)
 				cout << setupLogHeader << " " << s.first << " remaining g4volumes to be built: " << remainingVolumes << endl;
 			}
 		}
-		if(allRemainingVolumes != 0) {
+		if(allRemainingVolumes != 0 && remainingVolumes != 0) {
 			if(allRemainingVolumes >= remainingVolumes) {
 				cerr << FATALERRORL << " Fatal Error: dependencies are not being resolved: their number should diminish." << endl;
 				exit(0);

@@ -4,7 +4,8 @@
 // geant4
 #include "G4PVPlacement.hh"
 #include "G4VisManager.hh"
-#include <G4VSolid.hh>
+#include "G4VSolid.hh"
+#include "G4LogicalVolume.hh"
 
 // c++
 #include <map>

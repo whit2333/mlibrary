@@ -1,7 +1,12 @@
+10/17/17
+ - cad import finalized w/o mods.
+
 10/16/17
  - using WORLDNAME defined in gsystem.h
  - using NOTAPPLICABLE defined in gvolume.h
  - better log
+ - giving up if dependencies are not resolved after a full iteration of all setups
+
 
 10/13/17
  - using G4cout and G4cerr consistently with endline for routines involving geant4
