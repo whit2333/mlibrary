@@ -46,6 +46,11 @@ public:
 	inline int timeCell(double time) {
 		return (int) (floor((time - gridStartTime)/timeWindow) + 1);
 	}
+	vector<string> showParameters() {
+		vector<string> messages;
+		messages.push_back(" Time Window: " + to_string(timeWindow));
+		return messages;
+	}
 };
 
 class GDynamic {
@@ -68,7 +73,8 @@ public:
 	
 	// logs the constants
 	virtual vector<string> showConstants() { return  {" Please implement showConstants() in your plugin."}; }
-
+	vector<string> showParameters() {return gSensitiveParameters->showParameters();}
+	
 	// the implementation should always return true
 	// this is used as sanity check that the DL is actually loaded
 	virtual bool checkPlugin() { return false; }
