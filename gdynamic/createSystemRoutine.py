@@ -140,7 +140,9 @@ routines   = parseRNames(sys.argv[1:])
 
 validateOptions(systemName, routines)
 
-writeHeader(systemName, routines)
+# let's not overwrite this?
+# or use createHeader function
+# writeHeader(systemName, routines)
 
 if 'constants' in routines or 'all' in routines:
 	writeLoadConstants(systemName)

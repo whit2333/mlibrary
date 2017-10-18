@@ -20,7 +20,7 @@ public:
 	GSensitivePars() : timeWindow(0), gridStartTime(0), hitStage(0), touchableDynamic(false), useTimeWindow(false) { }
 	
 	// constructor set by plugins
-	GSensitivePars(double tw, double gst, int verbosity) :
+	GSensitivePars(double tw, double gst, int verbosity = 0) :
 	timeWindow(tw),
 	gridStartTime(gst),
 	hitStage(0),

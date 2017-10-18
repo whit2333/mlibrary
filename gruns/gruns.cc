@@ -146,24 +146,53 @@ int GRuns::processEvents()
 		int runNumber = run.first;
 		int nevents   = run.second;
 		
+		if(verbosity > GVERBOSITY_SILENT) {
+			cout << GRUNLOGMSGITEM << " Starting Run Number |" << runNumber << "|,  processing " << nevents << " events." << endl;
+		}
+
+		
 		// loads the constants
 		// PRAGMA TODO: pass variation to this routine
 		for(auto gDigi: (*gDigitizationGlobal)) {
 			// protecting against plugin not loaded
 			if(gDigi.second) {
 				gDigi.second->loadConstants(runNumber, "default");
+				
+				// instantiates pointer to GSensitivePars
+				gDigi.second->loadSensitivePars(runNumber, "default");
+				
+				if(verbosity > GVERBOSITY_SILENT) {
+					showDigitizationParameters(gDigi.first,
+											   gDigi.second->showConstants(),
+											   gDigi.second->showParameters());
+				}
+				
 			}
 		}
 		
 		g4uim->ApplyCommand("/run/beamOn " + to_string(nevents));
 		
 		if(verbosity > GVERBOSITY_SILENT) {
-			cout << " ■ Run Number |" << runNumber << "| processed with " << nevents << " events." << endl;
+			cout << GRUNLOGMSGITEM << " Run Number |" << runNumber << "| done with " << nevents << " events." << endl << endl;
 		}
 	}
 	cout << endl;
 	
 	return 1;
 }
+
+// show digitization constants and parameters
+void GRuns::showDigitizationParameters(string system, vector<string> digiConstants, vector<string> digiPars)
+{
+	for(auto dc: digiConstants) {
+		cout << "  " << GRUNLOGMSGITEM << " " << system << ": " << dc << endl;
+	}
+	for(auto dp: digiPars) {
+		cout << "  " << GRUNLOGMSGITEM << " " << system << ": " << dp << endl;
+	}
+}
+
+
+
 
 

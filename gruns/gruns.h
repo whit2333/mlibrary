@@ -56,9 +56,10 @@ private:
 	
 	int runIndex;
 
-	// private
 	map<string, GDynamic*> *gDigitizationGlobal;
 
+	// show digitization constants and parameters
+	void showDigitizationParameters(string system, vector<string> digiConstants, vector<string> digiPars);
 	
 };
 

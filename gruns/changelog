@@ -1,5 +1,6 @@
-10/17/18
+10/18/17
 - protecting against plugin not loaded
+- added showDigitizationParameters utility
 
 10/16/17
  - added LOG and ERR symbols
