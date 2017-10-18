@@ -11,16 +11,25 @@ enum GType { readout, flux, counter };
 class GTouchable {
 
 public:
-	GTouchable(string sensitivity, string gtouchableString, double tWindow);
+	GTouchable(string sensitivity, string gtouchableString);
 
 private:
-	GType       gType;
-	double       time;   ///< Time of the first step
-	double timeWindow;   ///< System Time Window, used to determine if steps belong to the same hit
-	int       trackId;   ///< Used to determine if steps belong to the same hit for flux detectors
-	double  eFraction;   ///< Energy sharing Fraction
+	// set by constructor
 	vector<int>  gTid;   ///< Uniquely identify a sensitive element
 
+	// set by sensitive detector constructor.
+	GType  gType;
+	
+	// set in sensitiveDetector::ProcessHit
+	int  trackId;   ///< Used to determine if steps belong to the same hit for flux/counter detectors
+
+	// set by processGTouchable in the digitization plugin. Defaulted to 1. Used to share energy / create new hits.
+	double  eFraction;   ///< Energy sharing Fraction
+
+	// used to determine if a hit is within the same detector electronic time window
+	// if the index is 0, this quantity is ignored
+	// if it is > 0 then it is used to distinguish hits in separate time windows
+	int gridTimeIndex;
 };
 
 
