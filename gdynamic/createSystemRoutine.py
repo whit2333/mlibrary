@@ -2,8 +2,8 @@
 
 import sys, getopt, string
 
-validRoutineNames = ["constants",       "touchable",            "all"]
-validRoutineDescr = ["loads constants", "manipulate touchable", "write all routines"]
+validRoutineNames = ["constants",       "touchable",            "sensitivePars",                "all"]
+validRoutineDescr = ["loads constants", "manipulate touchable", "defines sensitive parameters", "write all routines"]
 
 def printHelp():
 	print ''
@@ -107,6 +107,21 @@ def writeLoadConstants(sName):
 	constantsFile.write('\treturn true;\n')
 	constantsFile.write('}\n')
 
+
+def writeSensitivePars(sName):
+	sensitiveParsFile = open('loadSensitivePars.cc', 'w')
+	sensitiveParsFile.write('#include "' + sName + '.h"\n')
+	sensitiveParsFile.write('\n')
+	sensitiveParsFile.write('void ' + sName + 'Plugin::loadSensitivePars(int runno, string variation)\n')
+	sensitiveParsFile.write('{\n')
+	sensitiveParsFile.write('\n')
+	sensitiveParsFile.write('\n')
+	sensitiveParsFile.write('\n')
+	sensitiveParsFile.write('\treturn true;\n')
+	sensitiveParsFile.write('}\n')
+
+
+# PRAGMA TODO: load the file existing in the directory
 def writeSConstruct(sName, routines):
 	sconsFile = open('SConstruct', 'w')
 	sconsFile.write('\n')
@@ -129,6 +144,9 @@ writeHeader(systemName, routines)
 
 if 'constants' in routines or 'all' in routines:
 	writeLoadConstants(systemName)
+
+if 'sensitivePars' in routines or 'all' in routines:
+	writeSensitivePars(systemName)
 
 
 
