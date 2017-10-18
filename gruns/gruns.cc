@@ -149,7 +149,10 @@ int GRuns::processEvents()
 		// loads the constants
 		// PRAGMA TODO: pass variation to this routine
 		for(auto gDigi: (*gDigitizationGlobal)) {
-			gDigi.second->loadConstants(runNumber, "default");
+			// protecting against plugin not loaded
+			if(gDigi.second) {
+				gDigi.second->loadConstants(runNumber, "default");
+			}
 		}
 		
 		g4uim->ApplyCommand("/run/beamOn " + to_string(nevents));
