@@ -69,7 +69,7 @@ bool G4SetupFactory::checkPhysicalDependencies(bool verbosity, GVolume *s, map<s
 	// the gvolume must exist
 	if(g4s->find(vname) == g4s->end()) {
 
-		if(verbosity) G4cout << "  - g4setup dependencies: " << vname << " not found in gvolume map yet." << G4endl ;
+		if(verbosity) G4cout << g4setupLogHeader << " dependencies: " << vname << " not found in gvolume map yet." << G4endl ;
 
 		return false;
 	}
@@ -80,11 +80,11 @@ bool G4SetupFactory::checkPhysicalDependencies(bool verbosity, GVolume *s, map<s
 		return false;
 	}
 	if(getLogicalFromMap(motherName, g4s) == nullptr) {
-		if(verbosity) G4cout << "  - g4setup dependencies: <" << vname << "> mother <" << motherName << "> logical volume not found yet." << G4endl ;
+		if(verbosity) G4cout << g4setupLogHeader << " dependencies: <" << vname << "> mother <" << motherName << "> logical volume not found yet." << G4endl ;
 		return false;
 	}
 
-	if(verbosity) G4cout << " - g4setup dependencies: <" << vname << "> and mother <" << motherName << "> logical volumes are found. Ready to build Physical volume." << G4endl ;
+	if(verbosity) G4cout << g4setupLogHeader << " dependencies: <" << vname << "> and mother <" << motherName << "> logical volumes are found. Ready to build Physical volume." << G4endl ;
 
 	return true;
 }

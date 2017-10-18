@@ -25,7 +25,7 @@ public:
 			string solid = sbuild ? " solid build, "    : " solid not build, ";
 			string logic = lbuild ? " logical build, "  : " logical not not build, ";
 			string physi = pbuild ? " physical build. " : " physical not build. ";
-			G4cout << " - g4setup: volume <" << vname << "> " << solid << logic << physi << G4endl;
+			G4cout << g4setupLogHeader << " volume <" << vname << "> " << solid << logic << physi << G4endl;
 		}
 		
 		if(sbuild && lbuild && pbuild) {
