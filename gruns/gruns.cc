@@ -147,7 +147,7 @@ int GRuns::processEvents()
 		int nevents   = run.second;
 		
 		if(verbosity > GVERBOSITY_SILENT) {
-			cout << GRUNLOGMSGITEM << " Starting Run Number |" << runNumber << "|,  processing " << nevents << " events." << endl;
+			cout << GRUNLOGMSGITEM << " Starting Run Number ∙" << runNumber << "∙,  processing " << nevents << " events." << endl;
 		}
 
 		
@@ -173,7 +173,7 @@ int GRuns::processEvents()
 		g4uim->ApplyCommand("/run/beamOn " + to_string(nevents));
 		
 		if(verbosity > GVERBOSITY_SILENT) {
-			cout << GRUNLOGMSGITEM << " Run Number |" << runNumber << "| done with " << nevents << " events." << endl << endl;
+			cout << GRUNLOGMSGITEM << " Run Number ∙" << runNumber << "∙ done with " << nevents << " events." << endl << endl;
 		}
 	}
 	cout << endl;
