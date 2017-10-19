@@ -13,6 +13,9 @@ class GTouchable {
 public:
 	GTouchable(string sensitivity, string gtouchableString);
 
+public:
+	string getGTouchableId();
+	
 private:
 	// set by constructor
 	vector<int>  gTid;   ///< Uniquely identify a sensitive element

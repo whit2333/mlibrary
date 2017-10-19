@@ -1,3 +1,6 @@
+10/19/17
+ - creating gTouchable from gvolume string
+
 10/18/17
  - added gridTimeIndex, used to determine if a hit is within the same detector electronic time window
  - moved sensitive parameters to its own class GSensitivePars in the plugin mechanism

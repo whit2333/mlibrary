@@ -20,9 +20,22 @@ eFraction(1)
 		gType = readout;
 	}
 
-	// loading gvolume touchable id. It is in a loop because we get doubles from getG4NumbersFromString
-	vector<double> touchD = getG4NumbersFromString(gtouchableString);
-	for(auto &td : touchD) {
-		gTid.push_back(td);
+	// loading gvolume touchable id from the gvolume descriptor, which is in the format <description, integer>
+	// sector # layer # paddle # side #
+	// the description is ignored
+	vector<string> touchD = getStringVectorFromString(gtouchableString);
+	for(unsigned i=0; i<touchD.size(); i++) {
+		if(i%2 == 1) {
+			gTid.push_back(stoi(touchD[i]));
+		}
 	}
+}
+
+string GTouchable::getGTouchableId()
+{
+	string gtstring = "";
+	for(auto &t : gTid) {
+		gtstring = gtstring + to_string(t);
+	}
+	return gtstring;
 }
