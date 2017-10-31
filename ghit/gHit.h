@@ -10,21 +10,23 @@
 // mlibrary
 #include "gtouchable.h"
 
+// c++
+#include <bitset>
 
-// GHIT STAGE:
-// A stage is an int that defines how much information is being stored in ghit
-// PRAGMA TODO: this should be code, activated with & like the binary
-// 0: energy deposited, time
-// 1: global position, step length
-// 2: local position
-// 3: track informations: momentum, total energy, vertex, pid, track id
-// 4: mother particle track information. This is created after the event
+// GHIT Bitset:
+//
+// 1st bit: energy deposited, time
+// 2nd bit: global position, step length
+// 3rd bit: local position
+// 4th bit: track informations: momentum, total energy, vertex, pid, track id
+// 5th bit: mother particle track information. This is created after the event
+// 6th bit: meta information: magnetic field. process id name that created the particle
 
 
 class GHit : public G4VHit
 {
 
-	GHit(GTouchable gt, int hitstage = 0, string cSchema = "default");
+	GHit(GTouchable gt, string hbs = "000000", string cSchema = "default");
 
 	inline void* operator new(size_t);
 	inline void  operator delete(void*);
@@ -33,7 +35,7 @@ class GHit : public G4VHit
 	void Draw();
 
 private:
-	int hitStage;
+	bitset<6> hitBitSet;
 	
 	GTouchable touchableId;
 
@@ -44,10 +46,10 @@ private:
 	bool setColorSchema();
 	
 	// hit data is collected for every step
-	vector<double> stepEdep, stepTime;   // stage 0
+	vector<double> stepEdep, stepTime;   // bit 1
 	
-	vector<G4ThreeVector> stepGlobalPos; // stage 1
-	vector<double> stepStep;             // stage 1
+	vector<G4ThreeVector> stepGlobalPos; // bit 2
+	vector<double> stepStep;             // bit 2
 
 	// geant4 touchable hierarchy
 	vector<int> g4TouchableHierarchyID;
