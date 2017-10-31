@@ -1,3 +1,7 @@
+10/31/17
+ - using bitset
+ - protecting against geant4 tantrums in GDetectorConstruction::ConstructSDandField()
+
 10/18/17
  - added GSensitivePars class to store sensitive parameters.
  - added loadSensitivePars in gDymanic and python script

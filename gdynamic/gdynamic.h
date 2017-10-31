@@ -7,6 +7,7 @@
 
 // c++
 #include <vector>
+#include <bitset>
 using namespace std;
 
 // geant4
@@ -17,35 +18,40 @@ using namespace std;
 class GSensitivePars {
 public:
 	// default constructor, set by base class
-	GSensitivePars() : timeWindow(0), gridStartTime(0), hitStage(0), touchableDynamic(false), useTimeWindow(false) { }
+	GSensitivePars() : timeWindow(0), gridStartTime(0), hitBitSet("000000"), touchableDynamic(false), useTimeWindow(false) { }
 	
 	// constructor set by plugins
 	GSensitivePars(double tw, double gst, int verbosity = 0) :
 	timeWindow(tw),
 	gridStartTime(gst),
-	hitStage(0),
+	hitBitSet("000000"),
 	touchableDynamic(false),
 	useTimeWindow(false) {
 		// if(verbosity > )
 	}
 
 public:
-	void setTouchableDynamic() {touchableDynamic = true;} // will call processTouchable in sensitiveDetector::ProcessHit
-	void setUseTimeWindow()    {useTimeWindow = true;}    // will use time window
+	void setTouchableDynamic()       {touchableDynamic = true;} // will call processTouchable in sensitiveDetector::ProcessHit
+	void setUseTimeWindow()          {useTimeWindow = true;}    // will use time window
+	void setHitBitset(bitset<6> hbs) {hitBitSet = hbs;}         // define the hit bitset
+
 	bool isTouchableDynamic()  {return touchableDynamic;}
 	bool doesUseTimeWindow()   {return useTimeWindow;}
 
 private:
-	double timeWindow;         // electronic timewindow of the detector
-	double gridStartTime;      // defines the windows grid
-	int    hitStage;           // defines what information to be stored in the hit
-	bool   touchableDynamic; // decides if the touchable needs to be set with the plugins in sensitiveDetector::processHits
-	bool   useTimeWindow;      // decides if the hit definitions needs to use the time window
+	double    timeWindow;         // electronic timewindow of the detector
+	double    gridStartTime;      // defines the windows grid
+	bitset<6> hitBitSet;          // defines what information to be stored in the hit
+	bool      touchableDynamic;   // decides if the touchable needs to be set with the plugins in sensitiveDetector::processHits
+	bool      useTimeWindow;      // decides if the hit definitions needs to use the time window
 
 public:
+	
+	// for readout detectors, return the time cell
 	inline int timeCell(double time) {
 		return (int) (floor((time - gridStartTime)/timeWindow) + 1);
 	}
+	
 	vector<string> showParameters() {
 		vector<string> messages;
 		messages.push_back(" Time Window: " + to_string(timeWindow));
@@ -82,13 +88,17 @@ public:
 	GSensitivePars *gSensitiveParameters;
 	
 	bool isTouchableDynamic() {
-		// gSensitiveParameters will always be there
-		return gSensitiveParameters->isTouchableDynamic();
+		// gSensitiveParameters will always be there? False!
+		// it does depends on geant4 internal mechanism, see GDetectorConstruction::ConstructSDandField()
+		if(gSensitiveParameters != nullptr) {
+			return gSensitiveParameters->isTouchableDynamic();
+		}
+		return false;
 	}
 	
 	// this method must be present for the dynamic loaded factories
 	static GDynamic* instantiate(const dlhandle handle) {
-		
+				
 		if (handle == nullptr) return nullptr;
 
 		void *maker = dlsym(handle , "GDynamicFactory");
