@@ -6,6 +6,7 @@
 #include "G4THitsCollection.hh"
 #include "G4Allocator.hh"
 #include "G4ThreeVector.hh"
+#include "G4Step.hh"
 
 // mlibrary
 #include "gtouchable.h"
@@ -26,11 +27,14 @@
 class GHit : public G4VHit
 {
 
-	GHit(GTouchable gt, string hbs = "000000", string cSchema = "default");
+	GHit(GTouchable *gt, const G4Step* thisStep, string hbs = "000000", string cSchema = "default");
 
 	inline void* operator new(size_t);
 	inline void  operator delete(void*);
 
+	// add information to the hit
+	addStepInfos(const G4Step* thisStep);
+	
 	// draws an object at hit location
 	void Draw();
 
@@ -60,7 +64,7 @@ public:
 };
 
 
-typedef G4THitsCollection<GHit> GHitCollection;
+typedef G4THitsCollection<GHit> GHitsCollection;
 
 
 // MT definitions, as from:

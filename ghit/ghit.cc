@@ -13,8 +13,16 @@ hitBitSet(hbs),
 touchableId(gt),
 colorSchema(cScheme)
 {
+	// build hit information based on the 
+}
+
+
+// add information to the hit
+void GHit::addStepInfos(const G4Step* thisStep)
+{
 	
 }
+
 
 void GHit::Draw()
 {
