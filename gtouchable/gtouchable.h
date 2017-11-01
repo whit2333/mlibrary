@@ -8,7 +8,8 @@ using namespace std;
 
 enum GType { readout, flux, counter };
 
-class GTouchable {
+class GTouchable
+{
 
 public:
 	GTouchable(string sensitivity, string gtouchableString);
@@ -33,6 +34,10 @@ private:
 	// if the index is 0, this quantity is ignored
 	// if it is > 0 then it is used to distinguish hits in separate time windows
 	int gridTimeIndex;
+	
+	// users may want to define and save information from the processGTouchable function
+	// to be used in the digitization later
+	vector<double> userInformations;
 };
 
 

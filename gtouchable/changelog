@@ -1,5 +1,6 @@
 10/31/17
  - implemented debug-utility function getGTouchableDescriptionString
+ - added userInformations: users may want to define and save information from the processGTouchable function
 
 10/19/17
  - creating gTouchable from gvolume string
