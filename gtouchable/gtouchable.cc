@@ -10,7 +10,7 @@ using namespace gstring;
 
 GTouchable::GTouchable(string sensitivity, string gtouchableString) :
 trackId(0),
-eFraction(1)
+eMultiplier(1)
 {
 	if(sensitivity == "flux") {
 		gType = flux;

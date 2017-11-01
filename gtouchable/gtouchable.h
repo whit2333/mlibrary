@@ -20,7 +20,8 @@ public:
 
 public:
 	string getGTouchableDescriptionString();
-	
+    double getEnergyMultiplier() {return eMultiplier;}
+    
 private:
 	// set by constructor
 	vector<int>  gTid;   ///< Uniquely identify a sensitive element
@@ -32,7 +33,7 @@ private:
 	int  trackId;   ///< Used to determine if steps belong to the same hit for flux/counter detectors
 
 	// set by processGTouchable in the digitization plugin. Defaulted to 1. Used to share energy / create new hits.
-	double  eFraction;   ///< Energy sharing Fraction
+	double  eMultiplier;   ///< Energy Multiplier. By default it is 1, but energy could be shared (or created) among volumes
 
 	// used to determine if a hit is within the same detector electronic time window
 	// if the index is 0, this quantity is ignored
