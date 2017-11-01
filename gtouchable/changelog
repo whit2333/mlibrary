@@ -1,3 +1,6 @@
+1/1/17
+ - added NHITBITS here so it can be used in ghit and gdynamic
+
 10/31/17
  - implemented debug-utility function getGTouchableDescriptionString
  - added userInformations: users may want to define and save information from the processGTouchable function
