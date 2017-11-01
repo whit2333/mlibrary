@@ -23,11 +23,10 @@
 // 5th bit: mother particle track information. This is created after the event
 // 6th bit: meta information: magnetic field. process id name that created the particle
 
-
 class GHit : public G4VHit
 {
-
-	GHit(GTouchable *gt, const G4Step* thisStep, string hbs = "000000", string cSchema = "default");
+public:
+	GHit(GTouchable *gt, const G4Step* thisStep, bitset<NHITBITS> hbs, string cSchema = "default");
 
 	inline void* operator new(size_t);
 	inline void  operator delete(void*);
@@ -42,7 +41,7 @@ private:
 	
 	GTouchable *touchableId;
 
-	bitset<6> hitBitSet;
+	bitset<NHITBITS> hitBitSet;
 
 	// only used if pVVisManager exist (interactive mode)
 	string colorSchema;
