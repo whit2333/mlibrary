@@ -30,15 +30,24 @@ public:
 	}
 
 public:
-	void setUseTimeWindow()          {useTimeWindow = true;}    // will use time window
-	void setHitBitset(bitset<6> hbs) {hitBitSet = hbs;}         // define the hit bitset
+	// time window setter and getter
+	void setUseTimeWindow()      {useTimeWindow = true;}    // false by default, change here
+	bool doesItUseTimeWindow()   {return useTimeWindow;}
 
-	bool doesUseTimeWindow()   {return useTimeWindow;}
+	// bitset setter and getter
+	void setHitBitset(string hbs)   {    // define the hit bitset from a string.
+		if(hbs.size() == NHITBITS) {
+			hitBitSet = bitset<NHITBITS>(hbs);
+		} else {
+			hitBitSet = bitset<NHITBITS>("000000");
+		}
+	}
+	bitset<NHITBITS> getHitBitSet() {return hitBitSet;}
 
 private:
 	double    timeWindow;         // electronic timewindow of the detector
 	double    gridStartTime;      // defines the windows grid
-	bitset<6> hitBitSet;          // defines what information to be stored in the hit
+	bitset<NHITBITS> hitBitSet;   // defines what information to be stored in the hit
 	bool      useTimeWindow;      // decides if the hit definitions needs to use the time window
 
 public:

@@ -2,6 +2,7 @@
  - using bitset
  - protecting against geant4 tantrums in GDetectorConstruction::ConstructSDandField()
  - removed touchableDynamic bool: can use base class method and loop over processTouchable results anyway
+ - getter and setters for hitbitset
 
 10/18/17
  - added GSensitivePars class to store sensitive parameters.
