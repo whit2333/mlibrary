@@ -1,4 +1,4 @@
-// gemc
+// ghit
 #include "ghit.h"
 
 // geant4
@@ -10,12 +10,15 @@ G4ThreadLocal G4Allocator<GHit>* GHitAllocator = 0;
 
 GHit::GHit(GTouchable *gt, const G4Step* thisStep, bitset<NHITBITS> hbs, string cScheme) :
 G4VHit(),
-touchableId(gt),
+gTouchable(gt),
 hitBitSet(hbs),
 colorSchema(cScheme)
 {
-	// build hit information based on the
-	// cout << " ADS " << hitBitSet << endl;
+	// build hit information based on the hit
+    size_t hbIndex = 0;
+    while(hbIndex < hitBitSet.size()) {
+        buildHitInfos(hbIndex, hitBitSet.test(hbIndex), thisStep);
+    }
 }
 
 

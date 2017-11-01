@@ -22,6 +22,7 @@
 // 4th bit: track informations: momentum, total energy, vertex, pid, track id
 // 5th bit: mother particle track information. This is created after the event
 // 6th bit: meta information: magnetic field. process id name that created the particle
+// 7th bit: optical photon only: wavelength, momentum, vertex, track id
 
 class GHit : public G4VHit
 {
@@ -39,7 +40,7 @@ public:
 
 private:
 	
-	GTouchable *touchableId;
+	GTouchable *gTouchable;
 
 	bitset<NHITBITS> hitBitSet;
 
@@ -48,12 +49,13 @@ private:
 
 private:
 	bool setColorSchema();
-	
+    bool buildHitInfos(size_t bitIndex, bool test, const G4Step* thisStep); // build hit information based on the hit
+
 	// hit data is collected for every step
-	vector<double> stepEdep, stepTime;   // bit 1
-	
+    vector<double> stepEdep, stepTime;   // bit 1
+    
 	vector<G4ThreeVector> stepGlobalPos; // bit 2
-	vector<double> stepStep;             // bit 2
+	vector<double> stepSize;             // bit 2
 
 	// geant4 touchable hierarchy
 	vector<int> g4TouchableHierarchyID;

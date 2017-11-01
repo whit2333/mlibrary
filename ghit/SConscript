@@ -1,4 +1,9 @@
 from init_env import init_environment
 
+sources = Split("""
+    ghit.cc
+    buildHitInfos.cc
+    """)
+
 env = init_environment("mlibrary clhep geant4")
-lib = env.Library(source = "ghit.cc", target = "../lib/ghit")
+lib = env.Library(source = sources, target = "../lib/ghit")

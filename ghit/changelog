@@ -1,5 +1,6 @@
 1/1/17
  - constructor use bitset instead of string
+ - added buildHitInfos routine
 
 10/31/17
  - using bitset for hit infos
