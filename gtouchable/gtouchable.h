@@ -14,7 +14,7 @@ public:
 	GTouchable(string sensitivity, string gtouchableString);
 
 public:
-	string getGTouchableId();
+	string getGTouchableDescriptionString();
 	
 private:
 	// set by constructor

@@ -1,3 +1,6 @@
+10/31/17
+ - implemented debug-utility function getGTouchableDescriptionString
+
 10/19/17
  - creating gTouchable from gvolume string
 

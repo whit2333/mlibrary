@@ -31,11 +31,11 @@ eFraction(1)
 	}
 }
 
-string GTouchable::getGTouchableId()
+string GTouchable::getGTouchableDescriptionString()
 {
 	string gtstring = "";
 	for(auto &t : gTid) {
-		gtstring = gtstring + to_string(t);
+		gtstring = gtstring + " " + to_string(t);
 	}
 	return gtstring;
 }
