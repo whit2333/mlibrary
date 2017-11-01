@@ -1,5 +1,7 @@
 10/31/17
  - using bitset for hit infos
+ - changing name to be more consisten. adding addStepInfor for hits that aren't new
+ - using pointer to touchable
 
 10/18/17
  - added hitStage var so GHit knows which variable to load

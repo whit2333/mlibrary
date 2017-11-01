@@ -33,15 +33,16 @@ class GHit : public G4VHit
 	inline void  operator delete(void*);
 
 	// add information to the hit
-	addStepInfos(const G4Step* thisStep);
+	void addStepInfos(const G4Step* thisStep);
 	
 	// draws an object at hit location
 	void Draw();
 
 private:
-	bitset<6> hitBitSet;
 	
-	GTouchable touchableId;
+	GTouchable *touchableId;
+
+	bitset<6> hitBitSet;
 
 	// only used if pVVisManager exist (interactive mode)
 	string colorSchema;

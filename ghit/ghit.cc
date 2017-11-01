@@ -1,5 +1,5 @@
 // gemc
-#include "gHit.h"
+#include "ghit.h"
 
 // geant4
 #include "G4VVisManager.hh"
@@ -8,9 +8,9 @@
 // https://twiki.cern.ch/twiki/bin/view/Geant4/QuickMigrationGuideForGeant4V10
 G4ThreadLocal G4Allocator<GHit>* GHitAllocator = 0;
 
-GHit::GHit(GTouchable gt, string hbs, string cScheme) : G4VHit(),
-hitBitSet(hbs),
+GHit::GHit(GTouchable *gt, const G4Step* thisStep, string hbs, string cScheme) : G4VHit(),
 touchableId(gt),
+hitBitSet(hbs),
 colorSchema(cScheme)
 {
 	// build hit information based on the 
