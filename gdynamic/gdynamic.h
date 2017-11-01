@@ -84,7 +84,7 @@ public:
 	
 	// logs the constants
 	virtual vector<string> showConstants() { return  {" Please implement showConstants() in your plugin."}; }
-	vector<string> showParameters() {return gSensitiveParameters->showParameters();}
+	vector<string> showParameters()        {return gSensitiveParameters->showParameters();}
 	
 	// the implementation should always return true
 	// this is used as sanity check that the DL is actually loaded
