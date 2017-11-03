@@ -18,9 +18,6 @@ class GRuns {
 public:
 	GRuns(GOptions* gopt, map<string, GDynamic*> *gDigi);
 
-	// gruns options
-	static map<string, GOption> defineOptions();
-
 	// public api
 	map<int, int> getRunEvents() {return runEvents;}
 	
@@ -40,7 +37,8 @@ public:
 	
 private:
 	int verbosity;
-
+	int nEventsBuffer;
+	
 	// map of runs with weights as coming from the file
 	map<int, double> runWeights;
 
@@ -60,6 +58,11 @@ private:
 
 	// show digitization constants and parameters
 	void showDigitizationParameters(string system, vector<string> digiConstants, vector<string> digiPars);
+	
+public:
+	// gruns options
+	static map<string, GOption> defineOptions();
+
 	
 };
 

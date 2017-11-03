@@ -1,3 +1,6 @@
+11/3/17
+ - added buffer options to limit number of events to accumulate and write to disk
+
 10/19/17
  - better log
 
