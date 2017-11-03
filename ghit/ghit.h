@@ -60,9 +60,11 @@ private:
 	// geant4 touchable hierarchy
 	vector<int> g4TouchableHierarchyID;
 	
+	// public interface
 public:
-	
-	
+	vector<double> getStepEdep() {return stepEdep;}
+	vector<double> getStepTime() {return stepTime;}
+
 };
 
 

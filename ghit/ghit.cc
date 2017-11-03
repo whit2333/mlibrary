@@ -15,8 +15,7 @@ hitBitSet(hbs),
 colorSchema(cScheme)
 {
 	// build hit information based on the hit
-    size_t hbIndex = 0;
-    while(hbIndex < hitBitSet.size()) {
+	for(size_t hbIndex = 0; hbIndex < hitBitSet.size(); hbIndex++) {
         buildHitInfos(hbIndex, hitBitSet.test(hbIndex), thisStep);
     }
 }

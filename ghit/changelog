@@ -1,4 +1,7 @@
-1/1/17
+11/13/17
+ - starting public api to retrieve hits infos
+
+11/1/17
  - constructor use bitset instead of string
  - added buildHitInfos routine
 
