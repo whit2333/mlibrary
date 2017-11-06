@@ -1,4 +1,11 @@
 from init_env import init_environment
 
 env = init_environment("mlibrary geant4 clhep qt5")
-lib = env.Library(source = "gdata.cc", target = "../lib/gdata")
+
+
+sources = Split("""
+	gdata.cc
+	observables/gobservables.cc
+	""")
+
+lib = env.Library(source = sources, target = "../lib/gdata")

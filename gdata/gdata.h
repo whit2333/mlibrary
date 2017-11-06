@@ -1,6 +1,9 @@
 #ifndef  GDATA_H
 #define  GDATA_H  1
 
+// gdata
+#include "observables/gobservables.h"
+
 // c++
 #include <vector>
 #include <string>
@@ -10,65 +13,33 @@ using namespace std;
 #include "ghit.h"
 #include "goptions.h"
 
-// these variables are integrate over the time window
-// each hit is mapped onto one instance of this class
-class GHitDataIntegrated
-{
-private:
-    vector<double> doubleVar;
-    vector<int> intVar;
-    vector<string> stringVar;
-};
-
-// these variables are integrate over the time window
-// each hit is mapped onto one instance of this class
-class GHitDataAllSteps
-{
-private:
-    vector<double> doubleVar;
-    vector<int> intVar;
-    vector<string> stringVar;
-    vector<int> stepIndex;
-};
-
-
-// base class for a single hit data information
-class GDetectorData
+// detector observales, hits are accumulated here
+class GDetectorObservables
 {
 public:
-    bool fillTrueInformation(GHitsCollection *ghc);
-    
+	void addObservable();
+	
 private:
-    vector<string> variableName;
-    vector<string> variableDescription;
-    
-    // this vector is used to order the variables
-    // it is a sequence of integers.
-    // If the integer value is smaller than 1000, it indicates a "double" variable
-    // If the integer is a multiple of 1000, it indicates an "int" variable
-    // If the integer is a multiple of 1000000, it indicates a "string" variable
-    // for example:
-    // 1 2 1000 3 2000 3000
-    // indicate an order of types:
-    // double double int double int int
-    vector<int>    variableIntegerIdentifier;
-    
-    vector<GHitDataIntegrated> dataIntegrated;
-    vector<GHitDataAllSteps> dataAllSteps;
-  
-    string detectorName;
+	// accumulating over hits
+	vector<GObservables> integratedData;  // one observable / hit
+	vector<GObservables> marksData;       // multiple observables / hit
+	
 };
 
 
-class GData
+class GEventData
 {
 private:
-    vector<GDetectorData> detectorData;
-    
+	// all detectors
+	vector<GDetectorObservables> detectorsData;
+	
+	// PRAGMA TODO: headers, generators infos
+	
+	
 public:
-    // GSetup options - defined in utilities.cc
-    static map<string, GOption> defineOptions();
-
+	// GSetup options - defined in utilities.cc
+	static map<string, GOption> defineOptions();
+	
 };
 
 #endif

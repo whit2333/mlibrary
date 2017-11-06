@@ -1,2 +1,5 @@
+11/6/17
+ - organized observables, and public api (to be executed at plugin)
+
 11/2/17
  - first implementation
