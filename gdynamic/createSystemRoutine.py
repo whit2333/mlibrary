@@ -2,8 +2,8 @@
 
 import sys, getopt, string
 
-validRoutineNames = ["constants",       "touchable",            "sensitivePars",                "all"]
-validRoutineDescr = ["loads constants", "manipulate touchable", "defines sensitive parameters", "write all routines"]
+validRoutineNames = ["constants",       "touchable",            "sensitivePars",                "digitization",   "all"]
+validRoutineDescr = ["loads constants", "manipulate touchable", "defines sensitive parameters", "digitize a hit", "write all routines"]
 
 def printHelp():
 	print ''
@@ -108,6 +108,25 @@ def writeLoadConstants(sName):
 	constantsFile.write('}\n')
 
 
+def writeDigitization(sName):
+	constantsFile = open('digitization.cc', 'w')
+	constantsFile.write('#include "' + sName + '.h"\n')
+	constantsFile.write('\n')
+	constantsFile.write('GObservables* ' + sName + 'Plugin::digitizeHit(GHit *ghit)\n')
+	constantsFile.write('{\n')
+	constantsFile.write('\tGObservables* gdata = new GObservables();\n')
+	constantsFile.write('\n')
+	constantsFile.write('\n')
+	constantsFile.write('\n')
+	constantsFile.write('\n')
+	constantsFile.write('\n')
+	constantsFile.write('\n')
+	constantsFile.write('\n')
+	constantsFile.write('\n')
+	constantsFile.write('\treturn gdata;\n')
+	constantsFile.write('}\n')
+
+
 def writeSensitivePars(sName):
 	sensitiveParsFile = open('loadSensitivePars.cc', 'w')
 	sensitiveParsFile.write('#include "' + sName + '.h"\n')
@@ -150,6 +169,8 @@ if 'constants' in routines or 'all' in routines:
 if 'sensitivePars' in routines or 'all' in routines:
 	writeSensitivePars(systemName)
 
+if 'digitization' in routines or 'all' in routines:
+	writeDigitization(systemName)
 
 
 

@@ -1,3 +1,7 @@
+11/6/17
+ - added digitization to python routine generator
+ - added virtual function digitizeHit: returns a GObservables*
+
 10/31/17
  - using bitset
  - protecting against geant4 tantrums in GDetectorConstruction::ConstructSDandField()

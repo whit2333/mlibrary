@@ -4,6 +4,8 @@
 // mlibrary
 #include "gfactory.h"
 #include "gtouchable.h"
+#include "observables/gobservables.h"
+#include "ghit.h"
 
 // c++
 #include <vector>
@@ -78,13 +80,16 @@ public:
 	  gSensitiveParameters = new GSensitivePars();
 	}
 
+	// fill the observable object
+	virtual GObservables *digitizeHit(GHit *ghit) {return nullptr;}
+	
 	// loads the calibration constants
 	// return false for failure
 	virtual bool loadConstants(int runno, string variation) { return false; }
 	
 	// logs the constants
 	virtual vector<string> showConstants() { return  {" Please implement showConstants() in your plugin."}; }
-	vector<string> showParameters()        {return gSensitiveParameters->showParameters();}
+	vector<string> showParameters()        { return gSensitiveParameters->showParameters();}
 	
 	// the implementation should always return true
 	// this is used as sanity check that the DL is actually loaded
