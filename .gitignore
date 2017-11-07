@@ -8,4 +8,5 @@ build_log
 example
 qrc_exampleResources.cc
 g4display/tabs/moc_gcamera.cc
+qtButtonsWidget/moc_qtButtonsWidget.cc
 cadmeshBuild
