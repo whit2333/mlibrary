@@ -1,7 +1,11 @@
 bin
+lib
+include
 build_log
 .DS_Store
 .sconsign.dblite
 *.o
 example
 qrc_exampleResources.cc
+g4display/tabs/moc_gcamera.cc
+cadmeshBuild
