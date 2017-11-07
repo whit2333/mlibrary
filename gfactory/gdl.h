@@ -7,8 +7,11 @@
 // c++ plugin loading functions
 #include <dlfcn.h>
 
-// c++ to check if file exists
-#include <sys/stat.h>
+// c++
+#include <sys/stat.h> // to check if file exists
+#include <string>
+#include <iostream>
+using namespace std;
 
 typedef void* dlhandle;
 

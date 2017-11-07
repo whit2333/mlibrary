@@ -2,7 +2,7 @@
 #define  GDYNAMIC_H 1
 
 // mlibrary
-#include "gfactory.h"
+#include "gdl.h"
 #include "gtouchable.h"
 #include "observables/gobservables.h"
 #include "ghit.h"

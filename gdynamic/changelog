@@ -1,3 +1,6 @@
+11/7/17
+ - the classes to be loaded with plugins only need the static functions defined in gdl.h
+
 11/6/17
  - added digitization to python routine generator
  - added virtual function digitizeHit: returns a GObservables*
