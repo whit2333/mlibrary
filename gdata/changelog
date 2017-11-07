@@ -1,3 +1,6 @@
+11/7/17
+ - adding api to add hit to event and run
+
 11/6/17
  - organized observables, and public api (to be executed at plugin)
 

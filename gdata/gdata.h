@@ -3,6 +3,7 @@
 
 // gdata
 #include "observables/gobservables.h"
+#include "gdetectordata.h"
 
 // c++
 #include <vector>
@@ -13,25 +14,21 @@ using namespace std;
 #include "ghit.h"
 #include "goptions.h"
 
-// detector observales, hits are accumulated here
-class GDetectorObservables
-{
-public:
-	void addObservable();
-	
-private:
-	// accumulating over hits
-	vector<GObservables> integratedData;  // one observable / hit
-	vector<GObservables> marksData;       // multiple observables / hit
-	
-};
-
-
 class GEventData
 {
+	
+public:
+	void addDetectorData(GDetectorObservables *detectorData) {
+		detectorsData.push_back(detectorData);
+	}
+	
+	int getDetectorDataSize() {
+		return (int) detectorsData.size();
+	}
+	
 private:
 	// all detectors
-	vector<GDetectorObservables> detectorsData;
+	vector<GDetectorObservables*> detectorsData;
 	
 	// PRAGMA TODO: headers, generators infos
 	
