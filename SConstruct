@@ -16,3 +16,5 @@ g4volume            = SConscript('g4volume/SConscript')
 gtouchable          = SConscript('gtouchable/SConscript')
 ghit                = SConscript('ghit/SConscript')
 gdata               = SConscript('gdata/SConscript')
+gmedia              = SConscript('gmedia/SConscript')
+

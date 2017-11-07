@@ -31,8 +31,6 @@ void GSetup::registerFactoriesAndLoadSystems(GOptions* gopt)
 				systemFactory[factory] = gSystemManager.CreateObject<GSystemFactory>("GSystemCadFactory");
 			}
 		}
-
-		
 	}
 
 

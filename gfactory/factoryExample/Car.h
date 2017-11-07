@@ -9,7 +9,7 @@ public:
 	virtual void go() = 0;
 	virtual ~Car() = default;
 
-	// this method must be present for the dynamic loaded factories
+	// method to dynamically load factories
 	static Car* instantiate(const dlhandle handle) {
 
 		if (handle == nullptr) return nullptr;

@@ -98,7 +98,7 @@ public:
 	GSensitivePars *gSensitiveParameters;
 	
 	
-	// this method must be present for the dynamic loaded factories
+	// method to dynamically load factories
 	static GDynamic* instantiate(const dlhandle handle) {
 				
 		if (handle == nullptr) return nullptr;
