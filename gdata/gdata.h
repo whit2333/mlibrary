@@ -3,7 +3,7 @@
 
 // gdata
 #include "observables/gobservables.h"
-#include "gdetectordata.h"
+#include "observables/gdetectorObservables.h"
 
 // c++
 #include <vector>
