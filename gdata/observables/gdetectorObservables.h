@@ -4,20 +4,22 @@
 // gdata
 #include "observables/gobservables.h"
 
-// detector observales, hits are accumulated here
+// PRAGMA TODO: decide if we have a pointer object, how to copy it, etc.
+
+// detector observales, all hits are accumulated here for one detector
 class GDetectorObservables
 {
 public:
 	GDetectorObservables() {
-		detectorData.clear();
+		detectorObservables.clear();
 	}
-	void addDetectorData(GObservables *data) {
-		detectorData.push_back(data);
+	void addDetectorObservables(GObservables *observables) {
+		detectorObservables.push_back(observables);
 	}
 	
 private:
 	// accumulating over hits
-	vector<GObservables*> detectorData;  // one observable / hit
+	vector<GObservables*> detectorObservables;  // one observable / hit
 	
 };
 #endif
