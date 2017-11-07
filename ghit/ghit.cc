@@ -16,9 +16,11 @@ colorSchema(cScheme)
 {
 	// build hit information based on the hit
 	for(size_t hbIndex = 0; hbIndex < hitBitSet.size(); hbIndex++) {
-        buildHitInfos(hbIndex, hitBitSet.test(hbIndex), thisStep);
-    }
+		buildHitInfos(hbIndex, hitBitSet.test(hbIndex), thisStep);
+	}
 }
+
+GHit::~GHit() {}
 
 
 // add information to the hit
@@ -31,7 +33,7 @@ void GHit::addStepInfos(const G4Step* thisStep)
 void GHit::Draw()
 {
 	G4VVisManager* pVVisManager = G4VVisManager::GetConcreteInstance();
-
+	
 	if(pVVisManager) {
 		setColorSchema();
 		

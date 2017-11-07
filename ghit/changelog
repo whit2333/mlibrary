@@ -1,4 +1,7 @@
-11/13/17
+11/7/17
+ - added condition on G4Allocator to free hit memory: G4Allocator must be instantiated
+
+11/3/17
  - starting public api to retrieve hits infos
 
 11/1/17
