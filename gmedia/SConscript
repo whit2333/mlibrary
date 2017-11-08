@@ -12,6 +12,11 @@ txtSources = Split("""
 	factories/txt/publishHeader.cc
 	""")
 
+
+# standard pre and suffix for gemc plugins
+env.Replace(SHLIBSUFFIX = ".gplugin")
+env.Replace(SHLIBPREFIX = "")
+
 txt_dll  = env.SharedLibrary( source = txtSources,  target = "../lib/txtGMedia")
 
 
