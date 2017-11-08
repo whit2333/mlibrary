@@ -1,3 +1,6 @@
+11/7/17
+- added GOPTIONITEM symbol to standardize goption help list
+
 11/3/17
  - added buffer options to limit number of events to accumulate and write to disk
 

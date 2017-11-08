@@ -10,11 +10,11 @@ map<string, GOption> GRuns::defineOptions()
 	
 	optionsMap["runWeightsFile"] = GOption("Text filename with run list and weights", "na", "run");
 	optionsMap["runWeightsFile"].addHelp("The text file must have two columns, run# and weight.\n");
-	optionsMap["runWeightsFile"].addHelp("For example:\n");
-	optionsMap["runWeightsFile"].addHelp(" 11 0.1\n");
-	optionsMap["runWeightsFile"].addHelp(" 12 0.7\n");
-	optionsMap["runWeightsFile"].addHelp(" 13 0.2\n");
-	optionsMap["runWeightsFile"].addHelp("Will simulate 10% of events with run number 11 conditions, 70% for run 12 and 20% for run 13.\n");
+	optionsMap["runWeightsFile"].addHelp("For example a \"weights.txt\" file that contains:\n");
+	optionsMap["runWeightsFile"].addHelp("11 0.1\n");
+	optionsMap["runWeightsFile"].addHelp("12 0.7\n");
+	optionsMap["runWeightsFile"].addHelp("13 0.2\n");
+	optionsMap["runWeightsFile"].addHelp("will simulate 10% of events with run number 11 conditions, 70% for run 12 and 20% for run 13.\n");
 	
 	optionsMap["grunv"] = GOption("GRuns Verbosity", 0, "run");
 	optionsMap["grunv"].addHelp("Possible values:\n");
