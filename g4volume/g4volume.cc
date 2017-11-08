@@ -26,7 +26,7 @@ void G4Setup::buildSetup(GSetup* gsetup, GOptions* gopt)
 	buildWorld(gopt);
 
 	// now loading gmanager
-	g4SystemManager = GManager(verbosity - 1, g4setupLogHeader);
+	g4SystemManager = GManager(verbosity - 1);
 
 	// register the factories needed and build the geant4 volumes
 	registerFactoriesAndBuildG4Volumes(gsetup, gopt);

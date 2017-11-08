@@ -1,5 +1,6 @@
 11/8/17
-- added GOPTIONITEM symbol to standardize goption help list
+ - added GOPTIONITEM symbol to standardize goption help list
+ - using default gmanager log
 
 11/7/17
  - adding cad, gdml system factories to repo

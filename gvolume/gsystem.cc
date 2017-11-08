@@ -141,7 +141,7 @@ GSetup::GSetup(GOptions* gopt, int runNo)
 	}
 	
 	// now loading gmanager
-	gSystemManager = GManager(verbosity-1, setupLogHeader);
+	gSystemManager = GManager(verbosity-1);
 	// register the factories needed and load the systems
 	registerFactoriesAndLoadSystems(gopt);
 }
