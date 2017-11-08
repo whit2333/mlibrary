@@ -1,13 +1,10 @@
+// txt gmedia
 #include "gmediaTxtFactory.h"
 
 
-// tmp
-#include <iostream>
-using namespace std;
-
 bool GMediaTxtFactory::publishHeader(vector<GEventData*> *runData)
 {
-	cout << " ASD Boo!" << endl;
+	if(ofile == nullptr) return false;
 	
 	return true;
 }

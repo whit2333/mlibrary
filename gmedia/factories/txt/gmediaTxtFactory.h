@@ -1,19 +1,23 @@
 #ifndef GMEDIATXTFACTORY_H
 #define GMEDIATXTFACTORY_H 1
 
+// gmedia
 #include "gmedia.h"
+
 
 class GMediaTxtFactory : public GMedia
 {
 public:
-	GMediaTxtFactory() {;}
+	GMediaTxtFactory() {ofile = nullptr;}
 	
+	bool openConnection();
 	bool publishHeader(vector<GEventData*> *runData);
+	bool closeConnection();
+
+private:
+	ofstream *ofile;
 };
 
-extern "C" GMedia* GMediaFactory(void) {
-	return static_cast<GMedia*>(new GMediaTxtFactory);
-}
 
 
 #endif // GMEDIATXTFACTORY_H

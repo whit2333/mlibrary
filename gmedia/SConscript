@@ -9,6 +9,8 @@ gmedia = env.Library( source = mediaSources,  target = "../lib/gmedia")
 
 
 txtSources = Split("""
+	factories/txt/gmediaTxtFactory.cc
+	factories/txt/connection.cc
 	factories/txt/publishHeader.cc
 	""")
 

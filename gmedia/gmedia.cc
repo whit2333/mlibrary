@@ -1,17 +1,14 @@
 // gmedia 
 #include "gmedia.h"
 
-bool GMedia::publishData(vector<GEventData*> *runData) {
+map<string, bool> GMedia::publishData(vector<GEventData*> *runData) {
 	
-	bool headerPublished = publishHeader(runData);
+	map<string, bool> gmediaReport;
 	
-	
-	bool summary = headerPublished + false;
-	
-	return summary;
+	gmediaReport["headerPublished"]  = publishHeader(runData);
+		
+	return gmediaReport;
 }
-
-
 
 
 /*! \fn map<string, GOption> GMedia::defineOptions()
@@ -31,5 +28,13 @@ map<string, GOption> GMedia::defineOptions()
 	optionsMap["output"].addHelp(string(GOPTIONITEM) + "root \n");
 	optionsMap["output"].addHelp(string(GOPTIONITEM) + "csv \n");
 
+	optionsMap["outputv"] = GOption("Output Verbosity", 1, "output");
+	optionsMap["outputv"].addHelp("Possible values:\n");
+	optionsMap["outputv"].addHelp(GVERBOSITY_SILENT_D);
+	optionsMap["outputv"].addHelp(GVERBOSITY_SUMMARY_D);
+	optionsMap["outputv"].addHelp(GVERBOSITY_DETAILS_D);
+	optionsMap["outputv"].addHelp(GVERBOSITY_ALL_D);
+
+	
 	return optionsMap;
 }

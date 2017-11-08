@@ -11,14 +11,25 @@ class GMedia
 public:
 	virtual ~GMedia() = default;
 
+	// sets outputFileName and opens it
+	bool setOutputName(string filename) {
+		outputFileName = filename;
+		return openConnection();
+	}
 	
-	bool publishData(vector<GEventData*> *runData);
+	// calls below publishers one by one
+	map<string, bool> publishData(vector<GEventData*> *runData);
+	
+	// public api to close connection
+	virtual bool closeConnection() { return false;}
 
-	virtual bool publishHeader(vector<GEventData*> *runData) { return false;}
-	
-private:
+
+protected:
 	string outputFileName;
 	
+	virtual bool openConnection()                            { return false;}
+	virtual bool publishHeader(vector<GEventData*> *runData) { return false;}
+
 public:
 
 	// method to dynamically load factories

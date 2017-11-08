@@ -2,6 +2,7 @@
  - added options for gmedia: filename and format
  - added GOPTIONITEM symbol to standardize goption help list
  - correct naming conventions for plugin
+ - added open and close virtual methods
 
 11/7/17
  - first implementation
