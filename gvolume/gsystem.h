@@ -9,15 +9,12 @@ using namespace std;
 // gvolume
 #include "gvolume.h"
 
-
 // mlibrary
 #include "goptions.h"
 #include "gfactory.h"
 
 #define setupLogHeader " ⎚ gvolume ▸"
-
 #define WORLDNAME     "world"
-
 
 class GModifiers
 {

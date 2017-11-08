@@ -19,7 +19,8 @@ public:
 private:
 	string outputFileName;
 	
-	
+public:
+
 	// method to dynamically load factories
 	static GMedia* instantiate(const dlhandle handle) {
 		
@@ -38,6 +39,11 @@ private:
 		
 		return func();
 	}
+	
+	
+public:
+	// GMedia options - defined in gmedia.cc
+	static map<string, GOption> defineOptions();
 
 };
 

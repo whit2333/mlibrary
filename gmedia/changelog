@@ -1,3 +1,7 @@
+11/8/17
+ - added options for gmedia: filename and format
+ - added GOPTIONITEM symbol to standardize goption help list
+
 11/7/17
  - first implementation
 

@@ -2,10 +2,16 @@ from init_env import init_environment
 
 env = init_environment("mlibrary qt5 geant4 clhep")
 
+mediaSources = Split("""
+	gmedia.cc
+	""")
+gmedia = env.Library( source = mediaSources,  target = "../lib/gmedia")
+
+
 txtSources = Split("""
 	factories/txt/publishHeader.cc
 	""")
 
-txt_dll  = env.SharedLibrary( source = txtSources,  target = "txtGMedia")
+txt_dll  = env.SharedLibrary( source = txtSources,  target = "../lib/txtGMedia")
 
 
