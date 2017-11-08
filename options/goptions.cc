@@ -12,11 +12,22 @@
 //! overloading "<<" to print this class
 ostream &operator<<(ostream &stream, GOption gopt)
 {
+	int valueWidth = 25;
 	switch(gopt.type) {
-		case isString: stream << "\"" << gopt.valueS << "\""; break;
-		case isDouble: stream << "< " << gopt.valueD << " >"; break;
+		case isString:
+			stream << "\"" << gopt.valueS << "\"";
+			valueWidth = valueWidth - (int) gopt.valueS.size() - 5;
+			break;
+		case isDouble:
+			stream << "< " << gopt.valueD << " >";
+			valueWidth = valueWidth - (int) (to_string(gopt.valueD).size()) ;
+			break;
 	}
-	stream << " (" << gopt.title << ")";
+	stream  << " ";
+	for(int i=0; i<valueWidth; i++) {
+		stream << ".";
+	}
+	stream  << " " << gopt.title ;
 	return stream;
 }
 
