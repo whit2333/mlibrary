@@ -1,3 +1,6 @@
+11/8/17
+ - no need for gdata options (for now)
+
 11/7/17
  - adding api to add hit to event and run
  - renaming gdetectorObservables

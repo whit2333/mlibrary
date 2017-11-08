@@ -33,10 +33,6 @@ private:
 	// PRAGMA TODO: headers, generators infos
 	
 	
-public:
-	// GSetup options - defined in utilities.cc
-	static map<string, GOption> defineOptions();
-	
 };
 
 #endif
