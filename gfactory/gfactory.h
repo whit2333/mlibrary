@@ -147,7 +147,7 @@ public:
 		// PRAGMA TODO: make it OS independent?
 		dlMap[name] = new DynamicLib( name + ".gplugin");
 		if(verbosity > 0) {
-			cout << endl << logHeader << " GManager: Loading DL " << name << endl << endl;
+			cout  << logHeader << " GManager: Loading DL " << name  << endl;
 		}
 	}
 	
@@ -159,12 +159,17 @@ public:
 	 * Notice the base class must have the static method instantiate
 	 */
 	template <class T> T* LoadObjectFromLibrary(string name) {
-		// will return nullptr if handle is null
 		
-//		if(verbosity > 0) {
-//			cout << logHeader << " GManager: Creating factory " << name << endl;
-//		}
-		return T::instantiate(dlMap[name]->handle);
+		// will return nullptr if handle is null
+		DynamicLib* dynamicLib = dlMap[name];
+		if(dynamicLib != nullptr) {
+			dlhandle thisDLHandle = dynamicLib->handle;
+			if(thisDLHandle != nullptr) {
+				return T::instantiate(thisDLHandle);
+			}
+		}
+		cout << logHeader << " GManager: plugin " << name << " could not be loaded " << endl;
+		return nullptr;
 	}
 	
 	
