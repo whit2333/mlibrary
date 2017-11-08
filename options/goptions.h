@@ -52,9 +52,12 @@
 #ifndef GOPTIONS_H
 #define GOPTIONS_H 1
 
+// these are also defined in gstring
+// in case a library does not need goption
 #ifndef FATALERRORL
 	#define	FATALERRORL " ☣︎"
 	#define	GWARNING    " ⚠︎"
+	#define	GOPTIONITEM " ・ "
 #endif
 
 // qt
@@ -82,10 +85,11 @@ using namespace std;
 #define GVERBOSITY_DETAILS 2
 #define GVERBOSITY_ALL     3
 
-#define GVERBOSITY_SILENT_D  " - 0: silent\n"
-#define GVERBOSITY_SUMMARY_D " - 1: summary information\n"
-#define GVERBOSITY_DETAILS_D " - 2: detailed information\n"
-#define GVERBOSITY_ALL_D     " - 3: max verbosity\n"
+// list item must match GOPTIONITEM
+#define GVERBOSITY_SILENT_D  " ・ 0: silent\n"
+#define GVERBOSITY_SUMMARY_D " ・ 1: summary information\n"
+#define GVERBOSITY_DETAILS_D " ・ 2: detailed information\n"
+#define GVERBOSITY_ALL_D     " ・ 3: max verbosity\n"
 
 //! a GOption can be a double or a string
 enum GOptionType {

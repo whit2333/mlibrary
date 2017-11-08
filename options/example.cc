@@ -15,8 +15,8 @@ map<string, GOption> defineOptions()
 	optionsMap["timeWindow"]    = GOption("Defines the Time Window", 100, "time");
 	optionsMap["interpolation"] = GOption("Interpolation algorithm", "linear", "process");
 	optionsMap["interpolation"].addHelp("Possible choices are:\n");
-	optionsMap["interpolation"].addHelp("- linear\n");
-	optionsMap["interpolation"].addHelp("- none (no interpolation)\n");
+	optionsMap["interpolation"].addHelp(string(GOPTIONITEM) + "linear\n");
+	optionsMap["interpolation"].addHelp(string(GOPTIONITEM) + "none (no interpolation)\n");
 
 	return optionsMap;
 }
