@@ -2,8 +2,8 @@
 
 import sys, getopt, string
 
-validRoutineNames = ["constants",       "touchable",            "sensitivePars",                "digitization",   "all"]
-validRoutineDescr = ["loads constants", "manipulate touchable", "defines sensitive parameters", "digitize a hit", "write all routines"]
+validRoutineNames = ["constants",       "touchable",            "sensitivePars",                "hitDigitization",  "pulseDigitization",  "all"]
+validRoutineDescr = ["loads constants", "manipulate touchable", "defines sensitive parameters", "digitize a hit",   "digitize a pulse",   "write all routines"]
 
 def printHelp():
 	print ''
@@ -95,6 +95,8 @@ def writeHeader(sName, routines):
 	headerFile.close()
 
 
+# PRAGMA TODO: add comments/documentation
+# PRAGMA TODO: add commented example
 def writeLoadConstants(sName):
 	constantsFile = open('loadConstants.cc', 'w')
 	constantsFile.write('#include "' + sName + '.h"\n')
@@ -108,8 +110,10 @@ def writeLoadConstants(sName):
 	constantsFile.write('}\n')
 
 
-def writeDigitization(sName):
-	constantsFile = open('digitization.cc', 'w')
+# PRAGMA TODO: add comments/documentation
+# PRAGMA TODO: add commented example
+def writeHitDigitization(sName):
+	constantsFile = open('hitDigitization.cc', 'w')
 	constantsFile.write('#include "' + sName + '.h"\n')
 	constantsFile.write('\n')
 	constantsFile.write('GObservables* ' + sName + 'Plugin::digitizeHit(GHit *ghit)\n')
@@ -127,6 +131,29 @@ def writeDigitization(sName):
 	constantsFile.write('}\n')
 
 
+# PRAGMA TODO: add comments/documentation
+# PRAGMA TODO: add commented example
+def writePulseDigitization(sName):
+	constantsFile = open('pulseDigitization.cc', 'w')
+	constantsFile.write('#include "' + sName + '.h"\n')
+	constantsFile.write('\n')
+	constantsFile.write('GObservables* ' + sName + 'Plugin::digitizePulse(GHit *ghit)\n')
+	constantsFile.write('{\n')
+	constantsFile.write('\tGObservables* gdata = new GObservables();\n')
+	constantsFile.write('\n')
+	constantsFile.write('\n')
+	constantsFile.write('\n')
+	constantsFile.write('\n')
+	constantsFile.write('\n')
+	constantsFile.write('\n')
+	constantsFile.write('\n')
+	constantsFile.write('\n')
+	constantsFile.write('\treturn gdata;\n')
+	constantsFile.write('}\n')
+
+
+# PRAGMA TODO: add comments/documentation
+# PRAGMA TODO: add commented example
 def writeSensitivePars(sName):
 	sensitiveParsFile = open('loadSensitivePars.cc', 'w')
 	sensitiveParsFile.write('#include "' + sName + '.h"\n')
@@ -169,8 +196,11 @@ if 'constants' in routines or 'all' in routines:
 if 'sensitivePars' in routines or 'all' in routines:
 	writeSensitivePars(systemName)
 
-if 'digitization' in routines or 'all' in routines:
-	writeDigitization(systemName)
+if 'hitDigitization' in routines or 'all' in routines:
+	writeHitDigitization(systemName)
+
+if 'pulseDigitization' in routines or 'all' in routines:
+	writePulseDigitization(systemName)
 
 
 

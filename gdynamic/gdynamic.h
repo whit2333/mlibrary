@@ -80,9 +80,12 @@ public:
 	  gSensitiveParameters = new GSensitivePars();
 	}
 
-	// fill the observable object
+	// fill the observable object, one entry per hit
 	virtual GObservables *digitizeHit(GHit *ghit) {return nullptr;}
-	
+
+	// fill the observable object, multiple entries per hit
+	virtual GObservables *digitizePulse(GHit *ghit) {return nullptr;}
+
 	// loads the calibration constants
 	// return false for failure
 	virtual bool loadConstants(int runno, string variation) { return false; }

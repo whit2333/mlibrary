@@ -1,3 +1,6 @@
+11/9/17
+ - added virtual function digitizePulse: returns a GObservables*
+
 11/7/17
  - the classes to be loaded with plugins only need the static functions defined in gdl.h
 
