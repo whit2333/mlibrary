@@ -17,4 +17,5 @@ gtouchable          = SConscript('gtouchable/SConscript')
 ghit                = SConscript('ghit/SConscript')
 gdata               = SConscript('gdata/SConscript')
 gmedia              = SConscript('gmedia/SConscript')
+gmediaDLLS          = SConscript('gmedia/SConscriptDLL')
 

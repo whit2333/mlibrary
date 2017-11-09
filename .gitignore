@@ -5,6 +5,7 @@ build_log
 .DS_Store
 .sconsign.dblite
 *.o
+*.os
 example
 qrc_exampleResources.cc
 g4display/tabs/moc_gcamera.cc
