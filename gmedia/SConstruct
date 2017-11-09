@@ -3,6 +3,7 @@ from init_env import init_environment
 env = init_environment("mlibrary")
 
 # calling SConscript here to build just the library as in the hierarchy build
-libs = SConscript('SConscript')
+libs    = SConscript('SConscript')
+libsDLL = SConscript('SConscriptDLL')
 
-
+Depends(libsDLL,  libs);

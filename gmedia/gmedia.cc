@@ -5,9 +5,23 @@ map<string, bool> GMedia::publishData(vector<GEventData*> *runData) {
 	
 	map<string, bool> gmediaReport;
 	
-	gmediaReport["headerPublished"]  = publishHeader(runData);
-		
+	gmediaReport["header"] = publishHeader(runData);
+
+	// looping over events
+	// pragma todo: pass someting like map<string, bitset> to each detector to decide which data to publish
+	for(auto eventData: (*runData)) {
+		// detector observables
+		for(auto detectorData: eventData->getDetectorsData()) {
+			string dnameKey = detectorData->getName() + "Data";
+			gmediaReport[dnameKey] = publishDetectorHits(detectorData);
+		}
+		// detector observables pulses
+
+	}
+
 	return gmediaReport;
+	
+	
 }
 
 

@@ -1,3 +1,8 @@
+11/9/17
+ - renamed methods to clarify quantity is a vector of hits
+ - added SConscriptDLL to compile the plugin
+ - added some formatting
+
 11/8/17
  - added options for gmedia: filename and format
  - added GOPTIONITEM symbol to standardize goption help list

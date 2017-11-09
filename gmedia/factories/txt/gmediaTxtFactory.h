@@ -4,14 +4,17 @@
 // gmedia
 #include "gmedia.h"
 
+#define GVARIABLEFLUSH "  "
 
 class GMediaTxtFactory : public GMedia
 {
 public:
 	GMediaTxtFactory() {ofile = nullptr;}
 	
+private:
 	bool openConnection();
 	bool publishHeader(vector<GEventData*> *runData);
+	bool publishDetectorHits(GDetectorObservables *detectorHits);
 	bool closeConnection();
 
 private:

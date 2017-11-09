@@ -2,23 +2,11 @@ from init_env import init_environment
 
 env = init_environment("mlibrary qt5 geant4 clhep")
 
-mediaSources = Split("""
+mediaSources = Split(
+	"""
 	gmedia.cc
 	""")
 gmedia = env.Library( source = mediaSources,  target = "../lib/gmedia")
 
-
-txtSources = Split("""
-	factories/txt/gmediaTxtFactory.cc
-	factories/txt/connection.cc
-	factories/txt/publishHeader.cc
-	""")
-
-
-# standard pre and suffix for gemc plugins
-env.Replace(SHLIBSUFFIX = ".gplugin")
-env.Replace(SHLIBPREFIX = "")
-
-txt_dll  = env.SharedLibrary( source = txtSources,  target = "../lib/txtGMedia")
 
 

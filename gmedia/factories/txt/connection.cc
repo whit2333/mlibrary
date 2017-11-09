@@ -3,7 +3,7 @@
 
 bool GMediaTxtFactory::openConnection()
 {
-	ofile = new ofstream(outputFileName);
+	ofile = new ofstream(outputFileName + ".txt");
 	
 	
 	// PRAGMA: need to check if file opened successfully

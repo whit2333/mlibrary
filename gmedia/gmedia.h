@@ -17,7 +17,7 @@ public:
 		return openConnection();
 	}
 	
-	// calls below publishers one by one
+	// calls the publishers one by one
 	map<string, bool> publishData(vector<GEventData*> *runData);
 	
 	// public api to close connection
@@ -27,8 +27,10 @@ public:
 protected:
 	string outputFileName;
 	
-	virtual bool openConnection()                            { return false;}
-	virtual bool publishHeader(vector<GEventData*> *runData) { return false;}
+	virtual bool openConnection()                                            { return false;}
+	virtual bool publishHeader(vector<GEventData*> *runData)                 { return false;}
+	virtual bool publishDetectorHits(GDetectorObservables *detectorHits)     { return false;}
+	virtual bool publishDetectorPulses(GDetectorObservables *detectorPulses) { return false;}
 
 public:
 
