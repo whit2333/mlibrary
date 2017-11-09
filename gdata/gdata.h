@@ -26,6 +26,9 @@ public:
 		return (int) detectorsData.size();
 	}
 	
+	// access data
+	vector<GDetectorObservables*> getDetectorsData() {return detectorsData;}
+	
 private:
 	// all detectors
 	vector<GDetectorObservables*> detectorsData;

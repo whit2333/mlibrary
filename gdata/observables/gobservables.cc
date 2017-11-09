@@ -3,66 +3,82 @@
 
 // the functions are overloaded instead of templated
 
-void GObservables::addObservable(double var, string varName, string desc, string saveAs)
-{
-	if(saveAs == "double") {
-		doubleVar.push_back(var);
-		addObservableDescription(varName, desc, saveAs);
-	} else {
-		throw "Variable " + varName + " type does not match a double";
-	}
-}
 
 void GObservables::addObservable(int var, string varName, string desc, string saveAs)
 {
-	if(saveAs == "int") {
-		intVar.push_back(var);
-		addObservableDescription(varName, desc, saveAs);
-	} else {
-		throw "Variable " + varName + " type does not match an int";
-	}
+	addObservableDescription(varName, desc);
 
+	if(saveAs == "int") {
+		gtypes.push_back(intVar.size()*GINTINDEXMULTIPLIER);
+		intVar.push_back(var);
+	} else {
+		throw "Variable type does not match an int";
+	}
+}
+
+
+void GObservables::addObservable(float var, string varName, string desc, string saveAs)
+{
+	addObservableDescription(varName, desc);
+
+	if(saveAs == "float") {
+		gtypes.push_back(floatVar.size()*GFLOINDEXMULTIPLIER);
+		floatVar.push_back(var);
+	} else {
+		throw "Variable type does not match a float";
+	}
+}
+
+void GObservables::addObservable(double var, string varName, string desc, string saveAs)
+{
+	addObservableDescription(varName, desc);
+	
+	if(saveAs == "double") {
+		gtypes.push_back(doubleVar.size()*GDBLINDEXMULTIPLIER);
+		doubleVar.push_back(var);
+	} else {
+		throw "Variable type does not match a double";
+	}
 }
 
 void GObservables::addObservable(string var, string varName, string desc, string saveAs)
 {
+	addObservableDescription(varName, desc);
+
 	if(saveAs == "string") {
+		gtypes.push_back(stringVar.size()*GSTRINDEXMULTIPLIER);
 		stringVar.push_back(var);
-		addObservableDescription(varName, desc, saveAs);
 	} else {
-		throw "Variable " + varName + " type does not match a string";
+		throw "Variable type does not match a string";
 	}
-
-}
-
-void GObservables::addObservable(float var, string varName, string desc, string saveAs)
-{
-	if(saveAs == "float") {
-		floatVar.push_back(var);
-		addObservableDescription(varName, desc, saveAs);
-	} else {
-		throw "Variable " + varName + " type does not match a float";
-	}
-
 }
 
 
-void GObservables::addObservableDescription(string name, string desc, string saveAs)
+void GObservables::addObservableDescription(string name, string desc)
 {
-	// only add description if variable is not found
+	// only add name, description if variable is not found
 	if(find(begin(varName), end(varName), name) == end(varName)) {
 		
 		varName.push_back(name);
-		
-		varDescription.push_back(desc);
-		if(saveAs == "float") {
-			gtypes.push_back(gfloat_t);
-		} else if(saveAs == "double") {
-			gtypes.push_back(gdouble_t);
-		} else if(saveAs == "int") {
-			gtypes.push_back(gint_t);
-		} else if(saveAs == "string") {
-			gtypes.push_back(gstring_t);
-		}
+		varDesc.push_back(desc);
 	}
 }
+
+
+int GObservables::getVariableIndex(int forIndex)
+{
+	int gindex = gTypeIndex[forIndex];
+	if(gindex/GSTRINDEXMULTIPLIER > 0) {
+		return gindex/GSTRINDEXMULTIPLIER;
+	} else if(gindex/GDBLINDEXMULTIPLIER > 0) {
+		return gindex/GDBLINDEXMULTIPLIER;
+	} else if(gindex/GFLOINDEXMULTIPLIER > 0) {
+		return gindex/GFLOINDEXMULTIPLIER;
+	} else {
+		return gindex;
+	}
+}
+
+
+
+
