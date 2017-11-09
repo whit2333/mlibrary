@@ -6,6 +6,7 @@
 #include <string>
 using namespace std;
 
+enum GObservableType { gint_t, gfloat_t, gdouble_t, gstring_t};
 
 #define GMULTIPLIER 100
 #define GSTARTINDEX 1
@@ -20,7 +21,12 @@ using namespace std;
 class GObservables
 {
 public:
-	GObservables(){}
+	GObservables(){
+		intVar.clear();
+		floatVar.clear();
+		doubleVar.clear();
+		stringVar.clear();
+	}
 	
 private:
 	vector<string> varName;
@@ -35,6 +41,8 @@ private:
 
 	// index of the variable multiplied by its type multiplier
 	vector<int> gTypeIndex;
+	// to retrieve type quickly
+	vector<GObservableType> gType;
 
 	int getVariableIndex(int forIndex);
 	
@@ -57,6 +65,9 @@ public:
 	double getDoubleVarAtIndex(int i) {return doubleVar[getVariableIndex(i)];}
 	string getStringVarAtIndex(int i) {return stringVar[getVariableIndex(i)];}
 
+	size_t getNumberOfObservables() {return gTypeIndex.size();}
+	
+	GObservableType getTypeAtIndex(int i) {return gType[i];}
 };
 
 

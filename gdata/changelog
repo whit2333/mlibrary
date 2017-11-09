@@ -1,5 +1,6 @@
 11/9/17
  - api to get correct indexes for various data type
+ - added utility to retrieve data and their types
 
 11/8/17
  - no need for gdata options (for now)
