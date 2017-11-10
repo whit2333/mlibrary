@@ -1,6 +1,7 @@
 // gmedia 
 #include "gmedia.h"
 
+// pragma todo: pass someting like map<string, bitset> to each detector to decide which data to publish
 map<string, bool> GMedia::publishData(vector<GEventData*> *runData) {
 	
 	map<string, bool> gmediaReport;
@@ -8,9 +9,12 @@ map<string, bool> GMedia::publishData(vector<GEventData*> *runData) {
 	gmediaReport["header"] = publishHeader(runData);
 
 	// looping over events
-	// pragma todo: pass someting like map<string, bitset> to each detector to decide which data to publish
 	for(auto eventData: (*runData)) {
-		// detector observables
+		// true information hits
+		
+		// true information pulses
+		
+		// detector observables hits
 		for(auto detectorData: eventData->getDetectorsData()) {
 			string dnameKey = detectorData->getName() + "Data";
 			gmediaReport[dnameKey] = publishDetectorHits(detectorData);
