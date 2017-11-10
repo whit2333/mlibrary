@@ -9,28 +9,33 @@ bool GMediaTxtFactory::publishDetectorHits(GDetectorObservables *detectorHits)
 	
 	*ofile  << " " << detectorHits->getName() << " observables {" << endl;
 	
-	for(auto dHit: detectorHits->getDObservables()) {
+	vector<string> varNames = detectorHits->getVarName();
+	
+	for(size_t v=0; v<varNames.size(); v++) {
+		*ofile << GVARIABLEFLUSH << varNames[v] << ":";
 		
-		for(size_t v=0; v<dHit->getNumberOfObservables(); v++) {
+		for(auto dHit: detectorHits->getDObservables()) {
 			
-			*ofile << GVARIABLEFLUSH << dHit->getVarNameAtIndex(v) << ":";
-			*ofile << " v " <<  dHit->getVarDescAtIndex(v) << " ";
 			switch(dHit->getTypeAtIndex(v)) {
 				case gint_t:
-					*ofile << dHit->getIntVarAtIndex(v) << endl;
+					*ofile << dHit->getIntVarAtIndex(v) << " ";
 					break;
 				case gfloat_t:
-					*ofile << dHit->getFloatVarAtIndex(v) << endl;
+					*ofile << dHit->getFloatVarAtIndex(v) << " ";
 					break;
 				case gdouble_t:
-					*ofile << dHit->getDoubleVarAtIndex(v) << endl;
+					*ofile << dHit->getDoubleVarAtIndex(v) << " ";
 					break;
 				case gstring_t:
-					*ofile << dHit->getIntVarAtIndex(v) << endl;
+					*ofile << dHit->getIntVarAtIndex(v) << " ";
 					break;
+					
 			}
 		}
+		*ofile << endl;
 	}
+	
+	
 	
 	*ofile  << " }" << endl;
 	

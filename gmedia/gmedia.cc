@@ -16,7 +16,6 @@ map<string, bool> GMedia::publishData(vector<GEventData*> *runData) {
 			gmediaReport[dnameKey] = publishDetectorHits(detectorData);
 		}
 		// detector observables pulses
-
 	}
 
 	return gmediaReport;
@@ -49,6 +48,5 @@ map<string, GOption> GMedia::defineOptions()
 	optionsMap["outputv"].addHelp(GVERBOSITY_DETAILS_D);
 	optionsMap["outputv"].addHelp(GVERBOSITY_ALL_D);
 
-	
 	return optionsMap;
 }

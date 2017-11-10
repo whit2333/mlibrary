@@ -1,3 +1,6 @@
+11/10/17
+ - reorg of txt plugin variables writing
+
 11/9/17
  - renamed methods to clarify quantity is a vector of hits
  - added SConscriptDLL to compile the plugin
