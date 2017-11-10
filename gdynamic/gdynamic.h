@@ -80,6 +80,11 @@ public:
 	  gSensitiveParameters = new GSensitivePars();
 	}
 
+	// true information hit
+	GObservables *trueInfoHit(GHit *ghit);
+	GObservables *trueInfoPulse(GHit *ghit);
+
+	
 	// fill the observable object, one entry per hit
 	virtual GObservables *digitizeHit(GHit *ghit) {return nullptr;}
 
