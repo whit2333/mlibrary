@@ -41,7 +41,11 @@ private:
 	vector<string> varName;
 	vector<string> varDesc;
 
-	// accumulating over hits
+	// true infos: accumulating over hits
+	vector<GObservables*> detectorTrueInfos;       // one instance of true infos / hit
+	vector<GObservables*> detectorTrueInfosPulses; // multiple instances of true infos / hit
+	
+	// observables: accumulating over hits
 	vector<GObservables*> detectorObservables;       // one instance of an observable / hit
 	vector<GObservables*> detectorObservablePulses;  // multiple instances of an observable / hit
 };
