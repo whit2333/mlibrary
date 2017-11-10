@@ -21,7 +21,7 @@ enum GObservableType { gint_t, gfloat_t, gdouble_t, gstring_t};
 class GObservables
 {
 public:
-	GObservables(){
+	GObservables() : descriptionAssigned(false) {
 		intVar.clear();
 		floatVar.clear();
 		doubleVar.clear();
@@ -29,6 +29,7 @@ public:
 	}
 	
 private:
+	bool descriptionAssigned;
 	vector<string> varName;
 	vector<string> varDesc;
 
@@ -47,6 +48,12 @@ private:
 	int getVariableIndex(int forIndex);
 	
 public:
+	// clear the name and description. We do not need to carry those
+	bool getDescriptionAssigned() {return descriptionAssigned;}
+	void clearNamesAndDescriptions();
+	vector<string> getName() {return varName;}
+	vector<string> getDesc() {return varDesc;}
+
 	// add variable value
 	void addObservable(double var, string varName, string desc, string saveAs);
 	void addObservable(int var, string varName, string desc, string saveAs);
@@ -55,10 +62,6 @@ public:
 	
 	// add variable name, description
 	void addObservableDescription(string n, string desc);
-
-	// public api to retrieve infos
-	string getVarNameAtIndex(  int i) {return varName[i];}
-	string getVarDescAtIndex(  int i) {return varDesc[i];}
 	
 	int    getIntVarAtIndex(   int i) {return intVar[   getVariableIndex(i)];}
 	float  getFloatVarAtIndex( int i) {return floatVar[ getVariableIndex(i)];}

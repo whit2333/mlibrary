@@ -9,7 +9,7 @@ void GObservables::addObservable(int var, string varName, string desc, string sa
 	addObservableDescription(varName, desc);
 	
 	if(saveAs == "int") {
-		gTypeIndex.push_back(intVar.size()*GINTINDEXMULTIPLIER);
+		gTypeIndex.push_back((int) intVar.size()*GINTINDEXMULTIPLIER);
 		gType.push_back(gint_t);
 		intVar.push_back(var);
 	} else {
@@ -23,7 +23,7 @@ void GObservables::addObservable(float var, string varName, string desc, string 
 	addObservableDescription(varName, desc);
 	
 	if(saveAs == "float") {
-		gTypeIndex.push_back(floatVar.size()*GFLOINDEXMULTIPLIER);
+		gTypeIndex.push_back((int) floatVar.size()*GFLOINDEXMULTIPLIER);
 		gType.push_back(gfloat_t);
 		floatVar.push_back(var);
 	} else {
@@ -36,7 +36,7 @@ void GObservables::addObservable(double var, string varName, string desc, string
 	addObservableDescription(varName, desc);
 	
 	if(saveAs == "double") {
-		gTypeIndex.push_back(doubleVar.size()*GDBLINDEXMULTIPLIER);
+		gTypeIndex.push_back((int) doubleVar.size()*GDBLINDEXMULTIPLIER);
 		gType.push_back(gdouble_t);
 		doubleVar.push_back(var);
 	} else {
@@ -49,7 +49,7 @@ void GObservables::addObservable(string var, string varName, string desc, string
 	addObservableDescription(varName, desc);
 	
 	if(saveAs == "string") {
-		gTypeIndex.push_back(stringVar.size()*GSTRINDEXMULTIPLIER);
+		gTypeIndex.push_back((int) stringVar.size()*GSTRINDEXMULTIPLIER);
 		gType.push_back(gstring_t);
 		stringVar.push_back(var);
 	} else {
@@ -61,10 +61,17 @@ void GObservables::addObservable(string var, string varName, string desc, string
 void GObservables::addObservableDescription(string name, string desc)
 {
 	// only add name, description if variable is not found
-	if(find(begin(varName), end(varName), name) == end(varName)) {
+	if(!descriptionAssigned) {
 		varName.push_back(name);
 		varDesc.push_back(desc);
 	}
+}
+
+void GObservables::clearNamesAndDescriptions()
+{
+	varName.clear();
+	varDesc.clear();
+	descriptionAssigned = true;
 }
 
 

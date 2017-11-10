@@ -1,3 +1,6 @@
+11/10/17
+ - clearing observables names once copied to detectorObservables (not needed anymore)
+
 11/9/17
  - api to get correct indexes for various data type
  - added utility to retrieve data and their types
