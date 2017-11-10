@@ -1,3 +1,6 @@
+11/10/17
+ - added calculated quantities api
+
 11/7/17
  - added condition on G4Allocator to free hit memory: G4Allocator must be instantiated
 

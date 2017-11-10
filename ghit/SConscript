@@ -3,6 +3,7 @@ from init_env import init_environment
 sources = Split("""
     ghit.cc
     buildHitInfos.cc
+	calculations.cc
     """)
 
 env = init_environment("mlibrary clhep geant4")

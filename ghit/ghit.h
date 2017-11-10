@@ -62,11 +62,15 @@ private:
 	// geant4 touchable hierarchy
 	vector<int> g4TouchableHierarchyID;
 	
-	// public interface
+	// public interface: step by step quantities
 public:
 	vector<double> getStepEdep() {return stepEdep;}
 	vector<double> getStepTime() {return stepTime;}
 	
+	// public interface: calculated quantities
+public:
+	double getTotalEnergyDeposited();
+
 };
 
 
