@@ -22,13 +22,11 @@ class GObservables
 {
 public:
 	GObservables() : descriptionAssigned(false) {
-		intVar.clear();
-		floatVar.clear();
-		doubleVar.clear();
-		stringVar.clear();
 	}
 	
 private:
+	// in order to avoid carrying these for every hit
+	// they are cleared once descriptionAssigned becomes true
 	bool descriptionAssigned;
 	vector<string> varName;
 	vector<string> varDesc;
@@ -39,17 +37,17 @@ private:
 	vector<double> doubleVar;
 	vector<string> stringVar;
 
-
 	// index of the variable multiplied by its type multiplier
 	vector<int> gTypeIndex;
-	// to retrieve type quickly
+	
+	// to retrieve type 
 	vector<GObservableType> gType;
 
 	int getVariableIndex(int forIndex);
 	
 public:
 	// clear the name and description. We do not need to carry those
-	bool getDescriptionAssigned() {return descriptionAssigned;}
+	bool isGetDescriptionAssigned() {return descriptionAssigned;}
 	void clearNamesAndDescriptions();
 	vector<string> getName() {return varName;}
 	vector<string> getDesc() {return varDesc;}
