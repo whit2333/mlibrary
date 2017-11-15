@@ -14,7 +14,7 @@ map<string, bool> GMedia::publishData(vector<GEventData*> *runData) {
 		
 		for(auto detectorData: eventData->getDetectorsData()) {
 			string dnameKey = detectorData->getName() + "TrueInfo";
-			gmediaReport[dnameKey] = publishDetectorTrueInfosHits(detectorData);
+			gmediaReport[dnameKey] = publishDetectorDigiObservables(detectorData);
 		}
 
 		// true information pulses
@@ -23,7 +23,7 @@ map<string, bool> GMedia::publishData(vector<GEventData*> *runData) {
 		// detector observables hits
 		for(auto detectorData: eventData->getDetectorsData()) {
 			string dnameKey = detectorData->getName() + "Data";
-			gmediaReport[dnameKey] = publishDetectorHits(detectorData);
+			gmediaReport[dnameKey] = publishDetectorTrueObservables(detectorData);
 		}
 		// detector observables pulses
 	}

@@ -14,10 +14,15 @@ public:
 private:
 	bool openConnection();
 	bool publishHeader(vector<GEventData*> *runData);
-	bool publishDetectorHits(GDetectorObservables *detectorHits);
-	bool publishDetectorTrueInfosHits(GDetectorObservables *detectorHits);
+	
+	// digitized observables
+	bool publishDetectorDigiObservables(GDetectorObservables *detectorHits);
+	// true observables
+	bool publishDetectorTrueObservables(GDetectorObservables *detectorHits);
+	
+	
 	bool closeConnection();
-
+	
 private:
 	ofstream *ofile;
 };

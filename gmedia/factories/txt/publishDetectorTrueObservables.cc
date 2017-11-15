@@ -1,21 +1,19 @@
-
 // txt gmedia
 #include "gmediaTxtFactory.h"
 
-
-bool GMediaTxtFactory::publishDetectorHits(GDetectorObservables *detectorHits)
+bool GMediaTxtFactory::publishDetectorTrueObservables(GDetectorObservables *detectorHits)
 {
 	if(ofile == nullptr) return false;
 	
-	*ofile  << " " << detectorHits->getName() << " observables {" << endl;
+	*ofile  << " " << detectorHits->getName() << " true observables {" << endl;
 	
-	vector<string> varNames = detectorHits->getObservableName();
+	vector<string> varNames = detectorHits->getTrueObservableName();
 	
 	for(size_t v=0; v<varNames.size(); v++) {
 		*ofile << GVARIABLEFLUSH << varNames[v] << ":";
 		
-		// get observables
-		for(auto dHit: detectorHits->getDObservables()) {
+		// get true observables
+		for(auto dHit: detectorHits->getTrueObservables()) {
 			
 			switch(dHit->getTypeAtIndex(v)) {
 				case gint_t:

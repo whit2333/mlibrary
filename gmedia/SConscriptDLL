@@ -12,8 +12,8 @@ txtSources = Split(
 	factories/txt/gmediaTxtFactory.cc
 	factories/txt/connection.cc
 	factories/txt/publishHeader.cc
-	factories/txt/publishDetectorHits.cc
-	factories/txt/publishDetectorTrueInfosHits.cc
+	factories/txt/publishDetectorDigiObservables.cc
+	factories/txt/publishDetectorTrueObservables.cc
 	""")
 
 # standard pre and suffix for gemc plugins
