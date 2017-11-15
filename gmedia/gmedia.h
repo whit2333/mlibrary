@@ -29,8 +29,12 @@ protected:
 	
 	virtual bool openConnection()                                            { return false;}
 	virtual bool publishHeader(vector<GEventData*> *runData)                 { return false;}
+	// observables
 	virtual bool publishDetectorHits(GDetectorObservables *detectorHits)     { return false;}
 	virtual bool publishDetectorPulses(GDetectorObservables *detectorPulses) { return false;}
+	// true infos
+	virtual bool publishDetectorTrueInfosHits(GDetectorObservables *detectorHits)     { return false;}
+	virtual bool publishDetectorTrueInfosPulses(GDetectorObservables *detectorPulses) { return false;}
 
 public:
 

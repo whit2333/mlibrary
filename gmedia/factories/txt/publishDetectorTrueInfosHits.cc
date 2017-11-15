@@ -3,19 +3,19 @@
 #include "gmediaTxtFactory.h"
 
 
-bool GMediaTxtFactory::publishDetectorHits(GDetectorObservables *detectorHits)
+bool GMediaTxtFactory::publishDetectorTrueInfosHits(GDetectorObservables *detectorHits)
 {
 	if(ofile == nullptr) return false;
 	
-	*ofile  << " " << detectorHits->getName() << " observables {" << endl;
+	*ofile  << " " << detectorHits->getName() << " true information {" << endl;
 	
 	vector<string> varNames = detectorHits->getObservableName();
 	
 	for(size_t v=0; v<varNames.size(); v++) {
 		*ofile << GVARIABLEFLUSH << varNames[v] << ":";
 		
-		// get observables
-		for(auto dHit: detectorHits->getDObservables()) {
+		// get true infos
+		for(auto dHit: detectorHits->getTObservables()) {
 			
 			switch(dHit->getTypeAtIndex(v)) {
 				case gint_t:

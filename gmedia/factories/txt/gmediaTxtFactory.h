@@ -15,6 +15,7 @@ private:
 	bool openConnection();
 	bool publishHeader(vector<GEventData*> *runData);
 	bool publishDetectorHits(GDetectorObservables *detectorHits);
+	bool publishDetectorTrueInfosHits(GDetectorObservables *detectorHits);
 	bool closeConnection();
 
 private:
