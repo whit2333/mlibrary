@@ -19,6 +19,5 @@ gdata               = SConscript('gdata/SConscript')
 gmedia              = SConscript('gmedia/SConscript')
 gmediaDLLS          = SConscript('gmedia/SConscriptDLL')
 
-Depends(gmedia, gdata)
+# see notes on the gmedia SConscript
 Depends(gmediaDLLS, gdata)
-
