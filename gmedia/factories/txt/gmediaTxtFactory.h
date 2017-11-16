@@ -28,6 +28,11 @@ private:
 	bool closeConnection();
 	
 private:
+	// utility function to write observable
+	// PRAGMA TODO: check if this is feasible for all output plugins. In case, make it virtual
+	void writeObservables(GObservables* observableAtIndex, int index);
+	
+private:
 	ofstream *ofile;
 };
 
