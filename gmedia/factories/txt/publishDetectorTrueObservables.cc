@@ -10,7 +10,7 @@ bool GMediaTxtFactory::publishDetectorTrueObservables(GDetectorObservables *dete
 	vector<string> varNames = detectorHits->getTrueObservableName();
 	
 	for(size_t v=0; v<varNames.size(); v++) {
-		*ofile << GVARIABLEFLUSH << varNames[v] << ":";
+		*ofile << GVARIABLEFLUSH << varNames[v] << ": ";
 		
 		// get true observables
 		for(auto dHit: detectorHits->getTrueObservables()) {

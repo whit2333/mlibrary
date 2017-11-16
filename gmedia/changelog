@@ -1,3 +1,6 @@
+11/16/17
+ - added methods to publish start and end of event, and header
+
 11/15/17
  - fixed SCons tricky dependency
  - using true infos variables

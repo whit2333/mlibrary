@@ -27,8 +27,13 @@ public:
 protected:
 	string outputFileName;
 	
-	virtual bool openConnection()                                            { return false;}
-	virtual bool publishHeader(vector<GEventData*> *runData)                 { return false;}
+	virtual bool openConnection()           { return false;}
+	
+	// one per event
+	virtual bool startEvent(int evn) { return false;}
+	virtual bool endEvent()          { return false;}
+	
+	virtual bool publishHeader(GHeader gh) { return false;}
 	
 	// digitized observables
 	virtual bool publishDetectorDigiObservables(GDetectorObservables *detectorHits) { return false;}
@@ -36,6 +41,7 @@ protected:
 	// true observables
 	virtual bool publishDetectorTrueObservables(GDetectorObservables *detectorHits) { return false;}
 	virtual bool publishDetectorTruePulses(GDetectorObservables *detectorPulses)    { return false;}
+
 
 public:
 
@@ -58,6 +64,9 @@ public:
 		return func();
 	}
 	
+private:
+	int evn; // global event number
+
 	
 public:
 	// GMedia options - defined in gmedia.cc

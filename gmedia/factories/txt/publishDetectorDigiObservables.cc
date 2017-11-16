@@ -1,4 +1,3 @@
-
 // txt gmedia
 #include "gmediaTxtFactory.h"
 
@@ -11,7 +10,7 @@ bool GMediaTxtFactory::publishDetectorDigiObservables(GDetectorObservables *dete
 	vector<string> varNames = detectorHits->getDigiObservableName();
 	
 	for(size_t v=0; v<varNames.size(); v++) {
-		*ofile << GVARIABLEFLUSH << varNames[v] << ":";
+		*ofile << GVARIABLEFLUSH << varNames[v] << ": ";
 		
 		// get digitized observables
 		for(auto dHit: detectorHits->getDigiObservables()) {
@@ -34,8 +33,6 @@ bool GMediaTxtFactory::publishDetectorDigiObservables(GDetectorObservables *dete
 		}
 		*ofile << endl;
 	}
-	
-	
 	
 	*ofile  << " }" << endl;
 	
