@@ -17,8 +17,10 @@ gtouchable          = SConscript('gtouchable/SConscript')
 ghit                = SConscript('ghit/SConscript')
 gdynamic            = SConscript('gdynamic/SConscript')
 gdata               = SConscript('gdata/SConscript')
-gmedia              = SConscript('gmedia/SConscript')
-gmediaDLLS          = SConscript('gmedia/SConscriptDLL')
+
+# output and plugins
+gmedia       = SConscript('gmedia/SConscript')
+gmediaDLLS   = SConscript('gmedia/SConscriptDLL')
 
 Depends(gmedia, gdata)
 

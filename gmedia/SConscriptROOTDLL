@@ -1,0 +1,41 @@
+from init_env import init_environment
+
+env = init_environment("mlibrary qt5 geant4 clhep")
+
+# notice: if ran from the root dir mlibrary, the env will miss "gdata" even if it
+# is required by a dependency: the scan may fail to load the library at the beginning because it's not there yet
+# But we know it will be there, so we can add it by hand here.
+env.Append(LIBS = 'gdata')
+env.Append(LIBS = 'gmedia')
+
+txtSources = Split(
+	"""
+		factories/txt/gmediaTxtFactory.cc
+		factories/txt/connection.cc
+		factories/txt/event.cc
+		factories/txt/publishHeader.cc
+		factories/txt/publishDetectorDigiObservables.cc
+		factories/txt/publishDetectorTrueObservables.cc
+	""")
+
+
+rootSources = Split(
+	"""
+		factories/root/gmediaROOTFactory.cc
+		factories/txt/connection.cc
+	""")
+
+
+
+# standard pre and suffix for gemc plugins
+env.Replace(SHLIBSUFFIX = ".gplugin")
+env.Replace(SHLIBPREFIX = "")
+
+#txt_dll  = env.SharedLibrary( source = txtSources,  target = "../lib/txtGMedia")
+root_dll = env.SharedLibrary( source = rootSources, target = "../lib/rootGMedia")
+
+
+
+
+
+
