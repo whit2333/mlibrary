@@ -4,6 +4,7 @@ env = init_environment("mlibrary geant4 clhep qt5")
 
 
 sources = Split("""
+	gdata.cc
 	observables/gobservables.cc
 	""")
 
