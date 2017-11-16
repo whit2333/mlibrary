@@ -3,10 +3,9 @@
 
 // the functions are overloaded instead of templated
 
-
-void GObservables::addObservable(int var, string varName, string desc, string saveAs)
+void GObservables::addObservable(int var, string varName, string vunit, string saveAs)
 {
-	addObservableDescription(varName, desc);
+	addObservableAndUnit(varName, vunit);
 	
 	if(saveAs == "int") {
 		gTypeIndex.push_back((int) intVar.size()*GINTINDEXMULTIPLIER);
@@ -18,9 +17,9 @@ void GObservables::addObservable(int var, string varName, string desc, string sa
 }
 
 
-void GObservables::addObservable(float var, string varName, string desc, string saveAs)
+void GObservables::addObservable(float var, string varName, string vunit, string saveAs)
 {
-	addObservableDescription(varName, desc);
+	addObservableAndUnit(varName, vunit);
 	
 	if(saveAs == "float") {
 		gTypeIndex.push_back((int) floatVar.size()*GFLOINDEXMULTIPLIER);
@@ -31,9 +30,9 @@ void GObservables::addObservable(float var, string varName, string desc, string 
 	}
 }
 
-void GObservables::addObservable(double var, string varName, string desc, string saveAs)
+void GObservables::addObservable(double var, string varName, string vunit, string saveAs)
 {
-	addObservableDescription(varName, desc);
+	addObservableAndUnit(varName, vunit);
 	
 	if(saveAs == "double") {
 		gTypeIndex.push_back((int) doubleVar.size()*GDBLINDEXMULTIPLIER);
@@ -44,9 +43,9 @@ void GObservables::addObservable(double var, string varName, string desc, string
 	}
 }
 
-void GObservables::addObservable(string var, string varName, string desc, string saveAs)
+void GObservables::addObservable(string var, string varName, string vunit, string saveAs)
 {
-	addObservableDescription(varName, desc);
+	addObservableAndUnit(varName, vunit);
 	
 	if(saveAs == "string") {
 		gTypeIndex.push_back((int) stringVar.size()*GSTRINDEXMULTIPLIER);
@@ -58,20 +57,20 @@ void GObservables::addObservable(string var, string varName, string desc, string
 }
 
 
-void GObservables::addObservableDescription(string name, string desc)
+void GObservables::addObservableAndUnit(string name, string vunit)
 {
 	// only add name, description if variable is not found
-	if(!descriptionAssigned) {
+	if(!unitsAssigned) {
 		varName.push_back(name);
-		varDesc.push_back(desc);
+		varUnit.push_back(vunit);
 	}
 }
 
-void GObservables::clearNamesAndDescriptions()
+void GObservables::clearNamesAndUnits()
 {
 	varName.clear();
-	varDesc.clear();
-	descriptionAssigned = true;
+	varUnit.clear();
+	unitsAssigned = true;
 }
 
 

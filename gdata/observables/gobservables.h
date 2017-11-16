@@ -21,15 +21,15 @@ enum GObservableType { gint_t, gfloat_t, gdouble_t, gstring_t};
 class GObservables
 {
 public:
-	GObservables() : descriptionAssigned(false) {
+	GObservables() : unitsAssigned(false) {
 	}
 	
 private:
 	// in order to avoid carrying these for every hit
 	// they are cleared once descriptionAssigned becomes true
-	bool descriptionAssigned;
+	bool unitsAssigned;
 	vector<string> varName;
-	vector<string> varDesc;
+	vector<string> varUnit;
 
 	// available types
 	vector<int> intVar;
@@ -47,19 +47,19 @@ private:
 	
 public:
 	// clear the name and description. We do not need to carry those
-	bool isGetDescriptionAssigned() {return descriptionAssigned;}
-	void clearNamesAndDescriptions();
+	bool areUnitsAssigned() {return unitsAssigned;}
+	void clearNamesAndUnits();
 	vector<string> getName() {return varName;}
-	vector<string> getDesc() {return varDesc;}
+	vector<string> getUnit() {return varUnit;}
 
 	// add variable value
-	void addObservable(double var, string varName, string desc, string saveAs);
-	void addObservable(int var, string varName, string desc, string saveAs);
-	void addObservable(string var, string varName, string desc, string saveAs);
-	void addObservable(float var, string varName, string desc, string saveAs);
+	void addObservable(double var, string varName, string vunit, string saveAs);
+	void addObservable(   int var, string varName, string vunit, string saveAs);
+	void addObservable(string var, string varName, string vunit, string saveAs);
+	void addObservable( float var, string varName, string vunit, string saveAs);
 	
 	// add variable name, description
-	void addObservableDescription(string n, string desc);
+	void addObservableAndUnit(string n, string desc);
 	
 	int    getIntVarAtIndex(   int i) {return intVar[   getVariableIndex(i)];}
 	float  getFloatVarAtIndex( int i) {return floatVar[ getVariableIndex(i)];}

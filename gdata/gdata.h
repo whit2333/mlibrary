@@ -18,20 +18,17 @@ class GHeader
 {
 public:
 	GHeader(int g4evn, int tid, string rndm) : g4EventNumber(g4evn), threadID(tid), g4randomNumber(rndm) {
-		eventTimeStamp = timeStamp();
 	}
 	
-	string getEventTime() {return eventTime;}
+	string getTimeStamp() {return timeStamp();}
 	int getG4Evn()        {return g4EventNumber;}
 	int getThreadID()     {return threadID;}
 	string getG4Rnd()     {return g4randomNumber;}
 
 private:
-	string eventTimeStamp;
 	int g4EventNumber;
 	int threadID;
 	string g4randomNumber;
-
 	string timeStamp();
 	
 };

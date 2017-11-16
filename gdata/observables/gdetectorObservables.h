@@ -24,17 +24,17 @@ public:
 	void addDetectorObservables(GObservables *observables, bool trueInfo = false) {
 		
 		if(!trueInfo) {
-			if(!(observables->isGetDescriptionAssigned())) {
+			if(!(observables->areUnitsAssigned())) {
 				digiObservableName = observables->getName();
-				digiObservableDesc = observables->getDesc();
-				observables->clearNamesAndDescriptions();
+				digiObservableUnit = observables->getUnit();
+				observables->clearNamesAndUnits();
 			}
 			digiObservables.push_back(observables);
 		} else {
-			if(!(observables->isGetDescriptionAssigned())) {
+			if(!(observables->areUnitsAssigned())) {
 				trueObservableName = observables->getName();
-				trueObservableDesc = observables->getDesc();
-				observables->clearNamesAndDescriptions();
+				trueObservableUnit = observables->getUnit();
+				observables->clearNamesAndUnits();
 			}
 			trueObservables.push_back(observables);
 		}
@@ -45,9 +45,9 @@ public:
 	// api to get data
 	string getName() {return detectorSDName;}
 	vector<string> getDigiObservableName() {return digiObservableName;}
-	vector<string> getDigiObservableDesc() {return digiObservableDesc;}
+	vector<string> getDigiObservableUnit() {return digiObservableUnit;}
 	vector<string> getTrueObservableName() {return trueObservableName;}
-	vector<string> getTrueObservableDesc() {return trueObservableDesc;}
+	vector<string> getTrueObservableUnit() {return trueObservableUnit;}
 
 	// observables api
 	vector<GObservables*> getDigiObservables()  {return digiObservables;}
@@ -63,10 +63,10 @@ private:
 	string detectorSDName;
 	
 	vector<string> digiObservableName;
-	vector<string> digiObservableDesc;
+	vector<string> digiObservableUnit;
 	
 	vector<string> trueObservableName;
-	vector<string> trueObservableDesc;
+	vector<string> trueObservableUnit;
 
 	// observables: accumulating over hits
 	vector<GObservables*> digiObservables;   // one instance of a digitized observable / hit
