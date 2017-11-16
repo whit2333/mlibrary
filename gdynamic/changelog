@@ -1,3 +1,6 @@
+11/16/17
+ - added SConscript to build the library for the true infos routines
+
 11/10/17
  - added true infos routine
 

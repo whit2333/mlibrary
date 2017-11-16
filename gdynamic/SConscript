@@ -7,4 +7,4 @@ sources = Split("""
 
 
 env = init_environment("qt5 mlibrary geant4 clhep")
-lib = env.Library(source = sources, target = "../lib/gruns")
+lib = env.Library(source = sources, target = "../lib/gdynamic")
