@@ -23,7 +23,7 @@ public:
 	// to the container class: saving memory, we dont need a description for every hit
 	void addDetectorObservables(GObservables *observables, bool trueInfo = false) {
 		
-		if(trueInfo) {
+		if(!trueInfo) {
 			if(!(observables->isGetDescriptionAssigned())) {
 				digiObservableName = observables->getName();
 				digiObservableDesc = observables->getDesc();
