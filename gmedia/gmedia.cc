@@ -6,13 +6,11 @@ map<string, bool> GMedia::publishData(vector<GEventData*> *runData) {
 	
 	map<string, bool> gmediaReport;
 	
-	evn = 1;
-	
 	// looping over events
 	for(auto eventData: (*runData)) {
 	
 		// start of event
-		gmediaReport["startEvent"] = startEvent(evn);
+		gmediaReport["startEvent"] = startEvent();
 		gmediaReport["header"]     = publishHeader(eventData->getHeader());
 		
 
@@ -28,10 +26,10 @@ map<string, bool> GMedia::publishData(vector<GEventData*> *runData) {
 			gmediaReport[dnameKey] = publishDetectorTrueObservables(detectorData);
 		}
 		
-		
 		// end of event
 		gmediaReport["endEvent"] = endEvent();
-
+		
+		evn++;
 	}
 
 	return gmediaReport;

@@ -2,7 +2,7 @@
 #include "gmediaTxtFactory.h"
 
 
-bool GMediaTxtFactory::startEvent(int evn)
+bool GMediaTxtFactory::startEvent()
 {
 	if(ofile == nullptr) return false;
 	
@@ -14,11 +14,11 @@ bool GMediaTxtFactory::startEvent(int evn)
 
 
 
-bool GMediaTxtFactory::endEvent(int runNo)
+bool GMediaTxtFactory::endEvent()
 {
 	if(ofile == nullptr) return false;
 	
-	*ofile  << " }" << endl;
+	*ofile  << "}" << endl;
 	
 	return true;
 }

@@ -15,7 +15,7 @@ private:
 	bool openConnection();
 	
 	// one per event
-	bool startEvent(int evn);
+	bool startEvent();
 	bool endEvent();
 	
 	bool publishHeader(GHeader gh);

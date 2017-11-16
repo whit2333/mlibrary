@@ -5,13 +5,14 @@ bool GMediaTxtFactory::publishDetectorTrueObservables(GDetectorObservables *dete
 {
 	if(ofile == nullptr) return false;
 	
-	*ofile  << " " << detectorHits->getName() << " true observables {" << endl;
+	*ofile  << GVARIABLEFLUSH << detectorHits->getName() << " true observables {" << endl;
 	
 	vector<string> varNames = detectorHits->getTrueObservableName();
-	
+	vector<string> varUnits = detectorHits->getTrueObservableUnit();
+
 	for(size_t v=0; v<varNames.size(); v++) {
-		*ofile << GVARIABLEFLUSH << varNames[v] << ": ";
-		
+		*ofile << GVARIABLEFLUSH << GVARIABLEFLUSH << varNames[v] << " (" << varUnits[v] << ") : ";
+
 		// get true observables
 		for(auto dHit: detectorHits->getTrueObservables()) {
 			
@@ -28,7 +29,6 @@ bool GMediaTxtFactory::publishDetectorTrueObservables(GDetectorObservables *dete
 				case gstring_t:
 					*ofile << dHit->getIntVarAtIndex(v) << " ";
 					break;
-					
 			}
 		}
 		*ofile << endl;
@@ -36,7 +36,7 @@ bool GMediaTxtFactory::publishDetectorTrueObservables(GDetectorObservables *dete
 	
 	
 	
-	*ofile  << " }" << endl;
+	*ofile  << GVARIABLEFLUSH << "}" << endl;
 	
 	return true;
 }

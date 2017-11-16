@@ -11,8 +11,9 @@ class GMedia
 public:
 	virtual ~GMedia() = default;
 
-	// sets outputFileName and opens it
+	// sets outputFileName, opens it and start event number
 	bool setOutputName(string filename) {
+		evn = 1;
 		outputFileName = filename;
 		return openConnection();
 	}
@@ -27,11 +28,11 @@ public:
 protected:
 	string outputFileName;
 	
-	virtual bool openConnection()           { return false;}
+	virtual bool openConnection() { return false;}
 	
-	// one per event
-	virtual bool startEvent(int evn) { return false;}
-	virtual bool endEvent()          { return false;}
+	// one per event, called per geant4 run
+	virtual bool startEvent() { return false;}
+	virtual bool endEvent()   { return false;}
 	
 	virtual bool publishHeader(GHeader gh) { return false;}
 	
@@ -64,10 +65,9 @@ public:
 		return func();
 	}
 	
-private:
-	int evn; // global event number
+protected:
+	int evn; // global event number, set by public api setOutputName
 
-	
 public:
 	// GMedia options - defined in gmedia.cc
 	static map<string, GOption> defineOptions();

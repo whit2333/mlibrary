@@ -5,12 +5,13 @@ bool GMediaTxtFactory::publishDetectorDigiObservables(GDetectorObservables *dete
 {
 	if(ofile == nullptr) return false;
 	
-	*ofile  << " " << detectorHits->getName() << " digitized observables {" << endl;
+	*ofile  << GVARIABLEFLUSH << detectorHits->getName() << " digitized observables {" << endl;
 	
 	vector<string> varNames = detectorHits->getDigiObservableName();
-	
+	vector<string> varUnits = detectorHits->getDigiObservableUnit();
+
 	for(size_t v=0; v<varNames.size(); v++) {
-		*ofile << GVARIABLEFLUSH << varNames[v] << ": ";
+		*ofile << GVARIABLEFLUSH << GVARIABLEFLUSH << varNames[v] << " (" << varUnits[v] << ") : ";
 		
 		// get digitized observables
 		for(auto dHit: detectorHits->getDigiObservables()) {
@@ -34,7 +35,7 @@ bool GMediaTxtFactory::publishDetectorDigiObservables(GDetectorObservables *dete
 		*ofile << endl;
 	}
 	
-	*ofile  << " }" << endl;
+	*ofile  << GVARIABLEFLUSH << "}" << endl;
 	
 	return true;
 }

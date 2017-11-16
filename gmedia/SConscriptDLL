@@ -6,11 +6,13 @@ env = init_environment("mlibrary qt5 geant4 clhep")
 # is required by a dependency: the scan may fail to load the library at the beginning because it's not there yet
 # But we know it will be there, so we can add it by hand here.
 env.Append(LIBS = 'gdata')
+env.Append(LIBS = 'gmedia')
 
 txtSources = Split(
 	"""
 	factories/txt/gmediaTxtFactory.cc
 	factories/txt/connection.cc
+	factories/txt/event.cc
 	factories/txt/publishHeader.cc
 	factories/txt/publishDetectorDigiObservables.cc
 	factories/txt/publishDetectorTrueObservables.cc
