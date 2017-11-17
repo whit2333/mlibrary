@@ -12,20 +12,23 @@ public:
 	GMediaTxtFactory() : ofile(nullptr) {}
 	
 private:
+	// open and close the output media
 	bool openConnection();
-	
-	// one per event
+	bool closeConnection();
+
+	// start and end each event
 	bool startEvent();
 	bool endEvent();
 	
+	// write the header
 	bool publishHeader(GHeader gh);
 
-	// digitized observables
+	// write digitized observables
 	bool publishDetectorDigiObservables(GDetectorObservables *detectorHits);
-	// true observables
+	
+	// write true observables
 	bool publishDetectorTrueObservables(GDetectorObservables *detectorHits);
 	
-	bool closeConnection();
 	
 private:
 	// utility function to write observable

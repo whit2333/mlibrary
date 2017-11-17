@@ -1,12 +1,12 @@
 from init_env import init_environment
 
-env = init_environment("mlibrary qt5 geant4 clhep")
+env = init_environment("mlibrary qt5 geant4 clhep root")
 
 # notice: if ran from the root dir mlibrary, the env will miss "gdata" even if it
 # is required by a dependency: the scan may fail to load the library at the beginning because it's not there yet
 # But we know it will be there, so we can add it by hand here.
-env.Append(LIBS = 'gdata')
-env.Append(LIBS = 'gmedia')
+env.Append(LIBS = ['gdata'])
+env.Append(LIBS = ['gmedia'])
 
 txtSources = Split(
 	"""
@@ -21,6 +21,8 @@ txtSources = Split(
 rootSources = Split(
 	"""
         factories/root/gmediaROOTFactory.cc
+		factories/root/connection.cc
+		factories/root/event.cc
 	""")
 
 

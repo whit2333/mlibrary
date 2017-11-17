@@ -47,11 +47,10 @@ map<string, GOption> GMedia::defineOptions()
 	
 	optionsMap["output"] = GOption("Output filename and format(s)", "na", "output");
 	optionsMap["output"].addHelp("Example:\n\n");
-	optionsMap["output"].addHelp("-output=\"myout, txt, root\": will write two filenames: myout.txt and myout.root\n\n");
-	optionsMap["output"].addHelp("Possible formats:\n");
+	optionsMap["output"].addHelp("-output=\"myout: txt, root\": will write two filenames: myout.txt and myout.root\n\n");
+	optionsMap["output"].addHelp("Possible formats (depends on plugin availability):\n");
 	optionsMap["output"].addHelp(string(GOPTIONITEM) + "txt \n");
 	optionsMap["output"].addHelp(string(GOPTIONITEM) + "root \n");
-	optionsMap["output"].addHelp(string(GOPTIONITEM) + "csv \n");
 
 	optionsMap["outputv"] = GOption("Output Verbosity", 1, "output");
 	optionsMap["outputv"].addHelp("Possible values:\n");

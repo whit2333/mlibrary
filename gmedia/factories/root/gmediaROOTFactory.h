@@ -4,17 +4,27 @@
 // gmedia
 #include "gmedia.h"
 
+// ROOT
+#include "TFile.h"
 
 class GMediaROOTFactory : public GMedia
 {
 public:
-	GMediaROOTFactory()  {}
-	
+	GMediaROOTFactory() {}
 	
 private:
-	ofstream *rootfile;
+	// open and close the output media
+	bool openConnection();
+	bool closeConnection();
+
+	// start and end each event
+	bool startEvent();
+	bool endEvent();
+
+private:
+	TFile *rootfile;
 };
 
 
 
-#endif // GMEDIATXTFACTORY_H
+#endif // GMEDIAROOTFACTORY_H
