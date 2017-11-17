@@ -30,7 +30,6 @@ private:
 	int threadID;
 	string g4randomNumber;
 	string timeStamp();
-	
 };
 
 class GEventData

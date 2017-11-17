@@ -20,6 +20,7 @@ txtSources = Split(
 
 rootSources = Split(
 	"""
+		factories/root/gRootTree.cc
         factories/root/gmediaROOTFactory.cc
 		factories/root/connection.cc
 		factories/root/event.cc

@@ -3,6 +3,7 @@
 
 // gmedia
 #include "gmedia.h"
+#include "gRootTree.h"
 
 // ROOT
 #include "TFile.h"
@@ -23,6 +24,9 @@ private:
 
 private:
 	TFile *rootfile;
+	map<string, GRootTree> gRootTrees;
+	
+	
 };
 
 
