@@ -11,7 +11,7 @@
 class GMediaROOTFactory : public GMedia
 {
 public:
-	GMediaROOTFactory() {}
+	GMediaROOTFactory() : gRootTrees(nullptr) {}
 	
 private:
 	// open and close the output media
@@ -22,10 +22,24 @@ private:
 	bool startEvent();
 	bool endEvent();
 
+	// write the header
+	bool publishHeader(GHeader gh);
+	
+	// write digitized observables
+	bool publishDetectorDigiObservables(GDetectorObservables *detectorHits);
+	
+	// write true observables
+	bool publishDetectorTrueObservables(GDetectorObservables *detectorHits);
+
 private:
 	TFile *rootfile;
-	map<string, GRootTree> gRootTrees;
+	map<string, GRootTree*> *gRootTrees;
 	
+	// return header tree from map. If not there, initialize it.
+	GRootTree *getGRootTree(GHeader gh);
+
+	// return observables tree from map. If not there, initialize it.
+	GRootTree *getGRootTree(string treeName, vector<string> varNames, vector<GObservables*> observables);
 	
 };
 

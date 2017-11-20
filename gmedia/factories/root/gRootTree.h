@@ -1,16 +1,25 @@
 #ifndef GROOTTREE_H
 #define GROOTTREE_H 1
 
+// c++
+#include <map>
+using namespace std;
 
 // ROOT
 #include "TTree.h"
 
+// mlibrary
+#include "gdata.h"
+
 class GRootTree
 {
 public:
-	GRootTree() : leafsAreInitialized(false) {}
-	bool areLeafsInitialized() {return leafsAreInitialized;}
+	// return header tree with initialzed leafs
+	GRootTree(GHeader gh);
 	
+	// return observables tree with initialzed leafs
+	GRootTree(string tName, vector<string> varNames, vector<GObservables*> digiObservables);
+
 private:
 	TTree *rootTree;
 	
@@ -20,12 +29,7 @@ private:
 	map<string, vector<double>* > doubleVars;
 	map<string, vector<string>* > stringVars;
 	
-	bool leafsAreInitialized;
 	
-private:
-	void initializeLeafs();
 };
-
-
 
 #endif // GROOTTREE_H
