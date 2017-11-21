@@ -6,6 +6,10 @@ bool GMediaROOTFactory::startEvent()
 {
 	if(rootfile == nullptr) return false;
 	
+	// clearing maps vectors for all trees
+	for(auto t: (*gRootTrees)) {
+		t.second->initTreeForTheEvent();
+	}
 	
 	return true;
 }

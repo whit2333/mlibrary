@@ -28,7 +28,7 @@ public:
 private:
 	int g4EventNumber;
 	int threadID;
-	string g4randomNumber;
+	string g4randomNumber;  // PRAGMA TODO: not used yet. check feasibility
 	string timeStamp();
 };
 

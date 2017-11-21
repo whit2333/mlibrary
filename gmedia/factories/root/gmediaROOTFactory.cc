@@ -1,16 +1,16 @@
 // txt gmedia
 #include "gmediaROOTFactory.h"
 
-GRootTree* GMediaROOTFactory::getGRootTree(GHeader gh)
+GRootTree* GMediaROOTFactory::getHeaderGRootTree()
 {
 	// tree not found, initializing it
-	if(gRootTrees->find(treeName) == gRootTrees->end()) {
-		(*gRootTrees)[treeName] = new GRootTree(gh);
+	if(gRootTrees->find("header") == gRootTrees->end()) {
+		(*gRootTrees)["header"] = new GRootTree();
+		
 	}
 	
 	// return initialized tree
-	return (*gRootTrees)[treeName];
-	
+	return (*gRootTrees)["header"];
 }
 
 GRootTree* GMediaROOTFactory::getGRootTree(string treeName, vector<string> varNames, vector<GObservables*> observables)
@@ -21,8 +21,7 @@ GRootTree* GMediaROOTFactory::getGRootTree(string treeName, vector<string> varNa
 	}
 	
 	// return initialized tree
-	return (*gRootTrees)[treeName];
-	
+	return (*gRootTrees)[treeName];	
 }
 
 

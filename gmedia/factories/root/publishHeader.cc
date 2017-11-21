@@ -7,10 +7,9 @@ bool GMediaROOTFactory::publishHeader(GHeader gh)
 	if(rootfile == nullptr) return false;
 	
 	// get root tree from the map
-	GRootTree *headerTree = getGRootTree(gh);
+	GRootTree *headerTree = getHeaderGRootTree();
 	
-	// fill tree
-	
-	return true;
+	// fill variables and tree
+	return headerTree->fillTree(gh, evn);
 	
 }

@@ -36,7 +36,7 @@ private:
 	map<string, GRootTree*> *gRootTrees;
 	
 	// return header tree from map. If not there, initialize it.
-	GRootTree *getGRootTree(GHeader gh);
+	GRootTree *getHeaderGRootTree();
 
 	// return observables tree from map. If not there, initialize it.
 	GRootTree *getGRootTree(string treeName, vector<string> varNames, vector<GObservables*> observables);

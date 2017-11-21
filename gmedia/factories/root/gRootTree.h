@@ -15,11 +15,14 @@ class GRootTree
 {
 public:
 	// return header tree with initialzed leafs
-	GRootTree(GHeader gh);
+	GRootTree();
 	
 	// return observables tree with initialzed leafs
 	GRootTree(string tName, vector<string> varNames, vector<GObservables*> digiObservables);
 
+	bool initTreeForTheEvent();
+	bool fillTree(GHeader gh, int evn);
+	
 private:
 	TTree *rootTree;
 	
@@ -28,7 +31,6 @@ private:
 	map<string, vector<float>* >  floatVars;
 	map<string, vector<double>* > doubleVars;
 	map<string, vector<string>* > stringVars;
-	
 	
 };
 

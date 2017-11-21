@@ -22,8 +22,12 @@ rootSources = Split(
 	"""
 		factories/root/gRootTree.cc
         factories/root/gmediaROOTFactory.cc
+		factories/root/gRootTree.cc
 		factories/root/connection.cc
 		factories/root/event.cc
+		factories/root/publishHeader.cc
+		factories/root/publishDetectorDigiObservables.cc
+		factories/root/publishDetectorTrueObservables.cc
 	""")
 
 

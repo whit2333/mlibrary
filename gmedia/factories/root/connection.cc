@@ -14,6 +14,7 @@ bool GMediaROOTFactory::openConnection()
 
 bool GMediaROOTFactory::closeConnection()
 {
+	rootfile->Write();
 
 	rootfile->Close();
 	delete rootfile;
