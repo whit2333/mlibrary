@@ -18,10 +18,15 @@ public:
 	GRootTree();
 	
 	// return observables tree with initialzed leafs
-	GRootTree(string tName, vector<string> varNames, vector<GObservables*> digiObservables);
+	GRootTree(string tName, vector<string> varNames, GObservables* firstDigiObservables);
 
 	bool initTreeForTheEvent();
+	
+	// filling trees
 	bool fillTree(GHeader gh, int evn);
+	bool fillTree(vector<GObservables*> observables);
+
+	bool defineNewVar(string varName, GObservableType gt);
 	
 private:
 	TTree *rootTree;

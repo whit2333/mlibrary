@@ -8,6 +8,8 @@
 // ROOT
 #include "TFile.h"
 
+#define DIGITNAMESUFFIX 
+
 class GMediaROOTFactory : public GMedia
 {
 public:
@@ -39,7 +41,7 @@ private:
 	GRootTree *getHeaderGRootTree();
 
 	// return observables tree from map. If not there, initialize it.
-	GRootTree *getGRootTree(string treeName, vector<string> varNames, vector<GObservables*> observables);
+	GRootTree *getGRootTree(string treeName, vector<string> varNames, GObservables* observable);
 	
 };
 

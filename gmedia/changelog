@@ -1,6 +1,7 @@
 11/21/17
  - clearing map trees every event
  - adding header variables
+ - starting filling digitized infos
 
 11/20/17
  - added methods for headers and observables. Still need to fill tree

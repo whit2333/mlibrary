@@ -13,11 +13,11 @@ GRootTree* GMediaROOTFactory::getHeaderGRootTree()
 	return (*gRootTrees)["header"];
 }
 
-GRootTree* GMediaROOTFactory::getGRootTree(string treeName, vector<string> varNames, vector<GObservables*> observables)
+GRootTree* GMediaROOTFactory::getGRootTree(string treeName, vector<string> varNames, GObservables* observable)
 {
 	// tree not found, initializing it
 	if(gRootTrees->find(treeName) == gRootTrees->end()) {
-		(*gRootTrees)[treeName] = new GRootTree(treeName, varNames, observables);
+		(*gRootTrees)[treeName] = new GRootTree(treeName, varNames, observable);
 	}
 	
 	// return initialized tree

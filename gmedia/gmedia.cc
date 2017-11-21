@@ -13,7 +13,6 @@ map<string, bool> GMedia::publishData(vector<GEventData*> *runData) {
 		gmediaReport["startEvent"] = startEvent();
 		gmediaReport["header"]     = publishHeader(eventData->getHeader());
 		
-
 		// digitized observables: looping over detectors
 		for(auto detectorData: eventData->getDetectorsData()) {
 			string dnameKey = detectorData->getName() + "TrueInfo";
