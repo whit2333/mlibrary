@@ -8,9 +8,10 @@ bool GMediaROOTFactory::publishDetectorDigiObservables(GDetectorObservables *det
 	string tname            = detectorHits->getName() + string(DIGITNAMESUFFIX);
 	vector<string> varNames = detectorHits->getDigiObservableName();
 	
-	// get root tree from the map
+	// get or define root tree from the map
+	// only the first hit is needed
 	GRootTree *observablesTree = getGRootTree(tname, varNames, detectorHits->getDigiObservables().front());
 
-	return observablesTree->fillTree(detectorHits->getDigiObservables());
+	return observablesTree->fillTree(varNames, detectorHits->getDigiObservables());
 
 }

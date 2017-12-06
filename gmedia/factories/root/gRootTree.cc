@@ -1,6 +1,7 @@
 #include "gRootTree.h"
 
 // return observables tree
+// only the first hit is needed
 GRootTree::GRootTree(string tName, vector<string> varNames, GObservables* firstDigiObservables)
 {
 	rootTree = new TTree(tName.c_str(), tName.c_str());
@@ -84,10 +85,33 @@ bool GRootTree::fillTree(GHeader gh, int evn)
 	return true;
 }
 
-bool  GRootTree::fillTree(vector<GObservables*> observables)
+bool  GRootTree::fillTree(vector<string> varNames, vector<GObservables*> observables)
 {
-	
-	
+	// looping over variables
+	for(size_t v=0; v<varNames.size(); v++) {
+		// looping over hits
+		for(auto dObservableOneHit: observables) {
+			switch(dObservableOneHit->getTypeAtIndex(v)) {
+				case gstring_t:
+					stringVars[varNames[v]]->push_back(dObservableOneHit->getStringVarAtIndex(v));
+					break;
+				case gint_t:
+					intVars[varNames[v]]->push_back(dObservableOneHit->getIntVarAtIndex(v));
+					break;
+				case gfloat_t:
+					floatVars[varNames[v]]->push_back(dObservableOneHit->getFloatVarAtIndex(v));
+					break;
+				case gdouble_t:
+					doubleVars[varNames[v]]->push_back(dObservableOneHit->getDoubleVarAtIndex(v));
+					break;
+
+				default:
+					return false;
+
+			}
+		}
+	}
+
 	
 	// PRAGMA TODO: What if we get nothing?
 	// can we return this?
@@ -95,4 +119,7 @@ bool  GRootTree::fillTree(vector<GObservables*> observables)
 
 	return true;
 }
+
+
+
 

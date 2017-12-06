@@ -24,7 +24,7 @@ public:
 	
 	// filling trees
 	bool fillTree(GHeader gh, int evn);
-	bool fillTree(vector<GObservables*> observables);
+	bool fillTree(vector<string> varNames, vector<GObservables*> observables);
 
 	bool defineNewVar(string varName, GObservableType gt);
 	

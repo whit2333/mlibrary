@@ -40,8 +40,6 @@ public:
 		}
 	}
 	
-
-	
 	// api to get data
 	string getName() {return detectorSDName;}
 	vector<string> getDigiObservableName() {return digiObservableName;}
