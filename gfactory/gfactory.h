@@ -168,7 +168,8 @@ public:
 				return T::instantiate(thisDLHandle);
 			}
 		}
-		cout << logHeader << " GManager: plugin " << name << " could not be loaded " << endl;
+		// warning message already given if plugin not found
+		// cout << logHeader << " GManager: plugin " << name << " could not be loaded " << endl;
 		return nullptr;
 	}
 	

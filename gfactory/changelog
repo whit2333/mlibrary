@@ -1,5 +1,6 @@
 11/8/17
  - protecting against plugin loading failure
+ - pluging loading failures less verbose
 
 11/7/17
  - the classes to be loaded with plugins only need the static functions defined in gdl.h

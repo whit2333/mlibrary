@@ -13,6 +13,7 @@ public:
 
 	// sets outputFileName, opens it and start event number
 	bool setOutputName(string filename) {
+
 		evn = 1;
 		outputFileName = filename;
 		return openConnection();
@@ -49,7 +50,7 @@ public:
 	// method to dynamically load factories
 	static GMedia* instantiate(const dlhandle handle) {
 		
-		if (handle == nullptr) return nullptr;
+		if(handle == nullptr) return nullptr;
 		
 		void *maker = dlsym(handle , "GMediaFactory");
 		
