@@ -17,7 +17,8 @@ using namespace std;
 #include "CLHEP/Units/PhysicalConstants.h"
 using namespace CLHEP;
 
-class GMapCoordinate {
+class GMapCoordinate
+{
 	
 public:
 	GMapCoordinate(string name, unsigned int np, double min, double max, string unit, int speed);

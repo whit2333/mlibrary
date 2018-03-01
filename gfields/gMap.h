@@ -2,7 +2,9 @@
 #define  GMAP_H  1
 
 
-class GMap {
+class GMap
+{
+
 public:
 	
 private:

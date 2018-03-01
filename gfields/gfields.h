@@ -2,7 +2,8 @@
 #define  GFIELDS_H  1
 
 
-class gfields {
+class gfields
+{
 
 
 };
