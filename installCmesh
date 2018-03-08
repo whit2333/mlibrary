@@ -5,6 +5,10 @@
 # it requires two additional submodules, that are fetched during the cmake (unless they are already there).
 # setenv GIT_SSL_NO_VERIFY false
 
+# 1. make sure you get the latest cadmesh release: https://github.com/christopherpoole/CADMesh.git
+# 2. untar, move it to cadmesh
+# 3. commit changes to mlibrary
+
 rm -rf cadmeshBuild
 mkdir cadmeshBuild
 cd cadmeshBuild
