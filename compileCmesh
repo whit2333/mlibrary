@@ -8,11 +8,11 @@ cd cadmeshBuild
 set ncpu = `getconf _NPROCESSORS_ONLN`
 set opt = " -j"$ncpu" "
 
+echo
+echo Compiling with options $opt
+echo
+
 cmake ../cadmesh -DCMAKE_INSTALL_PREFIX:PATH=$MLIBRARY
 make $opt install
+echo done
 
-# removing unnecessary files so we can make cadmesh part of mlibrary
-# rm -rf external/assimp/CMakeLists.txt
-# rm -rf external/assimp/.git
-# rm -rf external/assimp/test
-# rm -rf external/tetgen/.git
