@@ -9,6 +9,7 @@
 # 1. make sure you get the latest cadmesh release: https://github.com/christopherpoole/CADMesh.git
 # 2. untar, move it to cadmesh
 # 3. commit changes to mlibrary
+# 4. after compiling, commit changes of include to the mlibrary
 #
 # The following is not working, and leaving cadmesh using this as external for now:
 #

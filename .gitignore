@@ -1,6 +1,5 @@
 bin
 lib
-include
 build_log
 .DS_Store
 .sconsign.dblite
