@@ -1,7 +1,4 @@
-from init_env import init_environment
-
-env = init_environment("mlibrary geant4 clhep qt5")
-
+Import('env')
 
 sources = Split("""
 	gdata.cc

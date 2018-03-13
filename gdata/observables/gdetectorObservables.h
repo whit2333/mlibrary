@@ -2,7 +2,7 @@
 #define  GDETECTOR_DATA_H  1
 
 // gdata
-#include "observables/gobservables.h"
+#include "gobservables.h"
 
 // PRAGMA TODO: decide if we have a pointer object, how to copy it, etc.
 // PRAGMA TODO: add "adc", "tcd", "fadc" ?

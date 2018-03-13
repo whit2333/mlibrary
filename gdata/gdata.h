@@ -2,7 +2,6 @@
 #define  GDATA_H  1
 
 // gdata
-#include "observables/gobservables.h"
 #include "observables/gdetectorObservables.h"
 
 // c++

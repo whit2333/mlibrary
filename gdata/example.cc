@@ -13,15 +13,7 @@ using namespace std;
 //! example of main declaring GOptions
 int main(int argc, char* argv[])
 {
-
-	int nevents = 100000000;
-
-	gdata bar(20, "  index progress: ", 1, nevents);
-
-	for(int i=1; i<nevents; i++) {
-		bar.setProgress(i);
-
-	}
+	GHeader gh(20, 11, "234");
 
 	return 1;
 }
