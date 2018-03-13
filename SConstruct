@@ -24,5 +24,5 @@ Depends(gmedia, gdata)
 
 # output plugins
 gmediaDLLS   = SConscript('gmedia/SConscriptDLL')
-Depends(gmediaDLLS, gdata)
+Depends(gmediaDLLS, gmedia)
 
