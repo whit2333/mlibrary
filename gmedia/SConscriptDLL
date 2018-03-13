@@ -45,4 +45,5 @@ txt_dll  = env.SharedLibrary( source = txtSources,  target = "../lib/txtGMedia")
 
 if os.path.exists(ROOTSYS):
 	root_dll = env.SharedLibrary( source = rootSources, target = "../lib/rootGMedia")
+	print "why are we printing"
 

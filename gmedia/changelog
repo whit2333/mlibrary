@@ -1,3 +1,7 @@
+3/13/18
+- passing env to sconscript
+- better scons documentation
+
 12/6/17
  - fill tree from observable method ready
 
