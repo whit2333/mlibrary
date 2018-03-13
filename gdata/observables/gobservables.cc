@@ -93,6 +93,8 @@ int GObservables::getVariableIndex(int forIndex)
 		return gindex/GSTRINDEXMULTIPLIER;
 		break;
 	}
+
+	return gindex;
 }
 
 
