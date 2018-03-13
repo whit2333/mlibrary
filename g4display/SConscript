@@ -1,6 +1,4 @@
-from init_env import init_environment
-
-env = init_environment("mlibrary qt5 geant4 clhep")
+Import('env')
 
 sources = Split("""
 	g4display.cc
