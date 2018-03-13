@@ -1,3 +1,6 @@
+3/13/18
+ - added proper dependencies in SConstruct
+
 10/14/17
  - renamed getFilenameFromFilename to getFilenameFromFilenameWithPath
 
