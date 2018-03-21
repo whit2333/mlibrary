@@ -38,7 +38,7 @@ public:
 	// - 100: Event start time
 	// - 0.5: Beam frequency (GHz)
 	// - 80:  Distance between signals in the same RF, in number of bunches (1 bunch time = 1/frequency)
-    // - 40:  Distance between RFs, in number of bunches (1 bunch time = 1/frequency)
+    // - 40:  Distance between different RFs output, in number of bunches (1 bunch time = 1/frequency)
 	FrequencySyncSignal(string setup);
 
 private:
