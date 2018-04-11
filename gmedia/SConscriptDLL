@@ -44,6 +44,6 @@ env.Replace(SHLIBPREFIX = "")
 txt_dll  = env.SharedLibrary( source = txtSources,  target = "../lib/txtGMedia")
 
 if os.path.exists(ROOTSYS):
+ 	print "ROOT Found, compiling rootGMedia plugin"
 	root_dll = env.SharedLibrary( source = rootSources, target = "../lib/rootGMedia")
-	print "why are we printing"
 
