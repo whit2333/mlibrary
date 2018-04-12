@@ -1,27 +1,30 @@
 April 12 2018
+-------------
 
-xcode project - start with empty project. COMMAND-SHIFT-N
+xcode project - start with empty project. COMMAND-SHIFT-N - Cross-platform.
 
 - Move the project from  its own dir created to one dir up
-- Add all the files. 
+- Add all the files (make sure to do scons -c to avoid including objects). Added folders: Create folder references.
 
  1. On the general project add "settings.xcconfig" configuration for debug and release
 
- 2. add macos library target "libraryName". Static STLC++ to archive the executable. Identifier: library name
+ 2. add macos Library target "libraryName". Static STLC++ to archive the executable. Organization Identifier: mlibrary
     a. remove libraryName dir
-    b. drag source libraryName.cc in Compile Sources build phases
+    b. add source libraryName.cc in Compile Sources Build Phases
 
  3. Open Framework and library dir of interest
 
     Qt:     open $QTDIR/lib
 	 geant4: open $G4ROOT/$GEANT4_VERSION/lib
 
- 4. add command line tool exampleName, source is example.cc
+	Drag needed to Build Phases Link with Libraries
+
+ 4. Add macos command line tool exampleName, C++, Organization Identifier:  libraryName.
     a. remove exampleName dir
     b  drag source exampleName.cc in Compile Sources build phase
-    b. add libraryName in the target dependencies (build phases)
-    c. drag frameworks to link Binary with Libraries on Build Phases 
-    d. drag frameworks to Copy files, products location must match CONFIGURATION_BUILD_DIR
+    c. add libraryName in the target dependencies on Build Phases
+    d. add libraryName link Binary with Libraries on Build Phases
+    e. drag frameworks to Copy files, products location must match CONFIGURATION_BUILD_DIR
  	- no subpath
 	- uncheck Copy only when installing
 	- executables
@@ -59,6 +62,11 @@ that the output from moc is a .cpp and needs to be compiled and linked into you 
 REMAKE XCODE Projects
 ---------------------
 
+The idea is to rename the current projects with an "O" at the end of the name, open it and create a new one.
+The Old project will give directives on what to include.
+
+See instructions above on creating empty project.
+
 cd "/Users/ungaro/Library/Mobile Documents/com~apple~CloudDocs/xcode/mlibrary/"
 
 set listTodo = (`\ls | grep ".xcodeproj" | grep -v "O.xcodeproj"`)
@@ -73,4 +81,5 @@ end
 Order of projects
 
 1. gstring
+2. goptions
 

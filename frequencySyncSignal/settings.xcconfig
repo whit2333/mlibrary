@@ -25,7 +25,7 @@
 //    To run the app by command line, add @executable_path to run path in Linking
 
 // Sourcing local version
-#include "/opt/projects/ceInstall/devel/ce/settings.xcconfig"
+#include "/opt/projects/ceInstall/ce/settings.xcconfig"
 
 // installation of libraries and binaries
 CONFIGURATION_BUILD_DIR = $MYBUILDDIR
