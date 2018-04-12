@@ -1,4 +1,4 @@
- Feb 13 2017
+April 12 2018
 
 xcode project - start with empty project. COMMAND-SHIFT-N
 
@@ -14,7 +14,7 @@ xcode project - start with empty project. COMMAND-SHIFT-N
  3. Open Framework and library dir of interest
 
     Qt:     open $QTDIR/lib
-	geant4: open $G4ROOT/$GEANT4_VERSION/lib
+	 geant4: open $G4ROOT/$GEANT4_VERSION/lib
 
  4. add command line tool exampleName, source is example.cc
     a. remove exampleName dir
@@ -35,6 +35,7 @@ xcode project - start with empty project. COMMAND-SHIFT-N
 
 
 Q_OBJECT and xcode
+------------------
 
 Select your target and in Build Rules make a new custom rule. 
 Set the "Process" drop down to "Source files with names matching" and type in *.h next to that. 
@@ -53,3 +54,23 @@ Add those headers to your project first if you can't find them in there.
 
 That's it, Xcode will then run moc on those headers and it will understand 
 that the output from moc is a .cpp and needs to be compiled and linked into you app and do that for you.
+
+
+REMAKE XCODE Projects
+---------------------
+
+cd "/Users/ungaro/Library/Mobile Documents/com~apple~CloudDocs/xcode/mlibrary/"
+
+set listTodo = (`\ls | grep ".xcodeproj" | grep -v "O.xcodeproj"`)
+
+foreach p ($listTodo)
+	set toRename = `echo $p | awk -F. '{print $1}'`
+	echo $toRename
+	mv $p $toRename"O.xcodeproj"
+end
+
+
+Order of projects
+
+1. gstring
+
