@@ -5,6 +5,9 @@
 // gdynamic
 #include "gdynamic.h"
 
+// gfactory
+#include "gfactory.h"
+
 // c++
 #include <iostream>
 using namespace std;

@@ -43,9 +43,11 @@ int main()
 		aShape->Area();
 		fff["triangle"]->Area();
 		fff["box1"]->Area();
-
-		ggg["dodge"]->go();
-		ggg["ford"]->go();
+	
+		if(ggg["dodge"] != nullptr)
+			ggg["dodge"]->go();
+		if(ggg["ford"] != nullptr)
+			ggg["ford"]->go();
 
 		cout << " Shape pointers: " << fff["triangle"] << " " << aShape << endl;
 		cout << " Car pointers: " << ggg["ford"] << " " << aCar << endl;

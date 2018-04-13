@@ -12,6 +12,7 @@ class CTofRoutineExample : public GDynamic {
 
 public:
 	bool loadConstants(int runno, string variation);
+	bool checkPlugin();
 
 private:
 

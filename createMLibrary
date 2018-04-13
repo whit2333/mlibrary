@@ -1,7 +1,5 @@
 #!/bin/csh -f
 
-
-
 if($#argv != 1) then
         echo " "
         echo "Usage:   "

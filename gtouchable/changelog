@@ -1,3 +1,6 @@
+4/13/18
+ - fixing example for scons system
+
 1/1/17
  - added NHITBITS here so it can be used in ghit and gdynamic
  - better name for getEnergyMultiplier

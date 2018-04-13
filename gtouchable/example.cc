@@ -10,18 +10,14 @@
 using namespace std;
 
 
-//! example of main declaring GOptions
 int main(int argc, char* argv[])
 {
 
-	int nevents = 100000000;
 
-	gtouchable bar(20, "  index progress: ", 1, nevents);
+	// a touchable
+	GTouchable ctof("ctof", "paddle 22");
 
-	for(int i=1; i<nevents; i++) {
-		bar.setProgress(i);
-
-	}
+	cout << " E multiplier: " << ctof.getEnergyMultiplier() << endl;
 
 	return 1;
 }
