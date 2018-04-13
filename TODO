@@ -1,0 +1,3 @@
+- Change each README to documentation in each library
+- Move todo to notes inside each dir
+- complete the export env in the scons build system
