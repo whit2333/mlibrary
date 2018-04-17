@@ -18,11 +18,11 @@ map<string, GOption> defineOptions()
 //! example of main declaring GOptions
 int main(int argc, char* argv[])
 {
-	cout << " Usage example: example -n=1000 -runWeightsFile=runWeights.txt -grunv=3" << endl;
+	cout << endl << " Usage example: example -n=1000 -runWeightsFile=runWeights.txt -grunv=3" << endl;
 
 	GOptions *gopts = new GOptions(argc, argv, defineOptions(), 1);
 
-	GRuns *gruns = new GRuns(gopts);
+	GRuns *gruns = new GRuns(gopts, nullptr);
 
 
 	return 1;
