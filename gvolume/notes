@@ -1,0 +1,33 @@
+Notes
+=====
+
+Cocoa and Libraries Warning:
+The various libraries and frameworks need to be in the same dir as the executable (BUILD_DIR in settings.xcconfig). Best way: copy manually.
+
+
+
+Frameworks needed
+=================
+
+Library
+-------
+
+> Qt:
+  - QtCore
+  - QtXml
+
+> mlibraries:
+  - goptions
+  - gstring
+
+
+Example
+-------
+
+
+
+TODO
+====
+
+- add example with a native text, cad and gdml.
+
