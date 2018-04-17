@@ -10,13 +10,17 @@ Frameworks needed
 Library
 -------
 
-> Qt:
-  - QtCore
-  - QtXml
+> geant4:
+  - global
+  - geometry
+  - materials
+  - cadmesh (from build dir)
 
 > mlibraries:
-  - goptions
   - gstring
+  - options
+
+- clhep
 
 
 Example
@@ -27,5 +31,6 @@ Example
 TODO
 ====
 
-- add example with a native text, cad and gdml.
+- add example
+
 
