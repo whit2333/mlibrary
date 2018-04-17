@@ -25,6 +25,7 @@ Add Sources and Libraries
 	 geant4: open $G4ROOT/$GEANT4_VERSION/lib/
 	 ccdb:   open $CCDB_HOME/lib/
     clhep:  open $CLHEP_BASE_DIR/lib/
+    root:   open $ROOTSYS/lib/
 
 	Drag needed to "Build Phases" Link with Libraries
 
