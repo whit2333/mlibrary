@@ -73,6 +73,7 @@ Set the "Using" drop down to "Custom script:" and in the script type:
 Yo will have to change the path to wherever your moc executable is.
 
 Now add the "Output files" ("+" button):
+
 ${DERIVED_FILE_DIR}/${INPUT_FILE_BASE}_moc.cpp
 
 Xcode will then run moc on the headers in Build Phases and it will understand
