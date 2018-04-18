@@ -10,13 +10,8 @@ Frameworks needed
 Library
 -------
 
-> Qt:
-  - QtCore
-  - QtXml
-
-> mlibraries:
-  - goptions
-  - gstring
+> geant4:
+  - geometry (contains the fields apparently)
 
 
 Example
