@@ -1,0 +1,32 @@
+Notes
+=====
+
+
+
+
+Frameworks needed
+=================
+
+Library
+-------
+
+> Qt:
+  - QtCore
+  - QtXml
+
+> mlibraries:
+  - goptions
+  - gstring
+
+
+Example
+-------
+
+
+
+TODO
+====
+
+- add example
+
+

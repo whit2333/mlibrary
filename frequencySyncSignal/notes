@@ -1,0 +1,27 @@
+Notes
+=====
+
+
+
+
+Frameworks needed
+=================
+
+Library
+-------
+
+> mlibraries:
+  - gstring
+
+
+Example
+-------
+
+
+
+TODO
+====
+
+- add inline documentation
+- add goption
+- add verbosity
