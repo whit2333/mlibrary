@@ -17,12 +17,15 @@ using namespace std;
 // one gfield / geant4 volume.
 // it has one field manager (this what attaches to the volume)
 // it can have several maps, uniform and multiple fields
+// it has two parts:
+// 1. define the how tracking is done (field manager)
+// 2. define the fields. All fields present in the volume are super-imposed
 
 class GField : public G4MagneticField
 {
 	// public api from G4MagneticField
 	// returns the field at point x. This is a dispatcher for the various symmetries below
-	void GetFieldValue( const double x[3], double *Bfield) const;
+	void GetFieldValue(const double x[3], double *Bfield) const;
 
 
 private:
