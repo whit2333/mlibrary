@@ -1,0 +1,543 @@
+
+frequencySyncSignal:
+5/9/17
+ - the distance between bunches and signals is now in number of periods, not absolute time.
+
+8/11/15
+ - finalized
+
+7/29/16
+ - first implementation
+
+
+
+g4display:
+3/13/18
+- passing env to sconscript
+- better scons documentation
+
+11/7/17
+- added GOPTIONITEM symbol to standardize goption help list
+
+7/6/17
+- added slot for camera direction.
+
+
+g4volume:
+11/7/17
+ - adding cad system factory to repo
+ - using default gmanager log
+
+10/18/17
+ - log more consistent
+
+10/17/17
+ - cad import finalized w/o mods.
+
+10/16/17
+ - using WORLDNAME defined in gsystem.h
+ - using NOTAPPLICABLE defined in gvolume.h
+ - better log
+ - giving up if dependencies are not resolved after a full iteration of all setups
+
+
+10/13/17
+ - using G4cout and G4cerr consistently with endline for routines involving geant4
+ - using FATALERRORL, GWARNING symbols
+
+10/5/17
+ - Detector is global, so using cerr is ok
+
+7/13/17
+ - using default verbosity
+
+7/10/17
+- less log message for factory, define verbosity better and screen log
+
+6/29/16
+- errors to cerr
+- rotation finalized
+
+6/27/17
+- getting position, starting rotation
+
+6/23/17
+- renaming files, added base methods to retrieve g4 volumes
+- added base methods to check solid and physical dependencies
+- added verbosity to debug building of geant4 volumes
+- first iteration of native geant4 volume completed. Missing: rotation and position.
+
+6/22/17
+- starting factories implementation for solid, logical volumes
+
+6/21/17
+- using g4volume factories
+
+6/20/17
+- added option, G4Setup constructor from GSetup
+
+6/5/17
+- first implementation
+
+
+gdata:
+3/13/18
+- passing env to sconscript
+- better scons documentation
+- fixed and added example
+
+
+11/16/17
+ - added header information
+ - units instead of description in the observables
+ - added timestamp
+
+11/15/17
+ - adding true infos variables
+ - better name for digitized and true observables
+ - fixed reversed bool meaning on trueInfos
+
+11/10/17
+ - clearing observables names once copied to detectorObservables (not needed anymore)
+ - added true infos data
+
+11/9/17
+ - api to get correct indexes for various data type
+ - added utility to retrieve data and their types
+
+11/8/17
+ - no need for gdata options (for now)
+
+11/7/17
+ - adding api to add hit to event and run
+ - renaming gdetectorObservables
+
+11/6/17
+ - organized observables, and public api (to be executed at plugin)
+
+11/2/17
+ - first implementation
+
+
+gdynamic:
+4/13/18
+ - export env
+ - fixing example for scons system
+
+11/16/17
+ - added SConscript to build the library for the true infos routines
+ - units instead of description in the observables
+
+11/10/17
+ - added true infos routine
+
+11/9/17
+ - added virtual function digitizePulse: returns a GObservables*
+
+11/7/17
+ - the classes to be loaded with plugins only need the static functions defined in gdl.h
+
+11/6/17
+ - added digitization to python routine generator
+ - added virtual function digitizeHit: returns a GObservables*
+
+10/31/17
+ - using bitset
+ - protecting against geant4 tantrums in GDetectorConstruction::ConstructSDandField()
+ - removed touchableDynamic bool: can use base class method and loop over processTouchable results anyway
+ - getter and setters for hitbitset
+
+10/18/17
+ - added GSensitivePars class to store sensitive parameters.
+ - added loadSensitivePars in gDymanic and python script
+ - added showParameters to show GSensitivePars
+
+10/9/17
+ - added new abstract showConstants()
+
+10/6/17
+ - added sanity check abstract checkPlugin()
+
+7/17/17
+ - first implementation
+
+
+gfactory:
+12/8/17
+ - protecting against plugin loading failure
+ - pluging loading failures less verbose
+
+11/7/17
+ - the classes to be loaded with plugins only need the static functions defined in gdl.h
+
+10/9/17
+ - even better log symbol
+
+10/6/17
+ - better log symbol
+ - removing screen log for creating factory
+
+7/17/17
+ - added constants in each plugin factory
+
+5/27/17
+ - added logHeader for screen log
+
+3/23/17
+ - DL mechanism implemented inside factory manager
+ - verbosity added in GManager constructor
+ - added reference doc on the web
+
+3/22/17
+ - working version
+
+3/17/17
+ - first implementation
+
+
+gfields:
+12/8/27
+- first implementation
+
+
+
+
+ghit:
+4/13/18
+- added example
+
+3/13/18
+- passing env to sconscript
+- better scons documentation
+- added dummy example.cc
+
+11/10/17
+ - added calculated quantities api
+
+11/7/17
+ - added condition on G4Allocator to free hit memory: G4Allocator must be instantiated
+
+11/3/17
+ - starting public api to retrieve hits infos
+
+11/1/17
+ - constructor use bitset instead of string
+ - added buildHitInfos routine
+
+10/31/17
+ - using bitset for hit infos
+ - changing name to be more consisten. adding addStepInfor for hits that aren't new
+ - using pointer to touchable
+
+10/18/17
+ - added hitStage var so GHit knows which variable to load
+ - starting variables names
+
+10/17/17
+ - first implementation
+
+
+gmedia:
+3/13/18
+- passing env to sconscript
+- better scons documentation
+
+12/6/17
+ - fill tree from observable method ready
+
+11/21/17
+ - clearing map trees every event
+ - adding header variables
+ - starting filling digitized infos
+
+11/20/17
+ - added methods for headers and observables. Still need to fill tree
+
+11/17/17
+ - starting root plugin
+
+11/16/17
+ - added methods to publish start and end of event, and header
+ - units instead of description in the observables
+ - handling event number
+ - txt factory: added utility function to print a single observable, given the index
+
+11/15/17
+ - fixed SCons tricky dependency
+ - using true infos variables
+ - better name for digitized and true observables
+
+11/10/17
+ - reorg of txt plugin variables writing
+
+11/9/17
+ - renamed methods to clarify quantity is a vector of hits
+ - added SConscriptDLL to compile the plugin
+ - added some formatting
+
+11/8/17
+ - added options for gmedia: filename and format
+ - added GOPTIONITEM symbol to standardize goption help list
+ - correct naming conventions for plugin
+ - added open and close virtual methods
+
+11/7/17
+ - first implementation
+
+
+
+gruns:
+11/7/17
+- added GOPTIONITEM symbol to standardize goption help list
+
+11/3/17
+ - added buffer options to limit number of events to accumulate and write to disk
+
+10/19/17
+ - better log
+
+10/18/17
+ - protecting against plugin not loaded
+ - added showDigitizationParameters utility
+
+10/16/17
+ - added LOG and ERR symbols
+ - no need to display the sum
+
+10/5/17
+ - added processEvent routine to initialize available plugins with current run, process all runs
+ - added gDynamic map
+ - added geant4 messenger to provide beamOn()
+ - using map of gDynamic pointers
+
+8/24/17
+ - getting and setting current run and runIndex;
+
+7/17/17
+ - removed unnecessary methods and variables removed
+ - added verbosity and summary print
+
+7/13/16
+ - added textProgressBar
+ - fixed random generator
+
+7/12/16
+ - first implementation
+
+
+
+gstring:
+3/13/18
+ - added proper dependencies in SConstruct
+
+10/14/17
+ - renamed getFilenameFromFilename to getFilenameFromFilenameWithPath
+
+10/13/17
+ - added FATALERRORL symbols
+
+7/6/17
+ - using the bool argument to warn about no units
+
+6/29/16
+ - errors to cerr
+
+6/27/17
+ - added utility to return vector<double> directly from string
+
+5/26/17
+ - added utilities for QT object conversions to c++
+ - Removed window version of toString I think they fixed it?
+	#ifdef _MSC_VER
+		return input.toString().toLatin1();
+	#else
+
+9/13/16
+ - added function to fill a string with a char until it is ndigits long
+
+8/9/16
+ - first implementation
+
+
+
+gtouchable:
+4/13/18
+ - fixing example for scons system
+
+1/1/17
+ - added NHITBITS here so it can be used in ghit and gdynamic
+ - better name for getEnergyMultiplier
+
+10/31/17
+ - implemented debug-utility function getGTouchableDescriptionString
+ - added userInformations: users may want to define and save information from the processGTouchable function
+
+10/19/17
+ - creating gTouchable from gvolume string
+
+10/18/17
+ - added gridTimeIndex, used to determine if a hit is within the same detector electronic time window
+ - moved sensitive parameters to its own class GSensitivePars in the plugin mechanism
+
+7/17/17
+- first implementation, moved from gemc
+
+
+gvolume:
+11/8/17
+ - added GOPTIONITEM symbol to standardize goption help list
+ - using default gmanager log
+
+11/7/17
+ - adding cad, gdml system factories to repo
+
+10/16/17
+ - added utility getImportedFile
+
+10/16/17
+ - adding WORLDNAME string definition in gsystem.h
+ - adding second pars to gvolume constructor: filename with path
+ - adding NOTAPPLICABLE string definition in gvolume.h
+ - better log
+
+10/13/17
+ - removed gVolumeValidKeys, not needed
+ - using FATALERRORL, GWARNING symbols
+ - added importFilename for imports, set by factory
+ - added utility functions to check directories content of import
+
+10/6/17
+ - added method getSensitiveVolumes() to retrieve the the sensitive names and their paths, so the plugins can be loaded
+
+7/13/17
+ - using default verbosity
+ - method to get gTouchable string
+
+7/10/17
+ - less log message for factory, define verbosity better and screen log
+
+6/30/17
+ - magfield is actually em field, as electric field will be included
+ - fixed to default values of copies, replicas
+ - trimming spaces in gstring
+ - better gvolume description
+
+6/29/17
+ - errors to cerr
+
+6/28/17
+ - applying modifiers to gvolume
+
+6/1/17
+ - added text gVolume creation
+ - better log output for gVolume
+ - adding touchableID field, removing factory from gVolume
+
+5/31/17
+ - added utility to open geo and material files
+ - implementing verbosity throughout
+
+5/27/17
+ - added factory registration with verbosity and logheader
+
+5/25/17
+ - first implementation
+
+
+options:
+11/8/17
+ - better formatting for option changed by user
+
+11/7/17
+- added GOPTIONITEM symbol to standardize goption help list
+
+10/13/17
+- added FATALERRORL, GWARNING symbols
+
+10/6/17
+ - changed log symbols to something cooler
+
+7/13/17
+ - added default gverbosity
+ - added softwareVersion option to define version. Use with -v, -V, --v, --V, -version --version
+
+5/26/17
+ - making domDocument public
+
+7/14/16
+ - overload += to add two maps
+
+7/12/16
+ - Added getValues functions in GOptions class
+
+7/7/16
+ - Fixing user interface: users will now use a map<string, GOption> GOptions::defineOptions()
+   to fill the options map
+ - No need for c++ include in the example
+
+6/28/16
+ - first implementation
+
+
+
+qtButtonsWidget:
+3/16/17
+- simplifying button states to normal and pressed
+- updating images for example
+
+3/15/17
+- adding size contraints on buttons
+- using QListWidget instead of pushbuttons so items are mutually exclusive
+
+9/16/16
+- first implementation
+
+
+splash:
+11/8/17
+- added GOPTIONITEM symbol to standardize goption help list
+
+3/17/17
+- using nullptr
+
+3/15/17
+- finish on qwidget not window
+
+3/13/17
+- making doxygen happy
+- reversing order on the gsplash option string to make second string optional
+
+9/14/16
+- env variable no more necessary, "." used as default
+
+7/11/16
+- first implementation
+
+
+
+textProgressBar:
+4/12/18
+- fixed some types on progress bar, added better comments
+
+7/17/17
+ - fixed case where step is too small
+
+7/13/16
+ - added automatic min and max
+ - added title
+ - fixed final carriage return
+
+7/13/16
+ - first implementation
+
+
+
+translationTable:
+9/13/16
+ - using dash instead of space for map key
+ - added printTable utility
+
+7/8/16
+ - first implementation
+
+
