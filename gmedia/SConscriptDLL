@@ -1,7 +1,10 @@
 from init_env import init_environment
 import os
 
-ROOTSYS = os.environ['ROOTSYS']
+if os.environ.get('ROOTSYS') is not None:
+	ROOTSYS = os.environ['ROOTSYS']
+else:
+	ROOTSYS = "doesNotExist"
 
 if os.path.exists(ROOTSYS):
 	env = init_environment("mlibrary qt5 geant4 clhep root")

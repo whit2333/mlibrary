@@ -1,3 +1,6 @@
+10/2/18
+- fixed checking ROOTSYS in case it doesn't exist
+
 3/13/18
 - passing env to sconscript
 - better scons documentation

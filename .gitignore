@@ -5,8 +5,10 @@ build_log
 .sconsign.dblite
 *.o
 *.os
-example
 qrc_exampleResources.cc
 g4display/tabs/moc_gcamera.cc
 qtButtonsWidget/moc_qtButtonsWidget.cc
 cadmeshBuild
+options/example
+gdynamic/example
+textProgressBar/example
