@@ -1,14 +1,14 @@
 #ifndef  GCAMERA_H
 #define  GCAMERA_H 1
 
-// qt
-#include <QtWidgets>
 
 // mlibrary
 #include "goptions.h"
 
 // geant4 headers
 #include "G4UImanager.hh"
+
+#include <QtWidgets>
 
 class GCamera: public QWidget {
 
