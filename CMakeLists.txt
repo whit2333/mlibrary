@@ -42,7 +42,7 @@ set(CMAKE_AUTOUIC ON)
 # Find the QtWidgets library
 find_package(Qt5Widgets  CONFIG REQUIRED)
 find_package(Qt5Xml  CONFIG REQUIRED)
-find_package(Qt5OpenGL  CONFIG REQUIRED)
+#find_package(Qt5OpenGL  CONFIG REQUIRED)
 #Qt5PrintSupport Qt5Core Qt5Widgets Qt5Xml Qt5Sql 
 
 #----------------------------------------------------------------------------
@@ -296,7 +296,6 @@ target_include_directories(MLibrary
 target_link_libraries(MLibrary
   PUBLIC Qt5::Widgets
   PUBLIC Qt5::Xml
-  PUBLIC Qt5::OpenGL
   PUBLIC ${Geant4_LIBRARIES} 
   PUBLIC ${cadmesh_LIBRARIES}
   ${CMAKE_DL_LIBS}
