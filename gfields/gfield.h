@@ -35,7 +35,7 @@ private:
 	// - chord finder
 	G4Mag_UsualEqRhs*       createFieldEquation(G4MagneticField* gfield);
 	G4MagIntegratorStepper* createFieldStepper(string integrationMethod, G4Mag_UsualEqRhs* fEquation);
-	G4ChordFinder*          createChordFinder(G4MagneticField gfield, double minStep, G4MagIntegratorStepper* fieldStepper);
+	G4ChordFinder*          createChordFinder(G4MagneticField* gfield, double minStep, G4MagIntegratorStepper* fieldStepper);
 
 	
 	// all the real fields

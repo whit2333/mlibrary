@@ -37,12 +37,13 @@ bool G4CadSetupFactory::buildSolid(GOptions* gopt, GVolume *s, map<string, G4Vol
 	}
 
 	// importing mesh
-	CADMesh *cmesh = new CADMesh( (char *) s->getImportedFile().c_str() ) ;
+        auto cmesh = CADMesh::TessellatedMesh::FromPLY((char *) s->getImportedFile().c_str());
+	//CADMesh *cmesh = new CADMesh( (char *) s->getImportedFile().c_str() ) ;
 	cmesh->SetScale(mm);
 	cmesh->SetReverse(false);
 
 	
-	thisG4Volume->addSolid(cmesh->TessellatedMesh(), verbosity);
+	thisG4Volume->addSolid(cmesh->GetSolid(), verbosity);
 	
 	return true;
 }

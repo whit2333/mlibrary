@@ -26,7 +26,7 @@ GRootTree* GMediaROOTFactory::getGRootTree(string treeName, vector<string> varNa
 
 
 
-// tells the DLL how to create a GMediaFactory
-extern "C" GMedia* GMediaFactory(void) {
-	return static_cast<GMedia*>(new GMediaROOTFactory);
-}
+//// tells the DLL how to create a GMediaFactory
+//extern "C" GMedia* GMediaFactory(void) {
+//	return static_cast<GMedia*>(new GMediaROOTFactory);
+//}

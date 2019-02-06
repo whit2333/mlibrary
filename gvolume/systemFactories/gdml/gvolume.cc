@@ -1,5 +1,5 @@
 // gvolume
-#include "systemTextFactory.h"
+#include "systemGDMLFactory.h"
 
 // mlibrary
 #include "gstring.h"
@@ -10,7 +10,7 @@ using namespace gstring;
 #include <fstream>
 using namespace std;
 
-void GSystemTextFactory::loadGeometry(GOptions* gopt, GSystem *s)
+void GSystemGDMLFactory::loadGeometry(GOptions* gopt, GSystem *s)
 {
 	vector<string> possibleLocations = gopt->getStringVectorValue("setupDir");
 	ifstream *IN = s->gSystemFile(1, possibleLocations, verbosity);
