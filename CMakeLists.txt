@@ -225,6 +225,7 @@ set(headers
   )
 
 add_library(MLibrary  SHARED ${sources} )
+
 target_include_directories(MLibrary
   PUBLIC #$<INSTALL_INTERFACE:include>
   $<INSTALL_INTERFACE:include>
@@ -300,6 +301,7 @@ target_link_libraries(MLibrary
   PUBLIC ${cadmesh_LIBRARIES}
   ${CMAKE_DL_LIBS}
   )
+target_compile_features(MLibrary PUBLIC cxx_std_17)
 
 #set_target_properties(${LIBNAME} PROPERTIES
 #  SOVERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
